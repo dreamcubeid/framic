@@ -1,59 +1,59 @@
-@import "../base/colors.scss";
+// @import '../utils/variables';
 
-.sidemenu 
-{
-  background-color: $color_white;
-  position: fixed;
-  top: 0;
-  z-index: 30;
-  min-height: 100%;
-  max-height: 100%;
-  height: 100%;
-  right: -300px;
-  width: 350px;
-  overflow-y: scroll;
-  transition: all 0.3s ease;
+// .sidemenu 
+// {
+//   background-color: $color_white;
+//   position: fixed;
+//   top: 0;
+//   z-index: 30;
+//   min-height: 100%;
+//   max-height: 100%;
+//   height: 100%;
+//   right: -300px;
+//   width: 350px;
+//   overflow-y: scroll;
+//   transition: all 0.3s ease;
 
-  @media screen and (max-width: 576px) {
-    width: 280px;
-  }
-}
+//   @media screen and (max-width: 576px) {
+//     width: 280px;
+//   }
+// }
 
-.right {
-  right: 0;
-}
+// .right {
+//   right: 0;
+// }
 
-.left {
-  left: 0;
-}
+// .left {
+//   left: 0;
+// }
 
-.header_side_menu 
-{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem 1.5rem;
+// .header_side_menu 
+// {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   padding: 2rem 1.5rem;
 
-  @media screen and (max-width: 576px) {
-    padding: 1rem;
-  }
+//   @media screen and (max-width: 576px) {
+//     padding: 1rem;
+//   }
 
-  svg
-  {
-    color: rgba(0, 0, 0, 0.5);
+//   svg
+//   {
+//     color: rgba(0, 0, 0, 0.5);
 
-    &:hover
-    {
-      cursor: pointer;
-      color: $color_black;
-    }
-  }
+//     &:hover
+//     {
+//       cursor: pointer;
+//       color: $color_black;
+//     }
+//   }
 
-  h6 
-  {
-    font-family: "roboto-medium";
-    font-size: 16px;
-    text-transform: uppercase;
-    margin-bottom: 0;
-  }
-}
+//   h6 
+//   {
+//     font-family: "roboto-medium";
+//     font-size: 16px;
+//     text-transform: uppercase;
+//     margin-bottom: 0;
+//   }
+// }
