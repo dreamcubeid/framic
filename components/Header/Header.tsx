@@ -122,7 +122,7 @@ const Header: FC<any> = ({ lng }) => {
           />
         </div>
       }
-      <header className={`${styles.header} container`}>
+      <header className={`${styles.header}`}>
         <span className={styles.header_menu} onClick={toogleMenu} />
         <div className={styles.header_logoContainer}>
           <LazyLoadComponent
