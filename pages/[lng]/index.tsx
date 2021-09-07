@@ -6,7 +6,7 @@ import {
   Products,
   ProductCategory,
   useI18n,
-  Widget
+  Widget,
 } from "@sirclo/nexus";
 import Router from "next/router";
 import Layout from "components/Layout/Layout";
@@ -16,15 +16,16 @@ import { parseCookies } from "lib/parseCookies";
 import { useSizeBanner } from "lib/useSizeBanner";
 import { GRAPHQL_URI } from "lib/Constants";
 import Carousel from "@brainhubeu/react-carousel";
-import { LazyLoadComponent } from 'react-lazy-load-image-component';
+import { LazyLoadComponent } from "react-lazy-load-image-component";
 import { useBrand } from "lib/useBrand";
 import styles from "public/scss/pages/Home.module.scss";
+import Instagram from "components/Instagram";
 
 const classesBanner = {
   imageContainerClassName: styles.bannerCarousel_header,
   linkClassName: styles.bannerCarousel_link,
-  imageClassName: styles.bannerCarousel_image
-}
+  imageClassName: styles.bannerCarousel_image,
+};
 
 const classesProducts = {
   productContainerClassName: `col-6 col-md-3 product_list ${styles.product}`,
@@ -41,7 +42,7 @@ const classesProducts = {
   productTitleClassName: styles.product_label__title,
   productPriceClassName: styles.product_labelPrice,
   salePriceClassName: styles.product_labelPrice__sale,
-  priceClassName: styles.product_labelPrice__price
+  priceClassName: styles.product_labelPrice__price,
 };
 
 const classesProductCategory = {
@@ -50,26 +51,31 @@ const classesProductCategory = {
   categoryValueClassName: styles.category_list_link,
   categoryNameClassName: styles.category_list_item,
   categoryNumberClassName: "ml-1",
-  dropdownIconClassName: "d-none"
-}
+  dropdownIconClassName: "d-none",
+};
 
 const classesPlaceholderBanner = {
-  placeholderImage: `${styles.placeholderItem} ${styles.placeholderItem__banner}`
-}
+  placeholderImage: `${styles.placeholderItem} ${styles.placeholderItem__banner}`,
+};
 
 const classesPlaceholderProduct = {
   placeholderImage: `${styles.placeholderItem} ${styles.placeholderItem_product__card}`,
-}
+};
 
 const classesPlaceholderCatProduct = {
   placeholderTitle: `${styles.placeholderItem} ${styles.placeholderItem_productCat__title}`,
+};
+
+const classesWidget = {
+  widgetContainer: `row`,
+  widgetItem: `col-6 `
 }
 
 const Home: FC<any> = ({
   lng,
   lngDict,
   brand,
-  dataBanners
+  dataBanners,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const i18n: any = useI18n();
   const size = useWindowSize();
@@ -77,12 +83,7 @@ const Home: FC<any> = ({
   const [totalItem, setTotalItem] = useState(null);
 
   return (
-    <Layout
-      i18n={i18n}
-      lng={lng}
-      lngDict={lngDict}
-      brand={brand}
-    >
+    <Layout i18n={i18n} lng={lng} lngDict={lngDict} brand={brand}>
       <div className={styles.bannerCarousel}>
         <Banner
           data={dataBanners?.data}
@@ -102,7 +103,8 @@ const Home: FC<any> = ({
           lazyLoadedImage={false}
         />
       </div>
-      <div className={styles.category}>
+
+      {/* <div className={styles.category}>
         <div className="container">
           <div className="row">
             <div className="col-12 col-lg-8 offset-lg-2">
@@ -277,32 +279,64 @@ const Home: FC<any> = ({
             </div>
           </div>
         </section>
-      }
-    </Layout >
+      } */}
+      <section>
+        <div className="container">
+          <LazyLoadComponent>
+            <Widget
+              pos="main-content-1"
+              containerClassName={classesWidget.widgetContainer}
+              widgetClassName={classesWidget.widgetItem}
+              loadingComponent={
+                <>
+                  <div className="col-6">
+                    <Placeholder
+                      classes={classesPlaceholderProduct}
+                      withImage
+                    />
+                  </div>
+                  <div className="col-6">
+                    <Placeholder
+                      classes={classesPlaceholderProduct}
+                      withImage
+                    />
+                  </div>
+                </>
+              }
+              thumborSetting={{
+                width: size.width < 768 ? 576 : 1200,
+                format: "webp",
+                quality: 85,
+              }}
+            />
+          </LazyLoadComponent>
+        </div>
+      </section>
+      <Instagram i18n={i18n} size={size} />
+    </Layout>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async ({
   req,
   res,
-  params
+  params,
 }: any) => {
-
-  const allowedUri: Array<string> = ['en', 'id', 'graphql', 'favicon.ico'];
+  const allowedUri: Array<string> = ["en", "id", "graphql", "favicon.ico"];
 
   if (allowedUri.indexOf(params.lng.toString()) == -1) {
     const cookies = parseCookies(req);
 
     res.writeHead(307, {
-      Location: cookies.ACTIVE_LNG ? '/' + cookies.ACTIVE_LNG + '/' + params.lng : '/id/' + params.lng
+      Location: cookies.ACTIVE_LNG
+        ? "/" + cookies.ACTIVE_LNG + "/" + params.lng
+        : "/id/" + params.lng,
     });
 
     res.end();
   }
 
-  const { default: lngDict = {} } = await import(
-    `locales/${params.lng}.json`
-  );
+  const { default: lngDict = {} } = await import(`locales/${params.lng}.json`);
 
   const brand = await useBrand(req);
   const dataBanners = await getBanner(GRAPHQL_URI(req));
@@ -313,8 +347,8 @@ export const getServerSideProps: GetServerSideProps = async ({
       lngDict,
       brand: brand || "",
       dataBanners,
-    }
+    },
   };
-}
+};
 
 export default Home;
