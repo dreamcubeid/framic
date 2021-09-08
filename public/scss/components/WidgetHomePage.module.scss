@@ -2,17 +2,30 @@
 
 .widget
 {
+  
   &_container
   {
+    h1, h2, h3, h4, h5, p
+    {
+      @include typographyBuilder(700, 28, 40);
+      color: $color_white;
+      font-weight: bold;
+    }
+
+    &:last-child
+    {
+      margin: 42px 0 64px 0;
+    }
+
     @media screen and (min-width: $breakpoint_min_md) 
     {
       @include flex(row, center, space-between);
     }
   }
 
-  &_item
+  &_item_top
   {
-    position: relative;
+    @include position();
 
     &:first-child
     {
@@ -45,11 +58,51 @@
         width: 100%;
       }
     }
-    
-    h1, h2, h3, h4, h5, p
+
+    img
     {
-      @include typographyBuilder(700, 28, 40);
-      color: $color_white;
+      @include fixedWidth(100%);
+      @include fixedHeight(431px);
+      object-fit: cover;
+    }
+  }
+
+  &_item_bottom
+  {
+    @include position();
+
+    &:last-child
+    {
+      h1, h2, h3, h4, h5, p
+      {
+        @include absolute(65%,0,0,38px);
+        @include typographyBuilder(700, 48, 125);
+      }
+      width: calc(((100% - 12px) / 12) * 7);
+      
+      @media screen and (max-width: $breakpoint_max_md) 
+      {
+        margin-top: 16px;
+        width: 100%;
+      }
+    }
+    
+    &:first-child
+    {
+      h1, h2, h3, h4, h5, p
+      {
+        @include absolute(50%,0,0,50%);
+        transform: translate(-50%, 0);
+      } 
+      
+      width: calc(((100% - 12px) / 12) * 5);
+      text-align: center;
+      
+      @media screen and (max-width: $breakpoint_max_md) 
+      {
+        margin-top: 16px;
+        width: 100%;
+      }
     }
     
     img
@@ -58,5 +111,10 @@
       @include fixedHeight(431px);
       object-fit: cover;
     }
+  }
+
+  &_placeholder
+  {
+    height: 431px;
   }
 }
