@@ -1,7 +1,6 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { Banner, getBanner, useI18n } from '@sirclo/nexus'
-import Router from 'next/router'
 import Layout from 'components/Layout/Layout'
 import Placeholder from 'components/Placeholder'
 import useWindowSize from 'lib/useWindowSize'
@@ -19,44 +18,11 @@ const classesBanner = {
   imageClassName: styles.bannerCarousel_image,
 };
 
-const classesProducts = {
-  productContainerClassName: `col-6 col-md-3 product_list ${styles.product}`,
-  stickerContainerClassName: styles.product_sticker,
-  outOfStockLabelClassName: `${styles.product_stickerLabel} ${styles.product_stickerLabel__outofstock}`,
-  saleLabelClassName: `${styles.product_stickerLabel} ${styles.product_stickerLabel__sale}`,
-  comingSoonLabelClassName: `${styles.product_stickerLabel} ${styles.product_stickerLabel__comingsoon}`,
-  openOrderLabelClassName: `${styles.product_stickerLabel} ${styles.product_stickerLabel__openorder}`,
-  preOrderLabelClassName: `${styles.product_stickerLabel} ${styles.product_stickerLabel__preorder}`,
-  newLabelClassName: `${styles.product_stickerLabel} ${styles.product_stickerLabel__new}`,
-  productImageContainerClassName: styles.product_link,
-  productImageClassName: styles.product_link__image,
-  productLabelContainerClassName: styles.product_label,
-  productTitleClassName: styles.product_label__title,
-  productPriceClassName: styles.product_labelPrice,
-  salePriceClassName: styles.product_labelPrice__sale,
-  priceClassName: styles.product_labelPrice__price,
-};
-
-const classesProductCategory = {
-  parentCategoryClassName: styles.category_order,
-  categoryItemClassName: styles.category_list,
-  categoryValueClassName: styles.category_list_link,
-  categoryNameClassName: styles.category_list_item,
-  categoryNumberClassName: 'ml-1',
-  dropdownIconClassName: 'd-none',
-};
 
 const classesPlaceholderBanner = {
   placeholderImage: `${styles.placeholderItem} ${styles.placeholderItem__banner}`,
 };
 
-const classesPlaceholderProduct = {
-  placeholderImage: `${styles.placeholderItem} ${styles.placeholderItem_product__card}`,
-};
-
-const classesPlaceholderCatProduct = {
-  placeholderTitle: `${styles.placeholderItem} ${styles.placeholderItem_productCat__title}`,
-};
 
 const Home: FC<any> = ({
   lng,
@@ -66,8 +32,6 @@ const Home: FC<any> = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const i18n: any = useI18n();
   const size = useWindowSize();
-  const [totalItemFeatured, setTotalItemFeatured] = useState(null);
-  const [totalItem, setTotalItem] = useState(null);
 
   return (
     <Layout i18n={i18n} lng={lng} lngDict={lngDict} brand={brand}>

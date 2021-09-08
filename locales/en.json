@@ -1,5 +1,6 @@
 {
   "account": {
+    "account": "Account",
     "accountDetails": "Account Details",
     "back": "Back to my account",
     "cancelled": "Cancelled",

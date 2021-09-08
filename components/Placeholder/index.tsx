@@ -1,4 +1,5 @@
-import { FC } from "react"
+import { FC } from 'react'
+import styles from 'public/scss/components/Placeholder.module.scss'
 
 export type PlaceholderPropsType = {
   classes?: {
@@ -20,25 +21,23 @@ const Placeholder: FC<PlaceholderPropsType> = ({
   listMany = 2
 }) => {
   const {
-    placeholderImage = "placeholder-placeholderImage",
-    placeholderTitle = "placeholder-placeholderTitle",
-    placeholderList = "placeholder-placeholderList"
+    placeholderImage = "placeholder_placeholderImage",
+    placeholderTitle = "placeholder_placeholderTitle",
+    placeholderList = "placeholder_placeholderList"
   } = classes;
 
   const loopList = (length) => {
     let element = []
     for (let i = 0; i < length; i++) {
-      element.push(<div className={placeholderList} key={i}></div>)
+      element.push(<div className={`${styles.placeholder} ${placeholderList}`} key={i}></div>)
     }
     return <>{element}</>
   }
 
   return (
     <>
-      {withImage && (
-        <div className={placeholderImage}></div>
-      )}
-      {withTitle && <div className={placeholderTitle}></div>}
+      {withImage && <div className={`${styles.placeholder} ${placeholderImage}`}></div>}
+      {withTitle && <div className={`${styles.placeholder} ${placeholderTitle}`}></div>}
       {withList && loopList(listMany)}
     </>
   )

@@ -1,14 +1,14 @@
+/* library package */
 import {
   FC,
   useState,
-  useEffect,
   useRef
-} from "react";
-import { useI18n } from "@sirclo/nexus";
+} from 'react'
+import { useI18n } from '@sirclo/nexus'
 import {
   Search as IconSearch,
   X as IconX
-} from 'react-feather';
+} from 'react-feather'
 
 export type SearchPropsType = {
   classes?: {
@@ -20,13 +20,11 @@ export type SearchPropsType = {
     searchForm?: string
   };
   searchProduct: any
-  visibleState: boolean
 };
 
 const Search: FC<SearchPropsType> = ({
   classes = {},
   searchProduct,
-  visibleState
 }) => {
   const i18n: any = useI18n();
   const [searchValue, setSearchValue] = useState<string>("");
@@ -41,10 +39,6 @@ const Search: FC<SearchPropsType> = ({
     searchForm = "search-searchForm"
   } = classes;
 
-  useEffect(() => {
-    if (visibleState) inputRef.current.focus()
-  }, [visibleState])
-
   return (
     <>
       <div className={searchContainer}>
@@ -56,6 +50,14 @@ const Search: FC<SearchPropsType> = ({
             searchProduct(searchValue);
           }}
         >
+          <button
+            type="submit"
+            className={searchButton}
+            disabled={!searchValue}
+            onClick={() => searchProduct(searchValue)}
+          >
+            <IconSearch color="#333333" />
+          </button>
           <div className={searchInputContainer}>
             <input
               type="search"
@@ -74,14 +76,6 @@ const Search: FC<SearchPropsType> = ({
               </div>
             }
           </div>
-          <button
-            type="submit"
-            className={searchButton}
-            disabled={!searchValue}
-            onClick={() => searchProduct(searchValue)}
-          >
-            <IconSearch color="#FFF" />
-          </button>
         </form>
       </div>
     </>

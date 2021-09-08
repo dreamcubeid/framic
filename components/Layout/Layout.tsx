@@ -98,7 +98,7 @@ const Layout: React.FC<LayoutPropType> = ({
         image={brand?.logoURL}
       />
       {withHeader &&
-        <Header lng={lng} />
+        <Header lng={lng} brand={brand} />
       }
       <main className={layoutClassName}>
         {withAllowed ?
