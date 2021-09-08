@@ -2,25 +2,19 @@
 {
   margin-right: auto;
   margin-left: auto;
-  max-width: calc(100% - 34px);
 
-  @media screen and ($breakpoint_min_xl) 
+  @media screen and (min-width:$breakpoint_min_lg) 
   {
-    max-width: 1140px;
+    max-width: 1070px;
   }
 
-  @media screen and ($breakpoint_min_lg) 
+  @media screen and (max-width:$breakpoint_max_lg) 
   {
     max-width: 960px;
   }
 
-  @media screen and ($breakpoint_min_md) 
+  @media screen and (max-width:$breakpoint_max_md) 
   {
-    max-width: 720px;
-  }  
-
-  @media screen and ($breakpoint_min_sm) 
-  {
-    max-width: 540px;
-  }  
+    max-width: calc(100% - 36px);
+  } 
 }
