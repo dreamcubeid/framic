@@ -1,26 +1,21 @@
-import { FC, useState } from "react";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { FC, useState } from "react"
+import { GetServerSideProps, InferGetServerSidePropsType } from "next"
 import {
   Banner,
   getBanner,
-  Products,
-  ProductCategory,
   useI18n,
-  Widget,
 } from "@sirclo/nexus";
-import Router from "next/router";
-import Layout from "components/Layout/Layout";
-import Placeholder from "components/Placeholder";
-import useWindowSize from "lib/useWindowSize";
-import { parseCookies } from "lib/parseCookies";
-import { useSizeBanner } from "lib/useSizeBanner";
-import { GRAPHQL_URI } from "lib/Constants";
-import Carousel from "@brainhubeu/react-carousel";
-import { LazyLoadComponent } from "react-lazy-load-image-component";
-import { useBrand } from "lib/useBrand";
-import styles from "public/scss/pages/Home.module.scss";
-import Instagram from "components/Instagram";
-import WidgetHomepageTop from "components/Widget/WidgetHomepageTop";
+import Router from "next/router"
+import Layout from "components/Layout/Layout"
+import Placeholder from "components/Placeholder"
+import useWindowSize from "lib/useWindowSize"
+import { parseCookies } from "lib/parseCookies"
+import { useSizeBanner } from "lib/useSizeBanner"
+import { GRAPHQL_URI } from "lib/Constants"
+import Carousel from "@brainhubeu/react-carousel"
+import { useBrand } from "lib/useBrand"
+import styles from "public/scss/pages/Home.module.scss"
+import WidgetHomepageTop from "components/Widget/WidgetHomepageTop"
 
 const classesBanner = {
   imageContainerClassName: styles.bannerCarousel_header,
@@ -102,7 +97,6 @@ const Home: FC<any> = ({
         </div>
         <WidgetHomepageTop i18n={i18n} />
       </section>
-      <Instagram i18n={i18n} size={size} />
     </Layout>
   );
 };

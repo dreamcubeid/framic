@@ -1,9 +1,9 @@
-import { FC } from "react";
-import { Widget } from "@sirclo/nexus";
-import Placeholder from "components/Placeholder";
-import { LazyLoadComponent } from "react-lazy-load-image-component";
-import styles from "public/scss/components/WidgetHomePage.module.scss";
-import useWindowSize from "lib/useWindowSize";
+import { FC } from "react"
+import { Widget } from "@sirclo/nexus"
+import Placeholder from "components/Placeholder"
+import { LazyLoadComponent } from "react-lazy-load-image-component"
+import styles from "public/scss/components/WidgetHomePage.module.scss"
+import useWindowSize from "lib/useWindowSize"
 
 type iProps = {
   i18n: any;
