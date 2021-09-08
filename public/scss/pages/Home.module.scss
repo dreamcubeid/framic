@@ -4,3 +4,12 @@
 // @import "../components/Placeholder.module.scss";
 // @import "../components/ProductCategory.module.scss";
 // @import "../components/WidgetHomePage.module.scss";
+@import '../utils/variables';
+
+.homepage
+{
+  &_container
+  {
+    @include useContainer()
+  }
+}
