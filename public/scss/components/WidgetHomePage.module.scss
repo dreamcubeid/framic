@@ -1,38 +1,62 @@
-// .widgetHomePage {
-//   display: grid;
-//   grid-template-columns: repeat(2,1fr);
-//   gap: 1rem;
-//   margin: 0 1rem;
+@import '../utils/variables';
 
-//   img,
-//   video {
-//     width: 100% !important;
-//     height: auto;
-//     cursor: pointer;
+.widget
+{
+  &_container
+  {
+    @media screen and (min-width: $breakpoint_min_md) 
+    {
+      @include flex(row, center, space-between);
+    }
+  }
 
-//     &:hover {
-//       opacity: .75;
-//     }
-//   }
-// }
+  &_item
+  {
+    position: relative;
 
-// .widgetItemHomePage {
-//   width: 100% !important;
-
-//   img,
-//   video {
-//     width: 100% !important;
-//     height: auto;
-//     cursor: pointer;
-
-//     &:hover {
-//       opacity: .75;
-//     }
-//   }
-// }
-
-// @media screen and (max-width: 767px) {
-//   .widgetHomePage {
-//     grid-template-columns: repeat(1,1fr);
-//   }
-// }
+    &:first-child
+    {
+      h1, h2, h3, h4, h5, p
+      {
+        @include absolute(45%,0,0,57px);
+      }
+      width: calc(((100% - 12px) / 12) * 7);
+      
+      @media screen and (max-width: $breakpoint_max_md) 
+      {
+        margin-top: 58px;
+        width: 100%;
+      }
+    }
+    
+    &:last-child
+    {
+      h1, h2, h3, h4, h5, p
+      {
+        @include absolute(50%, 0, 0, 50%);
+        transform: translate(-50%, 0);
+      }
+      
+      width: calc(((100% - 12px) / 12) * 5);
+      
+      @media screen and (max-width: $breakpoint_max_md) 
+      {
+        margin-top: 16px;
+        width: 100%;
+      }
+    }
+    
+    h1, h2, h3, h4, h5, p
+    {
+      @include typographyBuilder(700, 28, 40);
+      color: $color_white;
+    }
+    
+    img
+    {
+      @include fixedWidth(100%);
+      @include fixedHeight(431px);
+      object-fit: cover;
+    }
+  }
+}

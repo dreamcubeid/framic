@@ -1,0 +1,29 @@
+@import '../utils/variables';
+
+
+.instagram
+{
+  &_container
+  {
+    @include flex(row,center,center)
+  }
+
+  &_image
+  {
+    @include fixedWidth(100%);
+    @include fixedHeight(207px);
+    object-fit: cover;
+  }
+
+  &_media
+  {
+    @include fixedWidth(calc(100% / 7));
+    
+    @media screen and ($breakpoint_max_md)
+    {
+      
+    }
+  }
+}
+
+
