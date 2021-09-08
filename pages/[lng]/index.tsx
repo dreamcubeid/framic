@@ -1,21 +1,17 @@
-import { FC, useState } from "react"
-import { GetServerSideProps, InferGetServerSidePropsType } from "next"
-import {
-  Banner,
-  getBanner,
-  useI18n,
-} from "@sirclo/nexus";
-import Router from "next/router"
-import Layout from "components/Layout/Layout"
-import Placeholder from "components/Placeholder"
-import useWindowSize from "lib/useWindowSize"
-import { parseCookies } from "lib/parseCookies"
-import { useSizeBanner } from "lib/useSizeBanner"
-import { GRAPHQL_URI } from "lib/Constants"
-import Carousel from "@brainhubeu/react-carousel"
-import { useBrand } from "lib/useBrand"
-import styles from "public/scss/pages/Home.module.scss"
-import WidgetHomepageTop from "components/Widget/WidgetHomepageTop"
+import { FC, useState } from 'react'
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import { Banner, getBanner, useI18n } from '@sirclo/nexus'
+import Router from 'next/router'
+import Layout from 'components/Layout/Layout'
+import Placeholder from 'components/Placeholder'
+import useWindowSize from 'lib/useWindowSize'
+import { parseCookies } from 'lib/parseCookies'
+import { useSizeBanner } from 'lib/useSizeBanner'
+import { GRAPHQL_URI } from 'lib/Constants'
+import Carousel from '@brainhubeu/react-carousel'
+import { useBrand } from 'lib/useBrand'
+import styles from 'public/scss/pages/Home.module.scss'
+import WidgetHomepageTop from 'components/Widget/WidgetHomepageTop'
 
 const classesBanner = {
   imageContainerClassName: styles.bannerCarousel_header,
@@ -46,8 +42,8 @@ const classesProductCategory = {
   categoryItemClassName: styles.category_list,
   categoryValueClassName: styles.category_list_link,
   categoryNameClassName: styles.category_list_item,
-  categoryNumberClassName: "ml-1",
-  dropdownIconClassName: "d-none",
+  categoryNumberClassName: 'ml-1',
+  dropdownIconClassName: 'd-none',
 };
 
 const classesPlaceholderBanner = {
@@ -85,7 +81,7 @@ const Home: FC<any> = ({
             infinite
             thumborSetting={{
               width: useSizeBanner(size.width),
-              format: "webp",
+              format: 'webp',
               quality: 85,
             }}
             loadingComponent={
@@ -106,15 +102,15 @@ export const getServerSideProps: GetServerSideProps = async ({
   res,
   params,
 }: any) => {
-  const allowedUri: Array<string> = ["en", "id", "graphql", "favicon.ico"];
+  const allowedUri: Array<string> = ['en', 'id', 'graphql', 'favicon.ico'];
 
   if (allowedUri.indexOf(params.lng.toString()) == -1) {
     const cookies = parseCookies(req);
 
     res.writeHead(307, {
       Location: cookies.ACTIVE_LNG
-        ? "/" + cookies.ACTIVE_LNG + "/" + params.lng
-        : "/id/" + params.lng,
+        ? '/' + cookies.ACTIVE_LNG + '/' + params.lng
+        : '/id/' + params.lng,
     });
 
     res.end();
@@ -129,7 +125,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     props: {
       lng: params.lng,
       lngDict,
-      brand: brand || "",
+      brand: brand || '',
       dataBanners,
     },
   };
