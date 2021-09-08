@@ -10,7 +10,7 @@
   &_menu
   {
     display: block;
-    width: 16px;
+    @include fixedWidth(40px);
     height: 14px;
     background-repeat: no-repeat;
     cursor: pointer;
@@ -30,6 +30,7 @@
   &_cartContainer
   {
     @include flex(row, center, center);
+    @include fixedWidth(40px);
     cursor: pointer;
   }
 

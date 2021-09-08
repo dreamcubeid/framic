@@ -83,7 +83,7 @@ const Home: FC<any> = ({
       lngDict={lngDict}
       brand={brand}
     >
-      <div className={styles.bannerCarousel}>
+      {/* <div className={styles.bannerCarousel}>
         <Banner
           data={dataBanners?.data}
           Carousel={Carousel}
@@ -277,7 +277,7 @@ const Home: FC<any> = ({
             </div>
           </div>
         </section>
-      }
+      } */}
     </Layout >
   );
 };

@@ -3,8 +3,6 @@ import {
   useState,
   useEffect
 } from "react";
-import dynamic from "next/dynamic";
-// import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import {
   Logo,
@@ -13,46 +11,12 @@ import {
   useI18n
 } from "@sirclo/nexus";
 import Router from "next/router";
-// import ProfileMenu from "./ProfileMenu";
 import Placeholder from "../Placeholder";
 import SideMenu from "../SideMenu/SideMenu";
-// import Loader from "components/Loader/Loader";
 import useWindowSize from "lib/useWindowSize";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 import { X } from 'react-feather';
 import styles from "public/scss/components/Header.module.scss";
-// import stylesPopup from "public/scss/components/CheckPaymentOrder.module.scss";
-
-// const CheckPaymentOrder = dynamic(() => import("@sirclo/nexus").then((mod) => mod.CheckPaymentOrder));
-// const CurrencySelector = dynamic(() => import("@sirclo/nexus").then((mod) => mod.CurrencySelector));
-// const LanguageSelector = dynamic(() => import("@sirclo/nexus").then((mod) => mod.LanguageSelector));
-
-
-// const classesCheckPaymentOrder = {
-//   checkPaymentOrderContainerClassName: stylesPopup.checkOrder_overlay,
-//   checkPaymentOrderContainerBodyClassName: stylesPopup.checkOrder_container,
-//   checkPaymentOrderHeaderClassName: stylesPopup.checkOrder_header,
-//   checkPaymentOrderTitleClassName: stylesPopup.checkOrder_title,
-//   checkPaymentOrderDescriptionClassName: stylesPopup.checkOrder_description,
-//   checkPaymentOrderContentClassName: stylesPopup.checkOrder_content,
-//   checkPaymentOrderInputContentClassName: stylesPopup.checkOrder_inputContent,
-//   checkPaymentOrderInputTitleClassName: stylesPopup.checkOrder_inputTitle,
-//   checkPaymentOrderInputClassName: stylesPopup.checkOrder_input,
-//   checkPaymentOrderCloseButtonClassName: stylesPopup.checkOrder_closeButton,
-//   checkPaymentOrderSubmitButtonClassName: stylesPopup.checkOrder_submitButton
-// }
-
-// const classesLanguageSelector = {
-//   languageContainerClassName: styles.menu_sub,
-//   languageItemClassName: `${styles.menu_item} ${styles.menu_itemSelector}`,
-//   languageButtonSelectedClassName: styles.menu_itemSelected
-// }
-
-// const classesCurrencySelector = {
-//   currencyContainerClassName: styles.menu_sub,
-//   currencyItemClassName: `${styles.menu_item} ${styles.menu_itemSelector}`,
-//   currencyButtonSelectedClassName: styles.menu_itemSelected
-// }
 
 const classesPlaceholderLogo = {
   placeholderImage: `${styles.placeholderItem} ${styles.placeholderItem_header__logo}`
@@ -128,6 +92,8 @@ const Header: FC<any> = ({ lng, brand }) => {
 
         {openMenu &&
           <SideMenu
+            i18n={i18n}
+            lng={lng}
             openSide={openMenu}
             toogleSide={toogleMenu}
             positionSide="left"

@@ -1,15 +1,25 @@
 import { FC } from 'react'
-import { 
+import {
   Logo,
   CollapsibleNav,
   isCopyrightAllowed,
-  Widget
+  Widget,
+  useLogout,
+  useCart
 } from '@sirclo/nexus'
+import dynamic from 'next/dynamic'
+import Link from 'next/link'
 import {
   ChevronDown,
-  ChevronUp
+  ChevronUp,
 } from 'react-feather'
+import { useRouter } from 'next/router'
+import Router from 'next/router'
 import styles from 'public/scss/components/SideMenu.module.scss'
+import Search from './Search'
+import Placeholder from 'components/Placeholder'
+
+const PrivateComponent = dynamic(() => import("@sirclo/nexus").then((mod) => mod.PrivateComponent));
 
 type SideMenuPropsType = {
   withClose?: boolean
@@ -20,6 +30,8 @@ type SideMenuPropsType = {
   toogleSide: any,
   brand: any,
   size: any,
+  i18n: any,
+  lng: any,
   positionSide: string
 }
 
@@ -31,17 +43,44 @@ const classesCollapsibleNav = {
   subChildNavClassName: styles.menu_navChildNav,
 };
 
+const classesSearch = {
+  searchContainer: styles.sidemenu_search,
+  searchForm: styles.sidemenu_searchForm,
+  searchInputContainer: styles.sidemenu_searchInputContainer,
+  searchInput: styles.sidemenu_searchInput,
+  searchClear: styles.sidemenu_searchInputClear,
+  searchButton: styles.sidemenu_searchIcon,
+}
+
+const classesPlaceholderCollapsibleNav = {
+  placeholderList: styles.menu_placeholder
+}
+
 
 const SideMenu: FC<SideMenuPropsType> = ({
-  withClose = false,
-  withLogo = false,
   size,
   openSide,
   toogleSide,
   brand,
+  i18n,
+  lng,
   positionSide
 }) => {
   const allowedCopyright = isCopyrightAllowed();
+  const { data: dataCart } = useCart();
+  const router = useRouter();
+
+  const handleCart = () => {
+    if (router.pathname !== "/[lng]/payment_notif/[[...orderID]]") Router.push("/[lng]/cart", `/${lng}/cart`);
+  }
+
+  const searchProduct = (val: any) => {
+    if (val !== "" && typeof val !== "undefined") {
+      Router.push(`/${lng}/products?q=${val}`);
+    } else {
+      Router.push(`/${lng}/products`);
+    }
+  };
 
   return (
     <>
@@ -51,35 +90,64 @@ const SideMenu: FC<SideMenuPropsType> = ({
       `}>
         <div className={styles.sidemenu_body}>
           <div className={styles.sidemenu_header}>
-            {withLogo &&
-              <Logo
-                imageClassName={styles.sidemenu_logo}
-                thumborSetting={{
-                  width: size.width < 575 ? 200 : 400,
-                  format: "webp",
-                  quality: 90,
-                }}
-                lazyLoadedImage={false}
-              />
-            }
-            {withClose &&
-              <span className={styles.sidemenu_headerClose} />
-            }
+            <Logo
+              imageClassName={styles.sidemenu_logo}
+              thumborSetting={{
+                width: size.width < 575 ? 200 : 400,
+                format: "webp",
+                quality: 90,
+              }}
+
+              lazyLoadedImage={false}
+            />
+            <span className={styles.sidemenu_headerClose} onClick={toogleSide} />
+            <div
+              className={styles.sidemenu_headerCart}
+              onClick={handleCart}
+            >
+              <span className={styles.sidemenu_headerCartIcon} />
+              <label className={styles.sidemenu_headerCartLabel}>{dataCart?.totalItem}</label>
+            </div>
           </div>
+          <Search
+            classes={classesSearch}
+            searchProduct={searchProduct}
+          />
           <CollapsibleNav
             dropdownIcon={<ChevronDown className={styles.icon_down_mobile__svg} />}
             dropdownOpenIcon={<ChevronUp className={styles.icon_down_mobile__svg} />}
             classes={classesCollapsibleNav}
-          // loadingComponent={
-          //   <>
-          //     <Placeholder
-          //       classes={classesPlaceholderCollapsibleNav}
-          //       withList={true}
-          //       listMany={4}
-          //     />
-          //   </>
-          // }
+            loadingComponent={
+              <div>
+                <Placeholder
+                  classes={classesPlaceholderCollapsibleNav}
+                  withList={true}
+                  listMany={6}
+                />
+
+              </div>
+            }
           />
+          <div className={styles.sidemenu_account}>
+            <h3 className={styles.sidemenu_title}>{i18n.t("account.account")}</h3>
+            <PrivateComponent
+              Auth={
+                <>
+                  <Link href="/[lng]/account" as={`/${lng}/account`}>
+                    <a className={styles.sidemenu_accountLinkAccount}>{i18n.t("account.myAccount")}</a>
+                  </Link>
+                  <span onClick={() => useLogout('account')}>
+                    <a className={styles.sidemenu_accountLinkLogout}>{i18n.t("account.logout")}</a>
+                  </span>
+                </>
+              }
+              NoAuth={
+                <Link href="/[lng]/login" as={`/${lng}/login`}>
+                  <a className={styles.sidemenu_accountLinkLogin}>{i18n.t("login.login")}</a>
+                </Link>
+              }
+            />
+          </div>
           <div className={styles.sidemenu_footer}>
             {allowedCopyright ?
               <>
