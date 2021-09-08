@@ -1,22 +1,25 @@
+/* library package */
 import {
   FC,
   useState,
   useEffect
-} from "react";
-import { useRouter } from "next/router";
+} from 'react'
+import { useRouter } from 'next/router'
+import Router from 'next/router'
+import { LazyLoadComponent } from 'react-lazy-load-image-component'
+import { X } from 'react-feather'
+import styles from 'public/scss/components/Header.module.scss'
 import {
   Logo,
   useCart,
   Widget,
   useI18n
-} from "@sirclo/nexus";
-import Router from "next/router";
-import Placeholder from "../Placeholder";
-import SideMenu from "../SideMenu/SideMenu";
-import useWindowSize from "lib/useWindowSize";
-import { LazyLoadComponent } from "react-lazy-load-image-component";
-import { X } from 'react-feather';
-import styles from "public/scss/components/Header.module.scss";
+} from '@sirclo/nexus'
+/* component */
+import Placeholder from '../Placeholder'
+import SideMenu from '../SideMenu/SideMenu'
+/* library template */
+import useWindowSize from 'lib/useWindowSize'
 
 const classesPlaceholderLogo = {
   placeholderImage: `${styles.placeholderItem} ${styles.placeholderItem_header__logo}`

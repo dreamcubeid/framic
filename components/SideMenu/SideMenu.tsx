@@ -1,4 +1,9 @@
+/* library package */
 import { FC } from 'react'
+import dynamic from 'next/dynamic'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import Router from 'next/router'
 import {
   Logo,
   CollapsibleNav,
@@ -7,17 +12,15 @@ import {
   useLogout,
   useCart
 } from '@sirclo/nexus'
-import dynamic from 'next/dynamic'
-import Link from 'next/link'
 import {
   ChevronDown,
   ChevronUp,
 } from 'react-feather'
-import { useRouter } from 'next/router'
-import Router from 'next/router'
-import styles from 'public/scss/components/SideMenu.module.scss'
+/* component */
 import Search from './Search'
 import Placeholder from 'components/Placeholder'
+
+import styles from 'public/scss/components/SideMenu.module.scss'
 
 const PrivateComponent = dynamic(() => import("@sirclo/nexus").then((mod) => mod.PrivateComponent));
 
