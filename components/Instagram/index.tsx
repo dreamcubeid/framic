@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import { InstagramFeed } from '@sirclo/nexus';
-import styles from 'public/scss/components/Instagram.module.scss';
-import Placeholder from 'components/Placeholder';
+import { FC } from 'react'
+import { InstagramFeed } from '@sirclo/nexus'
+import styles from 'public/scss/components/Instagram.module.scss'
+import Placeholder from 'components/Placeholder'
 
 type TSize = {
   width: number;
