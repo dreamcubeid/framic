@@ -59,7 +59,7 @@ const Home: FC<any> = ({
         <WidgetHomepageTop />
         <WidgetHomepageBottom/>
       </section>
-      <Instagram size={size}/>
+      <Instagram size={size} i18n={i18n}/>
     </Layout>
   );
 };

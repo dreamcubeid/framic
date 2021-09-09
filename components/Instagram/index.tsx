@@ -1,15 +1,19 @@
+/* library package */
 import { FC } from 'react'
+/* component */
 import { InstagramFeed } from '@sirclo/nexus'
-import styles from 'public/scss/components/Instagram.module.scss'
 import Placeholder from 'components/Placeholder'
+/* library template */
+import styles from 'public/scss/components/Instagram.module.scss'
 
 type TSize = {
-  width: number;
-};
+  width: number
+}
 
 type iProps = {
-  size: TSize;
-};
+  size: TSize
+  i18n: any
+}
 
 const classesInstagramFeed = {
   containerClassName: styles.instagram_container,
@@ -18,14 +22,14 @@ const classesInstagramFeed = {
   ctaClassName: styles.instagram_cta,
   layoutClassName: styles.instagram_layout,
   iconClassname: styles.instagram_icon
-};
+}
 
 const classesPlaceholderCollapsibleNav = {
   placeholderImage: `${classesInstagramFeed.mediaClassName} ${classesInstagramFeed.imageClassName}`,
-};
+}
 
-const Instagram: FC<iProps> = ({ size }) => {
-  const postLimit = size.width < 768 ? 4 : 7;
+const Instagram: FC<iProps> = ({ size,i18n }) => {
+  const postLimit = size.width < 768 ? 4 : 7
   return (
     <div className={classesInstagramFeed.layoutClassName}>
       <InstagramFeed
@@ -69,11 +73,11 @@ const Instagram: FC<iProps> = ({ size }) => {
       <div className={classesInstagramFeed.containerClassName}>
         <div className={classesInstagramFeed.ctaClassName}>
           <img src="/images/instagram_black.svg" alt="instagram" className={classesInstagramFeed.iconClassname}/>
-          <p>Follow us</p>
+          <p>{i18n.t("instagram.cta")}</p>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Instagram;
+export default Instagram
