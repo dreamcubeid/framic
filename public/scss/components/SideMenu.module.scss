@@ -16,6 +16,17 @@
     width: 100%;
   }
 
+  &_background
+  {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
   &_footer
   {
     @include typographyBuilder(600, 10, 16);
@@ -216,30 +227,14 @@
     @include absolute(50%, 15px, auto, auto);
     transform: translateY(-50%);
   }
-}
 
-.background
-{
-    position: fixed;
-    z-index: 10;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.right {
-  right: 0;
-}
-
-.left {
-  left: 0;
-}
-
-.menu
-{
-  &_parentNav
+  &_placeholderLogo
+  {
+    width: 155px;
+    height: 24px;
+  }
+  
+   &_parentNav
   {
     padding: 0;
     list-style: none;
@@ -278,4 +273,12 @@
       margin-bottom: 20px;
     }
   }
+}
+
+.right {
+  right: 0;
+}
+
+.left {
+  left: 0;
 }

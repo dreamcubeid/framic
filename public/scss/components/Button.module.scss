@@ -1,5 +1,6 @@
 @import '../utils/variables';
 
+// list buttons format typing: $name, $background_color, $color, $border_color
 $buttons: (
   "primary" $color_black $color_white $color_black,
   "secondary" transparent $color_black $color_black,
