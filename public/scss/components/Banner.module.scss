@@ -24,7 +24,7 @@
     position: relative;
   }
 
-  [class="BrainhubCarouselItem"]
+  [class*="BrainhubCarouselItem"]
   {
     @include flex(row, flex-start, flex-start);
 
@@ -51,6 +51,7 @@
     
     [class*="BrainhubCarousel__dot"] {
       background-color: transparent;
+      padding: 0 5px;
 
       &:before {
         background: $color_white;

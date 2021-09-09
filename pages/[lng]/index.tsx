@@ -47,7 +47,7 @@ const Home: FC<any> = ({
             data={dataBanners?.data}
             Carousel={Carousel}
             classes={classesBanner}
-            autoPlay={isReady ? 5000 : null}
+            autoPlay={ null}
             infinite
             dots
             thumborSetting={{
