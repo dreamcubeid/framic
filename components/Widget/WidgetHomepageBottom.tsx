@@ -8,21 +8,21 @@ import useWindowSize from 'lib/useWindowSize'
 
 const classesWidget = {
   widgetContainer: styles.widget_container,
-  widgetItemTop: styles.widget_item_top,
+  widgetItemBottom: styles.widget_item_bottom,
 };
 
 const classesPlaceholderCollapsibleNav = {
-  placeholderImage: `${classesWidget.widgetItemTop} ${styles.widget_placeholder}`,
+  placeholderImage: `${classesWidget.widgetItemBottom} ${styles.widget_placeholder}`,
 };
 
-const WidgetHomepageTop: FC<{}> = () => {
+const WidgetHomepageBottom: FC<{}> = () => {
   const size = useWindowSize();
   return (
     <LazyLoadComponent>
       <Widget
-        pos='main-content-1'
+        pos='main-content-2'
         containerClassName={classesWidget.widgetContainer}
-        widgetClassName={classesWidget.widgetItemTop}
+        widgetClassName={classesWidget.widgetItemBottom}
         loadingComponent={
           <div className={classesWidget.widgetContainer}>
             <Placeholder classes={classesPlaceholderCollapsibleNav} withImage />
@@ -39,4 +39,4 @@ const WidgetHomepageTop: FC<{}> = () => {
   );
 };
 
-export default WidgetHomepageTop;
+export default WidgetHomepageBottom;

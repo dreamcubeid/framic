@@ -11,6 +11,7 @@ import Carousel from '@brainhubeu/react-carousel'
 import { useBrand } from 'lib/useBrand'
 import styles from 'public/scss/pages/Home.module.scss'
 import WidgetHomepageTop from 'components/Widget/WidgetHomepageTop'
+import WidgetHomepageBottom from 'components/Widget/WidgetHomepageBottom'
 
 const classesBanner = {
   imageContainerClassName: styles.bannerCarousel_header,
@@ -22,7 +23,6 @@ const classesBanner = {
 const classesPlaceholderBanner = {
   placeholderImage: `${styles.placeholderItem} ${styles.placeholderItem__banner}`,
 };
-
 
 const Home: FC<any> = ({
   lng,
@@ -55,7 +55,8 @@ const Home: FC<any> = ({
             lazyLoadedImage={false}
           />
         </div>
-        <WidgetHomepageTop i18n={i18n} />
+        <WidgetHomepageTop />
+        <WidgetHomepageBottom/>
       </section>
     </Layout>
   );
