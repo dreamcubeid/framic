@@ -48,4 +48,10 @@
     @include typographyBuilder(600, 10, 16);
     margin-left: 6.5px;
   }
+
+  &_placeholderLogo
+  {
+    width: 155px;
+    height: 24px;
+  }
 }

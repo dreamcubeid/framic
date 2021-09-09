@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Router from 'next/router'
+import { LazyLoadComponent } from 'react-lazy-load-image-component'
 import {
   Logo,
   CollapsibleNav,
@@ -39,11 +40,11 @@ type SideMenuPropsType = {
 }
 
 const classesCollapsibleNav = {
-  parentNavClassName: styles.menu_parentNav,
-  navValueClassName: styles.menu_navValue,
-  navValueContainerClassName: styles.menu_navValueContainer,
-  childNavClassName: styles.menu_navChildNav,
-  subChildNavClassName: styles.menu_navChildNav,
+  parentNavClassName: styles.sidemenu_parentNav,
+  navValueClassName: styles.sidemenu_navValue,
+  navValueContainerClassName: styles.sidemenu_navValueContainer,
+  childNavClassName: styles.sidemenu_navChildNav,
+  subChildNavClassName: styles.sidemenu_navChildNav,
 };
 
 const classesSearch = {
@@ -56,7 +57,11 @@ const classesSearch = {
 }
 
 const classesPlaceholderCollapsibleNav = {
-  placeholderList: styles.menu_placeholder
+  placeholderList: styles.sidemenu_placeholder
+}
+
+const classesPlaceholderLogo = {
+  placeholderImage: styles.sidemenu_placeholderLogo
 }
 
 
@@ -93,6 +98,11 @@ const SideMenu: FC<SideMenuPropsType> = ({
       `}>
         <div className={styles.sidemenu_body}>
           <div className={styles.sidemenu_header}>
+          <LazyLoadComponent
+            placeholder={
+              <Placeholder classes={classesPlaceholderLogo} withImage={true} />
+            }
+          >
             <Logo
               imageClassName={styles.sidemenu_logo}
               thumborSetting={{
@@ -103,6 +113,8 @@ const SideMenu: FC<SideMenuPropsType> = ({
 
               lazyLoadedImage={false}
             />
+          </LazyLoadComponent>
+
             <span className={styles.sidemenu_headerClose} onClick={toogleSide} />
             <div
               className={styles.sidemenu_headerCart}
@@ -171,7 +183,7 @@ const SideMenu: FC<SideMenuPropsType> = ({
           </div>
         </div>
       </div>
-      <div className={styles.background} style={{ display: openSide ? 'block' : 'none' }} onClick={toogleSide}></div>
+      <div className={styles.sidemenu_background} style={{ display: openSide ? 'block' : 'none' }} onClick={toogleSide}></div>
     </>
   )
 }

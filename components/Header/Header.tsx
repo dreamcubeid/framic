@@ -8,7 +8,6 @@ import { useRouter } from 'next/router'
 import Router from 'next/router'
 import { LazyLoadComponent } from 'react-lazy-load-image-component'
 import { X } from 'react-feather'
-import styles from 'public/scss/components/Header.module.scss'
 import {
   Logo,
   useCart,
@@ -21,8 +20,10 @@ import SideMenu from '../SideMenu/SideMenu'
 /* library template */
 import useWindowSize from 'lib/useWindowSize'
 
+import styles from 'public/scss/components/Header.module.scss'
+
 const classesPlaceholderLogo = {
-  placeholderImage: `${styles.placeholderItem} ${styles.placeholderItem_header__logo}`
+  placeholderImage: styles.header_placeholderLogo
 }
 
 const classesPlaceholderWidget = {
@@ -46,7 +47,7 @@ const Header: FC<any> = ({ lng, brand }) => {
   const toogleMenu = () => setOpenMenu(!openMenu);
 
   const handleCart = () => {
-    if (router.pathname !== "/[lng]/payment_notif/[[...orderID]]") Router.push("/[lng]/cart",`/${lng}/cart`);
+    if (router.pathname !== "/[lng]/payment_notif/[[...orderID]]") Router.push("/[lng]/cart", `/${lng}/cart`);
   }
 
   return (
@@ -85,11 +86,11 @@ const Header: FC<any> = ({ lng, brand }) => {
             />
           </LazyLoadComponent>
         </div>
-        <div 
+        <div
           className={styles.header_cartContainer}
           onClick={handleCart}
         >
-          <span className={styles.header_cartIcon}/>
+          <span className={styles.header_cartIcon} />
           <label className={styles.header_cartLabel}>{dataCart?.totalItem}</label>
         </div>
 
