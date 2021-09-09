@@ -12,6 +12,7 @@ import { useBrand } from 'lib/useBrand'
 import styles from 'public/scss/pages/Home.module.scss'
 import WidgetHomepageTop from 'components/Widget/WidgetHomepageTop'
 import WidgetHomepageBottom from 'components/Widget/WidgetHomepageBottom'
+import Instagram from 'components/Instagram'
 
 const classesBanner = {
   imageContainerClassName: styles.bannerCarousel_header,
@@ -58,6 +59,7 @@ const Home: FC<any> = ({
         <WidgetHomepageTop />
         <WidgetHomepageBottom/>
       </section>
+      <Instagram size={size}/>
     </Layout>
   );
 };
