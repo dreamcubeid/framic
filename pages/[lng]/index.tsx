@@ -7,7 +7,11 @@ import { GRAPHQL_URI } from 'lib/Constants'
 import { useBrand } from 'lib/useBrand'
 import WidgetHomepageTop from 'components/Widget/WidgetHomepageTop'
 import WidgetHomepageBottom from 'components/Widget/WidgetHomepageBottom'
+import Instagram from 'components/Instagram'
 import BannerComponent from 'components/BannerComponent'
+import useWindowSize from 'lib/useWindowSize'
+
+
 
 import styles from 'public/scss/pages/Home.module.scss'
 
@@ -18,6 +22,7 @@ const Home: FC<any> = ({
   dataBanners,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const i18n: any = useI18n();
+  const size = useWindowSize()
   const [isReady, setIsReady] = useState<boolean>(false);
 
   useEffect(() => {
@@ -34,6 +39,7 @@ const Home: FC<any> = ({
         <WidgetHomepageTop />
         <WidgetHomepageBottom />
       </section>
+      <Instagram size={size} i18n={i18n}/>
     </Layout>
   );
 };
