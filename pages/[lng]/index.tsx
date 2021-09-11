@@ -1,29 +1,19 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { Banner, getBanner, useI18n } from '@sirclo/nexus'
+import { getBanner, useI18n } from '@sirclo/nexus'
 import Layout from 'components/Layout/Layout'
-import Placeholder from 'components/Placeholder'
-import useWindowSize from 'lib/useWindowSize'
 import { parseCookies } from 'lib/parseCookies'
-import { useSizeBanner } from 'lib/useSizeBanner'
 import { GRAPHQL_URI } from 'lib/Constants'
-import Carousel from '@brainhubeu/react-carousel'
 import { useBrand } from 'lib/useBrand'
-import styles from 'public/scss/pages/Home.module.scss'
 import WidgetHomepageTop from 'components/Widget/WidgetHomepageTop'
 import WidgetHomepageBottom from 'components/Widget/WidgetHomepageBottom'
 import Instagram from 'components/Instagram'
-
-const classesBanner = {
-  imageContainerClassName: styles.bannerCarousel_header,
-  linkClassName: styles.bannerCarousel_link,
-  imageClassName: styles.bannerCarousel_image,
-};
+import BannerComponent from 'components/BannerComponent'
+import useWindowSize from 'lib/useWindowSize'
 
 
-const classesPlaceholderBanner = {
-  placeholderImage: `${styles.placeholderItem} ${styles.placeholderItem__banner}`,
-};
+
+import styles from 'public/scss/pages/Home.module.scss'
 
 const Home: FC<any> = ({
   lng,
@@ -32,32 +22,22 @@ const Home: FC<any> = ({
   dataBanners,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const i18n: any = useI18n();
-  const size = useWindowSize();
+  const size = useWindowSize()
+  const [isReady, setIsReady] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!isReady) setIsReady(true);
+  }, [isReady]);
 
   return (
     <Layout i18n={i18n} lng={lng} lngDict={lngDict} brand={brand}>
       <section className={styles.homepage_container}>
-        <div className={styles.bannerCarousel}>
-          <Banner
-            data={dataBanners?.data}
-            Carousel={Carousel}
-            classes={classesBanner}
-            autoPlay={5000}
-            infinite
-            thumborSetting={{
-              width: useSizeBanner(size.width),
-              format: 'webp',
-              quality: 85,
-            }}
-            loadingComponent={
-              <Placeholder classes={classesPlaceholderBanner} withImage />
-            }
-            widthImage={size.width}
-            lazyLoadedImage={false}
-          />
-        </div>
+        <BannerComponent
+          dataBanners={dataBanners?.data}
+          isReady={isReady}
+        />  
         <WidgetHomepageTop />
-        <WidgetHomepageBottom/>
+        <WidgetHomepageBottom />
       </section>
       <Instagram size={size} i18n={i18n}/>
     </Layout>

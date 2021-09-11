@@ -1,14 +1,16 @@
-import { FC } from "react";
-import dynamic from "next/dynamic";
+/* library package */
+import { FC } from 'react'
 import {
   isCopyrightAllowed,
   Widget,
   SocialMediaIcons
-} from "@sirclo/nexus";
-import useWindowSize from "lib/useWindowSize";
-import styles from "public/scss/components/Footer.module.scss";
+} from '@sirclo/nexus'
+/* library template */
+import useWindowSize from 'lib/useWindowSize'
+/* component */
+import Placeholder from '../Placeholder'
 
-const Placeholder = dynamic(() => import("components/Placeholder"));
+import styles from 'public/scss/components/Footer.module.scss'
 
 const socialMediaIcons = {
   facebook: <img src="/images/facebook.svg" alt="facebook" />,
@@ -23,8 +25,12 @@ const classesMediaSocial = {
   socialMediaIcon: styles.footer_socialItem,
 }
 
-const classesPlaceholderWidget = {
-  placeholderList: `${styles.placeholderItem} ${styles.placeholderItem_widgetFooterMenu}`,
+const classesPlaceholderWidgetLink = {
+  placeholderList: styles.footer_placeholderWidgetLink,
+}
+
+const classesPlaceholderWidgetLogoDescription = {
+  placeholderList: styles.footer_placeholderWidgetLogoDescription,
 }
 
 const Footer: FC<any> = ({ brand }) => {
@@ -34,20 +40,17 @@ const Footer: FC<any> = ({ brand }) => {
   return (
     <div className={styles.footer_wrapper}>
       <div className={styles.footer_container}>
+
         <Widget
           pos="footer-2"
           widgetClassName={styles.footer_logoDescription}
-          // loadingComponent={
-          //   <div className="row">
-          //     <div className="col-12">
-          //       <Placeholder
-          //         classes={classesPlaceholderWidget}
-          //         withList
-          //         listMany={4}
-          //       />
-          //     </div>
-          //   </div>
-          // }
+          loadingComponent={
+            <Placeholder
+              classes={classesPlaceholderWidgetLogoDescription}
+              withList={true}
+              listMany={2}
+            />
+          }
           thumborSetting={{
             width: size.width < 768 ? 576 : 1200,
             format: "webp",
@@ -61,17 +64,15 @@ const Footer: FC<any> = ({ brand }) => {
         <Widget
           pos="footer-1"
           widgetClassName={styles.footer_link}
-          // loadingComponent={
-          //   <div className="row">
-          //     <div className="col-12">
-          //       <Placeholder
-          //         classes={classesPlaceholderWidget}
-          //         withList
-          //         listMany={4}
-          //       />
-          //     </div>
-          //   </div>
-          // }
+          loadingComponent={
+            <div className={styles.footer_link}>
+              <Placeholder
+                classes={classesPlaceholderWidgetLink}
+                withList={true}
+                listMany={4}
+              />
+            </div>
+          }
           thumborSetting={{
             width: size.width < 768 ? 576 : 1200,
             format: "webp",
@@ -96,22 +97,7 @@ const Footer: FC<any> = ({ brand }) => {
             />
           }
         </footer>
-
       </div>
-      {/* <div className={styles.widgetFooter}>
-        <div className="container">
-          <div className="row">
-            <div className="col-12 col-lg-8 offset-lg-2">
-
-              <hr className={styles.footer_line} />
-              <SocialMediaIcons
-                socialMediaIcons={socialMediaIcons}
-                classes={classesMediaSocial}
-              />
-            </div>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 }

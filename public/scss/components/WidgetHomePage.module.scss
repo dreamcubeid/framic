@@ -26,18 +26,20 @@
   &_item_top
   {
     @include position();
+    margin-top: 41px;
 
     &:first-child
     {
+      width: calc(((100% - 12px) / 12) * 7);
+
       h1, h2, h3, h4, h5, p
       {
         @include absolute(45%,0,0,57px);
       }
-      width: calc(((100% - 12px) / 12) * 7);
       
       @media screen and (max-width: $breakpoint_max_md) 
       {
-        margin-top: 58px;
+        margin-top: 53px;
         width: 100%;
       }
     }
