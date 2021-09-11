@@ -34,7 +34,7 @@
 
       h1, h2, h3, h4, h5, p
       {
-        @include absolute(45%,0,0,57px);
+        @include absolute(45%, 0, 0, 57px);
       }
       
       @media screen and (max-width: $breakpoint_max_md) 
@@ -76,7 +76,7 @@
     {
       h1, h2, h3, h4, h5, p
       {
-        @include absolute(65%,0,0,38px);
+        @include absolute(65%, 0, 0, 38px);
         @include typographyBuilder(700, 48, 125);
       }
       width: calc(((100% - 12px) / 12) * 7);
@@ -88,7 +88,7 @@
 
         h1, h2, h3, h4, h5, p
         {
-          @include absolute(43%,0,0,38px);
+          @include absolute(43%, 0, 0, 38px);
         }
       }
     }
@@ -97,7 +97,7 @@
     {
       h1, h2, h3, h4, h5, p
       {
-        @include absolute(50%,0,0,50%);
+        @include absolute(50%, 0, 0, 50%);
         transform: translate(-50%, 0);
       } 
       
