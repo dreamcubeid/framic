@@ -1,16 +1,18 @@
-import { useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import { withBrand, Newsletter } from "@sirclo/nexus";
-import Head from "next/head";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
-import SEO from "../SEO";
-import { X as XIcon } from "react-feather";
-import PageNotFound from "components/PageNotFound";
+/* library package */
+import { useEffect } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
+import { withBrand, Newsletter } from '@sirclo/nexus'
+import Head from 'next/head'
+import { X as XIcon } from 'react-feather'
+/* component */
+import Header from '../Header/Header'
+import Footer from '../Footer/Footer'
+import SEO from '../SEO'
+import PageNotFound from 'components/PageNotFound'
 
-import stylesNewsLetter from "public/scss/components/Newsletter.module.scss";
-import stylesForm from "public/scss/components/Form.module.scss";
-import stylesButtons from "public/scss/components/Button.module.scss";
+import stylesNewsLetter from 'public/scss/components/Newsletter.module.scss'
+import stylesForm from 'public/scss/components/Form.module.scss'
+import stylesButtons from 'public/scss/components/Button.module.scss'
 
 type LayoutPropType = {
   lngDict: any;
