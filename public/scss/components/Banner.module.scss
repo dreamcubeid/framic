@@ -63,4 +63,15 @@
       }
     }
   }
+
+  &_placeholder
+  {
+    width: 100%;
+    height: calc(100vh - 75px);
+
+    @media screen and (max-width: $breakpoint_max_md)
+    {
+      height: 30vh;
+    }
+  }
 }
