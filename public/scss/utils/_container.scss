@@ -3,9 +3,10 @@
   margin-right: auto;
   margin-left: auto;
 
-  @media screen and (min-width:$breakpoint_min_lg) 
+  @media screen and (min-width:$breakpoint_min_md) 
   {
     max-width: 1070px;
+    padding: 18px;
   }
 
   @media screen and (max-width:$breakpoint_max_lg) 
