@@ -7,7 +7,10 @@ import Footer from "../Footer/Footer";
 import SEO from "../SEO";
 import { X as XIcon } from "react-feather";
 import PageNotFound from "components/PageNotFound";
-import styles from "public/scss/components/Newsletter.module.scss";
+
+import stylesNewsLetter from "public/scss/components/Newsletter.module.scss";
+import stylesForm from "public/scss/components/Form.module.scss";
+import stylesButtons from "public/scss/components/Button.module.scss";
 
 type LayoutPropType = {
   lngDict: any;
@@ -21,12 +24,12 @@ type LayoutPropType = {
 };
 
 const classesNewsletterPopup = {
-  containerClassName: styles.newsletter_popupContainer,
-  closeButtonClassName: styles.newsletter_close,
-  formContainerClassName: styles.newsletter_form,
+  containerClassName: stylesNewsLetter.newsletter_container,
+  closeButtonClassName: stylesNewsLetter.newsletter_close,
+  formContainerClassName: stylesNewsLetter.newsletter_form,
   labelClassName: "d-none",
-  inputClassName: "form-control",
-  buttonClassName: `btn mt-3 ${styles.btn_blue} ${styles.btn_center}`,
+  inputClassName: stylesForm.form_inputLong,
+  buttonClassName: stylesButtons.btn_primaryLong,
 }
 
 const Layout: React.FC<LayoutPropType> = ({
@@ -107,7 +110,7 @@ const Layout: React.FC<LayoutPropType> = ({
         }
       </main>
       <ToastContainer />
-      <div className={styles.newsletter_overlay}>
+      <div className={stylesNewsLetter.newsletter_overlay}>
         <Newsletter
           classes={classesNewsletterPopup}
           closeButton={<XIcon color="black" size="18" />}
