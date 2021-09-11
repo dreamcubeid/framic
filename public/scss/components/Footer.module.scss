@@ -24,15 +24,17 @@
 
   &_link
   {
+    @include flex(row, center, center, true);
     width: 100%;
     margin-top: 12px;
-    border-top: 1px solid rgba(102, 102, 102, 0.5);
+    border-top: 1px solid rgba($color_grey, 0.5);
+    padding: 12px 0 0;
 
     & > ul
     {
       @include flex(row, center, center, true);
-      padding: 12px 0 0;
       margin-bottom: 0;
+      padding: 0;
       list-style: none;
 
       a
@@ -95,97 +97,23 @@
       width: 130px !important;
     }
   }
+
+  &_placeholderWidgetLink
+  {
+    width: 52px;
+    height: 16px;
+    margin-bottom: 10px;
+
+    &:not(:last-child)
+    {
+      margin-right: 18px;
+    }
+  }
+
+  &_placeholderWidgetLogoDescription
+  {
+    width: 52px;
+    height: 16px;
+    margin-bottom: 10px;
+  }
 }
-
-// .widgetFooter
-// {
-//   padding: 35px 0;
-
-//   h1,h2,h3,h4,h5,h6
-//   {
-//     font-size: 11px;
-//     font-family: 'roboto-black';
-//     margin-bottom: 13px;
-//   }
-
-//   ul
-//   {
-//     padding: 0;
-//     margin: 0;
-
-//     li
-//     {
-//       list-style: none;
-//       margin-bottom: 11px;
-      
-//       a
-//       {
-//         text-decoration: none;
-//       }
-//     }
-//   }
-// }
-
-// .socialIcon
-// {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-
-//   &_item
-//   {
-//     margin: 0 15px;
-
-//     & > img
-//     {
-//       height: 17px;
-//     }
-//   }
-// }
-
-// .footer
-// {
-
-//   &_line
-//   {
-//     // border-top: 1px solid $color_divider;
-//   }
-
-//   &_bottom
-//   {
-//     display: flex;
-//     justify-content: center;
-//     text-align: center;
-//     padding: .5rem 0;
-//     color: $color_white;
-
-//     & > a
-//     {
-//       color: $color_white;
-//     }
-
-//     & img, video, iframe
-//     {
-//       display: none !important;
-//     }
-
-//     div, h1, h2, h3, h4, h5, h6, p
-//     {
-//       text-align: center !important;
-//       font-size: 13px !important;
-//       margin-bottom: 0 !important;
-//     }
-//   }
-
-//   &_bottomWidget
-//   {
-//     text-align: center;
-//     font-size: 11px;
-
-//     div, h1, h2, h3, h4, h5, h6, p
-//     {
-//       text-align: center;
-//       font-size: 11px;
-//     }
-//   }
-// }
