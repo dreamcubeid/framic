@@ -54,4 +54,18 @@
     width: 155px;
     height: 24px;
   }
+
+  &_announce
+  {
+    height: 32px;
+    background-color: $color_black;
+    text-align: center;
+    padding: 8px 0;
+  }
+
+  &_announceItem
+  {
+    color: $color_white;
+    @include typographyBuilder(700, 12, 16);
+  }
 }

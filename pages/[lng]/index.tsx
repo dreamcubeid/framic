@@ -1,16 +1,20 @@
+/* library package */
 import { FC, useEffect, useState } from 'react'
+import Link from 'next/link'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { getBanner, useI18n } from '@sirclo/nexus'
+import { ChevronRight } from 'react-feather';
+/* component */
 import Layout from 'components/Layout/Layout'
-import { parseCookies } from 'lib/parseCookies'
-import { GRAPHQL_URI } from 'lib/Constants'
-import { useBrand } from 'lib/useBrand'
 import WidgetHomepageTop from 'components/Widget/WidgetHomepageTop'
 import WidgetHomepageBottom from 'components/Widget/WidgetHomepageBottom'
 import Instagram from 'components/Instagram'
 import BannerComponent from 'components/BannerComponent'
+/* library template */
+import { parseCookies } from 'lib/parseCookies'
+import { GRAPHQL_URI } from 'lib/Constants'
+import { useBrand } from 'lib/useBrand'
 import useWindowSize from 'lib/useWindowSize'
-
 
 
 import styles from 'public/scss/pages/Home.module.scss'
@@ -38,6 +42,18 @@ const Home: FC<any> = ({
         />  
         <WidgetHomepageTop />
         <WidgetHomepageBottom />
+        <Link
+          href='/[lng]/products'
+          as={`/${lng}/products`}
+        >
+          <div className={styles.homepage_linkAllProduct}>
+            <img src='/images/product.svg'/>
+            <div>
+              {i18n.t('product.seeAllProduct')}
+            </div>
+            <ChevronRight className={styles.homepage_rightArrow}/>
+          </div>
+        </Link>
       </section>
       <Instagram size={size} i18n={i18n}/>
     </Layout>
