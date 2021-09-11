@@ -1,331 +1,200 @@
-import { FC, useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import dynamic from "next/dynamic";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+/* library package */
+import { FC, useState } from 'react'
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import {
   Products,
   ProductFilter,
+  ProductSort,
   ProductCategory,
   useI18n,
-} from "@sirclo/nexus";
-import useQuery from "lib/useQuery";
-import useWindowSize from "lib/useWindowSize";
-import convertToTextFromQuery from "lib/convertToTextFromQuery";
-import SEO from "components/SEO";
-import Layout from "components/Layout/Layout";
-import EmptyComponent from "components/EmptyComponent/EmptyComponent";
-import Placeholder from "components/Placeholder";
-import { useBrand } from "lib/useBrand";
-import { Sliders, ArrowUp } from "react-feather";
-import styles from "public/scss/pages/Products.module.scss";
+} from '@sirclo/nexus'
+/* library template */
+import { useBrand } from 'lib/useBrand'
+import useWindowSize from 'lib/useWindowSize'
+import useQuery from 'lib/useQuery'
+/* component */
+import Layout from 'components/Layout/Layout'
+import Placeholder from 'components/Placeholder'
 
-const Popup = dynamic(() => import("components/Popup/Popup"));
+const classesProductFilter = {
+  filtersClassName: "products-menuCenterFilterSortFilterContainer",
+  filterClassName: "products-menuCenterFilterSortFilterMenu",
+  filterNameClassName: "products-menuCenterFilterSortFilterMenuTitle",
+  filterCheckboxClassName: "products-menuCenterFilterSortFilterMenuCheckbox",
+  filterLabelClassName: "products-menuCenterFilterSortFilterMenuCheckboxLabel",
+  filterOptionPriceClassName: "products-menuCenterFilterSortFilterMenuPrice",
+  filterPriceLabelClassName: "products-menuCenterFilterSortFilterMenuPriceLabel",
+  filterPriceInputClassName: "products-menuCenterFilterSortFilterMenuPriceInput",
+  filterSliderClassName: "products-menuCenterFilterSortFilterMenuPriceSlider",
+  filterSliderRailClassName: "products-menuCenterFilterSortFilterMenuPriceRail",
+  filterSliderHandleClassName: "products-menuCenterFilterSortFilterMenuPriceHandle",
+  filterSliderTrackClassName: "products-menuCenterFilterSortFilterMenuPriceTrack",
+  filterSliderTooltipClassName: "products-menuCenterFilterSortFilterMenuPriceTooltip",
+  filterSliderTooltipContainerClassName: "products-menuCenterFilterSortFilterMenuPriceTooltipContainer",
+  filterSliderTooltipTextClassName: "products-menuCenterFilterSortFilterMenuPriceTooltipText",
+}
 
 const classesProducts = {
-  productContainerClassName: `col-6 col-md-3 products_list ${styles.product}`,
-  stickerContainerClassName: styles.product_sticker,
-  outOfStockLabelClassName: `${styles.product_stickerLabel} ${styles.product_stickerLabel__outofstock}`,
-  saleLabelClassName: `${styles.product_stickerLabel} ${styles.product_stickerLabel__sale}`,
-  comingSoonLabelClassName: `${styles.product_stickerLabel} ${styles.product_stickerLabel__comingsoon}`,
-  openOrderLabelClassName: `${styles.product_stickerLabel} ${styles.product_stickerLabel__openorder}`,
-  preOrderLabelClassName: `${styles.product_stickerLabel} ${styles.product_stickerLabel__preorder}`,
-  newLabelClassName: `${styles.product_stickerLabel} ${styles.product_stickerLabel__new}`,
-  productImageContainerClassName: styles.product_link,
-  productImageClassName: styles.product_link__image,
-  productLabelContainerClassName: styles.product_label,
-  productTitleClassName: styles.product_label__title,
-  productPriceClassName: styles.product_labelPrice,
-  salePriceClassName: styles.product_labelPrice__sale,
-  priceClassName: styles.product_labelPrice__price,
-};
+  productContainerClassName: "products-product col-6 col-md-3 mb-2",
+  productLabelContainerClassName: "products-product_content",
+  productTitleClassName: "products-product_content--title text-truncate-2",
+  productPriceClassName: "products-product_content--price",
+  priceClassName: "products-product_content--price_disc",
+  productImageContainerClassName: "products-product--image",
+  productImageClassName: "w-100",
+
+  salePriceClassName: "products-product_content--price_sale",
+  stickerContainerClassName: "products-product_sticker",
+  outOfStockLabelClassName: "products-product_sticker--outOfStock",
+  saleLabelClassName: "products-product_sticker--sale",
+  preOrderLabelClassName: "products-product_sticker--preOrder",
+  newLabelClassName: "products-product_sticker--new",
+  comingSoonLabelClassName: "products-sticker_bottom",
+  openOrderLabelClassName: "products-sticker_bottom"
+}
 
 const classesProductSort = {
-  sortClassName: `form-group ${styles.sirclo_form_select}`,
-  sortOptionsClassName: `form-control ${styles.sirclo_form_input}`,
-};
-
-const classesProductFilterSort = {
-  filterClassName: styles.products_filter,
-  filterNameClassName: styles.products_filterName,
-  filterOptionPriceClassName: styles.products_filterPrice,
-  filterPriceLabelClassName: styles.products_filterPriceLabel,
-  filterPriceInputClassName: styles.products_filterPriceInput,
-  filterOptionClassName: styles.products_filterOption,
-  filterColorLabelClassName: styles.products_filterOptionLabel,
-  filterLabelClassName: styles.products_filterOptionLabel,
-  filterCheckboxClassName: styles.products_filterOptionCheckbox,
-  filterSliderClassName: styles.products_filterSlider,
-  filterSliderRailClassName: styles.products_filterSliderRail,
-  filterSliderHandleClassName: styles.products_filterSliderHandle,
-  filterSliderTrackClassName: styles.products_filterSliderTrack,
-  filterSliderTooltipClassName: styles.products_filterSliderTooltip,
-  filterSliderTooltipContainerClassName: styles.products_filterSliderTooltipContainer,
-  filterSliderTooltipTextClassName: styles.products_filterSliderTooltipText,
-};
+  sortClassName: "products-menuCenterFilterSortSort",
+  sortOptionsClassName: "products-menuCenterFilterSortSortList",
+  sortOptionButtonClassName: "products-menuCenterFilterSortSortButton",
+  sortActiveClassName: "products-menuCenterFilterSortSortButton_active"
+}
 
 const classesProductCategory = {
-  parentCategoryClassName: styles.category_order,
-  categoryItemClassName: styles.category_list,
-  categoryValueClassName: styles.category_list_link,
-  categoryNameClassName: styles.category_list_item,
-  categoryNumberClassName: "ml-1",
+  parentCategoryClassName: "products-menuCenterFilterSortCategoryParent",
+  selectedCategoryClassName: "products-menuCenterFilterSortCategory_active",
   dropdownIconClassName: "d-none",
-};
+}
 
-const classesEmptyComponent = {
-  emptyContainer: styles.products_empty,
-  emptyTitle: styles.products_empty_title,
-  emptyDesc: styles.products_empty_desc,
-};
+const classesPlaceholderSort = {
+  placeholderList: "placeholder-item placeholder-item__product--card"
+}
 
-const classesPlaceholderCatProduct = {
-  placeholderTitle: `${styles.placeholderItem} ${styles.placeholderItem_productCat__title}`,
-};
+const classesPlaceholderCategory = {
+  placeholderList: "placeholder-item placeholder-item__product--card"
+}
 
-const classesPlaceholderProduct = {
-  placeholderImage: `${styles.placeholderItem} ${styles.placeholderItem_product__card}`,
-};
+const classesPlaceholderFilter = {
+  placeholderList: "placeholder-item placeholder-item__product--card"
+}
+
+const classesPlaceholderProducts = {
+  placeholderImage: "placeholder-item placeholder-item__product--card"
+}
+
+const classesPaggination = {
+  pagingClassName: 'pagination products-pagination col-12',
+  activeClassName: 'active',
+  itemClassName: 'page-item products-pagination_item',
+  linkClassName: 'products-pagination_item--link btn',
+}
 
 const ProductsPage: FC<any> = ({
   lng,
   lngDict,
   brand,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const router = useRouter();
-  const i18n: any = useI18n();
-  const size = useWindowSize();
-  const categories: string = useQuery("categories");
-  const tagname: string | string[] = router.query.tagname || null;
-
-  const [openSort, setOpenSort] = useState<boolean>(false);
-  const [sort, setSort] = useState(null);
-  const [filterProduct, setFilterProduct] = useState({});
-
-  const [currPage, setCurrPage] = useState(0);
+  const i18n: any = useI18n()
+  const [sort, setSort] = useState(null)
+  const [filterProduct, setFilterProduct] = useState({})
+  const categories: string = useQuery('categories')
+  const tagname: string = useQuery('tagname')
+  const size = useWindowSize()
   const [pageInfo, setPageInfo] = useState({
     pageNumber: 0,
     itemPerPage: 8,
     totalItems: 0,
-  });
-  const totalPage = Math.ceil(pageInfo.totalItems / pageInfo.itemPerPage);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  });
-
-  const handleScroll = () => {
-    const lastTestimonial = document.querySelector(
-      ".products_list:last-child"
-    ) as HTMLElement;
-
-    if (lastTestimonial) {
-      const lastTestimonialOffset =
-        lastTestimonial.offsetTop + lastTestimonial.clientHeight;
-      const pageOffset = window.pageYOffset + window.innerHeight;
-      if (pageOffset > lastTestimonialOffset) {
-        if (currPage < totalPage - 1) {
-          setCurrPage(currPage + 1);
-        }
-      }
-    }
-  };
-
-  useEffect(() => {
-    setCurrPage(0);
-  }, [filterProduct, categories]);
-
-  const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
-  const toogleSort = () => setOpenSort(!openSort);
-  const handleFilter = (selectedFilter: any) =>
-    setFilterProduct(selectedFilter);
+    totalPages: 0
+  })
 
   return (
     <Layout i18n={i18n} lng={lng} lngDict={lngDict} brand={brand}>
-      <SEO title={i18n.t("product.products")} />
-      <div className={styles.category}>
-        <div className="container">
-          <div className="row">
-            <div className="col-12 col-lg-8 offset-lg-2">
-              <ProductCategory
-                classes={classesProductCategory}
-                showCategoryNumber={false}
-                loadingComponent={
-                  <div className="container">
-                    <div className="row">
-                      <div className="col-4 col-md-2">
-                        <Placeholder
-                          classes={classesPlaceholderCatProduct}
-                          withTitle
-                        />
-                      </div>
-                      <div className="col-4 col-md-2">
-                        <Placeholder
-                          classes={classesPlaceholderCatProduct}
-                          withTitle
-                        />
-                      </div>
-                      <div className="col-4 col-md-2">
-                        <Placeholder
-                          classes={classesPlaceholderCatProduct}
-                          withTitle
-                        />
-                      </div>
-                      <div className="d-none d-md-block col-md-2">
-                        <Placeholder
-                          classes={classesPlaceholderCatProduct}
-                          withTitle
-                        />
-                      </div>
-                      <div className="d-none d-md-block col-md-2">
-                        <Placeholder
-                          classes={classesPlaceholderCatProduct}
-                          withTitle
-                        />
-                      </div>
-                      <div className="d-none d-md-block col-md-2">
-                        <Placeholder
-                          classes={classesPlaceholderCatProduct}
-                          withTitle
-                        />
-                      </div>
-                    </div>
-                  </div>
-                }
+      <div> //Container Products List
+        <div> //Container Products Filter
+          <ProductSort
+            classes={classesProductSort}
+            handleSort={(selectedSort: any) => {
+              setSort(selectedSort)
+            }}
+            loadingComponent={
+              <Placeholder
+                classes={classesPlaceholderSort}
+                listMany={4}
+                withList
               />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={`container ${styles.products}`}>
-        <div className="row">
-          <div className="col-12 col-lg-8 offset-lg-2">
-            <div className={styles.products_header}>
-              <h3 className="text-capitalize">
-                {categories
-                  ? convertToTextFromQuery(categories)
-                  : i18n.t("product.all")}
-              </h3>
-            </div>
-            <div className="row">
-              {Array.from(Array(currPage + 1)).map((_, i) => (
-                <Products
-                  key={i}
-                  tagName={tagname}
-                  pageNumber={i}
-                  itemPerPage={8}
-                  getPageInfo={setPageInfo as any}
-                  collectionSlug={categories}
-                  sort={sort}
-                  filter={filterProduct}
-                  withSeparatedVariant={true}
-                  classes={classesProducts}
-                  fullPath={`product/{id}`}
-                  pathPrefix={`product`}
-                  lazyLoadedImage={false}
-                  thumborSetting={{
-                    width: size.width < 768 ? 512 : 800,
-                    format: "webp",
-                    quality: 85,
-                  }}
-                  emptyStateComponent={
-                    <div className="col-12">
-                      <EmptyComponent
-                        classes={classesEmptyComponent}
-                        title={i18n.t("product.isEmpty")}
-                        button={
-                          <button
-                            className={`btn mt-2 ${styles.btn_primary} ${styles.btn_long}`}
-                            onClick={() =>
-                              router.push(`/[lng]/products`, `/${lng}/products`)
-                            }
-                          >
-                            {i18n.t("product.back")}
-                          </button>
-                        }
-                      />
-                    </div>
-                  }
-                  loadingComponent={
-                    <>
-                      <div className="col-6 col-md-3 mb-4">
-                        <Placeholder
-                          classes={classesPlaceholderProduct}
-                          withImage={true}
-                        />
-                      </div>
-                      <div className="col-6 col-md-3 mb-4">
-                        <Placeholder
-                          classes={classesPlaceholderProduct}
-                          withImage={true}
-                        />
-                      </div>
-                      <div className="d-none d-md-block col-md-3 mb-4">
-                        <Placeholder
-                          classes={classesPlaceholderProduct}
-                          withImage={true}
-                        />
-                      </div>
-                      <div className="d-none d-md-block col-md-3 mb-4">
-                        <Placeholder
-                          classes={classesPlaceholderProduct}
-                          withImage={true}
-                        />
-                      </div>
-                    </>
-                  }
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={styles.products_action}>
-        <div
-          className={`${styles.products_action_sort} mr-2`}
-          onClick={toogleSort}
-        >
-          <span className="mr-2">
-            <Sliders color="white" />
-          </span>
-          <span className={styles.products_action_sort__title}>
-            {i18n.t("product.adjust")}
-          </span>
-        </div>
-        <div className={styles.products_action_top} onClick={() => scrollTop()}>
-          <span>
-            <ArrowUp color="white" />
-          </span>
-        </div>
-      </div>
-      {openSort && (
-        <Popup
-          withHeader
-          setPopup={toogleSort}
-          popupTitle={i18n.t("product.adjust")}
-        >
-          <div className={styles.products_sortLabel}>
-            {i18n.t("product.sort")}
-          </div>
+            }
+          />
+          <ProductCategory
+            classes={classesProductCategory}
+            categoryClassName="products-menuCenterFilterSortToggle"
+            withOpenedSubCategory
+            loadingComponent={
+              <Placeholder
+                classes={classesPlaceholderCategory}
+                listMany={4}
+                withList
+              />
+            }
+          />
           <ProductFilter
-            withSort
-            sortType="dropdown"
-            sortClasses={classesProductSort}
-            classes={classesProductFilterSort}
+            sortType={"list"}
             withPriceMinimumSlider
             withPriceValueLabel
             withPriceInput
             withTooltip
-            handleFilter={handleFilter}
-            handleSort={(selectedSort: any) => {
-              setSort(selectedSort);
-              setOpenSort(false);
-            }}
+            classes={classesProductFilter}
+            handleFilter={(value: any) => setFilterProduct(value)}
+            loadingComponent={
+              <Placeholder
+                classes={classesPlaceholderFilter}
+                listMany={4}
+                withList
+              />
+            }
           />
-        </Popup>
-      )}
+        </div>
+
+        <div>//Container Products List
+          <Products
+            collectionSlug={categories || null}
+            tagName={tagname}
+            classes={classesProducts}
+            getPageInfo={setPageInfo as any}
+            sort={sort}
+            pageNumber={pageInfo.pageNumber}
+            itemPerPage={pageInfo.itemPerPage}
+            callPagination={true}
+            filter={filterProduct}
+            paginationClasses={classesPaggination}
+            nextLabel={">"}
+            prevLabel={"<"}
+            thumborSetting={{
+              width: size.width < 768 ? 400 : 650,
+              format: "webp",
+              quality: 75,
+            }}
+            emptyStateComponent={
+              <></>
+            }
+            loadingComponent={
+              <>
+                <div className="col-6 col-md-3 mb-5">
+                  <Placeholder classes={classesPlaceholderProducts} withImage />
+                </div>
+                <div className="col-6 col-md-3 mb-5">
+                  <Placeholder classes={classesPlaceholderProducts} withImage />
+                </div>
+                <div className="d-none d-md-block col-6 col-md-3 mb-5">
+                  <Placeholder classes={classesPlaceholderProducts} withImage />
+                </div>
+                <div className="d-none d-md-block col-6 col-md-3 mb-5">
+                  <Placeholder classes={classesPlaceholderProducts} withImage />
+                </div>
+              </>
+            }
+          />
+        </div>
+      </div>
     </Layout>
   );
 };
