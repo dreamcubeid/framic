@@ -7,7 +7,6 @@ import {
 import { useRouter } from 'next/router'
 import Router from 'next/router'
 import { LazyLoadComponent } from 'react-lazy-load-image-component'
-import { X } from 'react-feather'
 import {
   Logo,
   useCart,
@@ -37,7 +36,6 @@ const Header: FC<any> = ({ lng, brand }) => {
   const size: any = useWindowSize();
 
   const [openMenu, setOpenMenu] = useState<boolean>(false);
-  const [showAnnounce, setShowAnnounce] = useState<boolean>(true);
   const [countWidgetAnnouncement, setCountWidgetAnnouncement] = useState(null);
 
   useEffect(() => {
@@ -53,17 +51,11 @@ const Header: FC<any> = ({ lng, brand }) => {
   return (
     <>
       {(countWidgetAnnouncement === null || countWidgetAnnouncement > 0) &&
-        <div className={styles.announce} style={{ display: showAnnounce ? 'flex' : 'none' }}>
-          <span className={styles.announce__close}>
-            <X
-              className={styles.announce__close__icon}
-              onClick={() => setShowAnnounce(false)}
-            />
-          </span>
+        <div className={styles.header_announce}>
           <Widget
             getItemCount={(itemCount: number) => setCountWidgetAnnouncement(itemCount)}
             pos="header-announcements"
-            widgetClassName={styles.announce__items}
+            widgetClassName={styles.header_announceItem}
             loadingComponent={<Placeholder classes={classesPlaceholderWidget} withTitle />}
           />
         </div>
