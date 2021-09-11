@@ -19,7 +19,7 @@
 
     @media screen and (min-width: $breakpoint_min_md) 
     {
-      @include flex(row, center, space-between);
+      @include flex(row, flex-start, space-between);
     }
   }
 
@@ -41,10 +41,6 @@
       {
         margin-top: 53px;
         width: 100%;
-
-        img{
-          @include fixedHeight(238px);
-        }
       }
     }
     
@@ -62,20 +58,14 @@
       {
         margin-top: 16px;
         width: 100%;
-
-        img{
-          @include fixedHeight(340px);
-        }
       }
     }
 
     img
     {
-      @include fixedWidth(100%);
-      @include fixedHeight(431px);
-      object-fit: cover;
+      @include fixedWidth(100%, true);
+      object-fit: contain;
     }
-
   }
 
   &_item_bottom
@@ -100,10 +90,6 @@
         {
           @include absolute(43%,0,0,38px);
         }
-
-        img{
-          @include fixedHeight(238px);
-        }
       }
     }
     
@@ -122,19 +108,13 @@
       {
         margin-top: 16px;
         width: 100%;
-
-
-        img{
-          @include fixedHeight(340px);
-        }
       }
     }
     
     img
     {
-      @include fixedWidth(100%);
-      @include fixedHeight(431px);
-      object-fit: cover;
+      @include fixedWidth(100%, true);
+      object-fit: contain;
     }
   }
 
