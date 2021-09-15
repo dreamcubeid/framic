@@ -49,6 +49,26 @@
     margin-bottom: 0;
   }
 
+  &_priceSale
+  {
+    @include typographyBuilder(400, 12, 16);
+    color: $color_grey;
+    text-decoration-line: line-through;
+  }
+
+  &_priceText
+  {
+    @include typographyBuilder(400, 12, 16);
+    color: $color_red;
+    margin-left: 4px;
+
+    @media screen and (max-width: $breakpoint_max_lg) 
+    {
+      display: block;
+      margin-left: 0;
+    }
+  }
+
   &_stickerContainer
   {
     position: absolute;
