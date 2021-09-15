@@ -28,7 +28,7 @@ const classesProducts = {
   saleLabelClassName: styles.product_stickerItemSale,
   preOrderLabelClassName: styles.product_stickerItemPreOrder,
   newLabelClassName: styles.product_stickerItemNew,
-};
+}
 
 const classesPlaceholderProducts = {
   placeholderList: styles.product_placeholder
@@ -66,4 +66,4 @@ const ProductsComponent: FC<ProductsComponentType> = ({
   ) : (<></>)
 }
 
-export default ProductsComponent;
+export default ProductsComponent
