@@ -1,125 +1,101 @@
-// @import '../utils/variables';
+@import '../utils/variables';
 
-// .product
-// {
-//   position: relative;
-//   margin-bottom: 2rem;
+.product
+{
 
-//   @media screen and (max-width: 576px) {
-//     margin-bottom: 1.5rem;
-//   }
+  &_placeholder
+  {
+    @include fixedHeight(332px);
 
-//   &_sticker
-//   {
-//     position: absolute;
-//     top: 0;
-//     left: 50%;
-//     transform: translate(-50%, 0%);
-//     text-align: center;
-//   }
+    &:not(:last-child)
+    {
+      margin-right: 24px;
+    }
+  }
 
-//   &_stickerLabel
-//   {
-//     font-family: "roboto-black";
-//     font-size: 9px;
-//     letter-spacing: 1px;
-//     width: 100vw;
-//     border-bottom-left-radius: 5px;
-//     border-bottom-right-radius: 5px;
-//     padding: .5rem;
-//     display: table-cell;
-//     vertical-align: middle;
-//     text-transform: uppercase;
+  &_container
+  {
+    position: relative;
+    width: fit-content;
+  } 
 
-//     &__outofstock
-//     {
-//       // background: $color_gray_semi_dark;
-//       color: $color_white;
-//     }
+  &_imageContainer
+  {
+    @include fixedWidth(100%);
+    overflow: hidden;
+  }
 
-//     &__sale
-//     {
-//       // background: $color_red;
-//       color: $color_white;
-//     }
+  &_imageItem
+  {
+    @include fixedWidth(100%);
+  }
 
-//     &__openorder
-//     {
-//       // background: $color_purple;
-//       color: $color_white;
-//     }
+  &_labelContainer
+  {
+    margin-top: 12px
+  }
 
-//     &__comingsoon
-//     {
-//       // background: $color_green;
-//       color: $color_white;
-//     }
+  &_title
+  {
+    @include typographyBuilder(400, 16, 24);
+    margin-bottom: 8px;
+    color: $color_black;
+  }
 
-//     &__new
-//     {
-//       // background: $color_blue;
-//       color: $color_white;
-//     }
+  &_price
+  {
+    @include typographyBuilder(400, 12, 16);
+    color: $color_grey;
+    margin-bottom: 0;
+  }
 
-//     &__preorder
-//     {
-//       // background: $color_brown;
-//       color: $color_white;
-//     }
-//   }
+  &_stickerContainer
+  {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 
-//   &_link
-//   {
-//     &__image
-//     {
-//       width: 100%;
-//       height: 225px;
-//       object-fit: cover;
-//       border-radius: 5px;
-//     }
-//   }
+  &_stickerItemNew,
+  &_stickerItemOutOfStock,
+  &_stickerItemOpenOrder,
+  &_stickerItemComingSoon,
+  &_stickerItemPreOrder,
+  &_stickerItemSale
+  {
+    @include typographyBuilder(600, 10, 16);
+    display: block;
+    padding: 4px 8px;
+    color: $color_white;
+  }
 
-//   &_label
-//   {
-//     padding: 1rem 0;
-//     padding-bottom: 0;
+  &_stickerItemNew
+  {
+    background-color: $color_green;
+  }
 
-//     &__title
-//     {
-//       font-family: "roboto-medium";
-//       font-size: 16px; 
-//       margin-bottom: 5px;
-//       overflow: hidden;
-//       max-width: calc(100% - 2rem);
-//       min-width: calc(100% - 2rem);
-//       width: calc(100% - 2rem);
-//       height: auto;
-//       white-space: initial;
-//       display: block;
-//       display: -webkit-box;
-//       -webkit-line-clamp: 2;
-//       -webkit-box-orient: vertical;
-//     }
-//   }
+  &_stickerItemOutOfStock
+  {
+    background-color: $color_grey_light;
+  }
 
-//   &_labelPrice
-//   {
-//     font-size: 14px;
-//     color: $color_black;
-//     margin-bottom: 0;
+  &_stickerItemOpenOrder
+  {
+    background-color: $color_blue;
+  }
 
-//     &__sale
-//     {
-//       display: block;
-//       // color: $color_gray_dark;
-//       text-decoration: line-through;
-//       margin-right: .5rem;
-//     }
+  &_stickerItemComingSoon
+  {
+    background-color: $color_purple;
+  }
+  
+  &_stickerItemSale
+  {
+    background-color: $color_red; 
+  }
 
-//     &__price
-//     {
-//       display: block;
-//       // color: $color_red;
-//     }
-//   }
-// }
+  &_stickerItemPreOrder
+  {
+    background-color: $color_purple;
+  }
+}

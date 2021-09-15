@@ -5,7 +5,8 @@
   @include flex(row, center, center);
   @include useContainer();
   background-color: $color_white;
-  padding: 20px 0;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
 
   &_menu
   {
@@ -65,7 +66,7 @@
 
   &_announceItem
   {
+    @include typographyBuilder(400, 12, 16);
     color: $color_white;
-    @include typographyBuilder(700, 12, 16);
   }
 }
