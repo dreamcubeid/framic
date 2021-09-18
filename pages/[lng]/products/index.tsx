@@ -15,6 +15,9 @@ import useQuery from 'lib/useQuery'
 /* component */
 import Layout from 'components/Layout/Layout'
 import Placeholder from 'components/Placeholder'
+import ProductsComponent from 'components/ProductsComponent'
+
+import styles from 'public/scss/pages/Products.module.scss'
 
 const classesProductFilter = {
   filtersClassName: "products-menuCenterFilterSortFilterContainer",
@@ -109,9 +112,10 @@ const ProductsPage: FC<any> = ({
 
   return (
     <Layout i18n={i18n} lng={lng} lngDict={lngDict} brand={brand}>
-      <div> //Container Products List
-        <div> //Container Products Filter
-          <ProductSort
+      <div className={styles.productsList_wrapper}> 
+        {/* Container Products List */}
+        <div className={styles.productsList_filterSort}> 
+          {/* <ProductSort
             classes={classesProductSort}
             handleSort={(selectedSort: any) => {
               setSort(selectedSort)
@@ -151,11 +155,19 @@ const ProductsPage: FC<any> = ({
                 withList
               />
             }
-          />
+          /> */}
         </div>
 
-        <div>//Container Products List
-          <Products
+        <div className={styles.productsList_list}>
+          {/* Container Products List */}
+          <ProductsComponent 
+            i18n={i18n}
+            lng={lng}
+            tagName={tagname}
+            itemPerPage={pageInfo.itemPerPage}
+            type="list"
+          />
+          {/* <Products
             collectionSlug={categories || null}
             tagName={tagname}
             classes={classesProducts}
@@ -192,7 +204,7 @@ const ProductsPage: FC<any> = ({
                 </div>
               </>
             }
-          />
+          /> */}
         </div>
       </div>
     </Layout>

@@ -3,6 +3,7 @@ import { FC, useState } from 'react'
 /* component */
 import ProductsWidget from './ProductsWidget'
 import styles from 'public/scss/components/Product.module.scss'
+import ProductsList from './ProductsList'
 
 export type ProductsComponentType = {
   type: "list" | "widget" | "recomendation"
@@ -46,9 +47,9 @@ const ProductsComponent: FC<ProductsComponentType> = ({
   if (totalProducts === 0 && type !== "list") return <></>
 
   return type === "list" ? (
-    <div>
-
-    </div>
+    <ProductsList
+      classProducts={classesProducts}
+    />
   ) : type === "widget" ? (
     <ProductsWidget
       i18n={i18n}
