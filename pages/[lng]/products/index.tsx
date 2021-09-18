@@ -16,22 +16,35 @@ import useQuery from 'lib/useQuery'
 import Layout from 'components/Layout/Layout'
 import Placeholder from 'components/Placeholder'
 
+/* Style */
+import styles from 'public/scss/pages/Products.module.scss'
+import { ChevronDown } from 'react-feather'
+
 const classesProductFilter = {
+  filterVariantClassName: `${styles.filter_filterVariantName}`,
+  filterNameClassName: `${styles.filter_filterName}`,
+  filterOptionClassName: `${styles.filter_filterOption}`,
+  filterColorInputClassName: styles.filter_filterColorInput,
+  filterInputClassName: styles.filter_filterInput,
+  filterColorLabelClassName: styles.filter_filterColorLabel,
+  filterColorPreviewClassName: styles.filter_filterColorPreview,
+  filterClassName: styles.filter_filterContainer,
+  filterSliderClassName: styles.filter_filterSlider,
+  filterSliderRailClassName: styles.filter_filterSliderRail,
+  filterSliderHandleClassName: styles.filter_filterSliderHandle,
+  filterSliderTooltipContainerClassName: styles.filter_filterSliderTooltipContainer,
+  filterSliderTrackClassName: styles.filter_filterSliderTrack,
+  filterPriceLabelClassName: styles.filter_filterPriceLabel,
+  minPriceLabelClassName:styles.filter_minPriceLabel,
+  maxPriceLabelClassName:styles.filter_maxPriceLabel,
+  filterPriceInputClassName: styles.filter_filterPriceInput,
+  filterPriceClassName: styles.filter_filterPriceClassName,
+  filterSliderTooltipTextClassName: "products-menuCenterFilterSortFilterMenuPriceTooltipText",
   filtersClassName: "products-menuCenterFilterSortFilterContainer",
-  filterClassName: "products-menuCenterFilterSortFilterMenu",
-  filterNameClassName: "products-menuCenterFilterSortFilterMenuTitle",
   filterCheckboxClassName: "products-menuCenterFilterSortFilterMenuCheckbox",
   filterLabelClassName: "products-menuCenterFilterSortFilterMenuCheckboxLabel",
   filterOptionPriceClassName: "products-menuCenterFilterSortFilterMenuPrice",
-  filterPriceLabelClassName: "products-menuCenterFilterSortFilterMenuPriceLabel",
-  filterPriceInputClassName: "products-menuCenterFilterSortFilterMenuPriceInput",
-  filterSliderClassName: "products-menuCenterFilterSortFilterMenuPriceSlider",
-  filterSliderRailClassName: "products-menuCenterFilterSortFilterMenuPriceRail",
-  filterSliderHandleClassName: "products-menuCenterFilterSortFilterMenuPriceHandle",
-  filterSliderTrackClassName: "products-menuCenterFilterSortFilterMenuPriceTrack",
   filterSliderTooltipClassName: "products-menuCenterFilterSortFilterMenuPriceTooltip",
-  filterSliderTooltipContainerClassName: "products-menuCenterFilterSortFilterMenuPriceTooltipContainer",
-  filterSliderTooltipTextClassName: "products-menuCenterFilterSortFilterMenuPriceTooltipText",
 }
 
 const classesProducts = {
@@ -55,19 +68,23 @@ const classesProducts = {
 
 const classesProductSort = {
   sortClassName: "products-menuCenterFilterSortSort",
-  sortOptionsClassName: "products-menuCenterFilterSortSortList",
-  sortOptionButtonClassName: "products-menuCenterFilterSortSortButton",
+  sortOptionsClassName: styles.products_productsList,
+  sortOptionButtonClassName: styles.products_productsButton,
   sortActiveClassName: "products-menuCenterFilterSortSortButton_active"
 }
 
 const classesProductCategory = {
-  parentCategoryClassName: "products-menuCenterFilterSortCategoryParent",
-  selectedCategoryClassName: "products-menuCenterFilterSortCategory_active",
-  dropdownIconClassName: "d-none",
+  parentCategoryClassName: styles.category_categorParent,
+  categoryValueClassName: styles.category_categoryValue,
+  categoryNameClassName: styles.category_categoryName,
+  childCategoryClassName: styles.category_categoryChild,
+  categoryValueContainerClassName: styles.category_categoryValueContainer,
+  selectedCategoryClassName: styles.category_categorySelectedCategory,
+  dropdownIconClassName: styles.category_categoryDropdownIcon,
 }
 
 const classesPlaceholderSort = {
-  placeholderList: "placeholder-item placeholder-item__product--card"
+  placeholderList: styles.products_sortOption
 }
 
 const classesPlaceholderCategory = {
@@ -106,11 +123,28 @@ const ProductsPage: FC<any> = ({
     totalItems: 0,
     totalPages: 0
   })
+  const [limitCategory,setLimitCategory] = useState(2)
+  const [lengthCategory,setLengthCategory] = useState(0)
+  const [showSeeMore, setShowSeeMore] = useState(false)
+
+  const handleSeeMoreCategory = () => {
+    setShowSeeMore(true)
+    setLimitCategory(lengthCategory)
+  }
+
+  const handleSetLengthCategory = (data) => {
+    setLengthCategory(data.length)
+    if(data.length <= limitCategory) setShowSeeMore(false)
+    else setShowSeeMore(true)
+  }
 
   return (
     <Layout i18n={i18n} lng={lng} lngDict={lngDict} brand={brand}>
-      <div> //Container Products List
-        <div> //Container Products Filter
+      <div className={styles.products_container}>
+        <div style={{width: "300px"}}>
+          <p className={styles.filter_filterName}>
+          {i18n.t('product.sort')}
+          </p>
           <ProductSort
             classes={classesProductSort}
             handleSort={(selectedSort: any) => {
@@ -124,18 +158,29 @@ const ProductsPage: FC<any> = ({
               />
             }
           />
+          <p className={styles.filter_filterName} style={{marginTop: "50px"}}>
+            {i18n.t('blog.categories')}
+          </p>
           <ProductCategory
             classes={classesProductCategory}
             categoryClassName="products-menuCenterFilterSortToggle"
-            withOpenedSubCategory
+            dropdownIcon={<ChevronDown/>}
+            getData={handleSetLengthCategory}
+            itemPerPage={limitCategory}
             loadingComponent={
               <Placeholder
-                classes={classesPlaceholderCategory}
+                classes={classesPlaceholderSort}
                 listMany={4}
                 withList
               />
             }
           />
+          {
+            showSeeMore &&
+            <div className={styles.category_categorySeeMore} onClick={handleSeeMoreCategory}>
+              {i18n.t('product.seeAllCategory')}
+            </div>
+          }
           <ProductFilter
             sortType={"list"}
             withPriceMinimumSlider
@@ -146,7 +191,7 @@ const ProductsPage: FC<any> = ({
             handleFilter={(value: any) => setFilterProduct(value)}
             loadingComponent={
               <Placeholder
-                classes={classesPlaceholderFilter}
+                classes={classesPlaceholderSort}
                 listMany={4}
                 withList
               />
@@ -154,7 +199,7 @@ const ProductsPage: FC<any> = ({
           />
         </div>
 
-        <div>//Container Products List
+        {/* <div>//Container Products List
           <Products
             collectionSlug={categories || null}
             tagName={tagname}
@@ -193,7 +238,7 @@ const ProductsPage: FC<any> = ({
               </>
             }
           />
-        </div>
+        </div> */}
       </div>
     </Layout>
   );
