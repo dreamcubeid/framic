@@ -4,228 +4,169 @@
 {
   &_container
   {
-    @include useContainer()
+    @include useContainer();
+    @include flex(row, flex-start, space-between, true);
+    margin-top: 34px;
   }
 
-  &_productsList
+  &_listWrapper 
   {
-    list-style-type: none;
-    padding-left: 0;
+    @include fixedWidth(calc(((100% - 24px) / 12) * 9));
+
+    @media screen and (max-width: $breakpoint_max_md) 
+    {
+      @include fixedWidth(100%);
+    }
   }
 
-  &_productsButton
+  &_listHeaderContainer
   {
-    border: none;
-    background: none;
-    padding: 10px 0;
-    cursor: pointer;
-    color: $color_black;
+    margin-bottom: 24px;
   }
 
-  &_sortOption
+  &_listAdjustContainer
   {
-    min-height: 44px;
-    width: 100%;
-    margin-top:8px;
-  }
-}
-
-.category
-{
-  &_categorParent
-  {
-    list-style-type: none;
-    padding-left: 0;
+    @include flex(row, center, space-between);
+    margin-bottom: 34px
   }
 
-  &_categoryValueContainer
+  &_listAdjustTitle
   {
+    @include typographyBuilder(400, 16, 24);
     @include flex(row, center, flex-start);
-  }
-  
-  &_categoryValueContainer > span 
-  {
-    display: block;
-  }
-
-  &_categoryValue,
-  &_categoryValue:active,
-  &_categoryValue:hover
-  {
-    text-decoration: none;
-    color: $color_black;
-  }
-
-  &_categorySelectedCategory > ul
-  {
-    display: block;
-  }
-
-  &_categoryDropdownIcon
-  {
-    margin-left: auto;
-  }
-
-  &_categoryName
-  {
-    padding: 10px 0;
-  }
-
-  &_categoryChild
-  {
-    list-style-type: none;
-  }
-
-  &_categoryValue:focus + &_categoryChild
-  {
-    display: block;
-  }
-
-  &_categorySeeMore
-  {
-    width: 100%;
-    background-color: $color_grey_button;
-    margin-top: 10px;
-    border-radius: 2px;
-    text-align: center;
-    padding: 10px;
-    font-size: 12px;
-    line-height: 16px;
+    color: $color_black_text;
+    margin: 0;
     cursor: pointer;
   }
-}
 
-.filter
-{
-  &_filterInput
+  &_listAdjustIcon
   {
-    display: none;
-  }
-  
-  &_filterVariantName
-  {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 40px;
-  }
-
-  &_filterVariantName:nth-child(2)
-  {
-    display: flex;
-  }
-
-  &_filterVariantName:nth-child(2) > &_filterOption
-  {
-    width: auto;
-  }
-
-  &_filterName
-  {
-    font-weight: bold;
-    width: 100%;
-  }
-
-  &_filterColorInput
-  {
-    display: none;
-  }
-
-  &_filterOption
-  {
-    border: 1px solid $color_light;
-    padding: 12px;
-    text-align: center;
-    margin-bottom: 0;
-    border-radius: 2px;
-    flex: 0 0 auto;    
-    margin: 0 8px 8px 0;
-    max-height: 50px;
-  }
-
-  &_filterColorLabel
-  {
-    @include flex(row, center, flex-start);
-  }
-
-  &_filterColorPreview
-  {
-    width: 12px;
-    height: 12px;
+    display: block;
+    width: 16px;
+    height: 16px;
     margin-right: 8px;
-    border-radius: 100%;
-    border:1px solid $color_shade_grey;
+    background-repeat: no-repeat;
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14.0002 11.9999V13.3332H2.00016V11.9999H14.0002ZM4.3975 2.60254L5.34016 3.54521L3.21883 5.66654L5.34016 7.78787L4.3975 8.73054L1.3335 5.66654L4.3975 2.60254ZM14.0002 7.33321V8.66654H8.00016V7.33321H14.0002ZM14.0002 2.66654V3.99987H8.00016V2.66654H14.0002Z' fill='%23333333'/%3E%3C/svg%3E");
   }
 
-  &_filterContainer
+  &_listHeaderTitle
   {
-    margin-top: 40px;
-    position: relative;
+    @include typographyBuilder(600, 16, 24);
+    color: $color_black_text;
+    margin: 0
   }
 
-  &_filterSliderRail
+  &_listClearContainer
   {
-    position: absolute;
-    width: 100%;
-    height: 3px;
-    border-radius: 7px;
-    background: #E6E6E6;
-    cursor: pointer;
-    pointer-events: none;
-    border-radius: 4px;
+    @include flex(row, center, space-between);
+    margin: 0;
   }
 
-  &_filterSliderHandle
+  &_listClearButton
   {
-    border-radius: 50%;
-    border: 4px solid $color_black_dark;
-    background-color: $color_white;
-    cursor: pointer;
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    margin-top: -8px;
-    z-index: 8;
+    @include typographyBuilder(400, 12, 16);
+    color: $color_red_light;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+
   }
 
-  &_filterSliderTrack
+  &_listHeaderTotal
   {
-    background: $color_black;
-    border-radius: 4px;
-    position: absolute;
-    height: 3px;
+    @include typographyBuilder(400, 12, 16);
+    color: $color_black_text;
+    margin: 0;
   }
 
-  &_filterSliderTooltipContainer
+  &_list 
   {
-    display: none;
+    @include flex(row, flex-start, flex-start, true);
+    margin-bottom: 42px;
+
+    & > div[class*="product_container"] 
+    {
+      @include fixedWidth(calc((100% - 48px) / 3));
+      margin-bottom: 24px;
+      margin-right: 24px;
+      
+      &:nth-child(3n+0) 
+      {
+        margin-right: 0;
+      }
+
+      @media screen and (max-width: $breakpoint_max_md) 
+      {
+        @include fixedWidth(calc((100% - 16px) / 2));
+        margin-bottom: 16px;
+
+        &:nth-child(odd) 
+        {
+          margin-right: 16px;
+        }
+
+        &:nth-child(even) 
+        {
+          margin-right: 0;
+        }
+      }
+    }
+
+    & > div[class*="product_placeholder"]
+    {
+      @include fixedWidth(calc((100% - 48px) / 3));
+      margin-bottom: 24px;
+
+      &:nth-child(3n+0) 
+      {
+        margin-right: 0;
+      }
+
+      @media screen and (max-width: $breakpoint_max_md) 
+      {
+        @include fixedWidth(calc((100% - 16px) / 2));
+        
+        &:nth-child(odd) 
+        {
+          margin-right: 16px;
+        }
+
+        &:nth-child(even) 
+        {
+          margin-right: 0;
+        }
+      }
+    }
   }
 
-  &_filterPriceLabel
+  &_filterSort
   {
-    display: flex;
-    margin-top: 45px;
-  }
+    @include fixedWidth(calc(((100% - 24px) / 12) * 3));
+    margin-bottom: 40px;
 
-  &_maxPriceLabel
-  {
-    text-align: right
-  }
+    
 
-  &_filterPriceInput
-  {
-    width: calc(100% - 43px);
-    text-align: center;
-    border: 1px solid $color_light;
-    box-sizing: border-box;
-    border-radius: 2px;
-    padding:12px;
-    font-size: 12px;
-    line-height: 16px;
+    @media screen and (max-width: $breakpoint_max_md) 
+    {
+      @include flex(row, center, flex-end);
+      @include fixed(0,0,0,0);
+      @include fixedWidth(100%);
+      height: 100vh;
+      background: rgba($color_black, 0.7);
+      transition: opacity 500ms;
+      opacity: 1;
+      z-index: 10;
+      
+      & > div
+      {
+        position: relative;
+        background-color: $color_white;
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: 100%;
+        width: 75%;
+        padding: 32px 24px;
+      }
+    }
   }
-
-  &_filterPriceClassName
-  {
-    overflow: hidden;
-  }
-
 }

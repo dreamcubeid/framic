@@ -1,50 +1,41 @@
-// @import '../utils/variables';
+@import '../utils/variables';
 
-// .breadcrumbs
-// {
-//   padding-bottom: 1rem;
-//   white-space: nowrap;
-//   overflow-x: auto;
+.breadcrumb
+{
+  
+  &_wrapper
+  {
+    @include useContainer()
+  }
+  
+  &_container
+  {
+    background-color: transparent;
+    padding: 12px 0;
+  }
 
-//   &_class 
-//   {
-//     position: relative;
-//     font-family: "roboto-medium";
-//     font-size: 11px;
-//     letter-spacing: 0.75px;
-//     color: $color_gray_semi_dark;
-//     margin-right: 2rem;
-//     cursor: pointer;
+  &_item
+  {
+    @include typographyBuilder(400, 10, 16);
 
-//     &:last-child
-//     {
-//       margin-right: 0;
-//     }
+    & > a
+    {
+      color: $color_black;
+    }
 
-//     &_number
-//     {
-//       position: absolute;
-//       left: 0;
-//       width: 19px;
-//       height: 19px;
-//       line-height: 19px;
-//       text-align: center;
-//       color: white;
-//       background: $color_gray_semi_dark;
-//       border-radius: 50%;
-//     }
+    & > span
+    {
+      color: $color_grey_light;
+    }
 
-//     &_label
-//     {
-//       margin-left: 2rem;
-//     }
-//   }
+    &:not(:first-child)
+    {
+      padding-left: 4px !important;
 
-//   &_activeClass {
-//     color: $color_blue;
-//   }
-
-//   &_activeNumber {
-//     background: $color_blue;
-//   }
-// }
+      &::before
+      {
+        padding-right: 4px !important;
+      }
+    }
+  }
+}
