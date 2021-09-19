@@ -28,7 +28,7 @@ const ProductsPage: FC<any> = ({
   const [filterProduct, setFilterProduct] = useState({})
 
   const linksBreadcrumb = [`${i18n.t("header.home")}`, i18n.t("product.all")]
-  
+
   const handleFilter = (selectedFilter: any) => setFilterProduct(selectedFilter)
   const handeClear = () => Router.replace(`/${lng}/products`)
   const handleOpenSortFilter = () => setOpenFilterSort(!openFilterSort)
@@ -39,7 +39,7 @@ const ProductsPage: FC<any> = ({
   };
 
   const handleCekQuery = () => {
-    const {lng, ...allquery} = query
+    const { lng, ...allquery } = query
     return JSON.stringify(allquery) === "{}" ? false : true;
   }
 
@@ -48,13 +48,13 @@ const ProductsPage: FC<any> = ({
     <Layout i18n={i18n} lng={lng} lngDict={lngDict} brand={brand}>
       <Breadcrumb links={linksBreadcrumb} lng={lng} />
       <div className={styles.products_container}>
-        { (size.width > 767 || openFilterSort) &&
+        {(size.width > 767 || openFilterSort) &&
           <div className={styles.products_filterSort}>
             {/* Container Products Filter */}
-            <ProductFilterSort 
-              i18n={i18n} 
+            <ProductFilterSort
+              i18n={i18n}
               handleOpenSortFilter={handleOpenSortFilter}
-              handleFilter={handleFilter} 
+              handleFilter={handleFilter}
             />
           </div>
         }
@@ -65,15 +65,15 @@ const ProductsPage: FC<any> = ({
               <h3 className={styles.products_listHeaderTitle}>
                 {i18n.t('product.all')}
               </h3>
-              <label 
-                className={styles.products_listAdjustTitle} 
+              <label
+                className={styles.products_listAdjustTitle}
                 onClick={handleOpenSortFilter}
               >
-                <span className={styles.products_listAdjustIcon}/> 
+                <span className={styles.products_listAdjustIcon} />
                 {i18n.t('product.adjust')}
               </label>
             </div>
-            { handleCekQuery() &&
+            {handleCekQuery() &&
               <div className={styles.products_listClearContainer}>
                 <label className={styles.products_listHeaderTotal}>
                   {generateTotalProducts('2')}
@@ -93,6 +93,9 @@ const ProductsPage: FC<any> = ({
               filterProduct={filterProduct}
               type="list"
             />
+          </div>
+          <div className={styles.products_backTopContainer}>
+            <a href="#top" className={styles.products_backTopLink} aria-label="Scroll to Top" />
           </div>
         </div>
 

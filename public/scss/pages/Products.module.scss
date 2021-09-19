@@ -12,6 +12,8 @@
   &_listWrapper 
   {
     @include fixedWidth(calc(((100% - 24px) / 12) * 9));
+    position: relative;
+    margin-bottom: 50px;
 
     @media screen and (max-width: $breakpoint_max_md) 
     {
@@ -37,6 +39,11 @@
     color: $color_black_text;
     margin: 0;
     cursor: pointer;
+
+    @media screen and (min-width: $breakpoint_min_md) 
+    {
+      display: none;
+    }
   }
 
   &_listAdjustIcon
@@ -168,5 +175,30 @@
         padding: 32px 24px;
       }
     }
+  }
+
+  &_backTopContainer
+  {
+    position: absolute;
+    top: 100vh;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    
+  }
+
+  &_backTopLink
+  {
+    position: sticky;
+    top: calc(100vh - 5rem);
+    display: block;
+    background-position: center;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border: 1px solid $color_light;
+    background-color: $color_white;
+    background-repeat: no-repeat;
+    background-image: url("data:image/svg+xml,%0A%3Csvg width='14' height='8' viewBox='0 0 14 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.00023 2.828L2.05023 7.778L0.63623 6.364L7.00023 0L13.3642 6.364L11.9502 7.778L7.00023 2.828Z' fill='%23333333'/%3E%3C/svg%3E%0A");
   }
 }
