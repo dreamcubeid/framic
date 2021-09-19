@@ -6,7 +6,7 @@ import { Products } from '@sirclo/nexus'
 import useWindowSize from 'lib/useWindowSize'
 /* component */
 import Placeholder from 'components/Placeholder'
-
+/* styles */
 import styles from 'public/scss/components/WidgetHomePage.module.scss'
 
 export type ProductsWidgetType = {
@@ -61,4 +61,4 @@ const ProductsWidget: FC<ProductsWidgetType> = ({
   )
 }
 
-export default ProductsWidget;
+export default ProductsWidget

@@ -3,7 +3,7 @@ import { FC, useState } from 'react'
 /* component */
 import ProductsWidget from './ProductsWidget'
 import ProductsList from './ProductsList'
-
+/* styles */
 import styles from 'public/scss/components/Product.module.scss'
 
 export type ProductsComponentType = {
@@ -14,10 +14,11 @@ export type ProductsComponentType = {
   tagName?: string
   itemPerPage?: number
   filterProduct?: any
+  getTotalProduct?:any
 }
 
 const classesProducts = {
-  productContainerClassName: styles.product_container,
+  productContainerClassName: `${styles.product_container} product_container`,
   productImageContainerClassName: styles.product_imageContainer,
   productImageClassName: styles.product_imageItem,
   productLabelContainerClassName: styles.product_labelContainer,
@@ -45,6 +46,7 @@ const ProductsComponent: FC<ProductsComponentType> = ({
   itemPerPage = 4,
   collectionSlug,
   filterProduct,
+  getTotalProduct,
   lng
 }) => {
   const [totalProducts, settotalProducts] = useState(null)
@@ -54,6 +56,7 @@ const ProductsComponent: FC<ProductsComponentType> = ({
   return type === "list" ? (
     <ProductsList
       i18n={i18n}
+      getTotalProduct={getTotalProduct}
       classProducts={classesProducts}
       classPlaceholder={classesPlaceholderProducts}
       collectionSlug={collectionSlug}

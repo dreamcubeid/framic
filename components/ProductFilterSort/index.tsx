@@ -1,17 +1,20 @@
+/* library package */
 import { FC, useState } from 'react'
+import { ChevronDown } from 'react-feather'
 import {
   ProductFilter,
   ProductSort,
   ProductCategory
 } from '@sirclo/nexus'
+/* component */
 import Placeholder from 'components/Placeholder'
-import { ChevronDown } from 'react-feather'
+/* styles */
 import stylesProductsSortFilter from 'public/scss/components/ProductSortFilter.module.scss'
 
 type ProductFilterSortType = {
   i18n: any
   handleFilter: (data:any) => void
-  handleOpenSortFilter
+  handleOpenSortFilter: () => void
 }
 
 const classesProductFilter = {
@@ -37,10 +40,6 @@ const classesProductFilter = {
   filterSliderTooltipContainerClassName: stylesProductsSortFilter.filter_filterSliderTooltipContainer,
   filterSliderTooltipClassName: stylesProductsSortFilter.filter_filterSliderTooltip,
   filterSliderTooltipTextClassName: stylesProductsSortFilter.filter_filterSliderTooltipText,
-  filtersClassName: "products-menuCenterFilterSortFilterContainer",
-  filterCheckboxClassName: "products-menuCenterFilterSortFilterMenuCheckbox",
-  filterLabelClassName: "products-menuCenterFilterSortFilterMenuCheckboxLabel",
-  filterOptionPriceClassName: "products-menuCenterFilterSortFilterMenuPrice",
 }
 
 const classesProductSort = {
@@ -148,4 +147,4 @@ const ProductFilterSort: FC<ProductFilterSortType> = ({
   )
 }
 
-export default ProductFilterSort;
+export default ProductFilterSort

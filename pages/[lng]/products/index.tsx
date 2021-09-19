@@ -1,7 +1,7 @@
 /* library package */
 import { FC, useState } from 'react'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { useRouter } from 'next/router'
+import Router, { useRouter } from 'next/router'
 import { useI18n } from '@sirclo/nexus'
 /* library template */
 import { useBrand } from 'lib/useBrand'
@@ -10,9 +10,7 @@ import useWindowSize from 'lib/useWindowSize'
 import Layout from 'components/Layout/Layout'
 import ProductsComponent from 'components/ProductsComponent'
 import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
-import Router from 'next/router'
-
-/* Style */
+/* styles */
 import styles from 'public/scss/pages/Products.module.scss'
 import ProductFilterSort from 'components/ProductFilterSort'
 
@@ -26,6 +24,7 @@ const ProductsPage: FC<any> = ({
   const { query } = useRouter()
   const [openFilterSort, setOpenFilterSort] = useState<boolean>(false)
   const [filterProduct, setFilterProduct] = useState({})
+  const [totalProduct, setTotalProduct] = useState<string>('0')
 
   const linksBreadcrumb = [`${i18n.t("header.home")}`, i18n.t("product.all")]
 
@@ -34,13 +33,13 @@ const ProductsPage: FC<any> = ({
   const handleOpenSortFilter = () => setOpenFilterSort(!openFilterSort)
 
   const generateTotalProducts = (total: string = '0') => {
-    const label = i18n.t('product.showingProduct');
-    return label.replace('{TOTAL}', total);
-  };
+    const label = i18n.t('product.showingProduct')
+    return label.replace('{TOTAL}', total)
+  }
 
   const handleCekQuery = () => {
     const { lng, ...allquery } = query
-    return JSON.stringify(allquery) === "{}" ? false : true;
+    return JSON.stringify(allquery) === "{}" ? false : true
   }
 
 
@@ -76,7 +75,7 @@ const ProductsPage: FC<any> = ({
             {handleCekQuery() &&
               <div className={styles.products_listClearContainer}>
                 <label className={styles.products_listHeaderTotal}>
-                  {generateTotalProducts('2')}
+                  {generateTotalProducts(totalProduct)}
                 </label>
                 <button
                   className={styles.products_listClearButton}
@@ -90,27 +89,32 @@ const ProductsPage: FC<any> = ({
             <ProductsComponent
               i18n={i18n}
               lng={lng}
+              getTotalProduct={setTotalProduct}
               filterProduct={filterProduct}
               type="list"
             />
           </div>
           <div className={styles.products_backTopContainer}>
-            <a href="#top" className={styles.products_backTopLink} aria-label="Scroll to Top" />
+            <a 
+              href="#top" 
+              className={styles.products_backTopLink} 
+              aria-label="Scroll to Top" 
+            />
           </div>
         </div>
 
       </div>
     </Layout>
-  );
-};
+  )
+}
 
 export const getServerSideProps: GetServerSideProps = async ({
   req,
   params,
 }) => {
-  const { default: lngDict = {} } = await import(`locales/${params.lng}.json`);
+  const { default: lngDict = {} } = await import(`locales/${params.lng}.json`)
 
-  const brand = await useBrand(req);
+  const brand = await useBrand(req)
 
   return {
     props: {
@@ -118,7 +122,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       lngDict,
       brand: brand || ""
     }
-  };
-};
+  }
+}
 
-export default ProductsPage;
+export default ProductsPage
