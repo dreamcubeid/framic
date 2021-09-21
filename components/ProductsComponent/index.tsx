@@ -2,18 +2,23 @@
 import { FC, useState } from 'react'
 /* component */
 import ProductsWidget from './ProductsWidget'
+import ProductsList from './ProductsList'
+/* styles */
 import styles from 'public/scss/components/Product.module.scss'
 
 export type ProductsComponentType = {
   type: "list" | "widget" | "recomendation"
   i18n: any
   lng: any
+  collectionSlug?: string
   tagName?: string
   itemPerPage?: number
+  filterProduct?: any
+  getTotalProduct?:any
 }
 
 const classesProducts = {
-  productContainerClassName: styles.product_container,
+  productContainerClassName: `${styles.product_container} product_container`,
   productImageContainerClassName: styles.product_imageContainer,
   productImageClassName: styles.product_imageItem,
   productLabelContainerClassName: styles.product_labelContainer,
@@ -39,6 +44,9 @@ const ProductsComponent: FC<ProductsComponentType> = ({
   i18n,
   tagName,
   itemPerPage = 4,
+  collectionSlug,
+  filterProduct,
+  getTotalProduct,
   lng
 }) => {
   const [totalProducts, settotalProducts] = useState(null)
@@ -46,9 +54,14 @@ const ProductsComponent: FC<ProductsComponentType> = ({
   if (totalProducts === 0 && type !== "list") return <></>
 
   return type === "list" ? (
-    <div>
-
-    </div>
+    <ProductsList
+      i18n={i18n}
+      getTotalProduct={getTotalProduct}
+      classProducts={classesProducts}
+      classPlaceholder={classesPlaceholderProducts}
+      collectionSlug={collectionSlug}
+      filterProduct={filterProduct}
+    />
   ) : type === "widget" ? (
     <ProductsWidget
       i18n={i18n}

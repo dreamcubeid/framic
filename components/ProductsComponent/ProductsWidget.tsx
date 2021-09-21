@@ -6,7 +6,7 @@ import { Products } from '@sirclo/nexus'
 import useWindowSize from 'lib/useWindowSize'
 /* component */
 import Placeholder from 'components/Placeholder'
-
+/* styles */
 import styles from 'public/scss/components/WidgetHomePage.module.scss'
 
 export type ProductsWidgetType = {
@@ -33,7 +33,7 @@ const ProductsWidget: FC<ProductsWidgetType> = ({
     <div>
       <div className={styles.widget_productsHeader}>
         <h2 className={styles.widget_productsLabel}>{i18n.t("product.featuredProducts")}</h2>
-        <Link href='/[lng]/products' as={`/${lng}/products`}>
+        <Link href='/[lng]/products' as={`/${lng}/products?categories=${tagName}`}>
           <span className={styles.widget_productsLink}>{i18n.t("product.seeAll")}</span>
         </Link>
       </div>
@@ -61,4 +61,4 @@ const ProductsWidget: FC<ProductsWidgetType> = ({
   )
 }
 
-export default ProductsWidget;
+export default ProductsWidget
