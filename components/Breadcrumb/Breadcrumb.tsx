@@ -3,8 +3,8 @@ import Link from 'next/link'
 import styles from 'public/scss/components/Breadcrumbs.module.scss'
 
 type BreadcrumbType = {
-  lng: any
-  links: any
+  lng: string
+  links: Array<string>
 }
 
 const Breadcrumb: FC<BreadcrumbType> = ({ links, lng }) => {

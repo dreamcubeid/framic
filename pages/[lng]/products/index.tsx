@@ -37,7 +37,7 @@ const ProductsPage: FC<any> = ({
     return label.replace('{TOTAL}', total)
   }
 
-  const handleCekQuery = () => {
+  const hasQuery = () => {
     const { lng, ...allquery } = query
     return JSON.stringify(allquery) === "{}" ? false : true
   }
@@ -72,7 +72,7 @@ const ProductsPage: FC<any> = ({
                 {i18n.t('product.adjust')}
               </label>
             </div>
-            {handleCekQuery() &&
+            {hasQuery() &&
               <div className={styles.products_listClearContainer}>
                 <label className={styles.products_listHeaderTotal}>
                   {generateTotalProducts(totalProduct)}
@@ -95,10 +95,10 @@ const ProductsPage: FC<any> = ({
             />
           </div>
           <div className={styles.products_backTopContainer}>
-            <a 
-              href="#top" 
-              className={styles.products_backTopLink} 
-              aria-label="Scroll to Top" 
+            <a
+              href="#top"
+              className={styles.products_backTopLink}
+              aria-label="Scroll to Top"
             />
           </div>
         </div>

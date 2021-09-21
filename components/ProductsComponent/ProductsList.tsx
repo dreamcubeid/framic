@@ -10,13 +10,38 @@ import Placeholder from 'components/Placeholder'
 /* styles */
 import styles from 'public/scss/components/ProductList.module.scss'
 
-export type ProductsListType = {
+type ProductsListType = {
   i18n: any
-  classProducts: any
-  classPlaceholder: any
+  classProducts: classesProductType
+  classPlaceholder: classesPlaceholderType
   collectionSlug: string
   filterProduct: any
-  getTotalProduct: any
+  getTotalProduct: (data: any) => void
+}
+
+type classesProductType = {
+  buttonClassName?: string;
+  outOfStockLabelClassName?: string;
+  productContainerClassName?: string;
+  productImageClassName?: string;
+  productImageContainerClassName?: string;
+  productLabelContainerClassName?: string;
+  productPriceClassName?: string;
+  productTitleClassName?: string;
+  saleLabelClassName?: string;
+  salePriceClassName?: string;
+  priceClassName?: string;
+  stickerContainerClassName?: string;
+  comingSoonLabelClassName?: string;
+  openOrderLabelClassName?: string;
+  preOrderLabelClassName?: string;
+  newLabelClassName?: string;
+}
+
+type classesPlaceholderType = {
+  placeholderImage?: string;
+  placeholderTitle?: string;
+  placeholderList?: string;
 }
 
 const ProductsList: FC<ProductsListType> = ({

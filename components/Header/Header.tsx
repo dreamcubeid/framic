@@ -84,7 +84,7 @@ const Header: FC<any> = ({ lng, brand }) => {
             onClick={handleCart}
           >
             <span className={styles.header_cartIcon} />
-            <label className={styles.header_cartLabel}>{dataCart?.totalItem}</label>
+            <label className={styles.header_cartLabel}>{dataCart?.totalItem || 0}</label>
           </div>
 
         </div>

@@ -69,9 +69,9 @@ const ProductFilterSort: FC<ProductFilterSortType> = ({
   handleFilter,
   handleOpenSortFilter
 }) => {
-  const [limitCategory,setLimitCategory] = useState(2)
-  const [lengthCategory,setLengthCategory] = useState(0)
-  const [showSeeMore, setShowSeeMore] = useState(false)
+  const [limitCategory,setLimitCategory] = useState<number>(2)
+  const [lengthCategory,setLengthCategory] = useState<number>(0)
+  const [showSeeMore, setShowSeeMore] = useState<boolean>(false)
 
   const handleSeeMoreCategory = () => {
     setShowSeeMore(true)
