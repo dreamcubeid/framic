@@ -1,12 +1,14 @@
-import { FC } from "react";
+import { FC } from 'react'
+import styles from 'public/scss/components/EmptyComponent.module.scss'
 
 export type EmptyComponentPropsType = {
-  classes: {
+  classes?: {
     emptyContainer?: string;
+    emptyIcon? : string;
     emptyTitle?: string;
     emptyDesc?: string;
   };
-  logo?: any;
+  icon?: any;
   title?: string;
   desc?: string;
   button?: React.ReactNode;
@@ -14,20 +16,21 @@ export type EmptyComponentPropsType = {
 
 const EmptyComponent: FC<EmptyComponentPropsType> = ({
   classes = {},
-  logo,
+  icon,
   title,
   desc,
   button
 }) => {
   const {
-    emptyContainer = "empty-emptyContainer",
-    emptyTitle = "empty-emptyTitle",
-    emptyDesc = "empty-emptyDesc"
+    emptyContainer = styles.empty_container,
+    emptyIcon = styles.empty_icon,
+    emptyTitle = styles.empty_title,
+    emptyDesc = styles.empty_desc
   } = classes;
 
   return (
     <div className={emptyContainer}>
-      {logo && logo}
+      {icon || <span className={emptyIcon} /> }
       <h2 className={emptyTitle}>{title}</h2>
       {desc &&
         <p className={emptyDesc}>{desc}</p>
