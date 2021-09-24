@@ -2,11 +2,20 @@
 
 .header
 {
-  @include flex(row, center, center);
-  @include useContainer();
-  background-color: $color_white;
-  padding: 20px 0;
+  &_wrapper
+  {
+    @include useContainer();
+  }
 
+  &_container
+  {
+    @include flex(row, center, center);
+    background-color: $color_white;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+    border-bottom: 1px solid $color_light;
+  }
+  
   &_menu
   {
     display: block;
@@ -65,7 +74,7 @@
 
   &_announceItem
   {
+    @include typographyBuilder(400, 12, 16);
     color: $color_white;
-    @include typographyBuilder(700, 12, 16);
   }
 }

@@ -10,6 +10,7 @@ import WidgetHomepageTop from 'components/Widget/WidgetHomepageTop'
 import WidgetHomepageBottom from 'components/Widget/WidgetHomepageBottom'
 import Instagram from 'components/Instagram'
 import BannerComponent from 'components/BannerComponent'
+import ProductsComponent from 'components/ProductsComponent';
 /* library template */
 import { parseCookies } from 'lib/parseCookies'
 import { GRAPHQL_URI } from 'lib/Constants'
@@ -41,6 +42,13 @@ const Home: FC<any> = ({
           isReady={isReady}
         />  
         <WidgetHomepageTop />
+        <ProductsComponent
+          lng={lng}
+          i18n={i18n}
+          type="widget"
+          tagName="featured"
+          itemPerPage={4}
+        />
         <WidgetHomepageBottom />
         <Link
           href='/[lng]/products'
