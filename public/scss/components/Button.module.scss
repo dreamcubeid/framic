@@ -2,9 +2,9 @@
 
 // list buttons format typing: $name, $background_color, $color, $border_color
 $buttons: (
-  "primary" $color_black $color_white $color_black,
-  "secondary" transparent $color_black $color_black,
-  "text" $color_white $color_black $color_white,
+  "primary" $color_black_text $color_white $color_black_text,
+  "secondary" transparent $color_black_text $color_black_text,
+  "text" $color_white $color_black_text $color_white,
 );
 
 .btn 
@@ -38,6 +38,20 @@ $buttons: (
       {
         @extend .btn_#{$name};
         @include fixedWidth(100%);
+      }
+
+      &Outline
+      {
+        @extend .btn_#{$name};
+        background-color: transparent;
+        border-color: $background_color;
+        color: $background_color;
+
+        &Long
+        {
+          @extend .btn_#{$name}Outline;
+          @include fixedWidth(100%);
+        }
       }
     }
   }
