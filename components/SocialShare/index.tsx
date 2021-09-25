@@ -1,4 +1,5 @@
-import { FC } from "react";
+/* library package */
+import { FC } from 'react'
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -6,8 +7,9 @@ import {
   WhatsappShareButton,
   EmailShareButton,
   TelegramShareButton,
-} from "react-share";
-import styles from "public/scss/components/SocialShare.module.scss";
+} from 'react-share'
+/* styles */
+import styles from 'public/scss/components/SocialShare.module.scss'
 
 type TypeSocialShare = {
   urlSite: string
@@ -53,4 +55,4 @@ const SocialShare: FC<TypeSocialShare> = ({
   )
 }
 
-export default SocialShare;
+export default SocialShare
