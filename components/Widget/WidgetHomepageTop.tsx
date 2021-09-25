@@ -1,14 +1,18 @@
+/* library package */
 import { FC } from 'react'
 import { Widget } from '@sirclo/nexus'
-import Placeholder from 'components/Placeholder'
 import { LazyLoadComponent } from 'react-lazy-load-image-component'
-import styles from 'public/scss/components/WidgetHomePage.module.scss'
+/* component */
+import Placeholder from 'components/Placeholder'
+/* library template */
 import useWindowSize from 'lib/useWindowSize'
+
+import styles from 'public/scss/components/WidgetHomePage.module.scss'
 
 
 const classesWidget = {
   widgetContainer: styles.widget_container,
-  widgetItemTop: styles.widget_item_top,
+  widgetItemTop: styles.widget_itemTop,
 };
 
 const classesPlaceholderCollapsibleNav = {

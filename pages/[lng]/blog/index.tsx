@@ -14,9 +14,8 @@ import { useBrand } from 'lib/useBrand'
 import Layout from 'components/Layout/Layout'
 import { GRAPHQL_URI } from 'components/Constants'
 import styles from 'public/scss/pages/Blog.module.scss'
-
-const EmptyComponent = dynamic(() => import('components/EmptyComponent/EmptyComponent'))
-const Placeholder = dynamic(() => import('components/Placeholder'))
+import EmptyComponent from 'components/EmptyComponent/EmptyComponent'
+import Placeholder from 'components/Placeholder'
 
 const classesBlogs = {
   blogsContainerClassName: styles.blog_container,

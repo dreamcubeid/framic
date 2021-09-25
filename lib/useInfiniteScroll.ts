@@ -23,7 +23,10 @@ const useInfiniteScroll = (pageInfo: any, itemClass: string) => {
     return () => window.removeEventListener("scroll", handleScroll)
   })
 
-  return { currPage }
+  return {
+    currPage,
+    setCurrPage
+  }
 }
 
 export default useInfiniteScroll
