@@ -136,8 +136,9 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
 
   const tooglePopup = () => setShowPopupAddCart(!showPopupAddCart)
 
-  const handleSuccessAddToCart = (data: any) => {
-    const detailProduct = data?.filter((data: any) => data?.slug === slug)
+  const handleSuccessAddToCart = (dataProduct: any) => {
+    const dataAs = dataProduct?.saveCart?.lineItems || dataProduct?.saveCartByMemberID?.lineItems
+    const detailProduct = dataAs?.filter((data: any) => data?.slug === slug)
     setDataAddToCart(detailProduct[0])
     tooglePopup()
   }
@@ -156,7 +157,7 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
         enableDots={size.width && size.width < 768 ? true : false}
         enableTabs
         onCompleteMsg={() => setShowPopupNotify(true)}
-        onComplete={(data: any) => handleSuccessAddToCart(data?.saveCart ? data?.saveCart?.lineItems : data?.saveCartByMemberID?.lineItems)}
+        onComplete={(dataProduct: any) => handleSuccessAddToCart(dataProduct)}
         onErrorMsg={(msg) => msg && toast.error(msg)}
         getAdditionalInfo={setadditionalInfo}
         prevIcon={<span className={styles.productdetail_arrowPrev} />}
