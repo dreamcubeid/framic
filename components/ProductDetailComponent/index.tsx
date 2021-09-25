@@ -157,7 +157,7 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
         enableDots={size.width && size.width < 768 ? true : false}
         enableTabs
         onCompleteMsg={() => setShowPopupNotify(true)}
-        onComplete={(dataProduct: any) => handleSuccessAddToCart(dataProduct)}
+        onComplete={handleSuccessAddToCart}
         onErrorMsg={(msg) => msg && toast.error(msg)}
         getAdditionalInfo={setadditionalInfo}
         prevIcon={<span className={styles.productdetail_arrowPrev} />}
