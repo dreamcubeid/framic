@@ -1,6 +1,6 @@
-import { FC, useState } from "react";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import dynamic from "next/dynamic";
+import { FC, useState } from 'react'
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import dynamic from 'next/dynamic'
 import {
   useI18n,
   Blogs,
@@ -8,25 +8,25 @@ import {
   getBlogHeaderImage,
   BlogRecent,
   isBlogAllowed
-} from "@sirclo/nexus";
-import useWindowSize from "lib/useWindowSize";
-import { useBrand } from "lib/useBrand";
-import Layout from "components/Layout/Layout";
-import { GRAPHQL_URI } from "components/Constants";
-import styles from "public/scss/pages/Blog.module.scss";
-
-const EmptyComponent = dynamic(() => import("components/EmptyComponent/EmptyComponent"));
-const Placeholder = dynamic(() => import("components/Placeholder"));
+} from '@sirclo/nexus'
+import useWindowSize from 'lib/useWindowSize'
+import { useBrand } from 'lib/useBrand'
+import Layout from 'components/Layout/Layout'
+import { GRAPHQL_URI } from 'components/Constants'
+import styles from 'public/scss/pages/Blog.module.scss'
+import EmptyComponent from 'components/EmptyComponent/EmptyComponent'
+import Placeholder from 'components/Placeholder'
 
 const classesBlogs = {
-  blogsContainerClassName: styles.blog,
+  blogsContainerClassName: styles.blog_container,
   blogContainerClassName: styles.blog_item,
   categoryClassName: styles.blog_itemCategory,
   imageContainerClassName: styles.blog_itemImageContainer,
   imageClassName: styles.blog_itemImage,
-  descriptionClassName: styles.blog_itemContent,
+  descriptionClassName: `row container ${styles.blog_itemContent}`,
   titleClassName: styles.blog_itemTitle,
   authorClassName: styles.blog_itemAuthor,
+  contentContainerClassName: styles.blog_itemDescription,
   descriptionInnerFooterClassName: styles.blog_itemInnerFooter,
   dateClassName: styles.blog_itemInnerFooterDate,
   authorPicClassName: "d-none"
@@ -50,7 +50,7 @@ const classesPagination = {
 }
 
 const classesPlaceholderBlogs = {
-  placeholderImage: `${styles.placeholderItem} ${styles.placeholderItem_blogsList}`
+  placeholderImage: styles.blog_item
 }
 
 const classesBlogRecent = {
@@ -71,7 +71,6 @@ const Blog: FC<any> = ({
   const i18n: any = useI18n();
   const size = useWindowSize();
 
-  const [totalCategories, setTotalCategories] = useState(null);
   const BlogAllowed = isBlogAllowed();
 
   return (
@@ -82,17 +81,41 @@ const Blog: FC<any> = ({
       brand={brand}
       withAllowed={BlogAllowed}
     >
-      <div className="container">
+      <div className={styles.blog_container}>
+        <h1 className={styles.blog_headerTitle}>
+          {i18n.t("blog.title")}
+        </h1>
+      </div>
+        <Blogs
+          classes={classesBlogs}
+          paginationClasses={classesPagination}
+          withPagination
+          itemPerPage={4}
+          thumborSetting={{
+            width: size.width < 768 ? 375 : 512,
+            format: "webp",
+            quality: 85,
+          }}
+          LoadingComponent={
+            <>
+              <Placeholder classes={classesPlaceholderBlogs} withImage />
+              <Placeholder classes={classesPlaceholderBlogs} withImage />
+              <Placeholder classes={classesPlaceholderBlogs} withImage />
+            </>
+          }
+          emptyStateComponent={
+            <EmptyComponent
+              classes={classesEmptyComponent}
+              title={i18n.t("blog.isEmpty")}
+            />
+          }
+        />
+      {/* <div className="container">
         <div className="row">
-          <div className="col-12 col-sm-8 offset-sm2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-            <div
-              className={`${styles.blog_headerContainer} ${!headerImage && styles.blog_headerWithoutBackground}`}
-              style={{ backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${headerImage})` }}
-            >
-              <h1 className={styles.blog_headerTitle}>
-                {i18n.t("blog.title")}
-              </h1>
-            </div>
+          <div className="col-12">
+            <h1 className={styles.blog_headerTitle}>
+              {i18n.t("blog.title")}
+            </h1>
             <Blogs
               classes={classesBlogs}
               paginationClasses={classesPagination}
@@ -150,7 +173,7 @@ const Blog: FC<any> = ({
             />
           </div>
         </div>
-      </div>
+      </div> */}
     </Layout>
   );
 };
