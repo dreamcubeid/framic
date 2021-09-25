@@ -121,8 +121,12 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
   lng,
   urlSite
 }) => {
+  // variables
   const i18n: any = useI18n()
   const size = useWindowSize()
+  const enableArrowDots = size.width && size.width < 768 ? true : false
+  
+  // state
   const [showPopupNotify, setShowPopupNotify] = useState<boolean>(false)
   const [showPopupAddCart, setShowPopupAddCart] = useState<boolean>(false)
   const [additionalInfo, setadditionalInfo] = useState<string>("")
@@ -134,8 +138,8 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
     salePrice: { value: null }
   })
 
+  // function
   const tooglePopup = () => setShowPopupAddCart(!showPopupAddCart)
-
   const handleSuccessAddToCart = (dataProduct: any) => {
     const dataAs = dataProduct?.saveCart?.lineItems || dataProduct?.saveCartByMemberID?.lineItems
     const detailProduct = dataAs?.filter((data: any) => data?.slug === slug)
@@ -153,8 +157,8 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
         lazyLoadedImage={false}
         classes={classesProductDetail}
         isButton={{ 0: true, 1: true }}
-        enableArrow={size.width && size.width < 768 ? true : false}
-        enableDots={size.width && size.width < 768 ? true : false}
+        enableArrow={enableArrowDots}
+        enableDots={enableArrowDots}
         enableTabs
         onCompleteMsg={() => setShowPopupNotify(true)}
         onComplete={handleSuccessAddToCart}
