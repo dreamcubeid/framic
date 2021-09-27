@@ -15,7 +15,6 @@ import {
 import SEO from "components/SEO";
 import Layout from "components/Layout/Layout";
 import Footer from "components/Footer/Footer";
-import Breadcrumb from "components/Breadcrumb/Breadcrumb";
 import EmptyComponent from "components/EmptyComponent/EmptyComponent";
 import useWindowSize from "lib/useWindowSize";
 import { useBrand } from "lib/useBrand";
@@ -206,10 +205,8 @@ const PlaceOrderPage: FC<any> = ({
         <SEO title="Place Order" />
         {showModalErrorAddToCart &&
           <Popup
-            withHeader
             setPopup={toogleErrorAddToCart}
-            mobileFull={false}
-            classPopopBody
+            isOpen={showModalErrorAddToCart}
           >
             <div className={styles.placeorder_popupError}>
               <h3 className={styles.placeorder_popupErrorTitle}>{i18n.t("cart.errorSKUTitle")}</h3>
@@ -235,7 +232,7 @@ const PlaceOrderPage: FC<any> = ({
                       </div>
                       <hr className={styles.placeorder_line} />
                       <div className={styles.placeorder_steps}>
-                        <Breadcrumb currentStep={1} />
+                        {/* <Breadcrumb currentStep={1} /> */}
                       </div>
                       <hr className={`${styles.placeorder_lineSecond}`} />
                     </div>

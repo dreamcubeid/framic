@@ -1,5 +1,3 @@
-@use "sass:math";
-
 /**
  * Font Faces - Inter
  */
@@ -64,7 +62,7 @@ $headings: (
     {
         @include fontPrimary(800);
         @include fontSize($size);
-        @include lineHeight(($size * 150) / 100);
+        @include lineHeight((calc($size * 150) / 100));
     }
 }
 
@@ -75,7 +73,7 @@ $headings: (
 
     @if $line_height == 0 
     {
-        @include lineHeight(($font_size * 150) / 100);
+        @include lineHeight(calc(($size * 150), 100));
     }
     @else
     {

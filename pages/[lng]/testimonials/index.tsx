@@ -140,9 +140,8 @@ const TestimonialsPage: FC<any> = ({
         }
         {(showAdd && testimonialFormAllowed) &&
           <Popup
-            withHeader
             setPopup={toogleShowAdd}
-            popupTitle={i18n.t("testimonial.add")}
+            isOpen={showAdd}
           >
             <TestimonialForm
               classes={classesTestimonalsForm}

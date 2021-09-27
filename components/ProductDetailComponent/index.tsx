@@ -1,7 +1,6 @@
 /* library package */
 import { FC, useState } from 'react'
 import Router from 'next/router'
-import { toast } from 'react-toastify'
 import {
   ProductDetail,
   Tabs,
