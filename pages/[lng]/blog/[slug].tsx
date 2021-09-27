@@ -1,46 +1,39 @@
-import { FC, useState } from "react";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { useRouter } from "next/router";
-import dynamic from "next/dynamic";
-import {
-  BlogSingle,
-  BlogCategories,
-  useI18n,
-  BlogRecent
-} from "@sirclo/nexus";
-import Layout from "components/Layout/Layout";
-import { useBrand } from "lib/useBrand";
-import styles from "public/scss/pages/Blog.module.scss";
-
-const Placeholder = dynamic(() => import("components/Placeholder"));
-const Popup = dynamic(() => import("components/Popup/Popup"));
-const SocialShare = dynamic(() => import("components/SocialShare"));
+import { FC, useState } from 'react';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import { useRouter } from 'next/router'
+import { BlogSingle, BlogCategories, useI18n, BlogRecent } from '@sirclo/nexus'
+import Layout from 'components/Layout/Layout'
+import { useBrand } from 'lib/useBrand'
+import styles from 'public/scss/pages/Blog.module.scss'
+import Placeholder from 'components/Placeholder'
+import SocialShare from 'components/SocialShare'
 
 const classesBlogSingle = {
-  blogContainerClassName: styles.blog_detail,
+  blogContainerClassName: styles.blog_container,
   headerClassName: styles.blog_detailHeader,
   headerContentClassName: styles.blog_detailHeaderContent,
   headerDetailClassName: styles.blog_detailMetaWrapper,
-  headerEndClassName: "d-none",
-  authorPicContainerClassName: "d-none",
-  authorPicClassName: "d-none",
-  authorInfoClassName: "d-none",
-  createdByClassName: `d-flex flex-row align-items-center justify-content-start flex-nowrap w-100`,
-  createdByInnerClassName: `${styles.blog_detailMeta} d-flex flex-row align-items-center justify-content-start flex-wrap`,
-  authorClassName: "d-flex flex-row align-items-center justify-content-start order-2",
-  dateClassName: "d-flex flex-row align-items-center justify-content-start order-1",
-  blogContentClassName: styles.blog_detailContent
-}
+  headerEndClassName: 'd-none',
+  authorPicContainerClassName: 'd-none',
+  authorPicClassName: 'd-none',
+  authorInfoClassName: 'd-none',
+  createdByClassName: styles.blog_itemAuthor,
+  createdByInnerClassName: `d-flex`,
+  authorClassName: styles.blog_itemAuthor,
+  dateClassName:
+    'd-flex flex-row align-items-center justify-content-start order-1',
+  blogContentClassName: styles.blog_detailContent,
+};
 
 const classesBlogCategories = {
   containerClassName: styles.blog_category,
   categoryClassName: styles.blog_categoryItem,
   linkClassName: styles.blog_categoryLink,
-}
+};
 
 const classesPlaceholderBlogs = {
-  placeholderImage: `${styles.placeholderItem} ${styles.placeholderItem_blogsList}`
-}
+  placeholderImage: styles.blog_contentDetail,
+};
 
 const classesBlogRecent = {
   containerClassName: styles.blog_recent,
@@ -48,135 +41,88 @@ const classesBlogRecent = {
   imageClassName: styles.blog_recentItemImage,
   labelContainerClassName: styles.blog_recentItemContent,
   titleClassName: styles.blog_recentItemContentTitle,
-  dateClassName: styles.blog_recentItemContentDate
-}
+  dateClassName: styles.blog_recentDate,
+};
 
 const BlogSlug: FC<any> = ({
   lng,
   lngDict,
   slug,
   brand,
-  urlSite
+  urlSite,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const i18n: any = useI18n();
-  const [totalCategories, setTotalCategories] = useState(null);
-  const [showShare, setShowShare] = useState<boolean>(false);
-  const toggleShare = () => setShowShare(!showShare);
-
-  const router = useRouter();
+  const i18n: any = useI18n()
+  const [totalCategories, setTotalCategories] = useState(null)
 
   return (
-    <Layout
-      i18n={i18n}
-      lng={lng}
-      lngDict={lngDict}
-      brand={brand}
-    >
-    <div className="container">
-      <div className="row">
-        <div className="col-12 col-sm-8 offset-sm2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-            <BlogSingle
-                classes={classesBlogSingle}
-                ID={slug.toString()}
-                timeIcon={
-                  <div className={`${styles.blog_detailIcon} ${styles.blog_detailIcon__time}`}></div>
-                }
-                authorIcon={
-                  <div className={`${styles.blog_detailIcon} ${styles.blog_detailIcon__author}`}></div>
-                }
-                loadingComponent={
-                  <div className="row">
-                    <div className="col-2">
-                      <Placeholder classes={classesPlaceholderBlogs} withImage />
-                    </div>
-                    <div className="col-3">
-                      <Placeholder classes={classesPlaceholderBlogs} withImage />
-                    </div>
-                    <div className="col-12 py-4">
-                      <Placeholder classes={classesPlaceholderBlogs} withImage />
-                      <Placeholder classes={classesPlaceholderBlogs} withImage />
-                      <Placeholder classes={classesPlaceholderBlogs} withImage />
-                      <Placeholder classes={classesPlaceholderBlogs} withImage />
-                      <Placeholder classes={classesPlaceholderBlogs} withImage />
-                    </div>
-                  </div>
-                }
-              />
-
-              <div className={`${styles.lookbook_nav} ${styles.blog_detailNavigation} d-flex flex-row align-items-center justify-content-between`}>
-                <button onClick={() => router.back()}>
-                  {i18n.t("global.back")}
-                </button>
-                <button onClick={() => toggleShare()} className={styles.blog_detailShare}>
-                  {i18n.t("product.share")}
-                </button>
+    <Layout i18n={i18n} lng={lng} lngDict={lngDict} brand={brand}>
+      <div className={styles.blog_parentDetail}>
+        <div className={styles.blog_contentDetail}>
+          <BlogSingle
+            classes={classesBlogSingle}
+            ID={slug.toString()}
+            loadingComponent={
+              <div>
+                <Placeholder classes={classesPlaceholderBlogs} withImage />
               </div>
-
-              {(totalCategories > 0 || totalCategories === null) &&
-                <>
-                  <h2 className={styles.blog_titleSide}>
-                    {i18n.t("blog.categories")}
-                  </h2>
-                  <BlogCategories
-                    classes={classesBlogCategories}
-                    getCategoriesCount={(categoriesCount) => setTotalCategories(categoriesCount)}
-                  />
-                </>
-              }
-
+            }
+          />
+          <h5 className={styles.blog_titleShare}>
+            {i18n.t('blog.share')}
+          </h5>
+          <SocialShare urlSite={urlSite} />
+        </div>
+        <div className={styles.blog_listCategory}>
+          {(totalCategories > 0 || totalCategories === null) && (
+            <>
               <h2 className={styles.blog_titleSide}>
-                {i18n.t("blog.recentPost")}
+                {i18n.t('blog.categories')}
               </h2>
-              
-              <BlogRecent
-                classes={classesBlogRecent}
-                limit={5}
-                linkPrefix="blog"
-                thumborSetting={{
-                  width: 100,
-                  format: "webp",
-                  quality: 85
-                }}
-                loadingComponent={
-                  <>
-                    <Placeholder classes={classesPlaceholderBlogs} withImage />
-                    <Placeholder classes={classesPlaceholderBlogs} withImage />
-                    <Placeholder classes={classesPlaceholderBlogs} withImage />
-                  </>
+              <BlogCategories
+                classes={classesBlogCategories}
+                getCategoriesCount={(categoriesCount) =>
+                  setTotalCategories(categoriesCount)
                 }
               />
+            </>
+          )}
 
-          </div>
+          <h2 className={styles.blog_titleSide}>{i18n.t('blog.recentPost')}</h2>
+
+          <BlogRecent
+            classes={classesBlogRecent}
+            limit={5}
+            linkPrefix='blog'
+            thumborSetting={{
+              width: 100,
+              format: 'webp',
+              quality: 85,
+            }}
+            loadingComponent={
+              <>
+                <Placeholder classes={classesPlaceholderBlogs} withImage />
+                <Placeholder classes={classesPlaceholderBlogs} withImage />
+                <Placeholder classes={classesPlaceholderBlogs} withImage />
+              </>
+            }
+          />
         </div>
-
-        {showShare && (
-          <Popup
-            withHeader
-            setPopup={toggleShare}
-            mobileFull={false}
-            classPopopBody
-            popupTitle={i18n.t("product.shareProduct")}
-          >
-            <div className="">
-              <SocialShare i18n={i18n} urlSite={urlSite} />
-            </div>
-          </Popup>
-        )}
 
       </div>
     </Layout>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ params, req }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  params,
+  req,
+}) => {
   const { slug } = params;
-  const { default: lngDict = {} } = await import(
-    `locales/${params.lng}.json`
-  );
+  const { default: lngDict = {} } = await import(`locales/${params.lng}.json`)
 
-  const brand = await useBrand(req);
+  const brand = await useBrand(req)
 
-  const urlSite = `https://${req.headers.host}/${params.lng}/blog/${slug}`;
+  const urlSite = `https://${req.headers.host}/${params.lng}/blog/${slug}`
 
   return {
     props: {
@@ -184,9 +130,9 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }) =>
       lngDict,
       slug: params.slug,
       brand: brand || '',
-      urlSite: urlSite
+      urlSite: urlSite,
     },
   };
-}
+};
 
 export default BlogSlug;
