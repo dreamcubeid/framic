@@ -7,8 +7,7 @@ import useWindowSize from 'lib/useWindowSize'
 import useQuery from 'lib/useQuery'
 /* component */
 import Placeholder from 'components/Placeholder'
-/* styles */
-import styles from 'public/scss/components/ProductList.module.scss'
+import EmptyComponent from 'components/EmptyComponent/EmptyComponent'
 
 type ProductsListType = {
   i18n: any
@@ -20,28 +19,28 @@ type ProductsListType = {
 }
 
 type classesProductType = {
-  buttonClassName?: string;
-  outOfStockLabelClassName?: string;
-  productContainerClassName?: string;
-  productImageClassName?: string;
-  productImageContainerClassName?: string;
-  productLabelContainerClassName?: string;
-  productPriceClassName?: string;
-  productTitleClassName?: string;
-  saleLabelClassName?: string;
-  salePriceClassName?: string;
-  priceClassName?: string;
-  stickerContainerClassName?: string;
-  comingSoonLabelClassName?: string;
-  openOrderLabelClassName?: string;
-  preOrderLabelClassName?: string;
-  newLabelClassName?: string;
+  buttonClassName?: string
+  outOfStockLabelClassName?: string
+  productContainerClassName?: string
+  productImageClassName?: string
+  productImageContainerClassName?: string
+  productLabelContainerClassName?: string
+  productPriceClassName?: string
+  productTitleClassName?: string
+  saleLabelClassName?: string
+  salePriceClassName?: string
+  priceClassName?: string
+  stickerContainerClassName?: string
+  comingSoonLabelClassName?: string
+  openOrderLabelClassName?: string
+  preOrderLabelClassName?: string
+  newLabelClassName?: string
 }
 
 type classesPlaceholderType = {
-  placeholderImage?: string;
-  placeholderTitle?: string;
-  placeholderList?: string;
+  placeholderImage?: string
+  placeholderTitle?: string
+  placeholderList?: string
 }
 
 const ProductsList: FC<ProductsListType> = ({
@@ -60,6 +59,7 @@ const ProductsList: FC<ProductsListType> = ({
     itemPerPage: 6,
     totalItems: 0,
   })
+  
   const totalPage = Math.ceil(pageInfo.totalItems / pageInfo.itemPerPage)
   const { currPage, setCurrPage } = useInfiniteScroll(pageInfo, 'products_list:last-child')
 
@@ -114,10 +114,7 @@ const ProductsList: FC<ProductsListType> = ({
             format: 'webp'
           }}
           emptyStateComponent={
-            <div className={styles.productList_emptyContainer}>
-              <span className={styles.productList_emptyIcon} />
-              <p className={styles.productList_emptyLabel}>{i18n.t("product.isEmpty")}</p>
-            </div>
+            <EmptyComponent title={i18n.t("product.isEmpty")} />
           }
           loadingComponent={
             <Placeholder classes={classPlaceholder} withList listMany={6} />

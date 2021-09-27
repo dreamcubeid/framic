@@ -1,41 +1,33 @@
-import { useRef, FC } from 'react';
-import { X } from 'react-feather';
-import styles from 'public/scss/components/Popup.module.scss';
-import useOutsideClick from 'lib/useOutsideClick';
+import { FC } from 'react'
+import styles from 'public/scss/components/Popup.module.scss'
 
 export type PopupPropsType = {
-  withHeader: boolean,
-  setPopup?: any,
-  popupTitle?: string
-  mobileFull?: boolean,
-  classPopopBody?: boolean
+  title?: string,
+  isOpen: boolean,
+  setPopup: (value: boolean) => void,
+  withClose?: boolean,
 }
 
 const Popup: FC<PopupPropsType> = ({
-  withHeader,
+  title,
+  isOpen,
   setPopup,
-  popupTitle,
-  mobileFull = true,
-  classPopopBody,
+  withClose = true,
   children
 }) => {
 
-  const cartOuterDiv = useRef<HTMLDivElement>(null);
-
-  useOutsideClick(cartOuterDiv, () => setPopup(false));
+  const handleClick = (event: any) =>  event.target === event.currentTarget && setPopup(false)
+  
+  if(!isOpen) return <></>
 
   return (
-    <div className={styles.popup_overlay}>
-      <div ref={cartOuterDiv} className={mobileFull ? styles.popup_containerFull : styles.popup_container}>
-        {withHeader &&
-          <div className={styles.popup_header}>
-            <h6>{popupTitle}</h6>
-            <span className={styles.close_button} onClick={() => setPopup(false)}>
-              <X className={styles.close_icon} />
-            </span>
-          </div>
-        }
-        <div className={`${styles.popup_body} ${classPopopBody ? styles.popup_bodyMaxHeight : ""}`}>
+    <div className={styles.popup_overlay} onClick={withClose && handleClick}>
+      <div className={styles.popup_container}>
+        <div className={styles.popup_header}>
+          {title && <h3 className={styles.popup_title}>{title}</h3>}
+          {withClose && <span className={styles.popup_close} />}
+        </div>
+        <div className={styles.popup_body}>
           {children}
         </div>
       </div>
@@ -43,4 +35,4 @@ const Popup: FC<PopupPropsType> = ({
   )
 }
 
-export default Popup;
+export default Popup
