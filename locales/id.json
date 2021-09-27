@@ -65,12 +65,15 @@
   "blog": {
     "by": "Oleh",
     "categories": "Kategori",
+    "categoriesBlog": "Kategori Blog",
     "isEmpty": "Blog kosong",
     "leaveReply": "Tinggalkan Balasan",
     "postComment": "Kirimkan Komentar",
     "recentPost": "Postingan Terbaru",
     "title": "Blog",
-    "share": "Bagikan blog"
+    "share": "Bagikan blog",
+    "otherArticle": "Artikel Terbaru Lainnya",
+    "seeOther": "Lihat artikel lainnya"
   },
   "cart": {
     "amount": "Jumlah",

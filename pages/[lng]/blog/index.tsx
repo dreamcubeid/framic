@@ -6,7 +6,6 @@ import {
   Blogs,
   BlogCategories,
   getBlogHeaderImage,
-  // BlogRecent,
   isBlogAllowed
 } from '@sirclo/nexus'
 /* library template */
@@ -21,7 +20,6 @@ import Placeholder from 'components/Placeholder'
 import styles from 'public/scss/pages/Blog.module.scss'
 
 const classesBlogs = {
-  blogsContainerClassName: styles.blog_container,
   blogContainerClassName: styles.blog_item,
   categoryClassName: styles.blog_itemCategory,
   imageContainerClassName: styles.blog_itemImageContainer,
@@ -56,24 +54,16 @@ const classesPlaceholderBlogs = {
   placeholderImage: styles.blog_item
 }
 
-// const classesBlogRecent = {
-//   containerClassName: styles.blog_recent,
-//   blogRecentClassName: styles.blog_recentItem,
-//   imageClassName: styles.blog_recentItemImage,
-//   labelContainerClassName: styles.blog_recentItemContent,
-//   titleClassName: styles.blog_recentItemContentTitle,
-//   dateClassName: styles.blog_recentItemContentDate
-// }
 
 const Blog: FC<any> = ({
   lng,
   lngDict,
-  // headerImage,
+  headerImage,
   brand
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const i18n: any = useI18n();
   const size = useWindowSize();
-  const [totalCategories, setTotalCategories] = useState(1)
+  const [totalCategories,setTotalCategories] = useState(null)
 
   const BlogAllowed = isBlogAllowed();
 
@@ -90,6 +80,7 @@ const Blog: FC<any> = ({
           <h1 className={styles.blog_headerTitle}>
             {i18n.t("blog.title")}
           </h1>
+          <img className={styles.blog_headerImageBlogList} src={headerImage}/>
           <Blogs
             classes={classesBlogs}
             paginationClasses={classesPagination}
@@ -115,7 +106,8 @@ const Blog: FC<any> = ({
             }
           />
         </div>
-        {(totalCategories > 0 || totalCategories === null) &&
+        {
+          (totalCategories > 0 || totalCategories === null) && 
           <div className={styles.blog_listCategory}>
             <h2 className={styles.blog_titleSide}>
               {i18n.t("blog.categories")}
