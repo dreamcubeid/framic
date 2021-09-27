@@ -95,7 +95,7 @@ const BlogSlug: FC<any> = ({
 
           <BlogRecent
             classes={classesBlogRecent}
-            limit={5}
+            limit={3}
             linkPrefix='blog'
             thumborSetting={{
               width: 100,
