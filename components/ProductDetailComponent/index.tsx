@@ -14,10 +14,11 @@ import formatPrice from 'lib/formatPrice'
 import EmptyComponent from 'components/EmptyComponent/EmptyComponent'
 import SocialShare from 'components/SocialShare'
 import Placeholder from 'components/Placeholder'
+import Popup from 'components/Popup/Popup'
 /* styles */
 import styles from 'public/scss/components/ProductDetail.module.scss'
 import stylesButton from 'public/scss/components/Button.module.scss'
-import Popup from 'components/Popup/Popup'
+import stylesForm from 'public/scss/components/Form.module.scss'
 
 type ProductDetailComponentType = {
   data: any
@@ -55,8 +56,10 @@ const classesProductDetail = {
   descriptionClassName: styles.productdetail_description,
   additionalInfoClassName: "d-none",
   qtyBoxClassName: styles.productdetail_qtyBox,
-  addToCartBtnClassName: stylesButton.btn_primaryLong,
+  addToCartBtnClassName: `${stylesButton.btn_secondaryLong} ${styles.productdetail_propertyFooterButton}`,
+  buyNowBtnClassName: `${stylesButton.btn_primaryLong} ${styles.productdetail_propertyFooterButton}`,
   dotClassName: styles.productdetail_dot,
+
   // openOrderClassName: styles.productdetail_openorder,
   // openOrderTitleClassName: styles.productdetail_openorder_title,
   // openOrderContainerClassName: styles.productdetail_openorder_container,
@@ -69,7 +72,10 @@ const classesProductDetail = {
   // openOrderTimeoutDescClassName: styles.productdetail_openorder_timeout__desc,
   // openOrderTimeoutBtnClassName: `btn text-uppercase mt-3 ${styles.btn_primary} ${styles.btn_long}`,
   // variantContainerClassName: styles.productdetail_content_containerVariant,
-  // buyNowBtnClassName: `btn  text-uppercase ${styles.btn_long} ${styles.btn_primary} ${styles.btn_full_width}`,
+
+  notifyMeLabelWrapperClassName: "d-none",
+  notifyMeInputClassName: stylesForm.form_inputLong,
+  notifyMeSubmitClassName: `${stylesButton.btn_primaryLong} ${styles.productdetail_notifyMeSubmit}`,
   // notifyMeClassName: styles.productdetail_notifyMe,
   // notifyMeOptionsClassName: styles.productdetail_notifyMeOptions,
   // notifyMeOptionClassName: styles.productdetail_notifyMeOption,
@@ -77,8 +83,6 @@ const classesProductDetail = {
   // notifyMeRadioLabelClassName: styles.productdetail_notifyMeRadioLabel,
   // notifyMeInputWrapperClassName: styles.productdetail_notifyMeInputWrapper,
   // notifyMeLabelClassName: styles.productdetail_notifyMeLabel,
-  // notifyMeInputClassName: `form-control ${styles.sirclo_form_input}`,
-  // notifyMeSubmitClassName: `btn mt-3 ${styles.btn_primary} ${styles.btn_long} w-100`,
   // accordionClassName: styles.productdetail_content_desc_container,
   // // Estimate Shipping
   // estimateShippingWrapperClassName: stylesEstimate.wrapper,
@@ -125,10 +129,12 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
   const i18n: any = useI18n()
   const size = useWindowSize()
   const enableArrowDots = size.width && size.width < 768 ? true : false
-  
+
   // state
-  const [showPopupNotify, setShowPopupNotify] = useState<boolean>(false)
-  const [showPopupAddCart, setShowPopupAddCart] = useState<boolean>(false)
+  const [showPopupSuccessAddCart, setShowPopupSuccessAddCart] = useState<boolean>(false)
+  const [showPopupSuccessNotify, setShowPopupSuccessNotify] = useState<boolean>(false)
+  const [showPopupErrorAddCart, setShowPopupErrorAddCart] = useState<boolean>(false)
+  const [showPopupErrorNotify, setShowPopupErrorNotify] = useState<boolean>(false)
   const [additionalInfo, setadditionalInfo] = useState<string>("")
   const [dataAddToCart, setDataAddToCart] = useState<IDataAddToCart>({
     imageURL: null,
@@ -139,12 +145,15 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
   })
 
   // function
-  const tooglePopup = () => setShowPopupAddCart(!showPopupAddCart)
+  const tooglePopupSuccessAddCart = () => setShowPopupSuccessAddCart(!showPopupSuccessAddCart)
+  const tooglePopupErrorAddCart = () => setShowPopupErrorAddCart(!showPopupErrorAddCart)
+  const tooglePopupSuccessNotifyme = () => setShowPopupSuccessNotify(!showPopupSuccessNotify)
+  const tooglePopupErrorNotifyme = () => setShowPopupErrorNotify(!showPopupErrorNotify)
   const handleSuccessAddToCart = (dataProduct: any) => {
     const dataAs = dataProduct?.saveCart?.lineItems || dataProduct?.saveCartByMemberID?.lineItems
     const detailProduct = dataAs?.filter((data: any) => data?.slug === slug)
     setDataAddToCart(detailProduct[0])
-    tooglePopup()
+    tooglePopupSuccessAddCart()
   }
 
   if (data === null) return <EmptyComponent title={i18n.t("product.isEmpty")} />
@@ -160,9 +169,10 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
         enableArrow={enableArrowDots}
         enableDots={enableArrowDots}
         enableTabs
-        onCompleteMsg={() => setShowPopupNotify(true)}
+        onCompleteMsg={tooglePopupSuccessNotifyme}
         onComplete={handleSuccessAddToCart}
-        onErrorMsg={(msg) => msg && toast.error(msg)}
+        onErrorMsg={tooglePopupErrorNotifyme}
+        onError={tooglePopupErrorAddCart}
         getAdditionalInfo={setadditionalInfo}
         prevIcon={<span className={styles.productdetail_arrowPrev} />}
         nextIcon={<span className={styles.productdetail_arrowNext} />}
@@ -212,7 +222,6 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
       // getProductID={(id) => setProductId(id)}
       // ratingIcon={<span className="ratingStar">&#x2605;</span>}
       // accordionIcon={<ChevronDown />}
-      // onError={() => setShowModalErrorAddToCart(true)}
       // withEstimateShipping={IS_PROD === "false" ? true : false}
       // notifyIcon={<Bell color="white" />}
       // openOrderIconDate={
@@ -231,10 +240,10 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
 
       {/* PopUp Succes Add To Cart */}
       <Popup
-        setPopup={tooglePopup}
-        withClose={false}
-        isOpen={showPopupAddCart}
+        setPopup={tooglePopupSuccessAddCart}
+        isOpen={showPopupSuccessAddCart}
         title={i18n.t("product.successAddToCart")}
+        withClose={false}
       >
         <div className={styles.productdetail_popUpCartProductContainer}>
           <img
@@ -260,21 +269,71 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
         <button
           className={stylesButton.btn_primaryLongSmall}
           onClick={() => {
-            tooglePopup()
+            tooglePopupSuccessAddCart()
             Router.push("/[lng]/cart", `/${lng}/cart`)
           }}>
           {i18n.t("orderSummary.viewCart")}
         </button>
         <button
           className={stylesButton.btn_textLongSmall}
-          onClick={tooglePopup}>
+          onClick={tooglePopupSuccessAddCart}>
           {i18n.t("global.continueShopping")}
         </button>
       </Popup>
 
       {/* PopUp Error Add To Cart  */}
+      <Popup
+        setPopup={tooglePopupErrorAddCart}
+        isOpen={showPopupErrorAddCart}
+        title={i18n.t("cart.errorSKUTitle")}
+        withClose={false}
+        maxWidth="308px"
+      >
+        <div className={styles.productdetail_popUpNotifymeContainer}>
+          <p className={styles.productdetail_popUpNotifymeDesc}>{i18n.t("cart.errorSKUDesc")}</p>
+          <button
+            className={stylesButton.btn_primaryLongSmall}
+            onClick={tooglePopupErrorAddCart}>
+            {i18n.t("paymentStatus.tryAgain")}
+          </button>
+        </div>
+      </Popup>
+
       {/* PopUp Success Notifyme */}
+      <Popup
+        setPopup={tooglePopupSuccessNotifyme}
+        isOpen={showPopupSuccessNotify}
+        title={i18n.t("product.notifyTitleSuccess")}
+        withClose={false}
+        maxWidth="308px"
+      >
+        <div className={styles.productdetail_popUpNotifymeContainer}>
+          <p className={styles.productdetail_popUpNotifymeDesc}>{i18n.t("product.notifySuccess")}</p>
+          <button
+            className={stylesButton.btn_primaryLongSmall}
+            onClick={tooglePopupSuccessNotifyme}>
+            {i18n.t("global.continueShopping")}
+          </button>
+        </div>
+      </Popup>
+
       {/* PopUp Error Notifyme */}
+      <Popup
+        setPopup={tooglePopupErrorNotifyme}
+        isOpen={showPopupErrorNotify}
+        title={i18n.t("product.notifyTitleError")}
+        withClose={false}
+        maxWidth="308px"
+      >
+        <div className={styles.productdetail_popUpNotifymeContainer}>
+          <p className={styles.productdetail_popUpNotifymeDesc}>{i18n.t("product.notifyError")}</p>
+          <button
+            className={stylesButton.btn_primaryLongSmall}
+            onClick={tooglePopupSuccessNotifyme}>
+            {i18n.t("paymentStatus.tryAgain")}
+          </button>
+        </div>
+      </Popup>
     </>
   )
 }

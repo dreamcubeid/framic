@@ -6,6 +6,7 @@ export type PopupPropsType = {
   isOpen: boolean,
   setPopup: (value: boolean) => void,
   withClose?: boolean,
+  maxWidth?: string
 }
 
 const Popup: FC<PopupPropsType> = ({
@@ -13,18 +14,26 @@ const Popup: FC<PopupPropsType> = ({
   isOpen,
   setPopup,
   withClose = true,
+  maxWidth,
   children
 }) => {
 
-  const handleClick = (event: any) =>  event.target === event.currentTarget && setPopup(false)
-  
-  if(!isOpen) return <></>
+  const handleClick = (event: any) => event.target === event.currentTarget && setPopup(false)
+
+  if (!isOpen) return <></>
 
   return (
     <div className={styles.popup_overlay} onClick={withClose && handleClick}>
-      <div className={styles.popup_container}>
+      <div className={styles.popup_container} style={{ maxWidth: maxWidth }}>
         <div className={styles.popup_header}>
-          {title && <h3 className={styles.popup_title}>{title}</h3>}
+          {title &&
+            <h3
+              className={styles.popup_title}
+              style={{ textAlign: withClose ? "left" : "center" }}
+            >
+              {title}
+            </h3>
+          }
           {withClose && <span className={styles.popup_close} />}
         </div>
         <div className={styles.popup_body}>

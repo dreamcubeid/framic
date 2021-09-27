@@ -156,10 +156,8 @@ const PopupCart: FC<PopupPropsType> = ({
     <>
       {showModalErrorAddToCart &&
         <Popup
-          withHeader
           setPopup={toogleErrorAddToCart}
-          mobileFull={false}
-          classPopopBody
+          isOpen={showModalErrorAddToCart}
         >
           <div className={styles.popup_popupError}>
             <h3 className={styles.popup_popupErrorTitle}>{i18n.t("cart.errorSKUTitle")}</h3>
