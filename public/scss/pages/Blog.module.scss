@@ -2,11 +2,11 @@
 
 .blog
 {
-  &_container
+  &_parent
   {
-    @include useContainer()
+    margin: 22px 0;
+    @include useContainer();
   }
-
   &_itemCategory
   {
     display: none;
@@ -46,6 +46,13 @@
     width: 100%;
     color: $color_black;
     @include typographyBuilder(600, 16, 24);
+
+    &:hover,
+    &:active
+    {
+      text-decoration: none;
+      color: $color_black;
+    }
   }
 
   &_itemAuthor,
@@ -64,8 +71,78 @@
   {
     @include typographyBuilder(500, 12, 16);
     color: $color_grey_light_text;
-    margin-left: -54px;
     margin-top: 12px;
     text-align: justify;
+
+    @media screen and (max-width: $breakpoint_max_md) 
+    {
+      margin-left: -54px;
+    }
   }
+
+  &_category
+  {
+    padding:0;
+    list-style-type: none;
+  }
+
+  &_categoryItem > a 
+  {
+    text-decoration: none;
+    color: $color_black_text;
+    padding: 8px 0;
+  }
+
+  &_pagination
+  {
+    @include flex(row, center, center);
+    list-style-type: none;
+  }
+
+  &_paginationItem
+  {
+    padding: 10px 15px;
+    border: 1px solid $color_light;
+    border-radius: 2px;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+
+  &_paginationActive
+  {
+    background-color: $color_black;
+    color: $color_white;
+  }
+
+  &_detailContent > img 
+  {
+    width: 100%;
+  }
+
+  &_recent
+  {
+    list-style-type: none;
+    padding:0;
+  }
+
+  &_recentItem
+  {
+    border-bottom: 0.5px solid $color_light;
+    padding: 12px 0;
+  }
+
+  &_recentItemContentTitle
+  {
+    text-decoration: none;
+    color: $color_black_text;
+    padding: 8px 0;
+
+    &:hover,
+    &:active
+    {
+      text-decoration: none;
+      color: $color_black;
+    }
+  }
+
 }

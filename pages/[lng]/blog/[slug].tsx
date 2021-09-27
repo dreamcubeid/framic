@@ -17,7 +17,7 @@ const Popup = dynamic(() => import("components/Popup/Popup"));
 const SocialShare = dynamic(() => import("components/SocialShare"));
 
 const classesBlogSingle = {
-  blogContainerClassName: styles.blog_detail,
+  blogContainerClassName: styles.blog_container,
   headerClassName: styles.blog_detailHeader,
   headerContentClassName: styles.blog_detailHeaderContent,
   headerDetailClassName: styles.blog_detailMetaWrapper,
@@ -25,9 +25,9 @@ const classesBlogSingle = {
   authorPicContainerClassName: "d-none",
   authorPicClassName: "d-none",
   authorInfoClassName: "d-none",
-  createdByClassName: `d-flex flex-row align-items-center justify-content-start flex-nowrap w-100`,
+  createdByClassName: styles.blog_itemAuthor,
   createdByInnerClassName: `${styles.blog_detailMeta} d-flex flex-row align-items-center justify-content-start flex-wrap`,
-  authorClassName: "d-flex flex-row align-items-center justify-content-start order-2",
+  authorClassName: styles.blog_itemAuthor,
   dateClassName: "d-flex flex-row align-items-center justify-content-start order-1",
   blogContentClassName: styles.blog_detailContent
 }
@@ -44,11 +44,11 @@ const classesPlaceholderBlogs = {
 
 const classesBlogRecent = {
   containerClassName: styles.blog_recent,
-  blogRecentClassName: styles.blog_recentItem,
-  imageClassName: styles.blog_recentItemImage,
-  labelContainerClassName: styles.blog_recentItemContent,
+  blogRecentClassName: `row ${styles.blog_recentItem}`,
+  imageClassName: `col-4`,
+  labelContainerClassName: `col-8`,
   titleClassName: styles.blog_recentItemContentTitle,
-  dateClassName: styles.blog_recentItemContentDate
+  dateClassName: styles.blog_itemAuthor
 }
 
 const BlogSlug: FC<any> = ({
@@ -72,18 +72,12 @@ const BlogSlug: FC<any> = ({
       lngDict={lngDict}
       brand={brand}
     >
-    <div className="container">
+    <div className={styles.blog_parent}>
       <div className="row">
-        <div className="col-12 col-sm-8 offset-sm2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+        <div className="col-sm-8">
             <BlogSingle
                 classes={classesBlogSingle}
                 ID={slug.toString()}
-                timeIcon={
-                  <div className={`${styles.blog_detailIcon} ${styles.blog_detailIcon__time}`}></div>
-                }
-                authorIcon={
-                  <div className={`${styles.blog_detailIcon} ${styles.blog_detailIcon__author}`}></div>
-                }
                 loadingComponent={
                   <div className="row">
                     <div className="col-2">
@@ -103,7 +97,7 @@ const BlogSlug: FC<any> = ({
                 }
               />
 
-              <div className={`${styles.lookbook_nav} ${styles.blog_detailNavigation} d-flex flex-row align-items-center justify-content-between`}>
+              <div className="d-none">
                 <button onClick={() => router.back()}>
                   {i18n.t("global.back")}
                 </button>
@@ -111,41 +105,41 @@ const BlogSlug: FC<any> = ({
                   {i18n.t("product.share")}
                 </button>
               </div>
-
-              {(totalCategories > 0 || totalCategories === null) &&
-                <>
-                  <h2 className={styles.blog_titleSide}>
-                    {i18n.t("blog.categories")}
-                  </h2>
-                  <BlogCategories
-                    classes={classesBlogCategories}
-                    getCategoriesCount={(categoriesCount) => setTotalCategories(categoriesCount)}
-                  />
-                </>
-              }
-
-              <h2 className={styles.blog_titleSide}>
-                {i18n.t("blog.recentPost")}
-              </h2>
-              
-              <BlogRecent
-                classes={classesBlogRecent}
-                limit={5}
-                linkPrefix="blog"
-                thumborSetting={{
-                  width: 100,
-                  format: "webp",
-                  quality: 85
-                }}
-                loadingComponent={
+          </div>
+          <div className="col-sm-4">
+            {(totalCategories > 0 || totalCategories === null) &&
                   <>
-                    <Placeholder classes={classesPlaceholderBlogs} withImage />
-                    <Placeholder classes={classesPlaceholderBlogs} withImage />
-                    <Placeholder classes={classesPlaceholderBlogs} withImage />
+                    <h2 className={styles.blog_titleSide}>
+                      {i18n.t("blog.categories")}
+                    </h2>
+                    <BlogCategories
+                      classes={classesBlogCategories}
+                      getCategoriesCount={(categoriesCount) => setTotalCategories(categoriesCount)}
+                    />
                   </>
                 }
-              />
 
+                <h2 className={styles.blog_titleSide}>
+                  {i18n.t("blog.recentPost")}
+                </h2>
+                
+                <BlogRecent
+                  classes={classesBlogRecent}
+                  limit={5}
+                  linkPrefix="blog"
+                  thumborSetting={{
+                    width: 100,
+                    format: "webp",
+                    quality: 85
+                  }}
+                  loadingComponent={
+                    <>
+                      <Placeholder classes={classesPlaceholderBlogs} withImage />
+                      <Placeholder classes={classesPlaceholderBlogs} withImage />
+                      <Placeholder classes={classesPlaceholderBlogs} withImage />
+                    </>
+                  }
+                />
           </div>
         </div>
 
