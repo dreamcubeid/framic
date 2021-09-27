@@ -36,11 +36,18 @@
     min-height: 100px;
     position: relative;
 
+    &:last-child
+    {
+      width: 100%;
+    }
+
     @media screen and (max-width: $breakpoint_max_md) 
-      {
-        width: 100%;
-      }
+    {
+      width: 100%;
+    }
   }
+
+  &_listContent
 
   &_listCategory,
   &_listCategoryDetail

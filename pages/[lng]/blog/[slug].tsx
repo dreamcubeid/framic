@@ -1,14 +1,16 @@
+/* library package */
 import { FC, useState } from 'react';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { useRouter } from 'next/router'
 import { BlogSingle, BlogCategories, useI18n, BlogRecent, getBlogHeaderImage } from '@sirclo/nexus'
-import Layout from 'components/Layout/Layout'
+/* library template */
 import { useBrand } from 'lib/useBrand'
-import styles from 'public/scss/pages/Blog.module.scss'
+/* component */
+import Layout from 'components/Layout/Layout'
 import Placeholder from 'components/Placeholder'
 import SocialShare from 'components/SocialShare'
 import { GRAPHQL_URI } from 'components/Constants';
-import Link from 'next/link';
+/* styles */
+import styles from 'public/scss/pages/Blog.module.scss'
 
 const classesBlogSingle = {
   blogContainerClassName: styles.blog_container,
