@@ -1,12 +1,14 @@
 import { FC, useState } from 'react';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { useRouter } from 'next/router'
-import { BlogSingle, BlogCategories, useI18n, BlogRecent } from '@sirclo/nexus'
+import { BlogSingle, BlogCategories, useI18n, BlogRecent, getBlogHeaderImage } from '@sirclo/nexus'
 import Layout from 'components/Layout/Layout'
 import { useBrand } from 'lib/useBrand'
 import styles from 'public/scss/pages/Blog.module.scss'
 import Placeholder from 'components/Placeholder'
 import SocialShare from 'components/SocialShare'
+import { GRAPHQL_URI } from 'components/Constants';
+import Link from 'next/link';
 
 const classesBlogSingle = {
   blogContainerClassName: styles.blog_container,
@@ -50,14 +52,16 @@ const BlogSlug: FC<any> = ({
   slug,
   brand,
   urlSite,
+  headerImage
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const i18n: any = useI18n()
   const [totalCategories, setTotalCategories] = useState(null)
-
+  
   return (
     <Layout i18n={i18n} lng={lng} lngDict={lngDict} brand={brand}>
       <div className={styles.blog_parentDetail}>
         <div className={styles.blog_contentDetail}>
+          <img className={styles.blog_headerImage} src={headerImage}/>
           <BlogSingle
             classes={classesBlogSingle}
             ID={slug.toString()}
@@ -72,12 +76,12 @@ const BlogSlug: FC<any> = ({
           </h5>
           <SocialShare urlSite={urlSite} />
         </div>
-        <div className={styles.blog_listCategory}>
+        <div className={styles.blog_listCategoryDetail}>
           {(totalCategories > 0 || totalCategories === null) && (
             <>
-              <h2 className={styles.blog_titleSide}>
-                {i18n.t('blog.categories')}
-              </h2>
+              <h3 className={styles.blog_titleSide}>
+                {i18n.t('blog.categoriesBlog')}
+              </h3>
               <BlogCategories
                 classes={classesBlogCategories}
                 getCategoriesCount={(categoriesCount) =>
@@ -87,7 +91,7 @@ const BlogSlug: FC<any> = ({
             </>
           )}
 
-          <h2 className={styles.blog_titleSide}>{i18n.t('blog.recentPost')}</h2>
+          <h3 className={styles.blog_titleSide}>{i18n.t('blog.otherArticle')}</h3>
 
           <BlogRecent
             classes={classesBlogRecent}
@@ -106,6 +110,13 @@ const BlogSlug: FC<any> = ({
               </>
             }
           />
+
+        <Link
+          href='/[lng]/blog'
+          as={`/${lng}/blog`}
+        > 
+          <h5>{i18n.t('blog.seeOther')}</h5>
+        </Link>
         </div>
 
       </div>
@@ -123,11 +134,13 @@ export const getServerSideProps: GetServerSideProps = async ({
   const brand = await useBrand(req)
 
   const urlSite = `https://${req.headers.host}/${params.lng}/blog/${slug}`
+  const headerImage = await getBlogHeaderImage(GRAPHQL_URI(req));
 
   return {
     props: {
       lng: params.lng,
       lngDict,
+      headerImage,
       slug: params.slug,
       brand: brand || '',
       urlSite: urlSite,

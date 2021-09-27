@@ -66,12 +66,15 @@
   "blog": {
     "by": "By",
     "categories": "Categories",
+    "categoriesBlog": "Blog Categories",
     "isEmpty": "Blog is empty",
     "leaveReply": "Leave a reply",
     "postComment": "Post a comment",
     "recentPost": "Recent Post",
     "title": "Blogs",
-    "share": "Share"
+    "share": "Share",
+    "otherArticle": "Other Article",
+    "seeOther": "See other article"
   },
   "cart": {
     "amount": "Amount",

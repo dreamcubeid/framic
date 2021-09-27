@@ -6,7 +6,6 @@ import {
   Blogs,
   BlogCategories,
   getBlogHeaderImage,
-  BlogRecent,
   isBlogAllowed
 } from '@sirclo/nexus'
 import useWindowSize from 'lib/useWindowSize'
@@ -18,7 +17,6 @@ import EmptyComponent from 'components/EmptyComponent/EmptyComponent'
 import Placeholder from 'components/Placeholder'
 
 const classesBlogs = {
-  blogsContainerClassName: styles.blog_container,
   blogContainerClassName: styles.blog_item,
   categoryClassName: styles.blog_itemCategory,
   imageContainerClassName: styles.blog_itemImageContainer,
@@ -87,6 +85,7 @@ const Blog: FC<any> = ({
           <h1 className={styles.blog_headerTitle}>
             {i18n.t("blog.title")}
           </h1>
+          <img className={styles.blog_headerImageBlogList} src={headerImage}/>
           <Blogs
             classes={classesBlogs}
             paginationClasses={classesPagination}
