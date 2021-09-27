@@ -235,6 +235,10 @@
     "submitSuccess": "Success berlangganan",
     "subscribe": "Berlangganan"
   },
+  "notifyMe": {
+    "emailInputPlaceholder": "Eg. myemail@gmail.com",
+    "phoneInputPlaceholder": "Masukkan nomor whatsapp anda"
+  },
   "orderHistory": {
     "lineItemNeedReview": "Needs Review",
     "lineItemReviewed": "Reviewed",
@@ -377,11 +381,11 @@
     "next": "Selanjutnya",
     "noRelated": "Tidak ada product yang berkaitan",
     "notFound": "Produk tidak ditemukan!",
-    "notify": "Ingatkan saya melalui email:",
+    "notify": "Kabari Saya",
     "notifyError": "Terjadi kendala saat mengaktifkan pengingat untuk produk ini, coba kembali beberapa saat lagi.",
     "notifySuccess": "Terima kasih telah tertarik pada produk ini, kami akan kabari melalui kontak yang anda berikan jika produk telah tersedia.",
     "notifyTitleError": "Gagal memberi pemberitahuan",
-    "notifyTitleSuccess": "Kami akan kabari anda",
+    "notifyTitleSuccess": "Kami akan kabari anda!",
     "notifyVia": "Ingatkan saya dengan",
     "openOrder": "Open order",
     "openOrderEnd": "Open order akan berakhir pada :",

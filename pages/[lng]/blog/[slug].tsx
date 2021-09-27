@@ -2,16 +2,16 @@
 import { FC, useState } from 'react';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { BlogSingle, BlogCategories, useI18n, BlogRecent, getBlogHeaderImage } from '@sirclo/nexus'
+import Link from 'next/link';
 /* library template */
 import { useBrand } from 'lib/useBrand'
+import { GRAPHQL_URI } from 'lib/Constants';
 /* component */
 import Layout from 'components/Layout/Layout'
 import Placeholder from 'components/Placeholder'
 import SocialShare from 'components/SocialShare'
-import { GRAPHQL_URI } from 'components/Constants';
 /* styles */
 import styles from 'public/scss/pages/Blog.module.scss'
-import Link from 'next/link';
 
 const classesBlogSingle = {
   blogContainerClassName: styles.blog_container,
@@ -58,13 +58,13 @@ const BlogSlug: FC<any> = ({
   headerImage
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const i18n: any = useI18n()
-  const [totalCategories, setTotalCategories] = useState(null)
-  
+  const [totalCategories, setTotalCategories] = useState(0)
+
   return (
     <Layout i18n={i18n} lng={lng} lngDict={lngDict} brand={brand}>
       <div className={styles.blog_parentDetail}>
         <div className={styles.blog_contentDetail}>
-          <img className={styles.blog_headerImage} src={headerImage}/>
+          <img className={styles.blog_headerImage} src={headerImage} />
           <BlogSingle
             classes={classesBlogSingle}
             ID={slug.toString()}
@@ -114,12 +114,12 @@ const BlogSlug: FC<any> = ({
             }
           />
 
-        <Link
-          href='/[lng]/blog'
-          as={`/${lng}/blog`}
-        > 
-          <h5>{i18n.t('blog.seeOther')}</h5>
-        </Link>
+          <Link
+            href='/[lng]/blog'
+            as={`/${lng}/blog`}
+          >
+            <h5 className={styles.blog_seeOther}>{i18n.t('blog.seeOther')}</h5>
+          </Link>
         </div>
 
       </div>

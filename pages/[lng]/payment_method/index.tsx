@@ -12,7 +12,7 @@ import {
 } from "@sirclo/nexus";
 import SEO from "components/SEO";
 import Layout from "components/Layout/Layout";
-import Breadcrumb from "components/Breadcrumb/Breadcrumb";
+// import Breadcrumb from "components/Breadcrumb/Breadcrumb";
 import Loader from "components/Loader/Loader";
 import EmptyComponent from "components/EmptyComponent/EmptyComponent";
 import { useBrand } from "lib/useBrand";
@@ -163,7 +163,7 @@ const PaymentMethods: FC<any> = ({
                 </div>
                 <hr className={styles.payment_line} />
                 <div className={styles.payment_steps}>
-                  <Breadcrumb currentStep={3} />
+                  {/* <Breadcrumb currentStep={3} /> */}
                 </div>
                 <hr className={`${styles.payment_lineSecond}`} />
                 <div className="container">

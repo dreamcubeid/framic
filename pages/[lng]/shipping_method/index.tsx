@@ -13,7 +13,6 @@ import {
 import SEO from "components/SEO";
 import Layout from "components/Layout/Layout";
 import Footer from "components/Footer/Footer";
-import Breadcrumb from "components/Breadcrumb/Breadcrumb";
 import EmptyComponent from "components/EmptyComponent/EmptyComponent";
 import useWindowSize from "lib/useWindowSize";
 import { useBrand } from "lib/useBrand";
@@ -216,10 +215,8 @@ const ShippingMethodPage: FC<any> = ({
         <SEO title="Shipping Method" />
         {showModalErrorAddToCart &&
           <Popup
-            withHeader
             setPopup={toogleErrorAddToCart}
-            mobileFull={false}
-            classPopopBody
+            isOpen={showModalErrorAddToCart}
           >
             <div className={styles.shipping_popupError}>
               <h3 className={styles.shipping_popupErrorTitle}>{i18n.t("cart.errorSKUTitle")}</h3>
@@ -245,7 +242,7 @@ const ShippingMethodPage: FC<any> = ({
                       </div>
                       <hr className={styles.shipping_line} />
                       <div className={styles.shipping_steps}>
-                        <Breadcrumb currentStep={2} />
+                        {/* <Breadcrumb currentStep={2} /> */}
                       </div>
                       <hr className={`${styles.shipping_lineSecond}`} />
                     </div>
