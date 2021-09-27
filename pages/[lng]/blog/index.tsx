@@ -83,45 +83,43 @@ const Blog: FC<any> = ({
       withAllowed={BlogAllowed}
     >
       <div className={styles.blog_parent}>
-        <div className="row">
-          <div className="col-md-8 col-sm-12">
-            <h1 className={styles.blog_headerTitle}>
-              {i18n.t("blog.title")}
-            </h1>
-            <Blogs
-              classes={classesBlogs}
-              paginationClasses={classesPagination}
-              withPagination
-              itemPerPage={4}
-              thumborSetting={{
-                width: size.width < 768 ? 375 : 512,
-                format: "webp",
-                quality: 85,
-              }}
-              LoadingComponent={
-                <>
-                  <Placeholder classes={classesPlaceholderBlogs} withImage />
-                  <Placeholder classes={classesPlaceholderBlogs} withImage />
-                  <Placeholder classes={classesPlaceholderBlogs} withImage />
-                </>
-              }
-              emptyStateComponent={
-                <EmptyComponent
-                  classes={classesEmptyComponent}
-                  title={i18n.t("blog.isEmpty")}
-                />
-              }
-            />
-          </div>
-          <div className="col-md-4 col-sm-12">
-            <h2 className={styles.blog_titleSide}>
-              {i18n.t("blog.categories")}
-            </h2>
-            <BlogCategories
-              classes={classesBlogCategories}
-              getCategoriesCount={(categoriesCount) => setTotalCategories(categoriesCount)}
-            />
-          </div>
+        <div className={styles.blog_listContent}>
+          <h1 className={styles.blog_headerTitle}>
+            {i18n.t("blog.title")}
+          </h1>
+          <Blogs
+            classes={classesBlogs}
+            paginationClasses={classesPagination}
+            withPagination
+            itemPerPage={4}
+            thumborSetting={{
+              width: size.width < 768 ? 375 : 512,
+              format: "webp",
+              quality: 85,
+            }}
+            LoadingComponent={
+              <>
+                <Placeholder classes={classesPlaceholderBlogs} withImage />
+                <Placeholder classes={classesPlaceholderBlogs} withImage />
+                <Placeholder classes={classesPlaceholderBlogs} withImage />
+              </>
+            }
+            emptyStateComponent={
+              <EmptyComponent
+                classes={classesEmptyComponent}
+                title={i18n.t("blog.isEmpty")}
+              />
+            }
+          />
+        </div>
+        <div className={styles.blog_listCategory}>
+          <h2 className={styles.blog_titleSide}>
+            {i18n.t("blog.categories")}
+          </h2>
+          <BlogCategories
+            classes={classesBlogCategories}
+            getCategoriesCount={(categoriesCount) => setTotalCategories(categoriesCount)}
+          />
         </div>
       </div>
     </Layout>

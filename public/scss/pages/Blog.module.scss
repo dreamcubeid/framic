@@ -6,7 +6,32 @@
   {
     margin: 22px 0;
     @include useContainer();
+    @include flex(row, flex-start, center,true);
   }
+
+  &_listContent
+  {
+    width: calc(((100% - 24px) / 12) * 8);
+
+    @media screen and (max-width: $breakpoint_max_md) 
+      {
+        width: 100%;
+      }
+  }
+
+  &_listCategory
+  {
+    width: calc(((100% - 24px) / 12) * 4);
+    padding-left: 24px;
+
+    @media screen and (max-width: $breakpoint_max_md) 
+    {
+      width: 100%;
+      border-top: 1px solid $color_light;
+      padding-top: 24px;
+    }
+  }
+
   &_itemCategory
   {
     display: none;
