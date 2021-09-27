@@ -1,5 +1,6 @@
 /* library package */
 import { FC, useState } from 'react'
+import Router from 'next/router'
 import { toast } from 'react-toastify'
 import {
   ProductDetail,
@@ -8,19 +9,29 @@ import {
 } from '@sirclo/nexus'
 /* library template */
 import useWindowSize from 'lib/useWindowSize'
+import formatPrice from 'lib/formatPrice'
 /* component */
 import EmptyComponent from 'components/EmptyComponent/EmptyComponent'
 import SocialShare from 'components/SocialShare'
 import Placeholder from 'components/Placeholder'
-
 /* styles */
 import styles from 'public/scss/components/ProductDetail.module.scss'
 import stylesButton from 'public/scss/components/Button.module.scss'
+import Popup from 'components/Popup/Popup'
 
 type ProductDetailComponentType = {
   data: any
+  lng: string,
   slug: string | string[]
   urlSite: string
+}
+
+interface IDataAddToCart {
+  imageURL: string
+  title: string
+  discount: { value: number }
+  price: { value: number }
+  salePrice: { value: number }
 }
 
 const classesProductDetail = {
@@ -90,7 +101,7 @@ const classesProductDetail = {
   // estimateShippingPopupProviderImgClassName: stylesEstimate.popup_providerImage,
   // estimateShippingPopupProviderLabelClassName: stylesEstimate.popup_providerLabel,
   // estimateShippingPopupProviderValueClassName: stylesEstimate.popup_providerValue,
-};
+}
 
 const classesTabs = {
   tabContainerClassName: styles.productdetail_tabContainer,
@@ -107,27 +118,50 @@ const classesPlaceholder = {
 const ProductDetailComponent: FC<ProductDetailComponentType> = ({
   data,
   slug,
+  lng,
   urlSite
 }) => {
+  // variables
   const i18n: any = useI18n()
-  const size = useWindowSize();
-  const [showPopupNotify, setShowPopupNotify] = useState<boolean>(false);
+  const size = useWindowSize()
+  const enableArrowDots = size.width && size.width < 768 ? true : false
+  
+  // state
+  const [showPopupNotify, setShowPopupNotify] = useState<boolean>(false)
+  const [showPopupAddCart, setShowPopupAddCart] = useState<boolean>(false)
   const [additionalInfo, setadditionalInfo] = useState<string>("")
+  const [dataAddToCart, setDataAddToCart] = useState<IDataAddToCart>({
+    imageURL: null,
+    title: null,
+    discount: { value: null },
+    price: { value: null },
+    salePrice: { value: null }
+  })
+
+  // function
+  const tooglePopup = () => setShowPopupAddCart(!showPopupAddCart)
+  const handleSuccessAddToCart = (dataProduct: any) => {
+    const dataAs = dataProduct?.saveCart?.lineItems || dataProduct?.saveCartByMemberID?.lineItems
+    const detailProduct = dataAs?.filter((data: any) => data?.slug === slug)
+    setDataAddToCart(detailProduct[0])
+    tooglePopup()
+  }
 
   if (data === null) return <EmptyComponent title={i18n.t("product.isEmpty")} />
 
   return (
-    <div>
+    <>
       <ProductDetail
         slug={slug}
         withButtonBuyNow
         lazyLoadedImage={false}
         classes={classesProductDetail}
         isButton={{ 0: true, 1: true }}
-        enableArrow={size.width && size.width < 768 ? true : false}
-        enableDots={size.width && size.width < 768 ? true : false}
+        enableArrow={enableArrowDots}
+        enableDots={enableArrowDots}
         enableTabs
         onCompleteMsg={() => setShowPopupNotify(true)}
+        onComplete={handleSuccessAddToCart}
         onErrorMsg={(msg) => msg && toast.error(msg)}
         getAdditionalInfo={setadditionalInfo}
         prevIcon={<span className={styles.productdetail_arrowPrev} />}
@@ -175,25 +209,73 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
             </div>
           </div>
         }
-        // getProductID={(id) => setProductId(id)}
-        // ratingIcon={<span className="ratingStar">&#x2605;</span>}
-        // accordionIcon={<ChevronDown />}
-        // onComplete={() => setShowPopup(true)}
-        // onError={() => setShowModalErrorAddToCart(true)}
-        // withEstimateShipping={IS_PROD === "false" ? true : false}
-        // notifyIcon={<Bell color="white" />}
-        // openOrderIconDate={
-        //   <Calendar
-        //     className={styles.productdetail_openorder_container__icon}
-        //   />
-        // }
-        // openOrderIconTime={
-        //   <Clock
-        //     className={styles.productdetail_openorder_container__icon}
-        //   />
-        // }
+      // getProductID={(id) => setProductId(id)}
+      // ratingIcon={<span className="ratingStar">&#x2605;</span>}
+      // accordionIcon={<ChevronDown />}
+      // onError={() => setShowModalErrorAddToCart(true)}
+      // withEstimateShipping={IS_PROD === "false" ? true : false}
+      // notifyIcon={<Bell color="white" />}
+      // openOrderIconDate={
+      //   <Calendar
+      //     className={styles.productdetail_openorder_container__icon}
+      //   />
+      // }
+      // openOrderIconTime={
+      //   <Clock
+      //     className={styles.productdetail_openorder_container__icon}
+      //   />
+      // }
       />
-    </div>
+
+
+
+      {/* PopUp Succes Add To Cart */}
+      <Popup
+        setPopup={tooglePopup}
+        withClose={false}
+        isOpen={showPopupAddCart}
+        title={i18n.t("product.successAddToCart")}
+      >
+        <div className={styles.productdetail_popUpCartProductContainer}>
+          <img
+            src={dataAddToCart?.imageURL}
+            className={styles.productdetail_popUpCartProductImage}
+          />
+          <div>
+            <h3 className={styles.productdetail_popUpCartProductTitle}>
+              {dataAddToCart?.title}
+            </h3>
+            <div className={styles.productdetail_popUpCartProductPriceContainer}>
+              {dataAddToCart?.discount?.value !== 0 &&
+                <p className={styles.productdetail_popUpCartProductPrice}>
+                  {formatPrice(dataAddToCart?.price?.value, "IDR")}
+                </p>
+              }
+              <p className={styles.productdetail_popUpCartProductSalePrice}>
+                {formatPrice(dataAddToCart?.salePrice?.value, "IDR")}
+              </p>
+            </div>
+          </div>
+        </div>
+        <button
+          className={stylesButton.btn_primaryLongSmall}
+          onClick={() => {
+            tooglePopup()
+            Router.push("/[lng]/cart", `/${lng}/cart`)
+          }}>
+          {i18n.t("orderSummary.viewCart")}
+        </button>
+        <button
+          className={stylesButton.btn_textLongSmall}
+          onClick={tooglePopup}>
+          {i18n.t("global.continueShopping")}
+        </button>
+      </Popup>
+
+      {/* PopUp Error Add To Cart  */}
+      {/* PopUp Success Notifyme */}
+      {/* PopUp Error Notifyme */}
+    </>
   )
 }
 

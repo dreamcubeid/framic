@@ -11,7 +11,7 @@ $buttons: (
 {
   @include typographyBuilder(400, 16, 24);
   @include flex(row, center, center);
-  padding: 14px 14px;
+  padding: 14px;
   border-radius: 2px;
   
   &:focus
@@ -25,6 +25,11 @@ $buttons: (
     opacity: .1;
   }
 
+  &_small
+  {
+    padding: 12px !important;
+  }
+
   @each $name, $background_color, $color, $border_color in $buttons
   {
     &_#{$name}
@@ -34,10 +39,22 @@ $buttons: (
       border: 1px solid $border_color;
       color: $color;
 
+      &Small
+      {
+        @extend .btn_#{$name};
+        @extend .btn_small;
+      }
+
       &Long
       {
         @extend .btn_#{$name};
         @include fixedWidth(100%);
+
+        &Small
+        {
+          @extend .btn_#{$name}Long;
+          @extend .btn_small;
+        }
       }
 
       &Outline
@@ -51,9 +68,20 @@ $buttons: (
         {
           @extend .btn_#{$name}Outline;
           @include fixedWidth(100%);
+
+          &Small
+          {
+            @extend .btn_#{$name}Long;
+            @extend .btn_small;
+          }
+        }
+        
+        &Small
+        {
+          @extend .btn_#{$name}Outline;
+          @extend .btn_small;
         }
       }
     }
   }
-
 }
