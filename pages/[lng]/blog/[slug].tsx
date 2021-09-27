@@ -1,15 +1,12 @@
 import { FC, useState } from 'react';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { useRouter } from 'next/router'
-import dynamic from 'next/dynamic'
 import { BlogSingle, BlogCategories, useI18n, BlogRecent } from '@sirclo/nexus'
 import Layout from 'components/Layout/Layout'
 import { useBrand } from 'lib/useBrand'
 import styles from 'public/scss/pages/Blog.module.scss'
-
-const Placeholder = dynamic(() => import('components/Placeholder'))
-const Popup = dynamic(() => import('components/Popup/Popup'))
-const SocialShare = dynamic(() => import('components/SocialShare'))
+import Placeholder from 'components/Placeholder'
+import SocialShare from 'components/SocialShare'
 
 const classesBlogSingle = {
   blogContainerClassName: styles.blog_container,
@@ -35,16 +32,16 @@ const classesBlogCategories = {
 };
 
 const classesPlaceholderBlogs = {
-  placeholderImage: `${styles.placeholderItem} ${styles.placeholderItem_blogsList}`,
+  placeholderImage: styles.blog_contentDetail,
 };
 
 const classesBlogRecent = {
   containerClassName: styles.blog_recent,
-  blogRecentClassName: `row ${styles.blog_recentItem}`,
-  imageClassName: `col-4`,
-  labelContainerClassName: `col-8`,
+  blogRecentClassName: styles.blog_recentItem,
+  imageClassName: styles.blog_recentItemImage,
+  labelContainerClassName: styles.blog_recentItemContent,
   titleClassName: styles.blog_recentItemContentTitle,
-  dateClassName: styles.blog_itemAuthor,
+  dateClassName: styles.blog_recentDate,
 };
 
 const BlogSlug: FC<any> = ({
@@ -54,52 +51,28 @@ const BlogSlug: FC<any> = ({
   brand,
   urlSite,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const i18n: any = useI18n();
-  const [totalCategories, setTotalCategories] = useState(null);
-  const [showShare, setShowShare] = useState<boolean>(true);
-  const toggleShare = () => setShowShare(!showShare);
-
-  const router = useRouter();
+  const i18n: any = useI18n()
+  const [totalCategories, setTotalCategories] = useState(null)
 
   return (
     <Layout i18n={i18n} lng={lng} lngDict={lngDict} brand={brand}>
-      <div className={styles.blog_parent}>
-        <div className='col-sm-8'>
+      <div className={styles.blog_parentDetail}>
+        <div className={styles.blog_contentDetail}>
           <BlogSingle
             classes={classesBlogSingle}
             ID={slug.toString()}
             loadingComponent={
-              <div className='row'>
-                <div className='col-2'>
-                  <Placeholder classes={classesPlaceholderBlogs} withImage />
-                </div>
-                <div className='col-3'>
-                  <Placeholder classes={classesPlaceholderBlogs} withImage />
-                </div>
-                <div className='col-12 py-4'>
-                  <Placeholder classes={classesPlaceholderBlogs} withImage />
-                  <Placeholder classes={classesPlaceholderBlogs} withImage />
-                  <Placeholder classes={classesPlaceholderBlogs} withImage />
-                  <Placeholder classes={classesPlaceholderBlogs} withImage />
-                  <Placeholder classes={classesPlaceholderBlogs} withImage />
-                </div>
+              <div>
+                <Placeholder classes={classesPlaceholderBlogs} withImage />
               </div>
             }
           />
-
-          <div className='d-none'>
-            <button onClick={() => router.back()}>
-              {i18n.t('global.back')}
-            </button>
-            <button
-              onClick={() => toggleShare()}
-              className={styles.blog_detailShare}
-            >
-              {i18n.t('product.share')}
-            </button>
-          </div>
+          <h5 className={styles.blog_titleShare}>
+            {i18n.t('blog.share')}
+          </h5>
+          <SocialShare urlSite={urlSite} />
         </div>
-        <div className='col-sm-4'>
+        <div className={styles.blog_listCategory}>
           {(totalCategories > 0 || totalCategories === null) && (
             <>
               <h2 className={styles.blog_titleSide}>
@@ -135,11 +108,6 @@ const BlogSlug: FC<any> = ({
           />
         </div>
 
-        {showShare && (
-          <div>
-            <SocialShare i18n={i18n} urlSite={urlSite} />
-          </div>
-        )}
       </div>
     </Layout>
   );
@@ -150,11 +118,11 @@ export const getServerSideProps: GetServerSideProps = async ({
   req,
 }) => {
   const { slug } = params;
-  const { default: lngDict = {} } = await import(`locales/${params.lng}.json`);
+  const { default: lngDict = {} } = await import(`locales/${params.lng}.json`)
 
-  const brand = await useBrand(req);
+  const brand = await useBrand(req)
 
-  const urlSite = `https://${req.headers.host}/${params.lng}/blog/${slug}`;
+  const urlSite = `https://${req.headers.host}/${params.lng}/blog/${slug}`
 
   return {
     props: {
