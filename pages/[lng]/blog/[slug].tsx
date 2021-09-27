@@ -11,6 +11,7 @@ import SocialShare from 'components/SocialShare'
 import { GRAPHQL_URI } from 'components/Constants';
 /* styles */
 import styles from 'public/scss/pages/Blog.module.scss'
+import Link from 'next/link';
 
 const classesBlogSingle = {
   blogContainerClassName: styles.blog_container,
