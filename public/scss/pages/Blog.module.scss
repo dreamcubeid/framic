@@ -5,9 +5,9 @@
   &_parent,
   &_parentDetail
   {
-    margin: 22px 0;
     @include useContainer();
-    @include flex(row, flex-start, center,true);
+    @include flex(row, flex-start, space-between,true);
+    margin-top: 22px;
   }
 
   &_detailHeader
@@ -15,11 +15,16 @@
     position: absolute;
     top: 0;
     left: 0;
+
+    h1, h2, h3, h4, h5, h6, strong
+    {
+      @include typographyBuilder(600, 20, 24);
+      color: $color_black_text;
+    }
   }
 
   &_parentDetail
   {
-    padding: 0 !important;
     position: relative;
   }
 
@@ -47,8 +52,6 @@
     }
   }
 
-  &_listContent
-
   &_listCategory,
   &_listCategoryDetail
   {
@@ -62,16 +65,6 @@
       padding-top: 24px;
       margin-top: 26px;
       padding-left: 0;
-    }
-  }
-
-  &_listCategory
-  {
-    margin-top: 48px;
-
-    @media screen and (max-width: $breakpoint_max_md) 
-    {
-      margin-top: 0;
     }
   }
 
@@ -121,9 +114,10 @@
 
   &_itemTitle
   {
-    width: 100%;
-    color: $color_black;
     @include typographyBuilder(600, 16, 24);
+    color: $color_black_text;
+    margin-bottom: 4px;
+    width: 100%;
 
     &:hover,
     &:active
@@ -164,12 +158,21 @@
     list-style-type: none;
   }
 
-  &_categoryItem > a 
+  &_categoryLink
   {
-    text-decoration: none;
+    @include typographyBuilder(400, 16, 24);
     color: $color_black_text;
-    padding: 8px 0;
+    text-decoration: none;
   }
+
+  &_categoryItem
+  {
+    &:not(:last-child)
+    {
+      margin-bottom: 8px;
+    }
+  }
+
 
   &_pagination
   {
@@ -205,9 +208,9 @@
 
   &_recentItem
   {
+    @include flex(row, flex-start, flex-start,true);
     border-bottom: 0.5px solid $color_light;
     padding: 12px 0;
-    @include flex(row, flex-start, flex-start,true);
   }
 
   &_recentItemContentTitle
@@ -225,16 +228,31 @@
     }
   }
 
+  &_titleSide
+  {
+    @include typographyBuilder(600, 16, 24);
+    color: $color_black_text;
+    margin-bottom: 16px
+  }
+
+  &_headerTitle
+  {
+    @include typographyBuilder(600, 20, 24);
+    color: $color_black_text;
+    margin-bottom: 34px;
+  }
+
   &_titleShare
   {
+    @include typographyBuilder(600, 16, 24);
     margin-top: 40px;
   }
 
   &_recentDate
   {
-    margin-left: 16px;
+    @include typographyBuilder(400, 10, 16);
     color: $color_grey_light_text;
-    @include typographyBuilder(500, 10, 0);
+    margin-left: 16px;
   }
 
   &_headerImage
@@ -245,6 +263,23 @@
   &_headerImageBlogList,
   &_headerImage
   {
-    width: 100%;
+    @include fixedWidth(100%);
+  }
+  
+  &_headerImageBlogList
+  {
+    margin-bottom: 25px;    
+  }
+
+  &_seeOther
+  {
+    @include typographyBuilder(400, 16, 24);
+    color: $color_black_text;  
+    cursor: pointer;
+
+    &:hover
+    {
+      text-decoration: underline;
+    }
   }
 }

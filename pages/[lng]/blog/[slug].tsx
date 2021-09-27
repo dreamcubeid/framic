@@ -58,13 +58,13 @@ const BlogSlug: FC<any> = ({
   headerImage
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const i18n: any = useI18n()
-  const [totalCategories, setTotalCategories] = useState(null)
-  
+  const [totalCategories, setTotalCategories] = useState(0)
+
   return (
     <Layout i18n={i18n} lng={lng} lngDict={lngDict} brand={brand}>
       <div className={styles.blog_parentDetail}>
         <div className={styles.blog_contentDetail}>
-          <img className={styles.blog_headerImage} src={headerImage}/>
+          <img className={styles.blog_headerImage} src={headerImage} />
           <BlogSingle
             classes={classesBlogSingle}
             ID={slug.toString()}
@@ -114,12 +114,12 @@ const BlogSlug: FC<any> = ({
             }
           />
 
-        <Link
-          href='/[lng]/blog'
-          as={`/${lng}/blog`}
-        > 
-          <h5>{i18n.t('blog.seeOther')}</h5>
-        </Link>
+          <Link
+            href='/[lng]/blog'
+            as={`/${lng}/blog`}
+          >
+            <h5 className={styles.blog_seeOther}>{i18n.t('blog.seeOther')}</h5>
+          </Link>
         </div>
 
       </div>
