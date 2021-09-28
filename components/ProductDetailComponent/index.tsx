@@ -72,7 +72,7 @@ const classesProductDetail = {
   openOrderTimeoutBtnClassName: stylesButton.btn_secondaryLong,
   // variantContainerClassName: styles.productdetail_content_containerVariant,
 
-  notifyMeLabelWrapperClassName: "d-none",
+  notifyMeLabelWrapperClassName: styles.productdetail_notifyMeLabelWrapper,
   notifyMeInputClassName: stylesForm.form_inputLong,
   notifyMeSubmitClassName: `${stylesButton.btn_primaryLong} ${styles.productdetail_notifyMeSubmit}`,
   // accordionClassName: styles.productdetail_content_desc_container,
@@ -148,7 +148,7 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
     tooglePopupSuccessAddCart()
   }
 
-  if (data === null) return <EmptyComponent title={i18n.t("product.isEmpty")} />
+  if (!data?.published || !data) return <EmptyComponent title={i18n.t("product.isEmpty")} />
 
   return (
     <>
