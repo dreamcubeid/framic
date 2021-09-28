@@ -59,29 +59,22 @@ const classesProductDetail = {
   buyNowBtnClassName: `${stylesButton.btn_primaryLong} ${styles.productdetail_propertyFooterButton}`,
   dotClassName: styles.productdetail_dot,
 
-  // openOrderClassName: styles.productdetail_openorder,
-  // openOrderTitleClassName: styles.productdetail_openorder_title,
-  // openOrderContainerClassName: styles.productdetail_openorder_container,
-  // openOrderDateClassName: styles.productdetail_openorder_container__date,
-  // openOrderTimeClassName: styles.productdetail_openorder_container__time,
-  // countDownContainerClassName: styles.productdetail_openorder_countdown,
-  // countDownItemClassName: styles.productdetail_openorder_countdownItem,
-  // countDownItemTextClassName: styles.productdetail_openorder_countdownItem__text,
-  // openOrderTimeoutClassName: styles.productdetail_openorder_timeout,
-  // openOrderTimeoutDescClassName: styles.productdetail_openorder_timeout__desc,
-  // openOrderTimeoutBtnClassName: `btn text-uppercase mt-3 ${styles.btn_primary} ${styles.btn_long}`,
+  openOrderClassName: styles.productdetail_openOrder,
+  openOrderTitleClassName: styles.productdetail_openOrderTitle,
+  countDownContainerClassName: styles.productdetail_countDownContainer,
+  countDownItemClassName: styles.productdetail_countDownItem,
+  countDownItemTextClassName: styles.productdetail_countDownItemText,
+  openOrderContainerClassName: styles.productdetail_openOrderContainer,
+  openOrderDateClassName: styles.productdetail_openOrderDate,
+  openOrderTimeClassName: styles.productdetail_openOrderTime,
+  openOrderTimeoutClassName: styles.productdetail_openOrderTimeout,
+  openOrderTimeoutDescClassName: styles.productdetail_openOrderTimeoutDesc,
+  openOrderTimeoutBtnClassName: stylesButton.btn_secondaryLong,
   // variantContainerClassName: styles.productdetail_content_containerVariant,
 
   notifyMeLabelWrapperClassName: "d-none",
   notifyMeInputClassName: stylesForm.form_inputLong,
   notifyMeSubmitClassName: `${stylesButton.btn_primaryLong} ${styles.productdetail_notifyMeSubmit}`,
-  // notifyMeClassName: styles.productdetail_notifyMe,
-  // notifyMeOptionsClassName: styles.productdetail_notifyMeOptions,
-  // notifyMeOptionClassName: styles.productdetail_notifyMeOption,
-  // notifyMeRadioClassName: styles.productdetail_notifyMeRadio,
-  // notifyMeRadioLabelClassName: styles.productdetail_notifyMeRadioLabel,
-  // notifyMeInputWrapperClassName: styles.productdetail_notifyMeInputWrapper,
-  // notifyMeLabelClassName: styles.productdetail_notifyMeLabel,
   // accordionClassName: styles.productdetail_content_desc_container,
   // // Estimate Shipping
   // estimateShippingWrapperClassName: stylesEstimate.wrapper,
@@ -114,7 +107,7 @@ const classesTabs = {
 }
 
 const classesPlaceholder = {
-  placeholderImage: `${styles.productdetail_placeholderImage} ${styles.productdetail_imageRow}`,
+  placeholderImage: styles.productdetail_placeholderImage,
   placeholderList: styles.productdetail_placeholderList
 }
 
@@ -211,28 +204,22 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
           </div>
         }
         loadingComponent={
-          <div className={styles.productdetail_container}>
-            <Placeholder classes={classesPlaceholder} withImage />
-            <div className={styles.productdetail_propertyRow}>
-              <Placeholder classes={classesPlaceholder} withList listMany={5} />
+          <div>
+            <div className={styles.productdetail_container}>
+              <div>
+                <Placeholder classes={classesPlaceholder} withImage />
+              </div>
+              <div>
+                <Placeholder classes={classesPlaceholder} withList listMany={5} />
+              </div>
             </div>
           </div>
         }
-      // getProductID={(id) => setProductId(id)}
-      // ratingIcon={<span className="ratingStar">&#x2605;</span>}
-      // accordionIcon={<ChevronDown />}
-      // withEstimateShipping={IS_PROD === "false" ? true : false}
-      // notifyIcon={<Bell color="white" />}
-      // openOrderIconDate={
-      //   <Calendar
-      //     className={styles.productdetail_openorder_container__icon}
-      //   />
-      // }
-      // openOrderIconTime={
-      //   <Clock
-      //     className={styles.productdetail_openorder_container__icon}
-      //   />
-      // }
+        // getProductID={(id) => setProductId(id)}
+        // ratingIcon={<span className="ratingStar">&#x2605;</span>}
+        // withEstimateShipping={IS_PROD === "false" ? true : false}
+        openOrderIconDate={<span className={styles.productdetail_openOrderDateIcon} />}
+        openOrderIconTime={<span className={styles.productdetail_openOrderTimeIcon} />}
       />
 
 

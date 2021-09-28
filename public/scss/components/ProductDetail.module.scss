@@ -118,6 +118,12 @@
         order: 1;
       }
 
+      &:nth-child(4)
+      {
+        order: 5;
+        width: 100%;
+      }
+
       &[class*="productdetail_description"]
       {
         order: 4;
@@ -560,5 +566,106 @@
     color: $color_black_text;
     text-align: center;
     margin-bottom: 34px;
+  }
+
+  &_openOrderTitle
+  {
+    @include typographyBuilder(600, 12, 16);
+    color: $color_grey;
+    margin-bottom: 8px;
+  }
+
+  &_openOrder
+  {
+    width: 100%;
+    margin-bottom: 34px;
+  }
+
+  &_openOrderContainer
+
+  {
+    @include flex(row, center, flex-start);
+  }
+
+  &_countDownContainer
+  {
+    @include flex(row, center, flex-start);
+    border: 1px solid $color_light;
+    padding: 12px;
+
+    & > div
+    {
+      @include flex(row, center, flex-start);
+    }
+
+    & > span
+    {
+      margin: 0 4px;
+    }
+  }
+
+  &_countDownItem
+  {
+    @include typographyBuilder(600, 16, 24);
+    color: $color_red;
+    margin-right: 4px;
+  }
+
+  &_countDownItemText
+  {
+    @include typographyBuilder(600, 16, 24);
+    color: $color_black_text
+  }
+
+  &_openOrderDate,
+  &_openOrderTime,
+  &_openOrderTimeout
+  {
+    @include flex(row, center, flex-start);
+    @include typographyBuilder(600, 12, 16);
+    color: $color_black_text;
+    border: 1px solid $color_light;
+    padding: 12px;
+  }
+
+  &_openOrderDate
+  {
+    margin-right: 10px;
+  }
+
+  &_openOrderDateIcon,
+  &_openOrderTimeIcon
+  {
+    width: 18px;
+    height: 18px;
+    display: block;
+    margin-right: 12px;
+    background-repeat: no-repeat;
+  }
+
+  &_openOrderDateIcon
+  {
+    background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.75 2.25H15.75C15.9489 2.25 16.1397 2.32902 16.2803 2.46967C16.421 2.61032 16.5 2.80109 16.5 3V15C16.5 15.1989 16.421 15.3897 16.2803 15.5303C16.1397 15.671 15.9489 15.75 15.75 15.75H2.25C2.05109 15.75 1.86032 15.671 1.71967 15.5303C1.57902 15.3897 1.5 15.1989 1.5 15V3C1.5 2.80109 1.57902 2.61032 1.71967 2.46967C1.86032 2.32902 2.05109 2.25 2.25 2.25H5.25V0.75H6.75V2.25H11.25V0.75H12.75V2.25ZM11.25 3.75H6.75V5.25H5.25V3.75H3V6.75H15V3.75H12.75V5.25H11.25V3.75ZM15 8.25H3V14.25H15V8.25Z' fill='%23E11900'/%3E%3C/svg%3E%0A");
+  }
+
+  &_openOrderTimeIcon
+  {
+    background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 16.5C4.85775 16.5 1.5 13.1423 1.5 9C1.5 4.85775 4.85775 1.5 9 1.5C13.1423 1.5 16.5 4.85775 16.5 9C16.5 13.1423 13.1423 16.5 9 16.5ZM9 15C10.5913 15 12.1174 14.3679 13.2426 13.2426C14.3679 12.1174 15 10.5913 15 9C15 7.4087 14.3679 5.88258 13.2426 4.75736C12.1174 3.63214 10.5913 3 9 3C7.4087 3 5.88258 3.63214 4.75736 4.75736C3.63214 5.88258 3 7.4087 3 9C3 10.5913 3.63214 12.1174 4.75736 13.2426C5.88258 14.3679 7.4087 15 9 15ZM9.75 9H12.75V10.5H8.25V5.25H9.75V9Z' fill='%23E11900'/%3E%3C/svg%3E%0A");
+  }
+
+  &_openOrderTimeout
+  {
+    @include flex(row, center, flex-start);
+    @include typographyBuilder(600, 12, 16);
+    color: $color_red;
+    border: 1px solid $color_light;
+    padding: 12px;
+    width: fit-content;
+    margin-bottom: 24px;
+  }
+
+  &_openOrderTimeoutDesc
+  {
+    display: none;
   }
 }
