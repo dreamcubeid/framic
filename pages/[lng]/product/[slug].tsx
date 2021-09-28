@@ -22,7 +22,7 @@ const Product: FC<any> = ({
   urlSite
 }) => {
   const i18n: any = useI18n()
-  const linksBreadcrumb = [`${i18n.t("header.home")}`, data?.details[0]?.name || ""]
+  const linksBreadcrumb = [`${i18n.t("header.home")}`, data?.published && data?.details[0]?.name || ""]
 
   return (
     <Layout
