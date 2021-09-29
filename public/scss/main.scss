@@ -8,8 +8,14 @@
   }
 }
 
-main{
+main
+{
   min-height: calc(100vh - 170px);
+}
+
+body
+{
+  @include useScrollbar();
 }
 
 .page-transition {

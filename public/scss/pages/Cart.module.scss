@@ -1,111 +1,40 @@
-// @import '../utils/variables';
-// @import "../components/Button.module.scss";
-// @import "../components/Form.module.scss";
-// @import "../components/Placeholder.module.scss";
-// @import "../pages/Products.module.scss";
-// @import '../components/CartDetail.module.scss';
-// @import '../components/OrderSummary.module.scss';
-// @import '../utils/_scrollbar.scss';
+@import '../utils/variables';
 
-// .cart
-// {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   flex-direction: column;
-//   margin-top: 19px;
+.cart
+{
+  &_container
+  {
+    @include useContainer();
+    @include flex(row, flex-start, space-between, true);
+    margin-bottom: 64px;
+  }
 
-//   h3
-//   {
-//     margin-bottom: 24px;
-//     font-family: "roboto-medium";
-//     font-weight: 500;
-//     font-size: 20px;
-//     line-height: 150%;
-//   }
+  &_title
+  {
+    @include typographyBuilder(600, 20, 24);
+    width: 100%;
+    color: $color_black_text;
+    margin-bottom: 22px;
+  }
 
-//   &_container
-//   {
-//     width: 30vw;
-//   }
+  &_detailsContainer,
+  &_orderSummaryContainer
+  {
+    @media screen and (max-width: $breakpoint_max_md) 
+    {
+      width: 100% !important;
+    }
+  }
 
-//   &_crossSellPaggination
-//   {
-//     position: absolute;
-//     top: 15px;
-//     right: 11px;
-//   }
+  &_detailsContainer
+  {
+    width: calc(((100% - 24px) / 12) * 8);    
+  }
 
-//   &_crossSellPagginationItem
-//   {
-//     background-color: transparent;
-//     border: 0;
-//   }
-
-//   &_crossSell
-//   {
-//     position: relative;
-//   }
-
-//   &_crossSellHeader
-//   {
-//     margin: 18px 0;
-//   }
-
-//   &_crossSellTitle
-//   {
-//     font-family: "roboto-medium";
-//     font-size: 16px;
-//     line-height: 16px;
-//   }
-
-//   &_cartFooter
-//   {
-//     margin-top: 18px;
-//   }
-
-//   [class*="cartBodyClassName"]
-//   {
-//     max-height: 400px;
-//     overflow-y: auto;
-//     @extend .scrollbar_main;
-//   }
-// }
-
-// .ordersummary
-// {
-//   &_expanded
-//   {
-//     span
-//     {
-//       color: $color_black !important;
-//     }
-//   }
-
-//   &_expandedPrice,
-//   &_expandedLabel
-//   {
-//     font-weight: normal;
-//     font-size: 14px;
-//     line-height: 22px;
-//   }
-//   &_expandedButton
-//   {
-//     &::before
-//     {
-//       background-color: $color_blue !important;
-//     }
-//   }
-// }
-
-// @media screen and (max-width: 575px) 
-// {
-//   .cart
-//   {
-//     &_container
-//     {
-//       width: 100%;
-//       padding: 0 1rem;
-//     }
-//   }
-// }
+  &_orderSummaryContainer
+  {
+    width: calc(((100% - 24px) / 12) * 4);
+    border: 1px solid red; //on progress
+    height: 100%;
+  }
+}
