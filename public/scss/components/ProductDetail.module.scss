@@ -43,8 +43,9 @@
     & > ul
     {
       @include absolute(0, auto, auto, 0);
+      @include useScrollbar();
       display: block;
-      padding: 0;
+      padding: 0 3px 0 0;
       list-style: none;
       overflow: auto;
       height: 100%;

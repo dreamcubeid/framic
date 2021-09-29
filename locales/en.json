@@ -90,7 +90,9 @@
     "price": "Price",
     "quantity": "Quantity",
     "shopNow": "Shop Now",
+    "shopAgain": "Add other products",
     "title": "Cart",
+    "total": "You have {TOTAL} items",
     "unknownSKU": "Unknown SKU",
     "unpublishedProduct": "Unpublish Product",
     "writeNoteToSeller": "Write Note To Seller"

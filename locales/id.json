@@ -89,7 +89,9 @@
     "price": "Harga",
     "quantity": "Kuantitas",
     "shopNow": "Belanja Sekarang",
+    "shopAgain": "Belanja lagi",
     "title": "Keranjang",
+    "total": "Terdapat {TOTAL} barang",
     "unknownSKU": "SKU tidak diketahui",
     "unpublishedProduct": "Produk tidak diterbitkan",
     "writeNoteToSeller": "Tulis catatan untuk penjual"
