@@ -5,18 +5,19 @@ import {
   useCart,
   useI18n
 } from '@sirclo/nexus'
+import dynamic from "next/dynamic";
 import Router from 'next/router'
 /* library template */
 import useWindowSize from 'lib/useWindowSize'
 /* component */
 import EmptyComponent from 'components/EmptyComponent/EmptyComponent'
 import Placeholder from 'components/Placeholder'
-import Popup from 'components/Popup/Popup'
 /* styles */
 import styles from 'public/scss/components/CartDetails.module.scss'
 import stylesForm from 'public/scss/components/Form.module.scss'
 import stylesButton from 'public/scss/components/Button.module.scss'
-
+/* dynamic import */
+const Popup = dynamic(() => import("components/Popup/Popup"));
 
 type CartDetailsComponentType = {
   lng: string
