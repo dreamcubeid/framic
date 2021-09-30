@@ -11,6 +11,18 @@
     {
       margin-right: 24px;
     }
+
+    @media screen and (max-width: $breakpoint_max_md) 
+    {
+      @include fixedHeight(162px);
+      margin-right: 16px;
+      margin-bottom: 12px;
+      
+      &:nth-child(even)
+      {
+        margin-right: 0 !important;
+      }
+    }
   }
 
   &_container
