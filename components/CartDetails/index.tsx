@@ -21,6 +21,7 @@ const Popup = dynamic(() => import("components/Popup/Popup"));
 
 type CartDetailsComponentType = {
   lng: string
+  getSKU: (SKUs: Array<string>) => void;
 }
 
 const classesCartDetails = {
@@ -46,15 +47,14 @@ const classesPlaceholder = {
 }
 
 const CartDetailsComponent: FC<CartDetailsComponentType> = ({
-  lng
+  lng,
+  getSKU
 }) => {
   const i18n: any = useI18n()
   const { data: dataCart } = useCart()
   const size: any = useWindowSize()
   const [showModalErrorAddToCart, setShowModalErrorAddToCart] = useState<boolean>(false)
   const [invalidMsg, setInvalidMsg] = useState<string>(null)
-  // const [SKUs, setSKUs] = useState<Array<string>>(null)
-
   const tooglePopupErrorAddToCart = () => setShowModalErrorAddToCart(!showModalErrorAddToCart)
 
   const generateTotalItems = (total: string = '0') => {
@@ -81,7 +81,7 @@ const CartDetailsComponent: FC<CartDetailsComponentType> = ({
 
       <CartDetails
         classes={classesCartDetails}
-        // getSKU={(SKUs: any) => setSKUs(SKUs)}
+        getSKU={(SKUs: Array<string>) => getSKU(SKUs)}
         itemRedirectPathPrefix="product"
         onErrorMsg={tooglePopupErrorAddToCart}
         onInvalidMsg={(msg) => setInvalidMsg(msg)}
