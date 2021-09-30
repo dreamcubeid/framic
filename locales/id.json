@@ -192,7 +192,7 @@
     "loading": "Menunggu"
   },
   "login": {
-    "clickHere": "Klik disini",
+    "clickHere": "Lupa kata sandi?",
     "dontHaveAccount": "Belum punya akun?",
     "email": "Email",
     "failed": "Gagal untuk login cek kembali email dan kata sandi anda",
@@ -200,10 +200,11 @@
     "insertEmail": "Masukan Email Anda",
     "insertPassword": " Masukan Kata Sandi Anda",
     "login": "Masuk",
+    "or": "atau masuk dengan",
     "password": "Kata Sandi",
     "register": "Daftar",
     "success": "Login berhasil",
-    "sso": "dengan {SSO_PROVIDER}",
+    "sso": "{SSO_PROVIDER}",
     "title": "Masuk",
     "toRegister": "Daftar",
     "verifyLoginAttempt": "Mohon verifikasi bahwa anda adalah manusia!",

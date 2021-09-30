@@ -1,268 +1,120 @@
-// @import '../utils/variables';
-// @import "../components/Button.module.scss";
-// @import "../components/Form.module.scss";
-// @import "../components/Password.module.scss";
-// @import "../components/Popup.module.scss";
+@import '../utils/variables';
+@import "../components/Button.module.scss";
 
-// .login
-// {
-//   $this: &;
+.login
+{
+  &_wrapper
+  {
+    @include useContainer();
+    margin-bottom: 64px;
+  }
 
-//   &_wrapper
-//   {
-//     position: relative;
-//     min-height: 100vh;
-//   }
+  &_container
+  {
+    @include flex(column, flex-start, flex-start);
+    max-width: 519px;
+    margin: auto;
 
-//   &_item
-//   {
-//     position: relative;
-//     margin: 0;
-//     padding: 0;
+    & > *
+    {
+      width: 100%;
+    }
+  }
 
-//     width: 100%;
+  &_title
+  {
+    @include typographyBuilder(600, 20, 24);
+    color: $color_black_text;
+    margin-bottom: 34px;
+    order: 1;
+  }
 
-//     & + .login_item
-//     {
-//       margin-top: 12px;
-//     }
+  &_formContainer
+  {
+    order: 2;
+  }
 
-//     &__title
-//     {
-//       border: none;
-//       margin-bottom: calc(33px - 12px);
+  &_footer
+  {
+    order: 3;
+    color: $color_white;
+    position: relative;
+    height: 54px;
+    margin: 12px 0;
 
-//       h1, h2, h3, h4, h5, h6, p
-//       {
-//         font-size: 24px;
-//         font-family: "roboto-medium";
-//       }
-      
-//       span
-//       {
-//         font-size: 14px;
-//         color: $color_gray_semi_dark;
-//       }
-//     }
+    & > a
+    {
+      @extend .btn_secondaryLong;
+      position: absolute;
+      top: 0;
+      background-color: $color_white;
+      text-decoration: none;
+    }
+  }
 
-//     &__link
-//     {
-//       font-size: 16px;
+  &_forgotPassword
+  {
+    order: 4;
+    color: $color_white;
+    position: relative;
+    height: 54px;
 
-//       a
-//       {
-//         &:link,
-//         &:visited,
-//         &:hover,
-//         &:focus,
-//         &:active
-//         {
-//           color: $color_blue;
-//           text-decoration: none;
-//         }
+    & > span 
+    {
+      display: block;
+      position: absolute;
+      width: 100%;
+      top: 0;
 
-//         &:hover,
-//         &:focus,
-//         &:active
-//         {
-//           text-decoration: underline;
-//         }
-//       }
-//     }
+      & > a
+      {
+        @extend .btn_textLong;
+        background-color: $color_white;
+        text-decoration: none;
+      }
+    }
+  }
 
-//     &__form
-//     {
-//       .sirclo_form_row
-//       {
-//         label
-//         {
-//           color: $color_gray_dark;
+  &_otherLoginContainer
+  {
+    order: 5;  
+    margin-top: 24px;
+  }
 
-//           span
-//           {
-//             margin-left: 4px;
-//             color: $color_red;
-//           }
-//         }
-  
-//         .form-control,
-//         input[type="text"],
-//         input[type="email"],
-//         input[data-identity="input-password"],
-//         input[data-identity="confirm-password"]
-//         {
-//           border-color: $color_gray_primary;
-  
-//           &::-webkit-input-placeholder
-//           {
-//             color: $color_gray_semi_dark !important;
-//             opacity: 1 !important;
-//           }
-  
-//           &:-ms-input-placeholder
-//           {
-//             color: $color_gray_semi_dark !important;
-//             opacity: 1 !important;
-//           }
-  
-//           &::-moz-placeholder
-//           {
-//             color: $color_gray_semi_dark !important;
-//             opacity: 1 !important;
-//           }
-  
-//           &:-moz-placeholder
-//           {
-//             color: $color_gray_semi_dark !important;
-//             opacity: 1 !important;
-//           }
-//         }
+  &_hideIcon,
+  &_viewIcon
+  {
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 
-//         button[data-identity="show-password"],
-//         button[data-identity="show-confirm-password"]
-//         {
-//           display: flex;
-//           flex-direction: row;
-//           align-items: center;
-//           justify-content: center;
-//           flex-wrap: nowrap;
-//           top: 0;
-//           right: 1rem;
-//           bottom: 0;
-//           height: 100%;
+  &_hideIcon
+  {
+    @include fixedSize(16px);
+    background-image: url("data:image/svg+xml,%0A%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 0.5C12.1423 0.5 15.5 3.85775 15.5 8C15.5 12.1423 12.1423 15.5 8 15.5C3.85775 15.5 0.5 12.1423 0.5 8C0.5 3.85775 3.85775 0.5 8 0.5ZM8 2C6.4087 2 4.88258 2.63214 3.75736 3.75736C2.63214 4.88258 2 6.4087 2 8C2 9.5913 2.63214 11.1174 3.75736 12.2426C4.88258 13.3679 6.4087 14 8 14C9.5913 14 11.1174 13.3679 12.2426 12.2426C13.3679 11.1174 14 9.5913 14 8C14 6.4087 13.3679 4.88258 12.2426 3.75736C11.1174 2.63214 9.5913 2 8 2ZM8 4.25C8.78944 4.2503 9.55865 4.49973 10.198 4.96275C10.8374 5.42578 11.3144 6.07878 11.561 6.82872C11.8075 7.57867 11.8112 8.3873 11.5713 9.13942C11.3314 9.89153 10.8603 10.5488 10.2251 11.0175C9.58984 11.4862 8.82289 11.7425 8.03349 11.7498C7.24408 11.7572 6.47249 11.5152 5.82864 11.0584C5.18479 10.6016 4.70153 9.95325 4.4477 9.20573C4.19388 8.45821 4.18243 7.64965 4.415 6.89525C4.59044 7.28728 4.89521 7.60717 5.27829 7.80137C5.66138 7.99557 6.09954 8.05231 6.51946 7.96209C6.93938 7.87187 7.31557 7.64017 7.58508 7.30575C7.85459 6.97133 8.00107 6.5545 8 6.125C8.0001 5.76385 7.8959 5.41036 7.69992 5.10701C7.50394 4.80366 7.22452 4.56336 6.89525 4.415C7.24475 4.30775 7.61525 4.25 8 4.25Z' fill='%23333333'/%3E%3C/svg%3E"); 
+  }
 
-//           color: $color_gray_semi_dark;
+  &_viewIcon
+  {
+    @include fixedSize(17px);
+    background-image: url("data:image/svg+xml,%0A%3Csvg width='18' height='11' viewBox='0 0 18 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.00658 10.0865L5.55833 9.69802L6.14858 7.49377C5.26506 7.16792 4.44392 6.69304 3.72083 6.08977L2.10608 7.70527L1.04483 6.64402L2.66033 5.02927C1.74839 3.93709 1.13565 2.62684 0.88208 1.22677L2.35808 0.95752C2.92733 4.10902 5.68433 6.50002 9.00008 6.50002C12.3151 6.50002 15.0728 4.10902 15.6421 0.95752L17.1181 1.22602C16.8649 2.62628 16.2524 3.9368 15.3406 5.02927L16.9553 6.64402L15.8941 7.70527L14.2793 6.08977C13.5562 6.69304 12.7351 7.16792 11.8516 7.49377L12.4418 9.69877L10.9936 10.0865L10.4026 7.88152C9.47434 8.04058 8.52582 8.04058 7.59758 7.88152L7.00658 10.0865Z' fill='%23333333'/%3E%3C/svg%3E%0A");
+  }
 
-//           &:hover
-//           {
-//             color: $color_gray_text;
-//           }
-//         }
-//       }
-
-//       [class*="passwordValidation"]
-//       {
-//         margin-bottom: 0 !important;
-
-//         & > span
-//         {
-//           display: block;
-//           position: relative;
-//           margin-bottom: 1rem;
-
-//           &:empty
-//           {
-//             margin-bottom: 0;
-//           }
-//         }
-
-//         & + [class*="formPassword"]
-//         {
-//           margin-top: 2rem;
-//         }
-//       }
-//     }
-
-//     &__sso
-//     {
-//       display: block !important;
-//       position: relative;
-//       margin: 0 0 12px;
-//       padding: 0;
-//       text-align: center;
-
-//       label
-//       {
-//         position: relative;
-//         padding: 28px 0;
-//         margin: 0 0 -12px;
-
-//         span
-//         {
-//           background-color: white;
-//           padding: 0 12px;
-//           z-index: 2;
-//           color: $color_gray_text;
-//           font-size: 11px;
-//           font-style: normal;
-//         }
-
-//         &::before
-//         {
-//           content: "";
-//           display: block;
-//           position: absolute;
-//           top: 50%;
-//           left: 0;
-//           right: 0;
-//           transform: translateY(-50%);
-//           width: 100%;
-//           height: 1px;
-//           background: #E2E5E7;
-//         }
-//       }
-//     }
-
-//     &__ssoButton
-//     {
-//       display: flex;
-//       align-items: center;
-//       justify-content: center;
-//       font-family: "roboto-medium" !important;
-//       font-size: 13px !important;
-//       font-weight: 400 !important;
-//       color: #444444 !important;
-//       margin: 0 auto !important;
-//       width: 68%;
-//       height: 40px;
-//       box-shadow: 0 0 0 transparent !important;
-//       border: solid 1px $color_gray_primary !important;
-//       background-color: $color_white;
-//       border-radius: 4px !important;
-//       overflow: hidden;
-
-//       & > div
-//       {
-//         margin-right: 0 !important;
-//       }
-
-//       &[class$='metro']
-//       {
-//         margin-top: 12px !important;
-  
-//         &::before
-//         {
-//           content: "";
-//           width: 18px;
-//           height: 18px;
-//           margin-right: 10px;
-//           background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0)'%3E%3Cpath d='M17.0064 0.000366243H0.992752C0.444397 0.000640901 -0.000137297 0.44545 3.181e-08 0.993942V17.0076C0.00027469 17.556 0.445084 18.0005 0.993576 18.0004H17.0064C17.5551 18.0005 17.9999 17.5558 18 17.0072C18 17.0071 18 17.0069 18 17.0068V0.993118C17.9997 0.444763 17.5549 0.000228914 17.0064 0.000366243Z' fill='%234267B2'/%3E%3Cpath d='M12.4277 18.0004V11.0394H14.7744L15.126 8.31482H12.4277V6.57953C12.4277 5.7925 12.6462 5.25623 13.7748 5.25623H15.2051V2.82591C14.9562 2.79282 14.1025 2.7188 13.109 2.7188C11.0348 2.7188 9.61523 3.98442 9.61523 6.30968V8.31482H7.27734V11.0394H9.61523V18.0004H12.4277Z' fill='white'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0'%3E%3Crect width='18' height='18' fill='white' transform='translate(0 0.000366211)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
-//        }
-//       }
-//     }
-//   }
-
-//   &_label
-//   {
-//     &__header
-//     {
-//       margin: 0 0 24px;
-//       font-family: 'roboto-medium';
-//       font-style: normal;
-//       font-weight: 500;
-//       font-size: 14px;
-//       line-height: 16px;
-//     }
-
-//     &__required
-//     {
-//       color: $color_gray_dark;
-
-//       span
-//       {
-//         margin: 0 2px;
-//         color: $color_red;
-//       }
-//     }
-//   }
-// }
+  &_or
+  {
+    @include flex(row, center, space-between);
+    @include typographyBuilder(400, 12, 16);
+    color: $color_grey_light;
+    
+    &::after,
+    &::before
+    {
+      content: "";
+      display: block;
+      width: 30%;
+      height: 1px;
+      background-color: $color_light;
+    }
+  }
+}
