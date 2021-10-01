@@ -105,6 +105,12 @@
     & > div[class*="product_placeholder"]
     {
       @include fixedWidth(calc((100% - 72px) / 4));
+
+      @media screen and (max-width: $breakpoint_max_md) 
+      {
+        @include fixedWidth(calc((100% - 16px) / 2));
+        margin-right: 16px;
+      }
     }
   }
 

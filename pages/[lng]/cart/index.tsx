@@ -1,5 +1,5 @@
 /* library package */
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { parseCookies } from 'lib/parseCookies'
 import { useI18n } from '@sirclo/nexus'
@@ -9,6 +9,7 @@ import { useBrand } from 'lib/useBrand'
 import CartDetailsComponent from 'components/CartDetails'
 import Layout from 'components/Layout/Layout'
 import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
+import ProductsComponent from 'components/ProductsComponent'
 /* styles */
 import styles from 'public/scss/pages/Cart.module.scss'
 
@@ -18,6 +19,7 @@ const Cart: FC<any> = ({
   brand
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const i18n: any = useI18n()
+  const [SKUs, setSKUs] = useState<Array<string>>(null)
   const linksBreadcrumb = [`${i18n.t("header.home")}`, `${i18n.t("cart.title")}`]
 
   return (
@@ -28,17 +30,28 @@ const Cart: FC<any> = ({
       brand={brand}
     >
       <Breadcrumb links={linksBreadcrumb} lng={lng} />
+
       <div className={styles.cart_container}>
         <h3 className={styles.cart_title}>{i18n.t("cart.title")}</h3>
 
         <div className={styles.cart_detailsContainer}>
-          <CartDetailsComponent lng={lng} />
+          <CartDetailsComponent 
+            lng={lng} 
+            getSKU={setSKUs}
+          />
         </div>
 
         <div className={styles.cart_orderSummaryContainer}>
           //orderSummary Component
         </div>
       </div>
+
+      <ProductsComponent
+        type="recomendation"
+        i18n={i18n}
+        SKUs={SKUs}
+        lng={lng}
+      />
     </Layout>
   )
 }
