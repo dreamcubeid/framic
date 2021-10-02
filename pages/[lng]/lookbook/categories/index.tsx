@@ -1,15 +1,18 @@
+/* library package */
 import { FC } from 'react'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import Router from 'next/router'
+/* library template */
 import { Lookbook, isLookbookAllowed, useI18n } from '@sirclo/nexus'
 import { useBrand } from 'lib/useBrand'
 import useWindowSize from 'lib/useWindowSize'
+/* component */
 import Layout from 'components/Layout/Layout'
 import Placeholder from 'components/Placeholder'
 import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
-
-import styles from 'public/scss/pages/Lookbook.module.scss'
 import EmptyComponent from 'components/EmptyComponent/EmptyComponent'
+/* styles */
+import styles from 'public/scss/pages/Lookbook.module.scss'
 
 const classesLookbook = {
   containerClassName: styles.lookBook_container,
