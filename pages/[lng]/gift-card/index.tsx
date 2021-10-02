@@ -1,18 +1,22 @@
+/* library package */
 import { FC } from "react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { GiftCard, useI18n } from "@sirclo/nexus";
+/* library template */
 import { useBrand } from "lib/useBrand";
+/* component */
 import Layout from "components/Layout/Layout";
+import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
+/* styles */
 import styles from "public/scss/pages/GiftCard.module.scss";
+import stylesButton from 'public/scss/components/Button.module.scss'
+import stylesForm from 'public/scss/components/Form.module.scss'
 
 const classesGiftCard = {
-  containerClassName: `${styles.giftcard_item} ${styles.giftcard_item__form}`,
   inputContainerClassName: styles.sirclo_form_row,
-  labelClassName: styles.giftcard_label,
-  inputClassName: `form-control ${styles.sirclo_form_input}`,
-  buttonClassName: `btn mt-3
-    ${styles.btn_primary} ${styles.btn_long} 
-    ${styles.btn_full_width} ${styles.btn_center}`
+  labelClassName: styles.giftCard_label,
+  inputClassName: stylesForm.form_inputLong,
+  buttonClassName: `${stylesButton.btn_primaryLong} ${styles.giftCard_buttonContainer}`
 }
 
 const GiftCardPage: FC<any> = ({
@@ -20,8 +24,8 @@ const GiftCardPage: FC<any> = ({
   lngDict,
   brand
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-
   const i18n: any = useI18n()
+  const linksBreadcrumb = [i18n.t("header.home"), i18n.t("giftCard.title")]
 
   return (
     <Layout
@@ -31,21 +35,18 @@ const GiftCardPage: FC<any> = ({
       brand={brand}
       titleHeader={i18n.t("giftCard.title")}
     >
-      <section className={styles.giftcard_wrapper}>
-        <div className="container">
-          <div className="row">
-            <div className="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 d-flex flex-column align-items-start justify-content-start flex-nowrap">
-              <div className={styles.giftcard_header}>
-                <h1>{i18n.t("giftCard.title")}</h1>
-                <p>{i18n.t("giftCard.desc")}</p>
-              </div>
-              <GiftCard
-                classes={classesGiftCard}
-              />
-            </div>
+      <div className={styles.giftCard_container}>
+        <Breadcrumb links={linksBreadcrumb} lng={lng} />
+        <div>
+          <div className={styles.giftCard_form}>
+            <h4>{i18n.t("giftCard.title")}</h4>
+            <p className={styles.giftCard_content}>{i18n.t("giftCard.desc")}</p>
+            <GiftCard
+              classes={classesGiftCard}
+            />
           </div>
         </div>
-      </section>
+      </div>
     </Layout>
   )
 }
