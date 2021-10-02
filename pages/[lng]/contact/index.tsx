@@ -16,7 +16,7 @@ import stylesForm from 'public/scss/components/Form.module.scss'
 
 const classesContact = {
   mapClassName: styles.contact_map,
-  titleClassName: styles.contact_content,
+  titleClassName: 'd-none',
   inputClassName: stylesForm.form_inputLong,
   labelClassName: styles.contact_label,
   buttonContainerClassName: styles.contact_buttonContainer,
@@ -50,6 +50,7 @@ const ContactPage: FC<any> = ({
         <div>
           <div className={styles.contact_form}>
             <h4>{i18n.t('contact.title')}</h4>
+            <p className={styles.contact_content}>{i18n.t('contact.desc')}</p>
             <Contact
               classes={classesContact}
               isAddressDetail={false}

@@ -110,7 +110,8 @@
     "submit": "Submit",
     "submitError": "Failed send a message",
     "submitSuccess": "Success send a message",
-    "title": "Contact"
+    "title": "Contact",
+    "desc": ""
   },
   "coupon": {
     "apply": "Apply",
