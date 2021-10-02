@@ -19,19 +19,40 @@
     {
       width: 100%;
     }
+
+    & > div
+    {
+      &[class*="loginregister_ssoContainer"]
+      {
+        order: 5;  
+        margin-top: 24px;
+      }
+
+      &[class*="loginregister_inputFormContainer"]
+      {
+        order: 2; 
+      }
+
+      &[class*="loginregister_footer"]
+      {
+        order: 3; 
+      }
+    }
+    
   }
 
   &_title
   {
     @include typographyBuilder(600, 20, 24);
     color: $color_black_text;
-    margin-bottom: 34px;
+    margin-bottom: 10px;
     order: 1;
   }
 
   &_formContainer
   {
     order: 2;
+    margin-top: 24px;
   }
 
   &_footer
@@ -56,6 +77,7 @@
   {
     order: 4;
     color: $color_white;
+    font-size: 0;
     position: relative;
     height: 54px;
 
@@ -77,8 +99,7 @@
 
   &_otherLoginContainer
   {
-    order: 5;  
-    margin-top: 24px;
+    order: 5;
   }
 
   &_hideIcon,

@@ -13,6 +13,7 @@ $buttons: (
   @include flex(row, center, center);
   padding: 14px;
   border-radius: 2px;
+  cursor: pointer;
   
   &:focus
   {
