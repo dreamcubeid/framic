@@ -11,7 +11,7 @@ import Layout from 'components/Layout/Layout'
 import { GRAPHQL_URI } from 'components/Constants'
 import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
 import ProductDetailComponent from 'components/ProductDetailComponent'
-
+import ProductsComponent from 'components/ProductsComponent'
 
 const Product: FC<any> = ({
   lng,
@@ -31,12 +31,23 @@ const Product: FC<any> = ({
       lngDict={lngDict}
       brand={brand}
     >
-      <Breadcrumb links={linksBreadcrumb} lng={lng} />
+      <Breadcrumb
+        links={linksBreadcrumb}
+        lng={lng}
+      />
+
       <ProductDetailComponent
         slug={slug}
         lng={lng}
         data={data}
         urlSite={urlSite}
+      />
+
+      <ProductsComponent
+        type="recomendation"
+        slug={slug}
+        i18n={i18n}
+        lng={lng}
       />
     </Layout>
   )

@@ -3,6 +3,7 @@ import { FC, useState } from 'react'
 /* component */
 import ProductsWidget from './ProductsWidget'
 import ProductsList from './ProductsList'
+import ProductRecomendation from './ProductRecomendation'
 /* styles */
 import styles from 'public/scss/components/Product.module.scss'
 
@@ -10,11 +11,13 @@ export type ProductsComponentType = {
   type: "list" | "widget" | "recomendation"
   i18n: any
   lng: any
+  slug?: string | string[]
+  SKUs?: Array<string>
   collectionSlug?: string
   tagName?: string
   itemPerPage?: number
   filterProduct?: any
-  getTotalProduct?:any
+  getTotalProduct?: any
 }
 
 const classesProducts = {
@@ -43,6 +46,8 @@ const ProductsComponent: FC<ProductsComponentType> = ({
   type = "list",
   i18n,
   tagName,
+  slug,
+  SKUs,
   itemPerPage = 4,
   collectionSlug,
   filterProduct,
@@ -52,7 +57,7 @@ const ProductsComponent: FC<ProductsComponentType> = ({
   const [totalProducts, settotalProducts] = useState(null)
 
   if (totalProducts === 0 && type !== "list") return <></>
-
+  
   return type === "list" ? (
     <ProductsList
       i18n={i18n}
@@ -73,9 +78,14 @@ const ProductsComponent: FC<ProductsComponentType> = ({
       setTotalProducts={settotalProducts}
     />
   ) : type === "recomendation" ? (
-    <div>
-
-    </div>
+    <ProductRecomendation
+      i18n={i18n}
+      slug={slug}
+      SKUs={SKUs}
+      classProducts={classesProducts}
+      classPlaceholder={classesPlaceholderProducts}
+      setTotalProducts={settotalProducts}
+    />
   ) : (<></>)
 }
 
