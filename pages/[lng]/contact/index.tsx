@@ -1,16 +1,18 @@
+/* library package */
 import { FC } from 'react'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { useI18n, Contact, Widget, isEnquiryAllowed } from '@sirclo/nexus'
-import Layout from 'components/Layout/Layout'
+/* library template */
 import { useBrand } from 'lib/useBrand'
 import { toast } from 'react-toastify'
-
+/* component */
+import Layout from 'components/Layout/Layout'
+import Placeholder from 'components/Placeholder'
+import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
+/* styles */
 import styles from 'public/scss/pages/Contact.module.scss'
 import stylesButton from 'public/scss/components/Button.module.scss'
 import stylesForm from 'public/scss/components/Form.module.scss'
-
-import Placeholder from 'components/Placeholder'
-import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
 
 const classesContact = {
   mapClassName: styles.contact_map,
