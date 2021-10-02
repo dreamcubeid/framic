@@ -1,3 +1,59 @@
+@import '../utils/variables';
+
+.contact
+{
+  &_container
+  {
+    @include useContainer();
+    @include flex(row, center, center);
+    width: 100%;
+    margin-top: 22px;
+    position: relative;
+  }
+
+  &_form
+  {
+    width: calc(((100% - 24px) / 12) * 6);
+    position: relative;
+    z-index: 10000;
+    padding-bottom: 224px;
+
+    @media screen and (max-width: $breakpoint_max_md) 
+    {
+      width: 100%;
+    }
+  }
+
+  &_content
+  {
+    color: $color_grey;
+    @include typographyBuilder(400, 12, 16);
+    margin: 10px 0 0;
+  }
+
+  &_label
+  {
+    color: $color_grey;
+    margin: 24px 0 8px 0;
+  }
+
+  &_map
+  {
+    & > div > div:first-child 
+    {
+      height: 173px !important; 
+      bottom: 24px;
+    }
+  }
+
+  &_buttonContainer
+  {
+    padding: 24px 0;
+    border-bottom: 1px solid $color_light;
+  }
+  
+}
+
 // @import "../components/Button.module.scss";
 // @import "../components/Form.module.scss";
 
