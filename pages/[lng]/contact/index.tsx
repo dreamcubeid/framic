@@ -20,7 +20,7 @@ const classesContact = {
   inputClassName: stylesForm.form_inputLong,
   labelClassName: styles.contact_label,
   buttonContainerClassName: styles.contact_buttonContainer,
-  buttonClassName: `${stylesButton.btn_primaryLong}`,
+  buttonClassName: stylesButton.btn_primaryLong,
   widgetClassName: styles.contact_widget,
 };
 
