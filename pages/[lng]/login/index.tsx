@@ -11,7 +11,7 @@ import {
   useGoogleAuth,
   useFacebookAuth,
   useWhatsAppOTPSetting
-} from 'lib/useSingleSignOn'
+} from 'lib/useAuthMethod'
 /* component */
 import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
 import Layout from 'components/Layout/Layout'
