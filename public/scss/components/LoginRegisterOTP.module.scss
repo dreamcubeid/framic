@@ -7,6 +7,14 @@
     display: none;
   }
 
+  &_title
+  {
+    @include typographyBuilder(600, 20, 24);
+    color: $color_black_text;
+    margin-bottom: 10px;
+    order: 1;
+  }
+
   &_ssoContainer
   {
     display: block;

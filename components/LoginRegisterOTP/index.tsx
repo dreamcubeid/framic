@@ -18,7 +18,7 @@ type LoginRegisterOTPPropsType = {
   hasOtp: IncomingMessage
   hasGoogleAuth: IncomingMessage
   hasFacebookAuth: IncomingMessage
-  title?: any
+  title?: string
   type: "login" | "register"
   brand: any
 };
@@ -92,7 +92,9 @@ const LoginRegisterOTP: FC<LoginRegisterOTPPropsType> = ({
 
   return (
     <>
-      {(step === steps.email || step === steps.wa) && title}
+      {((step === steps.email || step === steps.wa) && title) &&
+        <h3 className={styles.loginregister_title}>{title}</h3>
+      }
 
       {step === steps.email || !hasOtp ?
         children

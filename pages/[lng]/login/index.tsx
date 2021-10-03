@@ -56,7 +56,7 @@ const LoginPage: FC<any> = ({
             type="login"
             hasOtp={hasOtp}
             brand={brand}
-            title={<h3 className={styles.login_title}>{i18n.t("login.title")}</h3>}
+            title={i18n.t("login.title")}
             hasGoogleAuth={hasGoogleAuth}
             hasFacebookAuth={hasFacebookAuth}
           >
