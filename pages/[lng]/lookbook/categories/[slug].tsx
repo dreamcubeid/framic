@@ -33,13 +33,13 @@ const LookbookSinglePage: FC<any> = ({
   brand,
   urlSite
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const i18n: any = useI18n();
-  const router = useRouter();
-  const size = useWindowSize();
-  const LookbookAllowed = isLookbookAllowed();
+  const i18n: any = useI18n()
+  const router = useRouter()
+  const size = useWindowSize()
+  const LookbookAllowed = isLookbookAllowed()
   const linksBreadcrumb = [i18n.t("header.home"), i18n.t("blog.title")]
 
-  const [title, setTitle] = useState<string>('');
+  const [title, setTitle] = useState<string>('')
 
   return (
     <Layout
@@ -51,7 +51,7 @@ const LookbookSinglePage: FC<any> = ({
     >
       <div>
         <Breadcrumb links={linksBreadcrumb} lng={lng} />
-        <h1 className={styles.lookBook_title}>Lookbook</h1>
+        <h1 className={styles.lookBook_title}>{title}</h1>
         <LookbookSingle
           classes={classesLookbookSingle}
           slug={slug}
