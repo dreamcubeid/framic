@@ -8,10 +8,6 @@ import Loader from "components/Loader/Loader";
 import { useBrand } from "lib/useBrand";
 import { toast } from "react-toastify";
 import styles from "public/scss/pages/PaymentNotif.module.scss";
-import {
-  ChevronUp,
-  ChevronDown,
-} from "react-feather";
 
 const classesPaymentConfirmation = {
   paymentConfirmationDivClassName: styles.paymentNotif_form,
@@ -71,10 +67,10 @@ const PaymentConfirmationPage: FC<any> = ({
               <PaymentConfirmation
                 orderIDProps={orderID}
                 classes={classesPaymentConfirmation}
-                orderDetailIcon={{
-                  close: <ChevronUp/>,
-                  open: <ChevronDown />
-                }}
+                // orderDetailIcon={{
+                //   close: <ChevronUp/>,
+                //   open: <ChevronDown />
+                // }}
                 onErrorMsg={(msg) => toast.error(msg)}
                 onSuccessMsg={(msg) => toast.success(msg)}
                 loadingComponent={<Loader color="text-light" />}

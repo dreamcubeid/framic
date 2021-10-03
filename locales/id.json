@@ -13,13 +13,10 @@
     "completedOrderNote": "Dengan melakukan klik Selesai, dana pembelian akan diteruskan ke Penjual",
     "completedOrderTitle": "Selesaikan Pesanan",
     "completedSuccess": "Sukses Selesaikan Pesanan",
-    "delivered": "Pesanan Tiba",
-    "readyToShip": "Pesanan Dikemas",
-    "returned": "Dikembalikan",
-    "shipped": "Dikirim",
     "confirming": "Menunggu konfirmasi",
     "confirmNewPassword": "Konfirmasi Password Baru",
     "confirmPayment": "Konfirmasi Pembayaran",
+    "delivered": "Pesanan Tiba",
     "editAccount": "Sunting Akun",
     "fetchComplete": "Berhasil mengambil",
     "hallo": "Halo",
@@ -44,7 +41,11 @@
     "placedOn": "Ditempatkan pada",
     "point": "Poin",
     "points": "Points",
+    "readyToShip": "Pesanan Dikemas",
+    "returned": "Dikembalikan",
+    "shipped": "Dikirim",
     "save": "Simpan Perubahan",
+    "settingNotification": "Notifikasi",
     "sessionExpired": "Sesi anda telah usai",
     "shippingDetail": "Detil pengiriman",
     "shippingMethod": "Metode Pengiriman",
@@ -54,7 +55,9 @@
     "youGot": "Anda punya",
     "youHave": "Anda memiliki",
     "cantFindYourOrder": "Tidak menemukan pesanan anda?",
-    "searchHere": "Cari disini"
+    "searchHere": "Cari disini",
+    "whatsapp": "Masuk dengan Whatsapp",
+    "withEmail": "Masuk dengan Email"
   },
   "article": {
     "categories": "Bantuan"
@@ -192,7 +195,7 @@
     "loading": "Menunggu"
   },
   "login": {
-    "clickHere": "Klik disini",
+    "clickHere": "Lupa kata sandi?",
     "dontHaveAccount": "Belum punya akun?",
     "email": "Email",
     "failed": "Gagal untuk login cek kembali email dan kata sandi anda",
@@ -200,14 +203,17 @@
     "insertEmail": "Masukan Email Anda",
     "insertPassword": " Masukan Kata Sandi Anda",
     "login": "Masuk",
+    "or": "atau masuk dengan",
     "password": "Kata Sandi",
     "register": "Daftar",
     "success": "Login berhasil",
-    "sso": "dengan {SSO_PROVIDER}",
+    "sso": "{SSO_PROVIDER}",
     "title": "Masuk",
     "toRegister": "Daftar",
     "verifyLoginAttempt": "Mohon verifikasi bahwa anda adalah manusia!",
-    "welcome": "Selamat datang kembali. Masuk menggunakan email dan kata sandi Anda."
+    "welcome": "Selamat datang kembali. Masuk menggunakan email dan kata sandi Anda.",
+    "whatsapp": "Whatsapp",
+    "withEmail": "Email"
   },
   "lookbook": {
     "errorButton": "Kembali ke Halaman Awal",
@@ -266,6 +272,13 @@
     "transactionDate": "Tanggal transaksi",
     "writeReview": "Tulis ulasan",
     "yourRating": "Peringkat anda"
+  },
+  "notificationOptIn": {
+    "checkboxLabel": "Saya ingin menerima status pesanan melalui media sosial",
+    "continuePayment": "Lanjutkan ke pembayaran",
+    "description": "Anda akan mendapatkan notifikasi pesanan Anda melalui nomor whatsapp di bawah ini",
+    "proceedToPayment": "Proses pembayaran",
+    "title": "Perbarui melalui Media Sosial "
   },
   "orderSummary": {
     "allEmpty": "Semua kolom tidak boleh kosong",
@@ -445,9 +458,12 @@
     "female": "Wanita",
     "firstName": "Nama Depan",
     "firstNamePlaceholder": "Masukan nama depan anda",
+    "fullName": "Nama Lengkap",
+    "fullNamePlaceholder": "Masukan nama lengkap anda",
     "gender": "Jenis Kelamin",
     "genderOption": "Pilih Jenis Kelamin",
-    "inputCity": "(ketik nama kecamatan / wilayah anda)",
+    "haveAccount": "Sudah punya akun?",
+    "inputCity": "ketik nama kecamatan / wilayah anda",
     "lastName": "Nama Belakang",
     "lastNamePlaceholder": "Masukan nama belakang anda",
     "location": "Pin Lokasi",
@@ -463,6 +479,7 @@
     "mobilePhone": "Telepon Genggam",
     "mobilePhonePlaceholder": "Masukan nomor telepon genggam anda",
     "newAccount": "Daftar",
+    "or": "Atau daftar dengan",
     "password": "Kata Sandi",
     "passwordHasDigit": "Memiliki angka",
     "passwordHasLowerCase": "Memiliki huruf kecil",
@@ -479,6 +496,7 @@
     "promo": "Masukan info kredensial Anda untuk masuk",
     "register": "Daftar",
     "required": "harus diisi",
+    "sso": "{SSO_PROVIDER}",
     "success": "Berhasil mendaftar",
     "successConfPassword": "Berhasil menyimpan kata sandi!",
     "title": "Daftar",
@@ -497,6 +515,11 @@
     "ratingDescending": "Penilaian tertinggi",
     "submittedAscending": "Ulasan terlama",
     "submittedDescending": "Ulasan terbaru"
+  },
+  "settingNotification": {
+    "title": "Notifikasi",
+    "description": "Anda akan mendapatkan semua notifikasi dari toko ini sesuai dengan media yang Anda aktifkan di bawah ini",
+    "emailDescription": "Semua notifikasi melalui email tidak dapat diubah"
   },
   "shipping": {
     "allocating": "Sedang mencari kurir",
@@ -590,5 +613,41 @@
     "summaryTitle": "Kamu belanja apa nih?",
     "thanks": "Pesanan telah dibuat",
     "yourOrderID": "Nomor pesanan anda"
+  },
+  "whatsAppOTPInput": {
+    "andConjunction": "serta",
+    "changeNumber": "Ubah nomor",
+    "chooseAccount": "Pilih akun",
+    "chooseAnyAccount": "Pilih salah satu akun",
+    "chooseAnyAccountToLogin": "Anda memiliki beberapa akun yang terdaftar, silakan pilih salah satu untuk masuk",
+    "continue": "Masuk",
+    "disclaimer": "Dengan klik 'Masuk' berarti anda setuju menerima pemberitahuan melalui Whatsapp dan mengetahui",
+    "expiredOTP": "Kode OTP kadaluarsa, silakan kirim ulang kode OTP",
+    "from": "dari",
+    "inputPlaceholder": "0810 0000 0000",
+    "inputWhatsApp": "Masukan nomor Whatsapp Anda untuk masuk ke toko kami",
+    "insertVerificationCode": "Masukkan kode verifikasi (OTP)",
+    "loginWithAnotherMethod": "Masuk menggunakan metode lain",
+    "noWhatsApp": "Tidak memiliki whatsapp?",
+    "notReceivedMessage": "Belum terima pesan?",
+    "otpSent": "Kami telah mengirimkan kode verifikasi melalui nomor Whatsapp ",
+    "privacyPolicy": "Kebijakan Privasi",
+    "resend": "Kirim ulang kode OTP",
+    "requestOTPTimeOut": "Kode OTP sudah dikirim, harap tunggu 1 menit untuk kirim ulang kode OTP",
+    "seconds": "detik",
+    "sendOTP": "Kirim Kode OTP",
+    "termsAndCondition": "Syarat & Ketentuan",
+    "verifyYourNumber": "Verifikasi Nomor Anda",
+    "welcome": "Selamat datang",
+    "whatsappNumber": "Nomor Whatsapp",
+    "willSendOTP": "Kami Akan mengirimkan kode verifikasi melalui nomor WhatsApp",
+    "wrongOTP": "Kode OTP salah"
+  },
+  "whatsAppOTPInputRegis": {
+      "continue": "Daftar",
+      "disclaimer": "Dengan klik 'Daftar' berarti anda setuju menerima pemberitahuan melalui Whatsapp dan mengetahui",
+      "loginWithAnotherMethod": "Daftar menggunakan metode lain",
+      "chooseAnyAccountToLogin": "Anda memiliki beberapa akun yang terdaftar, silakan pilih salah satu untuk daftar",
+      "inputWhatsApp": "Masukan nomor Whatsapp Anda untuk daftar ke toko kami"
   }
 }
