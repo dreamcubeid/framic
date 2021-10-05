@@ -36,12 +36,12 @@ const classesRegister = {
   verificationContainerClassName: styles.register_verificationContainer,
   labelRequiredClassName: stylesForm.form_label,
 
-   // Password Field
-   passwordStrengthBarContainerClassName: stylesPassword.passwordStrength,
-   passwordStrengthBarClassName: stylesPassword.passwordStrength_bar,
-   passwordStrengthLabelClassName: stylesPassword.passwordStrength_label,
-   passwordCriteriaClassName: stylesPassword.passwordStrength_criteriaItem,
-   passwordCriteriaListClassName: stylesPassword.passwordStrength_criteria,
+  // Password Field
+  passwordStrengthBarContainerClassName: stylesPassword.passwordStrength,
+  passwordStrengthBarClassName: stylesPassword.passwordStrength_bar,
+  passwordStrengthLabelClassName: stylesPassword.passwordStrength_label,
+  passwordCriteriaClassName: stylesPassword.passwordStrength_criteriaItem,
+  passwordCriteriaListClassName: stylesPassword.passwordStrength_criteria,
 }
 
 const RegisterPage: FC<any> = ({
