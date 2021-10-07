@@ -99,8 +99,8 @@ export const getServerSideProps: GetServerSideProps = async ({
     props: {
       lng: params.lng,
       lngDict,
-      brand: brand || '',
-    },
+      brand: brand || ''
+    }
   }
 }
 
