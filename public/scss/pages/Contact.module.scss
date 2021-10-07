@@ -19,7 +19,7 @@
   {
     width: calc(((100% - 24px) / 12) * 6);
     position: relative;
-    z-index: 10000;
+    z-index: 10;
     padding-bottom: 224px;
 
     @media screen and (max-width: $breakpoint_max_md) 
