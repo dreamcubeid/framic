@@ -37,6 +37,7 @@
 
   &_label
   {
+    @include typographyBuilder(600, 12, 16);
     color: $color_grey;
     margin: 24px 0 8px 0;
   }
@@ -59,11 +60,19 @@
   &_title
   {
     @include typographyBuilder(400, 20, 24);
+    color: $color_black_text;
   }
 
   &_titleParent
   {
     display: none;
+  }
+
+  img,
+  video,
+  iframe
+  {
+    max-width: 100%;
   }
   
 }
