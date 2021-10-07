@@ -22,11 +22,11 @@ const classesContact = {
   buttonContainerClassName: styles.contact_buttonContainer,
   buttonClassName: stylesButton.btn_primaryLong,
   widgetClassName: styles.contact_widget,
-};
+}
 
 const classesPlaceholderContact = {
   placeholderList: styles.placeholderItem_contactWidget,
-};
+}
 
 const ContactPage: FC<any> = ({
   lng,
