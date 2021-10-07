@@ -1,31 +1,30 @@
 /* library package */
-import { FC } from "react";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { GiftCard, useI18n } from "@sirclo/nexus";
+import { FC } from 'react'
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import { GiftCard, useI18n } from '@sirclo/nexus'
 /* library template */
-import { useBrand } from "lib/useBrand";
+import { useBrand } from 'lib/useBrand'
 /* component */
-import Layout from "components/Layout/Layout";
+import Layout from 'components/Layout/Layout'
 import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
 /* styles */
-import styles from "public/scss/pages/GiftCard.module.scss";
+import styles from 'public/scss/pages/GiftCard.module.scss'
 import stylesButton from 'public/scss/components/Button.module.scss'
 import stylesForm from 'public/scss/components/Form.module.scss'
 
 const classesGiftCard = {
-  inputContainerClassName: styles.sirclo_form_row,
   labelClassName: styles.giftCard_label,
   inputClassName: stylesForm.form_inputLong,
-  buttonClassName: `${stylesButton.btn_primaryLong} ${styles.giftCard_buttonContainer}`
+  buttonClassName: `${stylesButton.btn_primaryLong} ${styles.giftCard_buttonContainer}`,
 }
 
 const GiftCardPage: FC<any> = ({
   lng,
   lngDict,
-  brand
+  brand,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const i18n: any = useI18n()
-  const linksBreadcrumb = [i18n.t("header.home"), i18n.t("giftCard.title")]
+  const linksBreadcrumb = [i18n.t('header.home'), i18n.t('giftCard.title')]
 
   return (
     <Layout
@@ -33,17 +32,15 @@ const GiftCardPage: FC<any> = ({
       lng={lng}
       lngDict={lngDict}
       brand={brand}
-      titleHeader={i18n.t("giftCard.title")}
+      titleHeader={i18n.t('giftCard.title')}
     >
       <div className={styles.giftCard_container}>
         <Breadcrumb links={linksBreadcrumb} lng={lng} />
         <div>
           <div className={styles.giftCard_form}>
-            <h4>{i18n.t("giftCard.title")}</h4>
-            <p className={styles.giftCard_content}>{i18n.t("giftCard.desc")}</p>
-            <GiftCard
-              classes={classesGiftCard}
-            />
+            <h4 className={styles.giftCard_title}>{i18n.t('giftCard.title')}</h4>
+            <p className={styles.giftCard_content}>{i18n.t('giftCard.desc')}</p>
+            <GiftCard classes={classesGiftCard} />
           </div>
         </div>
       </div>
@@ -53,13 +50,11 @@ const GiftCardPage: FC<any> = ({
 
 export const getServerSideProps: GetServerSideProps = async ({
   params,
-  req
+  req,
 }) => {
-  const { default: lngDict = {} } = await import(
-    `locales/${params.lng}.json`
-  )
+  const { default: lngDict = {} } = await import(`locales/${params.lng}.json`)
 
-  const brand = await useBrand(req);
+  const brand = await useBrand(req)
 
   return {
     props: {
@@ -70,4 +65,4 @@ export const getServerSideProps: GetServerSideProps = async ({
   }
 }
 
-export default GiftCardPage;
+export default GiftCardPage

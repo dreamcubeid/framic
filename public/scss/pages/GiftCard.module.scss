@@ -27,21 +27,27 @@
 
   &_content
   {
-    color: $color_grey;
     @include typographyBuilder(400, 12, 16);
+    color: $color_grey;
     margin: 10px 0 0;
   }
 
   &_label
   {
+    @include typographyBuilder(600, 12, 16);
     color: $color_grey;
     margin: 24px 0 8px 0;
-    font-size: 12px;
   }
 
   &_buttonContainer
   {
     margin: 24px 0;
+  }
+
+  &_title
+  {
+    @include typographyBuilder(600, 20, 24);
+    color: $color_black_text;
   }
   
 }
