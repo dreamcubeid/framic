@@ -16,7 +16,7 @@ import stylesForm from 'public/scss/components/Form.module.scss'
 
 const classesContact = {
   mapClassName: styles.contact_map,
-  titleClassName: 'd-none',
+  titleClassName: styles.contact_titleParent,
   inputClassName: stylesForm.form_inputLong,
   labelClassName: styles.contact_label,
   buttonContainerClassName: styles.contact_buttonContainer,
@@ -25,7 +25,7 @@ const classesContact = {
 };
 
 const classesPlaceholderContact = {
-  placeholderList: `${styles.placeholderItem} ${styles.placeholderItem_contactWidget}`,
+  placeholderList: styles.placeholderItem_contactWidget,
 };
 
 const ContactPage: FC<any> = ({
@@ -49,8 +49,18 @@ const ContactPage: FC<any> = ({
         <Breadcrumb links={linksBreadcrumb} lng={lng} />
         <div>
           <div className={styles.contact_form}>
-            <h4>{i18n.t('contact.title')}</h4>
-            <p className={styles.contact_content}>{i18n.t('contact.desc')}</p>
+            <h4 className={styles.contact_title}>{i18n.t('contact.title')}</h4>
+            <Widget
+              pos="footer-3"
+              widgetClassName={styles.contact_content}
+              loadingComponent={
+                <Placeholder
+                  classes={classesPlaceholderContact}
+                  withList
+                  listMany={5}
+                />
+              }
+            />
             <Contact
               classes={classesContact}
               isAddressDetail={false}
@@ -74,8 +84,8 @@ const ContactPage: FC<any> = ({
         </div>
       </div>
     </Layout>
-  );
-};
+  )
+}
 
 export const getServerSideProps: GetServerSideProps = async ({
   req,
@@ -91,7 +101,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       lngDict,
       brand: brand || '',
     },
-  };
-};
+  }
+}
 
 export default ContactPage;
