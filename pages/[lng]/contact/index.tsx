@@ -104,4 +104,4 @@ export const getServerSideProps: GetServerSideProps = async ({
   }
 }
 
-export default ContactPage;
+export default ContactPage
