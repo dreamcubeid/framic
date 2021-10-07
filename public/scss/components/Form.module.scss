@@ -2,9 +2,23 @@
 
 .form
 {
+  &_label
+  {
+    @include typographyBuilder(600, 12, 16);
+    color: $color_grey;
+    margin-bottom: 8px;
+
+    span
+    {
+      color: $color_red;
+      margin-left: 3px;
+    }
+  }
+
   &_input
   {
     @include typographyBuilder(400, 16, 24);
+    display: block;
     max-width: 100%;
     color: $color_black;
     padding: 12px 16px;
@@ -36,6 +50,44 @@
     {
       @extend .form_input;
       width: 100%;
+    }
+  }
+
+  &_control
+  {
+    position: relative;
+    margin-bottom: 24px;
+
+    & > div
+    {
+      position: relative;
+    }
+
+    & > label
+    {
+      @extend .form_label;
+    }
+
+    input
+    {
+      @extend .form_inputLong;
+
+      &[type="password"] ~ button,
+      &[type="text"] ~ button
+      {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 0 17px;
+        height: 100%;
+        background-color: transparent;
+        border: transparent;
+
+        &:focus
+        {
+          outline: 0;
+        }
+      }
     }
   }
 }

@@ -4,6 +4,7 @@
     "accountDetails": "Account Details",
     "back": "Back to my account",
     "cancelled": "Cancelled",
+    "cantFindYourOrder": "Can't find your order?",
     "changePassword": "Change Password",
     "completed": "Completed",
     "completedFailed": "Failed to Complete Order",
@@ -44,7 +45,9 @@
     "readyToShip": "Ready to Ship",
     "returned": "Returned",
     "save": "Save Changes",
+    "searchHere": "Search here",
     "sessionExpired": "Your session is expired",
+    "settingNotification": "Notification",
     "shipped": "Shipped",
     "shippingDetail": "Shipping Detail",
     "shippingMethod": "Shipping Method",
@@ -53,9 +56,8 @@
     "viewInvoice": "View Invoice",
     "youGot": "You Got",
     "youHave": "You have",
-    "cantFindYourOrder": "Can't find your order?",
-    "searchHere": "Search here"
-
+    "whatsapp": "Whatsapp",
+    "withEmail": "Login with Email"
   },
   "article": {
     "categories": "Help"
@@ -110,8 +112,7 @@
     "submit": "Submit",
     "submitError": "Failed send a message",
     "submitSuccess": "Success send a message",
-    "title": "Contact",
-    "desc": ""
+    "title": "Contact"
   },
   "coupon": {
     "apply": "Apply",
@@ -194,7 +195,7 @@
     "loading": "Loading"
   },
   "login": {
-    "clickHere": "Click here",
+    "clickHere": "Forgot your password?",
     "dontHaveAccount": "Don't have any account yet?",
     "email": "Email",
     "failed": "Failed to login, check your email and password",
@@ -202,14 +203,17 @@
     "insertEmail": "Insert Your Email",
     "insertPassword": "Insert Your Password",
     "login": "Login",
+    "or": "or login with",
     "password": "Password",
     "register": "Register",
-    "sso": "with Google",
+    "sso": "{SSO_PROVIDER}",
     "success": "Login success",
     "title": "Login",
-    "toRegister": "Sign Up",
+    "toRegister": "Register",
     "verifyLoginAttempt": "Please verify that you are human!",
-    "welcome": "Welcome back. Log in using your e-email and password."
+    "welcome": "Welcome back. Log in using your e-email and password.",
+    "whatsapp": "Whatsapp",
+    "withEmail": "Email"
   },
   "lookbook": {
     "errorButton": "Return to Home Page",
@@ -446,8 +450,11 @@
     "female": "Female",
     "firstName": "First Name",
     "firstNamePlaceholder": "Input your first name",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Input your full name",
     "gender": "Gender",
     "genderOption": "Select Gender",
+    "haveAccount": "Already have an account?",
     "inputCity": "(type your district / region)",
     "lastName": "Last Name",
     "lastNamePlaceholder": "Input your last name",
@@ -461,8 +468,8 @@
     "mapHeaderNote": "Make sure the location you mark matches your address",
     "mapSelectLocation": "Use this location",
     "marked": "Field marked with",
-    "mobilePhone": "Mobile Phone",
-    "mobilePhonePlaceholder": "Input your mobile phone",
+    "mobilePhone": "Mobile Phone / Whatsapp",
+    "mobilePhonePlaceholder": "Input your mobile phone / whatsapp",
     "newAccount": "Sign Up",
     "noOptionsMessage": "Please type other keywords",
     "password": "Password",
@@ -499,6 +506,11 @@
     "ratingDescending": "Highest rating",
     "submittedAscending": "Oldest review",
     "submittedDescending": "Recent review"
+  },
+  "settingNotification": {
+    "title": "Notification",
+    "description": "You will get all notification from this store according to the medium you activated below",
+    "emailDescription": "All notification by email cannot changed"
   },
   "shipping": {
     "allocating": "Looking for a driver",
@@ -592,5 +604,41 @@
     "summaryTitle": "What are you shopping for?",
     "thanks": "Thank You",
     "yourOrderID": "Your Order ID"
+  },
+  "whatsAppOTPInput": {
+    "andConjunction": "and",
+    "changeNumber": "Change number",
+    "chooseAccount": "Select account",
+    "chooseAnyAccount": "Choose an account",
+    "chooseAnyAccountToLogin": "You have multiple accounts registered, please select one to login",
+    "continue": "Login",
+    "disclaimer": "By clicking 'Login' means you agree to receive notifications via Whatsapp and know",
+    "expiredOTP": "OTP code expired, please resend the OTP code",
+    "from": "from",
+    "inputPlaceholder": "0810 0000 0000",
+    "inputWhatsApp": "Enter your Whatsapp number to login our store",
+    "insertVerificationCode": "Enter verification code (OTP)",
+    "loginWithAnotherMethod": "Sign in using another method",
+    "noWhatsApp": "Don't have whatsapp?",
+    "notReceivedMessage": "Haven't received the message yet?",
+    "otpSent": "We have sent a verification code via Whatsapp number ",
+    "privacyPolicy": "Privacy Policy",
+    "resend": "Resend code OTP",
+    "requestOTPTimeOut": "The OTP code has been sent, please wait 1 minute to resend the OTP code",
+    "seconds": "sec",
+    "sendOTP": "Send code OTP",
+    "termsAndCondition": "Terms and Condition",
+    "verifyYourNumber": "Verify Your Number",
+    "welcome": "Welcome",
+    "whatsappNumber": "Whatsapp Number",
+    "willSendOTP": "We will send a verification code via WhatsApp number",
+    "wrongOTP": "Incorrect OTP code"
+  },
+  "whatsAppOTPInputRegis": {
+    "continue": "Register",
+    "disclaimer": "By clicking 'Register', you agree to receive notifications via Whatsapp",
+    "loginWithAnotherMethod": "Register using another method",
+    "chooseAnyAccountToLogin": "You have multiple accounts registered, please select one to login",
+    "inputWhatsApp": "Enter your Whatsapp number to register to our store"
   }
 }
