@@ -1,125 +1,78 @@
-// @import "../components/Button.module.scss";
-// @import "../components/Form.module.scss";
+@import '../utils/variables';
 
-// .contact
-// {
-//     &_container
-//     {
-//         position: relative;
-//         padding: 0 0 48px;
-//     }
+.contact
+{
+  &_container
+  {
+    width: 100%;
+    margin-top: 22px;
+    position: relative;
 
-//     &_form,
-//     &_widget,
-//     &_map
-//     {
-//         width: 100%;
-//         position: relative;
-//     }
+    & > div
+    {
+      @include useContainer();
+      @include flex(row, center, center);
+    }
+  }
 
-//     &_map
-//     {
-//         display: none;
-//         opacity: 0;
-//         visibility: hidden;
-//     }
+  &_form
+  {
+    width: calc(((100% - 24px) / 12) * 6);
+    position: relative;
+    z-index: 10;
+    padding-bottom: 224px;
 
-//     &_form
-//     {
-//         margin: 0 0 42px;
-//     }
+    @media screen and (max-width: $breakpoint_max_md) 
+    {
+      width: 100%;
+    }
+  }
 
-//     &_widget
-//     {
-//         margin-bottom: 58px;
+  &_content
+  {
+    @include typographyBuilder(400, 12, 16);
+    color: $color_grey;
+    margin: 10px 0 0;
+  }
 
-//         img
-//         {
-//             margin: 0;
-//             padding: 0;
-//             border: none;
-//             max-width: 100%;
-//         }
+  &_label
+  {
+    @include typographyBuilder(600, 12, 16);
+    color: $color_grey;
+    margin: 24px 0 8px 0;
+  }
 
-//         video,
-//         iframe
-//         {
-//             min-width: 100%;
-//             max-width: 100%;
-//             width: 100%;
-//         }
-//     }
+  &_map
+  {
+    & > div > div:first-child 
+    {
+      height: 173px !important; 
+      bottom: 24px;
+    }
+  }
 
-//     &_label,
-//     &_info
-//     {
-//         position: relative;
-//     }
+  &_buttonContainer
+  {
+    padding: 24px 0;
+    border-bottom: 1px solid $color_light;
+  }
 
-//     &_info
-//     {
-//         color: $color_secondary;
+  &_title
+  {
+    @include typographyBuilder(400, 20, 24);
+    color: $color_black_text;
+  }
 
-//         strong,
-//         h1,
-//         h2,
-//         h3,
-//         h4,
-//         h5,
-//         h6
-//         {
-//             color: $color_gray_text;
-//         }
+  &_titleParent
+  {
+    display: none;
+  }
 
-//         a
-//         {
-//             color: inherit;
-
-//             &:hover
-//             {
-//                 text-decoration: underline;
-//             }
-//         }
-
-//         &__top
-//         {
-//             margin-top: 42px;
-            
-//             & > h1,
-//             & > h2,
-//             & > h3,
-//             & > h4,
-//             & > h5,
-//             & > h6
-//             {
-//                 margin: 0 0 4px;
-//                 font-family: "roboto-medium";
-//                 font-style: normal;
-//                 font-size: 20px;
-//                 line-height: 23px;
-
-//                 color: $color_gray_text;
-//             }
-
-//             & + div
-//             {
-//                 padding-top: 28px;
-//             }
-//         }
-//     }
-
-//     &_buttonContainer
-//     {
-//         position: relative;
-
-//         button
-//         {
-//             font-family: "roboto-medium";
-//             font-style: normal;
-//             font-weight: 500;
-//             font-size: 14px;
-//         }
-//     }
-
-
-// }
+  img,
+  video,
+  iframe
+  {
+    max-width: 100%;
+  }
+  
+}
