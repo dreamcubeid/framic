@@ -80,7 +80,7 @@ const RegisterPage: FC<any> = ({
               withHeaderLabel={true}
               onErrorMsg={(msg) => toast.error(msg)}
               onSuccessMsg={(msg) => toast.success(msg)}
-              redirectPage={() => Router.push(`/[lng]/login`, `/${lng}/login`)}
+              redirectPage={() => Router.push(`/${lng}/login`, `/${lng}/login`)}
               passwordViewIcon={<span className={styles.register_viewIcon} />}
               passwordHideIcon={<span className={styles.register_hideIcon} />}
               passwordFulfilledCriteriaIcon={<CheckCircle color="green" size={16} />}
