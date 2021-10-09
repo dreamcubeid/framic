@@ -104,7 +104,7 @@ const CartDetailsComponent: FC<CartDetailsComponentType> = ({
         }}
       />
 
-      {/* PopUp Success Notifyme */}
+      {/* PopUp ErrorAddToCart */}
       <Popup
         setPopup={tooglePopupErrorAddToCart}
         isOpen={showModalErrorAddToCart}

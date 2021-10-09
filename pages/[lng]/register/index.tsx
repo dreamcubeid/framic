@@ -35,6 +35,7 @@ const classesRegister = {
   buttonClassName: stylesButton.btn_primaryLong,
   verificationContainerClassName: styles.register_verificationContainer,
   labelRequiredClassName: stylesForm.form_label,
+  inputClassName: stylesForm.form_inputLong,
 
   // Password Field
   passwordStrengthBarContainerClassName: stylesPassword.passwordStrength,
