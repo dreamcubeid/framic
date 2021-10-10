@@ -207,7 +207,6 @@ const AccountsPage: FC<any> = ({
             mapButtonCloseIcon={<XIcon />}
             mapCenterIcon={<Crosshair />}
             membershipPaginationClasses={orderHistoryPaginationClasses}
-            membershipItemPerPageOptions={[1,2]}
             membershipPaginationNextLabel={<ChevronRight/>}
             membershipPaginationPrevLabel={<ChevronLeft/>}
             icons={{
