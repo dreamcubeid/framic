@@ -111,3 +111,230 @@
     }
   }
 }
+
+.membership
+{  
+  &_historyItem
+  {
+    border-bottom: 1px solid $color_light;
+    padding: 16px 0;
+    position: relative;
+
+    & > [class*="positive"]
+    {
+      @include typographyBuilder(400, 16, 24);
+      color: $color_green;
+      margin-right: 24px;
+    }
+
+    & > [class*="negative"]
+    {
+      @include typographyBuilder(400, 16, 24);
+      color: $color_red;
+      margin-right: 24px;
+    }
+
+    &::after
+    {
+      @include fixedSize(12px);
+      display: block; 
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 30px;
+      background-repeat: no-repeat;
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='6' height='9' viewBox='0 0 6 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.65042 4.49973L0.175049 2.02523L1.4123 0.787109L5.12492 4.49973L1.4123 8.21236L0.175049 6.97423L2.65042 4.49973Z' fill='%23333333'/%3E%3C/svg%3E");
+    }
+  }
+
+  &_linkContinue
+  {
+    background-color: $color_light_dark;
+    padding: 10px 0 10px 32px;
+    position: relative;
+
+    & > p
+    {
+      margin: 0;
+      display: inline; 
+    }
+    
+    & > a
+    {
+      @include typographyBuilder(800, 14, 16);
+      color: $color_blue;
+      display: inline;
+      margin-left: 3px; 
+    }
+    
+    &::before
+    {
+      @include fixedSize(12px);
+      display: inline-block; 
+      content: "";
+      position: absolute;
+      left: 10px;
+      margin: 10px 8px 0 0;
+      background-repeat: no-repeat;
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M6 10.7509C3.38057 10.7509 1.24914 8.61943 1.24914 6C1.24914 3.38057 3.38057 1.24914 6 1.24914C8.61943 1.24914 10.7509 3.38057 10.7509 6C10.7509 8.61943 8.61943 10.7509 6 10.7509ZM6 0C9.30857 0 12 2.69143 12 6C12 9.30857 9.30857 12 6 12C2.69143 12 0 9.30857 0 6C0 2.69143 2.69143 0 6 0ZM6.20629 8.11029H5.79429C5.51029 8.11029 5.27886 8.32 5.27886 8.57829V9.18057C5.27886 9.43829 5.51029 9.648 5.79429 9.648H6.20629C6.49029 9.648 6.72057 9.43829 6.72057 9.18057V8.57829C6.72057 8.32 6.49029 8.10971 6.20629 8.10971V8.11029ZM6.20743 2.27771H5.79314C5.50457 2.27771 5.27886 2.46743 5.27886 2.70857V7.18629C5.27886 7.428 5.50457 7.61714 5.79314 7.61714H6.20743C6.49543 7.61714 6.72057 7.42857 6.72057 7.18629V2.70857C6.72057 2.46743 6.49543 2.27771 6.20743 2.27771Z' fill='%23333333'/%3E%3C/svg%3E");
+    }
+  }
+
+  &_orderID
+  {
+    display: inline-block;
+    background-color: $color_light_dark;
+    padding: 4px 8px;
+    margin-bottom: 4px;
+    border-radius: 2px;
+
+    & > p 
+    {
+      @include typographyBuilder(400, 10, 16);
+      color: $color_grey_light_text;
+      margin : 0;
+    }
+  }
+
+  &_transactionDate
+  {
+    @include typographyBuilder(400, 12, 16);
+    color: $color_grey_light;
+    margin: 0;
+  }
+
+  &_transactionType
+  {
+    @include typographyBuilder(400, 16, 24);
+    margin: 4px 0;
+    color: $color_black_text;
+  }
+
+  &_point
+  {
+    text-align: right;
+    margin-top: -44px;
+  }
+
+  &_itemPerPage
+  {
+    @include flex(row, center, flex-end);
+    margin-top: 16px;
+  }
+
+  &_itemPerPageLabel
+  {
+    & > p
+    {
+      margin: 0 16px 0 0;
+      @include typographyBuilder(400, 12, 16);
+      color: $color_black_text;
+    }
+  }
+
+  &_itemPerPageOptions
+  {
+   
+    & > select
+    {
+      @include typographyBuilder(400, 16, 24);
+      padding: 12px 16px;
+      border: 1px solid $color_light;
+      border-radius: 2px;
+    }
+  }
+
+  &_status
+  {
+    background: $color_light_dark;
+    border-radius: 2px;
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+
+  &_accordionToggle
+  {
+    @include flex(row, center, flex-start);
+
+    & > p
+    {
+      margin: 0 10px 0 0;
+      font-weight: bold;
+      color: $color_black_text;
+    }
+  }
+
+  &_accordionIcon > svg
+  {
+    stroke : $color_black;
+  }
+
+  &_totalPoints
+  {
+    @include typographyBuilder(400, 12, 16);
+    text-align: right;
+    margin-top: -22px;
+    color: $color_grey;
+  }
+
+  &_prompt
+  {
+    @include typographyBuilder(400, 12, 16);
+    color: $color_grey_light;
+    margin: px 0 0 0;
+  }
+
+  &_progress 
+  {
+    background-color: $color_grey;
+    width: 100%;
+    border-radius: 6px;
+    height: 6px;
+
+    &::-webkit-progress-bar
+    {
+      background-color: $color_light;
+      border-radius: 6px;
+    }
+
+    &::-webkit-progress-value
+    {
+      background-color: $color_grey;
+      border-radius: 6px;
+    }
+
+    &::-moz-progress-bar
+    {
+      background-color: $color_grey;
+      border-radius: 6px;
+    }
+  }
+}
+
+.pagination
+{
+  &_paging
+  {
+    @include flex(row, center, center);
+    margin-top: 18px;
+  }
+
+  &_item
+  {
+    @include typographyBuilder(400, 14, 16);
+    color: $color_black_text;
+    list-style-type: none;
+    padding: 10px 16px;
+    border: 1px solid $color_light;
+    border-radius: 2px;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+
+  &_active
+  {
+    @include typographyBuilder(700, 14, 16);
+    color: $color_black_text;
+    border: 1px solid $color_black;
+  }
+}
