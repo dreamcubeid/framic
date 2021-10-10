@@ -1,4 +1,5 @@
 @import '../utils/variables';
+@import './Form.module.scss';
 
 .productdetail
 {
@@ -140,10 +141,16 @@
         order: 6;
       }
 
-      &[class*="productdetail_share"]
+      &[class*="productdetail_estimateShippingWrapper"]
       {
         order: 7;
       }
+
+      &[class*="productdetail_share"]
+      {
+        order: 8;
+      }
+
     }
 
     & > h2
@@ -668,5 +675,190 @@
   &_notifyMeLabelWrapper
   {
     display: none;
+  }
+
+  &_estimateShippingWrapper
+  {
+    position: relative;
+    width: 100%;
+    border-top: 1px solid $color_light;
+    margin-top: 24px;
+    padding-top: 24px;
+  }
+
+  &_estimateShippingTitle
+  {
+    @include typographyBuilder(600, 12, 16);
+    color: $color_grey;
+    margin-bottom: 8px;
+  }
+
+  &_estimateShippingLogoImg
+  {
+    height: 24px;
+  }
+
+  &_estimateShippingDetail
+  {
+    @include flex(row-reverse, center, space-between);
+    width: 100%;
+    padding: 12px;
+    background-color: $color_light_low;
+    margin-bottom: 8px;
+  }
+
+  &_estimateShippingCost
+  {
+    @include typographyBuilder(600, 12, 16);
+    color: $color_black_text;
+    margin: 0;
+  }
+
+  &_estimateShippingShowCourier
+  {
+    @include typographyBuilder(400, 12, 16);
+    color: $color_black_text;
+    margin: 0;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  &_estimateShippingPopupContainer
+  {
+    @include flex(row, center, center);
+    @include fixedSize(100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: rgba($color_black, 0.8);
+  }
+
+  &_estimateShippingPopupContent
+  {
+    min-width: 340px;
+    background-color: $color_white;
+    padding: 24px 16px;
+    border-radius: 3px;
+
+    @media screen and (max-width: $breakpoint_max_md) 
+    {
+      @include fixedWidth(calc(100% - 17px));
+      -webkit-overflow-scrolling: auto;
+    }
+  }
+
+  &_estimateShippingPopupProviderImg
+  {
+    img
+    {
+      width: 34px;
+      padding: 5px;
+      object-fit: cover;
+      object-position: center;
+      background-size: 100% auto;
+      border: 0.5px solid $color_light;
+      border-radius: 2px;
+      margin-right: 12px;
+    }
+  }
+
+  &_estimateShippingPopupHeader
+  {
+    @include flex(row, center, center);
+  }
+
+  &_estimateShippingPopupTitle
+  {
+    @include typographyBuilder(600, 16, 24);
+    color: $color_black_text;
+    margin: 0;
+  }
+
+  &_estimateShippingPopupButton
+  {
+    font-size: 0;
+    color: $color_white;
+    display: block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-left: auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 5L5 15' stroke='%23333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M5 5L15 15' stroke='%23333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+  }
+
+  &_estimateShippingPopupBody
+  {
+    margin: 10px 0 16px;
+    padding: 13px;
+    border-radius: 2px;
+    border: 1px solid $color_light;
+    background-color: $color_light_low;
+  }
+
+  &_estimateShippingPopupLineInfo
+  {
+    @include flex(row, center, flex-start);
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid $color_light;
+
+    &:last-child
+    {
+      display: block;
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border: 0;
+
+      & > div[class*="productdetail_estimateShippingPopupLabel"]
+      {
+        @extend .form_control;
+        display: none;
+      }
+    }
+  }
+
+  &_estimateShippingPopupLabel
+  {
+    @include typographyBuilder(600, 12, 16);
+    color: $color_grey;
+    width: 74px;
+    margin: 0;
+  }
+
+  &_estimateShippingPopupValue
+  {
+    @include typographyBuilder(400, 12, 16);
+    color: $color_black_text;
+    margin: 0;
+  }
+  
+  &_estimateShippingPopupLineProvider
+  {
+    @include flex(row, center, flex-start);
+    margin-bottom: 24px;
+  }
+
+  &_estimateShippingPopupProviderValue
+  {
+    @include typographyBuilder(400, 12, 16);
+    color: $color_black_text;
+    margin: 0 0 0 auto;
+  }
+
+  &_estimateShippingPopupProviderLabel
+  {
+    @include typographyBuilder(600, 12, 16);
+    color: $color_black_text;
+    margin: 0;
+  }
+
+  &_estimateShippingPopupProvider
+  {
+    @include useScrollbar();
+    max-height: 168px;
+    overflow: auto;
   }
 }

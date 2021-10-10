@@ -59,6 +59,7 @@ const classesProductDetail = {
   buyNowBtnClassName: `${stylesButton.btn_primaryLong} ${styles.productdetail_propertyFooterButton}`,
   dotClassName: styles.productdetail_dot,
 
+  // OpenOrder
   openOrderClassName: styles.productdetail_openOrder,
   openOrderTitleClassName: styles.productdetail_openOrderTitle,
   countDownContainerClassName: styles.productdetail_countDownContainer,
@@ -70,33 +71,30 @@ const classesProductDetail = {
   openOrderTimeoutClassName: styles.productdetail_openOrderTimeout,
   openOrderTimeoutDescClassName: styles.productdetail_openOrderTimeoutDesc,
   openOrderTimeoutBtnClassName: stylesButton.btn_secondaryLong,
-  // variantContainerClassName: styles.productdetail_content_containerVariant,
-
   notifyMeLabelWrapperClassName: styles.productdetail_notifyMeLabelWrapper,
   notifyMeInputClassName: stylesForm.form_inputLong,
   notifyMeSubmitClassName: `${stylesButton.btn_primaryLong} ${styles.productdetail_notifyMeSubmit}`,
-  // accordionClassName: styles.productdetail_content_desc_container,
-  // // Estimate Shipping
-  // estimateShippingWrapperClassName: stylesEstimate.wrapper,
-  // estimateShippingTitleClassName: stylesEstimate.title,
-  // estimateShippingDetailClassName: stylesEstimate.detail,
-  // estimateShippingLogoClassName: stylesEstimate.detail_logo,
-  // estimateShippingLogoImgClassName: stylesEstimate.detail_logoImage,
-  // estimateShippingShowCourierClassName: stylesEstimate.detail_showCourier,
-  // estimateShippingPopupContainerClassName: stylesEstimate.popup,
-  // estimateShippingPopupContentClassName: stylesEstimate.popup_inner,
-  // estimateShippingPopupHeaderClassName: stylesEstimate.popup_header,
-  // estimateShippingPopupTitleClassName: stylesEstimate.popup_headerTitle,
-  // estimateShippingPopupButtonCloseClassName: stylesEstimate.popup_headerClose,
-  // estimateShippingPopupBodyClassName: stylesEstimate.popup_body,
-  // estimateShippingPopupLineInfoClassName: stylesEstimate.popup_bodyLineInfo,
-  // estimateShippingPopupLabelClassName: stylesEstimate.popup_bodyLabel,
-  // estimateShippingPopupValueClassName: stylesEstimate.popup_bodyValue,
-  // estimateShippingPopupProviderClassName: stylesEstimate.popup_provider,
-  // estimateShippingPopupLineProviderClassName: stylesEstimate.popup_providerLine,
-  // estimateShippingPopupProviderImgClassName: stylesEstimate.popup_providerImage,
-  // estimateShippingPopupProviderLabelClassName: stylesEstimate.popup_providerLabel,
-  // estimateShippingPopupProviderValueClassName: stylesEstimate.popup_providerValue,
+  // Estimate Shipping
+  estimateShippingWrapperClassName: styles.productdetail_estimateShippingWrapper,
+  estimateShippingTitleClassName: styles.productdetail_estimateShippingTitle,
+  estimateShippingDetailClassName: styles.productdetail_estimateShippingDetail,
+  estimateShippingLogoImgClassName: styles.productdetail_estimateShippingLogoImg,
+  estimateShippingCostClassName: styles.productdetail_estimateShippingCost,
+  estimateShippingShowCourierClassName: styles.productdetail_estimateShippingShowCourier,
+  estimateShippingPopupContainerClassName: styles.productdetail_estimateShippingPopupContainer,
+  estimateShippingPopupContentClassName: styles.productdetail_estimateShippingPopupContent,
+  estimateShippingPopupProviderImgClassName: styles.productdetail_estimateShippingPopupProviderImg,
+  estimateShippingPopupHeaderClassName: styles.productdetail_estimateShippingPopupHeader,
+  estimateShippingPopupTitleClassName: styles.productdetail_estimateShippingPopupTitle,
+  estimateShippingPopupButtonCloseClassName: styles.productdetail_estimateShippingPopupButton,
+  estimateShippingPopupBodyClassName: styles.productdetail_estimateShippingPopupBody,
+  estimateShippingPopupLineInfoClassName: styles.productdetail_estimateShippingPopupLineInfo,
+  estimateShippingPopupLabelClassName: styles.productdetail_estimateShippingPopupLabel,
+  estimateShippingPopupValueClassName: styles.productdetail_estimateShippingPopupValue,
+  estimateShippingPopupLineProviderClassName: styles.productdetail_estimateShippingPopupLineProvider,
+  estimateShippingPopupProviderValueClassName: styles.productdetail_estimateShippingPopupProviderValue,
+  estimateShippingPopupProviderLabelClassName: styles.productdetail_estimateShippingPopupProviderLabel,
+  estimateShippingPopupProviderClassName: styles.productdetail_estimateShippingPopupProvider,
 }
 
 const classesTabs = {
@@ -121,6 +119,7 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
   const i18n: any = useI18n()
   const size = useWindowSize()
   const enableArrowDots = size.width && size.width < 768 ? true : false
+  const IS_PROD = process.env.IS_PROD;
 
   // state
   const [showPopupSuccessAddCart, setShowPopupSuccessAddCart] = useState<boolean>(false)
@@ -217,7 +216,7 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
         }
         // getProductID={(id) => setProductId(id)}
         // ratingIcon={<span className="ratingStar">&#x2605;</span>}
-        // withEstimateShipping={IS_PROD === "false" ? true : false}
+        withEstimateShipping={IS_PROD === "false" ? true : false}
         openOrderIconDate={<span className={styles.productdetail_openOrderDateIcon} />}
         openOrderIconTime={<span className={styles.productdetail_openOrderTimeIcon} />}
       />
