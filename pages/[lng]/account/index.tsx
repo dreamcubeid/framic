@@ -13,7 +13,9 @@ import {
   EyeOff,
   CheckCircle,
   Crosshair,
-  ChevronDown
+  ChevronDown,
+  ChevronRight,
+  ChevronLeft
 } from 'react-feather'
 /* library template */
 import { parseCookies } from 'lib/parseCookies'
@@ -93,27 +95,27 @@ const classesAccount = {
   // shipmentCloseIconClassName: styles.track_shipmentCloseIcon,
   // shipmentTrackButtonClassName: styles.track_shipmentTrackButton,
 
-  // /* Membership History */
-  // loyaltyPointContainerClassName: styles.account_loyalty,
-  // membershipStatusClassName: styles.membership_status,
-  // accordionClassName: styles.membership_accordion,
-  // accordionToggleClassName: styles.membership_accordionToggle,
-  // accordionIconClassName: styles.membership_accordionIcon,
-  // totalPointsClassName: styles.membership_totalPoints,
-  // membershipProgressClassName: styles.membership_progress,
-  // membershipPromptClassName: styles.membership_prompt,
-  // linkContinueClassName: styles.membership_linkContinue,
-  // membershipHistoryClassName: styles.membership_history,
-  // pointHistoryItemClassName: styles.membership_historyItem,
-  // orderIDClassName: styles.membership_orderId,
-  // transactionTypeClassName: styles.membership_transactionType,
-  // transactionDateClassName: styles.membership_transactionDate,
-  // pointDeltaClassName: styles.membership_point,
-  // membershipPaginationClassName: styles.membership_pagination,
-  // itemPerPageClassName: styles.membership_itemPerPage,
-  // itemPerPageLabelClassName: styles.membership_itemPerPageLabel,
-  // itemPerPageOptionsClassName: styles.membership_itemPerPageOptions,
-  // buttonContinueClassName: `btn ${styles.btn_primary} ${styles.btn_long}`,
+   /* Membership History */
+  loyaltyPointContainerClassName: styles.account_loyalty,
+  membershipStatusClassName: styles.membership_status,
+  accordionClassName: styles.membership_accordion,
+  accordionToggleClassName: styles.membership_accordionToggle,
+  accordionIconClassName: styles.membership_accordionIcon,
+  totalPointsClassName: styles.membership_totalPoints,
+  membershipProgressClassName: styles.membership_progress,
+  membershipPromptClassName: styles.membership_prompt,
+  linkContinueClassName: styles.membership_linkContinue,
+  membershipHistoryClassName: styles.membership_history,
+  pointHistoryItemClassName: styles.membership_historyItem,
+  orderIDClassName: styles.membership_orderID,
+  transactionTypeClassName: styles.membership_transactionType,
+  transactionDateClassName: styles.membership_transactionDate,
+  pointDeltaClassName: styles.membership_point,
+  membershipPaginationClassName: styles.membership_pagination,
+  itemPerPageClassName: styles.membership_itemPerPage,
+  itemPerPageLabelClassName: styles.membership_itemPerPageLabel,
+  itemPerPageOptionsClassName: styles.membership_itemPerPageOptions,
+  buttonContinueClassName: `btn ${styles.btn_primary} ${styles.btn_long}`,
   
   //order history info
   // orderInfoContainerClassName: styles.membership_info_container,
@@ -147,7 +149,7 @@ const classesAccount = {
 }
 
 const orderHistoryPaginationClasses = {
-  pagingClassName: styles.pagination,
+  pagingClassName: styles.pagination_paging,
   activeClassName: styles.pagination_active,
   itemClassName: styles.pagination_item,
 }
@@ -205,6 +207,8 @@ const AccountsPage: FC<any> = ({
             mapButtonCloseIcon={<XIcon />}
             mapCenterIcon={<Crosshair />}
             membershipPaginationClasses={orderHistoryPaginationClasses}
+            membershipPaginationNextLabel={<ChevronRight/>}
+            membershipPaginationPrevLabel={<ChevronLeft/>}
             icons={{
               accordionIcon: <ChevronDown size={20} color="#2296CB" />,
               closeIcon: <XIcon />,

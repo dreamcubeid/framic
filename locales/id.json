@@ -226,13 +226,13 @@
   },
   "membership": {
     "exchangePoints": "Tukar Poin Anda",
-    "getPointPrompt": "Dapatkan poin di setiap transaksi Anda",
+    "getPointPrompt": "Tingkatkan poin Anda dengan bertransaksi di toko ini.",
     "insufficientPoints": "Poin tidak mencukupi",
-    "orderID": "ID Pesanan",
+    "orderID": "No Pesanan",
     "points": "Poin",
     "pointHistory": "Riwayat Poin",
-    "shopNow": "Belanja sekarang",
-    "upLevelPrompt": "Tinggal {MINIMUM_ORDER} transaksi pembelian untuk mencapai {NEXT_LEVEL}",
+    "shopNow": "Belanja sekarang!",
+    "upLevelPrompt": "Lakukan {MINIMUM_ORDER} transaksi pembelian untuk mencapai {NEXT_LEVEL}",
     "usePoints": "Gunakan Poin Anda",
     "warning": "Anda tidak bisa mendapatkan poin dari transaksi pembelian dengan menggunakan poin",
     "yourPoints": "Poin Anda"
