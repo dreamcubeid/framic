@@ -222,7 +222,10 @@
     "isEmpty": "Lookbook is empty",
     "seeCollection": "See Collection",
     "seeMore": "See More",
-    "title": "Lookbook"
+    "title": "Lookbook",
+    "empty": "Lookbook is empty",
+    "share": "Share Lookbook",
+    "back": "Back to lookbook list"
   },
   "membership": {
     "exchangePoints": "Redeem your Point",

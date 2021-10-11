@@ -1,40 +1,45 @@
-import { FC, useState } from "react"
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { useRouter } from "next/router";
-import {
-  isLookbookAllowed,
-  LookbookSingle,
-  useI18n
-} from "@sirclo/nexus"
-import { useBrand } from "lib/useBrand";
-import useWindowSize from "lib/useWindowSize";
-import Layout from "components/Layout/Layout"
-import Placeholder from "components/Placeholder";
-
-import styles from "public/scss/pages/Lookbook.module.scss";
+/* library package */
+import { FC, useState } from 'react'
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import { useRouter } from 'next/router'
+/* library template */
+import { isLookbookAllowed, LookbookSingle, useI18n } from '@sirclo/nexus'
+import { useBrand } from 'lib/useBrand'
+import useWindowSize from 'lib/useWindowSize'
+/* component */
+import Layout from 'components/Layout/Layout'
+import Placeholder from 'components/Placeholder'
+import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
+import EmptyComponent from 'components/EmptyComponent/EmptyComponent'
+import ProductsComponent from 'components/ProductsComponent'
+import SocialShare from 'components/SocialShare'
+/* styles */
+import styles from 'public/scss/pages/Lookbook.module.scss'
 
 const classesLookbookSingle = {
-  containerClassName: `${styles.lookbook} ${styles.lookbook__detail}`,
-  rowClassName: styles.lookbook_row,
-  imageClassName: `${styles.lookbook_itemImage} d-block w-100`
+  containerClassName: styles.lookBook_container,
+  rowClassName: styles.lookBookDetail_itemParent,
+  imageClassName: styles.lookBookDetail_imageDetail,
 }
 
 const classesPlaceholderLookbook = {
-  placeholderList: `${styles.lookbook_placeholder} d-block p-0 mt-0 mb-3 mx-auto w-100`
+  placeholderList: `${styles.lookBook_item} ${styles.lookBook_imagePlaceholder}`,
 }
 
 const LookbookSinglePage: FC<any> = ({
   lng,
   lngDict,
   slug,
-  brand
+  brand,
+  urlSite
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const i18n: any = useI18n();
-  const router = useRouter();
-  const size = useWindowSize();
-  const LookbookAllowed = isLookbookAllowed();
-
-  const [title, setTitle] = useState<string>("");
+  const i18n: any = useI18n()
+  const router = useRouter()
+  const size = useWindowSize()
+  const LookbookAllowed = isLookbookAllowed()
+  
+  const [title, setTitle] = useState<string>('')
+  const linksBreadcrumb = [i18n.t("header.home"), i18n.t("blog.title"), title]
 
   return (
     <Layout
@@ -44,45 +49,56 @@ const LookbookSinglePage: FC<any> = ({
       brand={brand}
       withAllowed={LookbookAllowed}
     >
-      <div className={`${styles.lookbook_wrapper} container`}>
-        <div className="row">
-          <div className="col-12 col-sm-8 offset-sm2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-
-            <div className={`${styles.contact_info} ${styles.contact_info__top}`}>
-              <h1>{title}</h1>
+      <div>
+        <Breadcrumb links={linksBreadcrumb} lng={lng} />
+        <h1 className={styles.lookBook_title}>{title}</h1>
+        <LookbookSingle
+          classes={classesLookbookSingle}
+          slug={slug}
+          getTitle={setTitle}
+          loadingComponent={
+            <div className={styles.lookBook_container}>
+              <div className={styles.lookBook_itemParent}>
+                <Placeholder
+                  classes={classesPlaceholderLookbook}
+                  withList
+                  listMany={5}
+                />
+              </div>
             </div>
-
-            <LookbookSingle
-              classes={classesLookbookSingle}
-              slug={slug}
-              getTitle={setTitle}
-              loadingComponent={
-                <div className="mt-3">
-                  <Placeholder
-                    classes={classesPlaceholderLookbook}
-                    withList
-                    listMany={5}
-                  />
-                </div>
-              }
-              emptyStateComponent={
-                <p className="d-flex flex-row align-items-center justify-content-center text-align-center p-5">
-                  {i18n.t("lookbook.isEmpty")}
-                </p>
-              }
-              thumborSetting={{
-                width: size.width < 768 ? 400 : 600,
-                format: "webp",
-                quality: 85,
-              }}
-            />
-
-            <div className={`${styles.lookbook_nav} d-flex flex-row align-items-center justify-content-between`}>
-              <button onClick={() => router.back()}>
-                {i18n.t("global.back")}
-              </button>
+          }
+          emptyStateComponent={
+            <div className={styles.lookBook_container}>
+              <EmptyComponent
+                title={i18n.t("lookbook.empty")}
+              />
             </div>
+          }
+          thumborSetting={{
+            width: size.width < 768 ? 400 : 600,
+            format: 'webp',
+            quality: 85,
+          }}
+        />
 
+        <ProductsComponent
+          type="recomendation"
+          slug={slug}
+          i18n={i18n}
+          lng={lng}
+        />
+        <div className={styles.lookBook_container}>
+          <div className={styles.lookBookDetail_shareParent}>
+            <h5>
+              {i18n.t('lookbook.share')}
+            </h5>
+            <SocialShare urlSite={urlSite} />
+          </div>
+          <div className={styles.lookBookDetail_backParent}>
+            <div>
+              <img src="/images/back.svg"/>
+            </div>
+            <div className={styles.lookBookDetail_back} onClick={() => router.back()}>{i18n.t('lookbook.back')}</div>
           </div>
         </div>
       </div>
@@ -90,21 +106,24 @@ const LookbookSinglePage: FC<any> = ({
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params, req }) => {
-  const { default: lngDict = {} } = await import(
-    `locales/${params.lng}.json`
-  );
+export const getServerSideProps: GetServerSideProps = async ({
+  params,
+  req,
+}) => {
+  const { default: lngDict = {} } = await import(`locales/${params.lng}.json`)
 
-  const brand = await useBrand(req);
+  const brand = await useBrand(req)
+  const urlSite = `https://${req.headers.host}/${params.lng}/lookbook/categories/${params.slug}`
 
   return {
     props: {
       lng: params.lng,
       slug: params.slug,
       lngDict,
-      brand: brand || ''
+      brand: brand || '',
+      urlSite: urlSite,
     },
-  };
+  }
 }
 
-export default LookbookSinglePage;
+export default LookbookSinglePage

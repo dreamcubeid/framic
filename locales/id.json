@@ -222,7 +222,10 @@
     "isEmpty": "Belum ada lookbook",
     "seeCollection": "Lihat Koleksi",
     "seeMore": "Lebih Banyak",
-    "title": "Lookbook"
+    "title": "Lookbook",
+    "empty": "Lookbook belum tersedia",
+    "share": "Bagikan Lookbook",
+    "back": "Kembali ke Daftar Lookbook"
   },
   "membership": {
     "exchangePoints": "Tukar Poin Anda",
