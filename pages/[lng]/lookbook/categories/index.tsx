@@ -47,7 +47,7 @@ const LookbookCategory: FC<any> = ({
     >
       <div>
         <Breadcrumb links={linksBreadcrumb} lng={lng} />
-        <h1 className={styles.lookBook_title}>Lookbook</h1>
+        <h1 className={styles.lookBook_title}>{i18n.t("lookbook.title")}</h1>
         <Lookbook
           classes={classesLookbook}
           linkText={i18n.t('lookbook.seeCollection')}
@@ -69,18 +69,16 @@ const LookbookCategory: FC<any> = ({
             />
           }
           errorComponent={
-            <div className={styles.lookbook_popup}>
-              <div className={styles.lookbook_popupContent}>
-                <h3>{i18n.t('lookbook.errorTitle')}</h3>
-                <p>{i18n.t('lookbook.errorDesc')}</p>
-              </div>
+            <div className={styles.lookBook_container}>
+              <h3 className={styles.lookBook_titleError}>{i18n.t('lookbook.errorTitle')}</h3>
+              <p className={styles.lookBook_textError}>{i18n.t('lookbook.errorDesc')}</p>
               <div>
-                <button
-                  className={`btn ${styles.btn_primary} py-3 px-5`}
+                <div
                   onClick={() => Router.push('/[lng]', `/${lng}`)}
+                  className={styles.lookBook_btnError}
                 >
                   {i18n.t('lookbook.errorButton')}
-                </button>
+                </div>
               </div>
             </div>
           }

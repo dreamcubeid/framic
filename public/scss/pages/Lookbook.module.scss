@@ -52,8 +52,8 @@
 
   &_label
   {
-    color: $color_grey;
     @include typographyBuilder(400, 16, 24);
+    color: $color_grey;
   }
 
   &_link
@@ -69,6 +69,25 @@
   {
     min-height: 150px;
   }
+
+  &_titleError
+  {
+    @include typographyBuilder(600, 20, 24);
+    color: $color_black_text;
+  }
+
+  &_textError
+  {
+    @include typographyBuilder(400, 12, 16);
+    color: $color_black_text;
+  }
+
+  &_btnError
+  {
+    @include typographyBuilder(400, 16, 24);
+    color: $color_black_text;
+  }
+  
 }
 
 .lookBookDetail
