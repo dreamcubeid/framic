@@ -21,11 +21,11 @@ const classesLookbook = {
   imageClassName: styles.lookBook_itemImage,
   labelClassName: styles.lookBook_label,
   linkClassName: styles.lookBook_link,
-};
+}
 
 const classesPlaceholderLookbook = {
   placeholderList: `${styles.lookBook_item} ${styles.lookBook_imagePlaceholder}`,
-};
+}
 
 const LookbookCategory: FC<any> = ({
   lng,
@@ -92,8 +92,8 @@ const LookbookCategory: FC<any> = ({
         />
       </div>
     </Layout>
-  );
-};
+  )
+}
 
 export const getServerSideProps: GetServerSideProps = async ({
   params,
@@ -101,7 +101,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   const { default: lngDict = {} } = await import(`locales/${params.lng}.json`)
 
-  const brand = await useBrand(req);
+  const brand = await useBrand(req)
 
   return {
     props: {
@@ -109,7 +109,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       lngDict,
       brand: brand || '',
     },
-  };
-};
+  }
+}
 
-export default LookbookCategory;
+export default LookbookCategory

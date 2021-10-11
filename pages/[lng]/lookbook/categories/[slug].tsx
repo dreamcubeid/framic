@@ -20,11 +20,11 @@ const classesLookbookSingle = {
   containerClassName: styles.lookBook_container,
   rowClassName: styles.lookBookDetail_itemParent,
   imageClassName: styles.lookBookDetail_imageDetail,
-};
+}
 
 const classesPlaceholderLookbook = {
   placeholderList: `${styles.lookBook_item} ${styles.lookBook_imagePlaceholder}`,
-};
+}
 
 const LookbookSinglePage: FC<any> = ({
   lng,
@@ -37,9 +37,9 @@ const LookbookSinglePage: FC<any> = ({
   const router = useRouter()
   const size = useWindowSize()
   const LookbookAllowed = isLookbookAllowed()
-  const linksBreadcrumb = [i18n.t("header.home"), i18n.t("blog.title")]
-
+  
   const [title, setTitle] = useState<string>('')
+  const linksBreadcrumb = [i18n.t("header.home"), i18n.t("blog.title"), title]
 
   return (
     <Layout
@@ -103,16 +103,16 @@ const LookbookSinglePage: FC<any> = ({
         </div>
       </div>
     </Layout>
-  );
-};
+  )
+}
 
 export const getServerSideProps: GetServerSideProps = async ({
   params,
   req,
 }) => {
-  const { default: lngDict = {} } = await import(`locales/${params.lng}.json`);
+  const { default: lngDict = {} } = await import(`locales/${params.lng}.json`)
 
-  const brand = await useBrand(req);
+  const brand = await useBrand(req)
   const urlSite = `https://${req.headers.host}/${params.lng}/lookbook/categories/${params.slug}`
 
   return {
@@ -123,7 +123,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       brand: brand || '',
       urlSite: urlSite,
     },
-  };
-};
+  }
+}
 
-export default LookbookSinglePage;
+export default LookbookSinglePage
