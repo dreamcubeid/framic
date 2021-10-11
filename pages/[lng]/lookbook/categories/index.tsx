@@ -13,6 +13,7 @@ import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
 import EmptyComponent from 'components/EmptyComponent/EmptyComponent'
 /* styles */
 import styles from 'public/scss/pages/Lookbook.module.scss'
+import stylesButton from 'public/scss/components/Button.module.scss'
 
 const classesLookbook = {
   containerClassName: styles.lookBook_container,
@@ -75,7 +76,7 @@ const LookbookCategory: FC<any> = ({
               <div>
                 <div
                   onClick={() => Router.push('/[lng]', `/${lng}`)}
-                  className={styles.lookBook_btnError}
+                  className={stylesButton.btn_textLong}
                 >
                   {i18n.t('lookbook.errorButton')}
                 </div>

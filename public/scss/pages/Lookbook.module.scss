@@ -80,14 +80,7 @@
   {
     @include typographyBuilder(400, 12, 16);
     color: $color_black_text;
-  }
-
-  &_btnError
-  {
-    @include typographyBuilder(400, 16, 24);
-    color: $color_black_text;
-  }
-  
+  }  
 }
 
 .lookBookDetail
