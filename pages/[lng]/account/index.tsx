@@ -26,6 +26,7 @@ import styles from 'public/scss/pages/Account.module.scss'
 import stylesButton from 'public/scss/components/Button.module.scss'
 import stylesForm from 'public/scss/components/Form.module.scss'
 import styleMapLocation from 'public/scss/components/MapLocation.module.scss'
+import stylesPassword from 'public/scss/components/PasswordStrength.module.scss'
 // import stylesPopupConfirmationOrder from "public/scss/components/popupConfirmationOrder.module.scss"
 // import stylesPopupCheckPaymentOrder from "public/scss/components/CheckPaymentOrder.module.scss"
 
@@ -68,16 +69,17 @@ const classesAccount = {
   // orderedItemDetailNeedReviewClassName: styles.table_itemDetailNeedReview,
   // orderedItemDetailDeliveredClassName: styles.table_orderedItemDetailDelivered,
 
-  // /* change password clases */
-  // inputLabelClassName: styles.account_edit__label,
-  // inputClassName: `form-control ${styles.sirclo_form_input} ${styles.size_label}`,
-  // changePasswordClassName: styles.account_changePassword,
-  // passwordContainerClassName: `d-flex align-items-center position-relative w-100`,
-  // passwordInputClassName: `form-control ${styles.sirclo_form_input}`,
-  // passwordStrengthBarClassName: styles.passwordBar,
-  // passwordStrengthBarContainerClassName: `${styles.passwordValidation} ${styles.marginAccount}`,
-  // passwordCriteriaListClassName: `${styles.formPassword} ${styles.marginAccount} ${styles.formPasswordAccount} d-none`,
-  // passwordCriteriaClassName: styles.formPasswordList,
+  /* change password clases */
+  inputLabelClassName: styles.account_edit__label,
+  inputClassName: stylesForm.form_inputLong,
+  changePasswordClassName: styles.account_changePassword,
+  passwordContainerClassName: stylesForm.form_control,
+  passwordInputClassName: styles.account_changePassword,
+  passwordStrengthBarContainerClassName: stylesPassword.passwordStrength,
+  passwordStrengthBarClassName: stylesPassword.passwordStrength_bar,
+  passwordStrengthLabelClassName: stylesPassword.passwordStrength_label,
+  passwordCriteriaClassName: stylesPassword.passwordStrength_criteriaItem,
+  passwordCriteriaListClassName: stylesPassword.passwordStrength_criteria
   
   // /* tracking */
   // shippingTrackerButton: `btn ${styles.btn_primary}`,
