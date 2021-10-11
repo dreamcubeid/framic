@@ -79,7 +79,7 @@ const classesAccount = {
   passwordStrengthBarClassName: stylesPassword.passwordStrength_bar,
   passwordStrengthLabelClassName: stylesPassword.passwordStrength_label,
   passwordCriteriaClassName: stylesPassword.passwordStrength_criteriaItem,
-  passwordCriteriaListClassName: stylesPassword.passwordStrength_criteria
+  passwordCriteriaListClassName: stylesPassword.passwordStrength_criteria,
   
   // /* tracking */
   // shippingTrackerButton: `btn ${styles.btn_primary}`,
