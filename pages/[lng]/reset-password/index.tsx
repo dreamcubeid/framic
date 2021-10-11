@@ -18,8 +18,9 @@ import stylesPassword from 'public/scss/components/PasswordStrength.module.scss'
 
 const classesSetNewPassword = {
   inputContainerClassName: stylesForm.form_control,
-  inputClassName: stylesForm.form_input,
+  inputClassName: stylesForm.form_inputLong,
   buttonClassName: stylesButton.btn_primaryLong,
+  passwordViewButtonClassName: styles.resetPassword_btnHideShow,
   // Password Field
   passwordStrengthBarContainerClassName: stylesPassword.passwordStrength,
   passwordStrengthBarClassName: stylesPassword.passwordStrength_bar,
