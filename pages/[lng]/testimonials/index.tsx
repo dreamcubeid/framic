@@ -1,22 +1,24 @@
-import { FC, useState } from "react";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import Router from "next/router";
-import dynamic from "next/dynamic";
-import { toast } from "react-toastify";
+import { FC, useState } from "react"
+import { GetServerSideProps, InferGetServerSidePropsType } from "next"
+import Router from "next/router"
+import { toast } from "react-toastify"
 import {
   useI18n,
   Testimonials,
   isTestimonialAllowed,
   isTestimonialFormAllowed,
   TestimonialForm
-} from "@sirclo/nexus";
-import { useBrand } from "lib/useBrand";
+} from "@sirclo/nexus"
+import { useBrand } from "lib/useBrand"
 import ReCAPTCHA from "react-google-recaptcha"
-import Layout from "components/Layout/Layout";
-import Placeholder from "components/Placeholder";
-import styles from "public/scss/pages/Testimonials.module.scss";
-
-const Popup = dynamic(() => import("components/Popup/Popup"));
+import Layout from "components/Layout/Layout"
+import Placeholder from "components/Placeholder"
+import styles from "public/scss/pages/Testimonials.module.scss"
+import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
+import EmptyComponent from 'components/EmptyComponent/EmptyComponent'
+import stylesButton from 'public/scss/components/Button.module.scss'
+import stylesForm from 'public/scss/components/Form.module.scss'
+import Popup from 'components/Popup/Popup'
 
 const classesTestimonials = {
   containerClassName: `${styles.testimonials_container}`,
@@ -29,18 +31,16 @@ const classesTestimonials = {
 }
 
 const classesTestimonalsForm = {
-  backdropClassName: "d-none",
-  testimonialHeaderClassName: "d-none",
-  formContainerClassName: styles.testimonials_form,
-  inputContainerClassName: `${styles.sirclo_form_row}`,
-  inputClassName: `form-control ${styles.sirclo_form_input}`,
-  imgUploadContainerClassName: `${styles.sirclo_form_row}`,
-  imgUploadClassName: `form-control ${styles.sirclo_form_input}`,
-  uploadIconClassName: "d-block",
+  backdropClassName: styles.testimonials_hide,
+  testimonialHeaderClassName: styles.testimonials_hide,
+  formContainerClassName: styles.testimonials_containerForm,
+  inputContainerClassName: styles.testimonials_form,
+  inputClassName: stylesForm.form_inputLong, 
+  imgUploadContainerClassName: styles.testimonials_containerImageUpload,
+  imgUploadClassName: styles.testimonials_imageUpload,
   publishOptionClassName: styles.testimonials_formPublishOption,
-  optionClassName: "mt-2",
-  verificationContainerClassName: "mb-4",
-  submitBtnClassName: `${styles.btn} ${styles.btn_primary} ${styles.btn_long} ${styles.btn_full_width}`,
+  verificationContainerClassName: styles.testimonials_verify,
+  submitBtnClassName: stylesButton.btn_primaryLong,
 }
 
 const paginationClasses = {
@@ -60,15 +60,18 @@ const TestimonialsPage: FC<any> = ({
   brand
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 
-  const i18n: any = useI18n();
-  const testimonialAllowed = isTestimonialAllowed();
-  const testimonialFormAllowed = isTestimonialFormAllowed();
+  const i18n: any = useI18n()
+  // const testimonialAllowed = isTestimonialAllowed()
+  // const testimonialFormAllowed = isTestimonialFormAllowed()
+  const testimonialAllowed = true
+  const testimonialFormAllowed = true
 
-  const [totalItem, setTotalItems] = useState<number>(null);
-  const [showAdd, setShowAdd] = useState<boolean>(false);
+  const [totalItem, setTotalItems] = useState<number>(null)
+  const [showAdd, setShowAdd] = useState<boolean>(false)
   const [isVerified, setIsVerified] = useState<boolean>(false)
 
-  const toogleShowAdd = () => setShowAdd(!showAdd);
+  const toogleShowAdd = () => setShowAdd(!showAdd)
+  const linksBreadcrumb = [i18n.t("header.home"), i18n.t("testimonial.title")]
 
   return (
     <Layout
@@ -78,9 +81,10 @@ const TestimonialsPage: FC<any> = ({
       brand={brand}
       withAllowed={testimonialAllowed}
     >
-      <div className={`${styles.testimonials} container`}>
+      <Breadcrumb links={linksBreadcrumb} lng={lng} />
+      <div className={styles.testimonials_container}>
+        <h4 className={styles.testimonials_title}>{i18n.t("testimonial.title")}</h4>
         <div className={styles.testimonials_header}>
-          <h4>{i18n.t("testimonial.title")}</h4>
           {totalItem > 0 && <p>{i18n.t("testimonial.desc")}</p>}
         </div>
         {!(totalItem > 0 || totalItem === null) ?
@@ -102,7 +106,7 @@ const TestimonialsPage: FC<any> = ({
               <Testimonials
                 itemPerPage={5}
                 getPageInfo={(pageInfo: any) => setTotalItems(pageInfo.totalItems)}
-                withImage
+                withImage={false}
                 classes={classesTestimonials}
                 callPagination
                 paginationClasses={paginationClasses}
@@ -112,7 +116,7 @@ const TestimonialsPage: FC<any> = ({
                       <Placeholder
                         key={i}
                         classes={classesPlaceholderTestimonials}
-                        withImage={true}
+                        withImage={false}
                         withList
                         listMany={3}
                       />
@@ -122,26 +126,27 @@ const TestimonialsPage: FC<any> = ({
               />
             </div>
           </> :
-          <div className={styles.testimonials_empty}>
-            <p>{i18n.t("testimonial.isEmpty")}</p>
-            <a
-              className={`${styles.testimonials_emptyAddButton} ${styles.btn_primary} ${styles.btn_long}`}
-              onClick={toogleShowAdd}
-            >
-              {i18n.t("testimonial.add")}
-            </a>
-            <a
-              className={`${styles.testimonials_backButton} ${styles.btn_long}`}
-              onClick={() => Router.push(`/[lng]/products`, `/${lng}/products`)}
-            >
-              {i18n.t("product.back")}
-            </a>
-          </div>
+          <>
+            <EmptyComponent 
+              title={i18n.t("testimonial.isEmpty")}
+            />
+            <div className={styles.testimonials_empty}> 
+              <div className={`${stylesButton.btn_primary} ${styles.testimonials_btnInput}`} onClick={toogleShowAdd}>
+                {i18n.t("testimonial.add")}
+              </div>
+              <div 
+                className={`${stylesButton.btn_text} ${styles.testimonials_btnInput}`} 
+                onClick={() => Router.push(`/[lng]/products`, `/${lng}/products`)}>
+                {i18n.t("product.back")}
+              </div>
+            </div>
+          </>
         }
         {(showAdd && testimonialFormAllowed) &&
           <Popup
             setPopup={toogleShowAdd}
             isOpen={showAdd}
+            title={i18n.t("testimonial.popupTitle")}
           >
             <TestimonialForm
               classes={classesTestimonalsForm}
@@ -166,15 +171,15 @@ const TestimonialsPage: FC<any> = ({
         }
       </div>
     </Layout>
-  );
-};
+  )
+}
 
 export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
   const { default: lngDict = {} } = await import(
     `locales/${params.lng}.json`
-  );
+  )
 
-  const brand = await useBrand(req);
+  const brand = await useBrand(req)
 
   return {
     props: {
@@ -182,7 +187,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
       lngDict,
       brand: brand || ""
     }
-  };
+  }
 }
 
-export default TestimonialsPage;
+export default TestimonialsPage

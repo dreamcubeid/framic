@@ -211,6 +211,7 @@ const AccountsPage: FC<any> = ({
             membershipPaginationClasses={orderHistoryPaginationClasses}
             membershipPaginationNextLabel={<ChevronRight/>}
             membershipPaginationPrevLabel={<ChevronLeft/>}
+            showSettingNotification={true}
             icons={{
               accordionIcon: <ChevronDown size={20} color="#2296CB" />,
               closeIcon: <XIcon />,

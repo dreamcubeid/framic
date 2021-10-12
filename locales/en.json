@@ -582,7 +582,8 @@
     "weHave": "We Have ",
     "weHave2": " testimonials from our loyal customers",
     "writeReview": "Write Review",
-    "yes": "Yes"
+    "yes": "Yes",
+    "sendTestimonial": "Send Testimonial"
   },
   "testimonials": {
     "contentLabel": "Review",
