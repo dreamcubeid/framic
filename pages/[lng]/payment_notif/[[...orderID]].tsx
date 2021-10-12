@@ -8,7 +8,6 @@ import { PaymentConfirmation, useI18n, CheckPaymentOrder } from '@sirclo/nexus'
 import { toast } from 'react-toastify'
 import { useBrand } from 'lib/useBrand'
 /* component */
-import SEO from 'components/SEO'
 import Layout from 'components/Layout/Layout'
 import Loader from 'components/Loader/Loader'
 import styles from 'public/scss/pages/PaymentNotif.module.scss'
