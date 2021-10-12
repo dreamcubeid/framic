@@ -12,6 +12,7 @@ import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
 import ProductsComponent from 'components/ProductsComponent'
 /* styles */
 import styles from 'public/scss/pages/Cart.module.scss'
+import OrderSummaryBox from 'components/OrderSummaryBox'
 
 const Cart: FC<any> = ({
   lng,
@@ -42,7 +43,7 @@ const Cart: FC<any> = ({
         </div>
 
         <div className={styles.cart_orderSummaryContainer}>
-          //orderSummary Component
+          <OrderSummaryBox page="cart" />
         </div>
       </div>
 

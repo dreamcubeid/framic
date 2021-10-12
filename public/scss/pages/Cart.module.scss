@@ -7,6 +7,11 @@
     @include useContainer();
     @include flex(row, flex-start, space-between, true);
     margin-bottom: 64px;
+
+    @media screen and (max-width: $breakpoint_max_md) 
+    {
+      margin-bottom: 24px;
+    }
   }
 
   &_title
@@ -29,12 +34,23 @@
   &_detailsContainer
   {
     width: calc(((100% - 24px) / 12) * 8);    
+
+    @media screen and (max-width: $breakpoint_max_md) 
+    {
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid $color_light;
+    }
   }
 
   &_orderSummaryContainer
   {
     width: calc(((100% - 24px) / 12) * 4);
-    border: 1px solid red; //on progress
-    height: 100%;
+
+    @media screen and (max-width: $breakpoint_max_md) 
+    {
+      padding-bottom: 24px;
+      border-bottom: 1px solid $color_light;
+    }
   }
 }
