@@ -1,6 +1,8 @@
+/* library package */
 import { FC, useState } from "react"
 import { GetServerSideProps, InferGetServerSidePropsType } from "next"
 import Router from "next/router"
+/* library template */
 import { toast } from "react-toastify"
 import {
   useI18n,
@@ -11,23 +13,25 @@ import {
 } from "@sirclo/nexus"
 import { useBrand } from "lib/useBrand"
 import ReCAPTCHA from "react-google-recaptcha"
+/* component */
 import Layout from "components/Layout/Layout"
 import Placeholder from "components/Placeholder"
-import styles from "public/scss/pages/Testimonials.module.scss"
-import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
 import EmptyComponent from 'components/EmptyComponent/EmptyComponent'
+import Popup from 'components/Popup/Popup'
+import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
+/* styles */
+import styles from "public/scss/pages/Testimonials.module.scss"
 import stylesButton from 'public/scss/components/Button.module.scss'
 import stylesForm from 'public/scss/components/Form.module.scss'
-import Popup from 'components/Popup/Popup'
 
 const classesTestimonials = {
-  containerClassName: `${styles.testimonials_container}`,
-  cardClassName: `${styles.testimonials_card}`,
-  imgClassName: `${styles.testimonials_img}`,
-  mainClassName: `${styles.testimonials_main}`,
-  contentClassName: `${styles.testimonials_content}`,
-  userClassName: `${styles.testimonials_user}`,
-  dateClassName: `${styles.testimonials_date}`,
+  containerClassName: styles.testimonials_container,
+  cardClassName: styles.testimonials_card,
+  imgClassName: styles.testimonials_img,
+  mainClassName: styles.testimonials_main,
+  contentClassName: styles.testimonials_content,
+  userClassName: styles.testimonials_user,
+  dateClassName: styles.testimonials_date,
 }
 
 const classesTestimonalsForm = {
@@ -50,8 +54,8 @@ const paginationClasses = {
 }
 
 const classesPlaceholderTestimonials = {
-  placeholderList: `${styles.testimonials_placeholder}`,
-  placeholderImage: `${styles.testimonials_placeholderImage}`
+  placeholderList: styles.testimonials_placeholder,
+  placeholderImage: styles.testimonials_placeholderImage
 }
 
 const TestimonialsPage: FC<any> = ({
@@ -61,10 +65,8 @@ const TestimonialsPage: FC<any> = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 
   const i18n: any = useI18n()
-  // const testimonialAllowed = isTestimonialAllowed()
-  // const testimonialFormAllowed = isTestimonialFormAllowed()
-  const testimonialAllowed = true
-  const testimonialFormAllowed = true
+  const testimonialAllowed = isTestimonialAllowed()
+  const testimonialFormAllowed = isTestimonialFormAllowed()
 
   const [totalItem, setTotalItems] = useState<number>(null)
   const [showAdd, setShowAdd] = useState<boolean>(false)
