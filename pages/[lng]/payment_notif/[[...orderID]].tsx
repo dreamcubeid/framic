@@ -1,17 +1,20 @@
+/* library package */
 import { FC } from 'react'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { useRouter } from 'next/router'
+/* library template */
+import { ChevronUp, ChevronDown } from 'react-feather'
 import { PaymentConfirmation, useI18n, CheckPaymentOrder } from '@sirclo/nexus'
+import { toast } from 'react-toastify'
+import { useBrand } from 'lib/useBrand'
+/* component */
 import SEO from 'components/SEO'
 import Layout from 'components/Layout/Layout'
 import Loader from 'components/Loader/Loader'
-import { useBrand } from 'lib/useBrand'
-import { toast } from 'react-toastify'
 import styles from 'public/scss/pages/PaymentNotif.module.scss'
 import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
-import { ChevronUp, ChevronDown } from 'react-feather'
+/* styles */
 import stylesButton from 'public/scss/components/Button.module.scss'
-import stylesForm from 'public/scss/components/Form.module.scss'
 
 const classesPaymentConfirmation = {
   paymentConfirmationDivClassName: styles.paymentNotif_form,
@@ -41,7 +44,7 @@ const classesPaymentConfirmation = {
 }
 
 const classesCheckPaymentOrder = {
-  checkPaymentOrderCloseButtonClassName: 'd-none',
+  checkPaymentOrderCloseButtonClassName: styles.paymentConfirmation_checkPaymentOrderClose,
   checkPaymentOrderTitleClassName: styles.paymentConfirmation_title,
   checkPaymentOrderContainerClassName: styles.paymentConfirmation_checkOrderContainer,
   checkPaymentOrderDescriptionClassName: styles.paymentConfirmation_checkOrderDescription,
@@ -69,7 +72,6 @@ const PaymentConfirmationPage: FC<any> = ({
   return (
     <Layout i18n={i18n} lng={lng} lngDict={lngDict} brand={brand}>
       <Breadcrumb links={linksBreadcrumb} lng={lng} />
-      <SEO title={i18n.t('paymentConfirm.heading')} />
       <section>
         <div className={styles.paymentConfirmation_container}>
           
@@ -105,7 +107,6 @@ const PaymentConfirmationPage: FC<any> = ({
                   <span className='spinner-border text-light mr-3' />
                 ),
               }}
-              // withCloseButton={false}
               onErrorMsg={(msg) => toast.error(msg)}
               // onSuccessMsg={(msg) => toast.success(msg)}
             />

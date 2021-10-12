@@ -173,5 +173,10 @@
     @include typographyBuilder(600, 12, 16);
     color: $color_grey;
   }
+
+  &_checkPaymentOrderClose
+  {
+    display: none;
+  }
   
 }
