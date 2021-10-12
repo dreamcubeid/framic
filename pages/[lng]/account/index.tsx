@@ -29,6 +29,7 @@ import stylesButton from 'public/scss/components/Button.module.scss'
 import stylesForm from 'public/scss/components/Form.module.scss'
 import styleMapLocation from 'public/scss/components/MapLocation.module.scss'
 import stylesPassword from 'public/scss/components/PasswordStrength.module.scss'
+import stylesPaggination from 'public/scss/components/Paggination.module.scss'
 // import stylesPopupConfirmationOrder from "public/scss/components/popupConfirmationOrder.module.scss"
 // import stylesPopupCheckPaymentOrder from "public/scss/components/CheckPaymentOrder.module.scss"
 
@@ -171,9 +172,9 @@ const classesAccount = {
 }
 
 const orderHistoryPaginationClasses = {
-  pagingClassName: styles.pagination_paging,
-  activeClassName: styles.pagination_active,
-  itemClassName: styles.pagination_item,
+  pagingClassName: stylesPaggination.pagination_paging,
+  activeClassName: stylesPaggination.pagination_active,
+  itemClassName: stylesPaggination.pagination_item,
 }
 
 const AccountsPage: FC<any> = ({

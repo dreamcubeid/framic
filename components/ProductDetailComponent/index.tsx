@@ -14,6 +14,7 @@ import EmptyComponent from 'components/EmptyComponent/EmptyComponent'
 import SocialShare from 'components/SocialShare'
 import Placeholder from 'components/Placeholder'
 import Popup from 'components/Popup/Popup'
+import ProductDetailReviews from './ProductDetailReviews'
 /* styles */
 import styles from 'public/scss/components/ProductDetail.module.scss'
 import stylesButton from 'public/scss/components/Button.module.scss'
@@ -122,6 +123,7 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
   const IS_PROD = process.env.IS_PROD;
 
   // state
+  const [productID, setProductID] = useState<string>("")
   const [showPopupSuccessAddCart, setShowPopupSuccessAddCart] = useState<boolean>(false)
   const [showPopupSuccessNotify, setShowPopupSuccessNotify] = useState<boolean>(false)
   const [showPopupErrorAddCart, setShowPopupErrorAddCart] = useState<boolean>(false)
@@ -160,6 +162,7 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
         enableArrow={enableArrowDots}
         enableDots={enableArrowDots}
         enableTabs
+        getProductID={setProductID}
         onCompleteMsg={tooglePopupSuccessNotifyme}
         onComplete={handleSuccessAddToCart}
         onErrorMsg={tooglePopupErrorNotifyme}
@@ -188,9 +191,10 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
               {
                 tab: <p>{i18n.t("product.review")}</p>,
                 tabPanel: (
-                  <div>
-                    <p className="product-tabs_content--desc">on progress</p>
-                  </div>
+                  <ProductDetailReviews
+                    slug={slug}
+                    productID={productID}
+                  />
                 )
               },
             ]}
@@ -214,14 +218,10 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
             </div>
           </div>
         }
-        // getProductID={(id) => setProductId(id)}
-        // ratingIcon={<span className="ratingStar">&#x2605;</span>}
         withEstimateShipping={IS_PROD === "false" ? true : false}
         openOrderIconDate={<span className={styles.productdetail_openOrderDateIcon} />}
         openOrderIconTime={<span className={styles.productdetail_openOrderTimeIcon} />}
       />
-
-
 
       {/* PopUp Succes Add To Cart */}
       <Popup
