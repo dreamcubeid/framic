@@ -148,6 +148,26 @@ const classesAccount = {
   // checkPaymentOrderInputClassName: stylesPopupCheckPaymentOrder.checkOrder_input,
   // checkPaymentOrderCloseButtonClassName: stylesPopupCheckPaymentOrder.checkOrder_closeButton,
   // checkPaymentOrderSubmitButtonClassName: stylesPopupCheckPaymentOrder.checkOrder_submitButton,
+
+   /* setting notification */
+   settingNotifContainer: "notification",
+   settingNotifHeader: "d-none",
+   settingNotifDescription: styles.notification_desc,
+   settingNotifMediaDisabled: styles.notification_mediaDisable,
+   mediaParent: styles.notification_mediaParent,
+   mediaLabelContainer: styles.notification_mediaLabelContainer,
+   mediaLabel: styles.notification_mediaLabel,
+   mediaInnerLabelContainer: styles.notification_mediaInnerLabel,
+   mediaDescription: styles.notification_mediaDesc,
+   mediaCheckboxContainer: styles.notification_mediaCheckboxContainer,
+   mediaCheckbox: styles.notification_mediaCheckbox,
+   mediaCheckboxSlider: styles.notification_mediaCheckboxSlider,
+   mediaDetailContainer: styles.notification_mediaDetailContainer,
+   mediaDetailLabel: styles.notification_mediaDetailLabel,
+   mediaDetailCheckboxContainer: styles.notification_mediaDetailCheckboxContainer,
+   mediaDetailCheckbox: styles.notification_mediaDetailCheckbox,
+   mediaDetailCheckboxLabel: styles.notification_mediaDetailCheckboxLabel
+ 
 }
 
 const orderHistoryPaginationClasses = {
@@ -211,11 +231,14 @@ const AccountsPage: FC<any> = ({
             membershipPaginationClasses={orderHistoryPaginationClasses}
             membershipPaginationNextLabel={<ChevronRight/>}
             membershipPaginationPrevLabel={<ChevronLeft/>}
+            showSettingNotification={true}
             icons={{
               accordionIcon: <ChevronDown size={20} color="#2296CB" />,
               closeIcon: <XIcon />,
               infoIcon: <AlertCircle />,
-              iconTracker: <img src="/images/motorcycle.svg" alt="motorcycle" />
+              iconTracker: <img src="/images/motorcycle.svg" alt="motorcycle" />,
+              whatsApp: <img src="/images/whatsapp.png"/>,
+              email: <img src="/images/email.png"/>
             }}
           />
         </div>
