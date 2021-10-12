@@ -218,14 +218,10 @@ const ProductDetailComponent: FC<ProductDetailComponentType> = ({
             </div>
           </div>
         }
-        // getProductID={(id) => setProductId(id)}
-        // ratingIcon={<span className="ratingStar">&#x2605;</span>}
         withEstimateShipping={IS_PROD === "false" ? true : false}
         openOrderIconDate={<span className={styles.productdetail_openOrderDateIcon} />}
         openOrderIconTime={<span className={styles.productdetail_openOrderTimeIcon} />}
       />
-
-
 
       {/* PopUp Succes Add To Cart */}
       <Popup

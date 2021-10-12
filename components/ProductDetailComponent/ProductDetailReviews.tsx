@@ -6,6 +6,8 @@ import {
 } from '@sirclo/nexus'
 /* library template */
 import useWindowSize from 'lib/useWindowSize'
+/* component */
+import Placeholder from 'components/Placeholder'
 /* styles */
 import styles from 'public/scss/components/ProductDetailReviews.module.scss'
 import stylesForm from 'public/scss/components/Form.module.scss'
@@ -56,6 +58,11 @@ const classesPaggination = {
   itemClassName: stylesPaggination.pagination_item,
 }
 
+const classesPlaceholder = {
+  placeholderImage: styles.productreviews_placeholderImage,
+}
+
+
 const ProductDetailReviews: FC<ProductDetailReviewsType> = ({
   productID,
   slug
@@ -84,7 +91,9 @@ const ProductDetailReviews: FC<ProductDetailReviewsType> = ({
         customEmptyComponentReviews={
           <p className={styles.productreviews_emptyReview}>{i18n.t("product.isEmptyReview")}</p>
         }
-        loadingComponent={<></>}
+        loadingComponent={
+          <Placeholder classes={classesPlaceholder} withImage />
+        }
       />
     </div>
   )
