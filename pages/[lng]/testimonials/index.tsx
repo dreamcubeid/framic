@@ -1,26 +1,26 @@
 /* library package */
-import { FC, useState } from "react"
-import { GetServerSideProps, InferGetServerSidePropsType } from "next"
-import Router from "next/router"
+import { FC, useState } from 'react'
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import Router from 'next/router'
 /* library template */
-import { toast } from "react-toastify"
+import { toast } from 'react-toastify'
 import {
   useI18n,
   Testimonials,
   isTestimonialAllowed,
   isTestimonialFormAllowed,
-  TestimonialForm
-} from "@sirclo/nexus"
-import { useBrand } from "lib/useBrand"
-import ReCAPTCHA from "react-google-recaptcha"
+  TestimonialForm,
+} from '@sirclo/nexus'
+import { useBrand } from 'lib/useBrand'
+import ReCAPTCHA from 'react-google-recaptcha'
 /* component */
-import Layout from "components/Layout/Layout"
-import Placeholder from "components/Placeholder"
+import Layout from 'components/Layout/Layout'
+import Placeholder from 'components/Placeholder'
 import EmptyComponent from 'components/EmptyComponent/EmptyComponent'
 import Popup from 'components/Popup/Popup'
 import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
 /* styles */
-import styles from "public/scss/pages/Testimonials.module.scss"
+import styles from 'public/scss/pages/Testimonials.module.scss'
 import stylesButton from 'public/scss/components/Button.module.scss'
 import stylesForm from 'public/scss/components/Form.module.scss'
 
@@ -39,7 +39,7 @@ const classesTestimonalsForm = {
   testimonialHeaderClassName: styles.testimonials_hide,
   formContainerClassName: styles.testimonials_containerForm,
   inputContainerClassName: styles.testimonials_form,
-  inputClassName: stylesForm.form_inputLong, 
+  inputClassName: stylesForm.form_inputLong,
   imgUploadContainerClassName: styles.testimonials_containerImageUpload,
   imgUploadClassName: styles.testimonials_imageUpload,
   publishOptionClassName: styles.testimonials_formPublishOption,
@@ -55,15 +55,14 @@ const paginationClasses = {
 
 const classesPlaceholderTestimonials = {
   placeholderList: styles.testimonials_placeholder,
-  placeholderImage: styles.testimonials_placeholderImage
+  placeholderImage: styles.testimonials_placeholderImage,
 }
 
 const TestimonialsPage: FC<any> = ({
   lng,
   lngDict,
-  brand
+  brand,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-
   const i18n: any = useI18n()
   const testimonialAllowed = isTestimonialAllowed()
   const testimonialFormAllowed = isTestimonialFormAllowed()
@@ -73,7 +72,7 @@ const TestimonialsPage: FC<any> = ({
   const [isVerified, setIsVerified] = useState<boolean>(false)
 
   const toogleShowAdd = () => setShowAdd(!showAdd)
-  const linksBreadcrumb = [i18n.t("header.home"), i18n.t("testimonial.title")]
+  const linksBreadcrumb = [i18n.t('header.home'), i18n.t('testimonial.title')]
 
   return (
     <Layout
@@ -85,81 +84,92 @@ const TestimonialsPage: FC<any> = ({
     >
       <Breadcrumb links={linksBreadcrumb} lng={lng} />
       <div className={styles.testimonials_container}>
-        <h4 className={styles.testimonials_title}>{i18n.t("testimonial.title")}</h4>
+        <h4 className={styles.testimonials_title}>
+          {i18n.t('testimonial.title')}
+        </h4>
         <div className={styles.testimonials_header}>
-          {totalItem > 0 && <p>{i18n.t("testimonial.desc")}</p>}
+          {totalItem > 0 && <p>{i18n.t('testimonial.desc')}</p>}
         </div>
-        {!(totalItem > 0 || totalItem === null) ?
+        {!(totalItem > 0 || totalItem === null) ? (
           <>
             <div className={styles.testimonials_qtyAdd}>
               <p>
-                {i18n.t("testimonial.weHave")}
+                {i18n.t('testimonial.weHave')}
                 <strong>{totalItem}</strong>
-                {i18n.t("testimonial.weHave2")}
+                {i18n.t('testimonial.weHave2')}
               </p>
               <button
                 className={styles.testimonials_qtyAddButton}
                 onClick={toogleShowAdd}
               >
-                {i18n.t("testimonial.add")}
+                {i18n.t('testimonial.add')}
               </button>
             </div>
             <div className={styles.testimonials_list}>
               <Testimonials
                 itemPerPage={5}
-                getPageInfo={(pageInfo: any) => setTotalItems(pageInfo.totalItems)}
+                getPageInfo={(pageInfo: any) =>
+                  setTotalItems(pageInfo.totalItems)
+                }
                 withImage={false}
                 classes={classesTestimonials}
                 callPagination
                 paginationClasses={paginationClasses}
-                loadingComponent={
-                  [1, 2, 3].map((_, i) => (
-                    <div className={styles.testimonials_placeholderContainer}>
-                      <Placeholder
-                        key={i}
-                        classes={classesPlaceholderTestimonials}
-                        withImage={false}
-                        withList
-                        listMany={3}
-                      />
-                    </div>
-                  ))
-                }
+                loadingComponent={[1, 2, 3].map((_, i) => (
+                  <div className={styles.testimonials_placeholderContainer}>
+                    <Placeholder
+                      key={i}
+                      classes={classesPlaceholderTestimonials}
+                      withImage={false}
+                      withList
+                      listMany={3}
+                    />
+                  </div>
+                ))}
               />
             </div>
-          </> :
+          </>
+        ) : (
           <>
-            <EmptyComponent 
-              title={i18n.t("testimonial.isEmpty")}
-            />
-            <div className={styles.testimonials_empty}> 
-              <div className={`${stylesButton.btn_primary} ${styles.testimonials_btnInput}`} onClick={toogleShowAdd}>
-                {i18n.t("testimonial.add")}
+            <EmptyComponent title={i18n.t('testimonial.isEmpty')} />
+            <div className={styles.testimonials_empty}>
+              <div
+                className={`${stylesButton.btn_primary} ${styles.testimonials_btnInput}`}
+                onClick={toogleShowAdd}
+              >
+                {i18n.t('testimonial.add')}
               </div>
-              <div 
-                className={`${stylesButton.btn_text} ${styles.testimonials_btnInput}`} 
-                onClick={() => Router.push(`/[lng]/products`, `/${lng}/products`)}>
-                {i18n.t("product.back")}
+              <div
+                className={`${stylesButton.btn_text} ${styles.testimonials_btnInput}`}
+                onClick={() =>
+                  Router.push(`/[lng]/products`, `/${lng}/products`)
+                }
+              >
+                {i18n.t('product.back')}
               </div>
             </div>
           </>
-        }
-        {(showAdd && testimonialFormAllowed) &&
+        )}
+        {showAdd && testimonialFormAllowed && (
           <Popup
             setPopup={toogleShowAdd}
             isOpen={showAdd}
-            title={i18n.t("testimonial.popupTitle")}
+            title={i18n.t('testimonial.popupTitle')}
           >
             <TestimonialForm
               classes={classesTestimonalsForm}
-              uploadIcon={i18n.t("testimonial.inputImage")}
-              onUploadImageCompleted={() => toast.success(i18n.t("testimonial.successUpload"))}
+              uploadIcon={i18n.t('testimonial.inputImage')}
+              onUploadImageCompleted={() =>
+                toast.success(i18n.t('testimonial.successUpload'))
+              }
               onUploadImageError={(error: any) => toast.error(error)}
               onCreateTestimonialCompleted={(_) => {
                 setShowAdd(false)
                 toast.success(i18n.t('testimonial.createSuccess'))
               }}
-              onCreateTestimonialError={(_) => toast.error(i18n.t('testimonial.createError'))}
+              onCreateTestimonialError={(_) =>
+                toast.error(i18n.t('testimonial.createError'))
+              }
               withVerification={true}
               isVerified={isVerified}
               verificationComponent={
@@ -170,16 +180,17 @@ const TestimonialsPage: FC<any> = ({
               }
             />
           </Popup>
-        }
+        )}
       </div>
     </Layout>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
-  const { default: lngDict = {} } = await import(
-    `locales/${params.lng}.json`
-  )
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  params,
+}) => {
+  const { default: lngDict = {} } = await import(`locales/${params.lng}.json`)
 
   const brand = await useBrand(req)
 
@@ -187,8 +198,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
     props: {
       lng: params.lng,
       lngDict,
-      brand: brand || ""
-    }
+      brand: brand || '',
+    },
   }
 }
 
