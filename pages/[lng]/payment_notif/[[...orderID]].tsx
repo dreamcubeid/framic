@@ -2,17 +2,21 @@
 import { FC } from 'react'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { useRouter } from 'next/router'
-/* library template */
-import { ChevronUp, ChevronDown } from 'react-feather'
-import { PaymentConfirmation, useI18n, CheckPaymentOrder } from '@sirclo/nexus'
 import { toast } from 'react-toastify'
+import { ChevronUp, ChevronDown } from 'react-feather'
+import { 
+  PaymentConfirmation, 
+  useI18n, 
+  CheckPaymentOrder 
+} from '@sirclo/nexus'
+/* library template */
 import { useBrand } from 'lib/useBrand'
 /* component */
 import Layout from 'components/Layout/Layout'
 import Loader from 'components/Loader/Loader'
-import styles from 'public/scss/pages/PaymentNotif.module.scss'
 import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
 /* styles */
+import styles from 'public/scss/pages/PaymentNotif.module.scss'
 import stylesButton from 'public/scss/components/Button.module.scss'
 
 const classesPaymentConfirmation = {
