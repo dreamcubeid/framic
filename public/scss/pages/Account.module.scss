@@ -313,3 +313,236 @@
     }
   }
 }
+
+.pagination
+{
+  &_paging
+  {
+    @include flex(row, center, center);
+    margin-top: 18px;
+  }
+
+  &_item
+  {
+    @include typographyBuilder(400, 14, 16);
+    color: $color_black_text;
+    list-style-type: none;
+    padding: 10px 16px;
+    border: 1px solid $color_light;
+    border-radius: 2px;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+
+  &_active
+  {
+    @include typographyBuilder(700, 14, 16);
+    color: $color_black_text;
+    border: 1px solid $color_black;
+  }
+}
+
+.notification
+{
+  &_desc
+  {
+    @include typographyBuilder(400, 12, 14);
+    background-color: $color_light_dark;
+    padding: 10px;
+    position: relative;
+    color: $color_black_text;
+    @include flex(row, center, center);
+
+    &::before
+    {
+      content: "";
+      display: block;
+      width: 25px;
+      height: 16px;
+      margin-right: 8px;
+      background-repeat: no-repeat;
+      z-index: 10;
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M6 10.7509C3.38057 10.7509 1.24914 8.61943 1.24914 6C1.24914 3.38057 3.38057 1.24914 6 1.24914C8.61943 1.24914 10.7509 3.38057 10.7509 6C10.7509 8.61943 8.61943 10.7509 6 10.7509ZM6 0C9.30857 0 12 2.69143 12 6C12 9.30857 9.30857 12 6 12C2.69143 12 0 9.30857 0 6C0 2.69143 2.69143 0 6 0ZM6.20629 8.11029H5.79429C5.51029 8.11029 5.27886 8.32 5.27886 8.57829V9.18057C5.27886 9.43829 5.51029 9.648 5.79429 9.648H6.20629C6.49029 9.648 6.72057 9.43829 6.72057 9.18057V8.57829C6.72057 8.32 6.49029 8.10971 6.20629 8.10971V8.11029ZM6.20743 2.27771H5.79314C5.50457 2.27771 5.27886 2.46743 5.27886 2.70857V7.18629C5.27886 7.428 5.50457 7.61714 5.79314 7.61714H6.20743C6.49543 7.61714 6.72057 7.42857 6.72057 7.18629V2.70857C6.72057 2.46743 6.49543 2.27771 6.20743 2.27771Z' fill='%23333333'/%3E%3C/svg%3E");
+    }
+  }
+
+  &_mediaLabel
+  {
+    @include typographyBuilder(600, 16, 14);
+    color: $color_black_text;
+  }
+
+  &_mediaDesc
+  {
+    @include typographyBuilder(400, 12, 14);
+    color: $color_black_text;
+    margin-top: 4px;
+  }
+
+  &_mediaLabelContainer
+  {
+    @include flex(row,flex-start,flex-start);
+  
+    img
+    {
+      width: 20px;
+    }
+  
+    @media screen and (max-width: 575px)
+    {
+      max-width: calc(100% - 45px);
+    }
+  }
+
+  &_mediaParent
+  {
+    @include flex(row,flex-start,space-between);
+    min-height: 32px;
+    padding-top: 25px;
+  }
+  
+  &_mediaDetailLabel
+  {
+    margin-left: 12px;
+    font-size: 14px;
+    line-height: 18px;
+    color: $color_black_text;
+  }
+  
+  &_mediaDetailCheckboxContainer
+  {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    height: 20px;
+    width: 20px;
+  }
+
+  &_mediaDetailCheckbox
+  {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  
+    &:checked ~ .notification_mediaDetailCheckboxLabel
+    {
+      background-color: $color_black_text;
+    }
+  
+    &:checked ~ .notification_mediaDetailCheckboxLabel:after
+    {
+      display: block;
+    }
+  
+    &:disabled ~ .notification_mediaDetailCheckboxLabel
+    {
+      background-color: $color_black_text;
+    }
+  }
+  
+  &_mediaDetailCheckboxLabel
+  {
+    height: 20px;
+    width: 20px;
+    background-color: gray;
+    margin-bottom: 0;
+    border-radius: 2px;
+  
+    &::after
+    {
+      content: "";
+      display: none;
+      position: absolute;
+      left: 7px;
+      top: 2px;
+      width: 7px;
+      height: 12px;
+      border: solid $color_white;
+      border-width: 0 3px 3px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+  }
+
+  &_mediaCheckbox
+  {
+    display: none;
+  
+    &:checked + .notification_mediaCheckboxSlider
+    {
+      background-color: $color_black_text;
+    }
+  
+    &:checked + .notification_mediaCheckboxSlider:before
+    {
+      transform: translateX(12px);
+    }
+  
+    &:disabled + .notification_mediaCheckboxSlider
+    {
+      background-color: $color_black_text;
+    }
+  }
+ 
+  &_mediaCheckboxSlider
+  {
+    @include absolute(0,0,0,0);
+    background-color: $color_grey;
+    cursor: pointer;
+    transition: .2s;
+    border-radius: 24px;
+  
+    &:before
+    {
+      content: "";
+      background-color: $color_white;
+      position: absolute;
+      bottom: 2px;
+      left: 2px;
+      width: 16px;
+      height: 15px;
+      border-radius: 38px;
+      transition: .2s;
+    }
+  }
+
+  &_mediaCheckboxContainer
+  {
+    flex: 0 1 auto;
+    margin: 0;
+    display: inline-block;
+    height: 20px;
+    position: relative;
+    width: 32px;
+  }
+
+  &_mediaDisable
+  {
+    opacity: 0.5;
+  }
+
+  &_mediaDetailContainer
+  {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 12px;
+    padding: 20px 12px;
+    border-radius: 4px;
+    background: $color_light_low;
+  }
+  
+  &_mediaInnerLabel
+  {
+    text-align: left;
+    margin-left: 12px;
+  }
+}

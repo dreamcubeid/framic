@@ -647,5 +647,12 @@
     "loginWithAnotherMethod": "Register using another method",
     "chooseAnyAccountToLogin": "You have multiple accounts registered, please select one to login",
     "inputWhatsApp": "Enter your Whatsapp number to register to our store"
+  },
+  "notificationOptIn": {
+    "checkboxLabel": "I want to receive order status via social media",
+    "continuePayment": "Continue to Payment",
+    "description": "You will get a notification of your order via the whatsapp number below",
+    "proceedToPayment": "Proceed to Payment",
+    "title": "Update via Social Media"
   }
 }
