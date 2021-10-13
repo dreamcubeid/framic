@@ -1,5 +1,5 @@
 /* library package */
-import { FC } from 'react'
+import { FC, Fragment } from 'react'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'
@@ -75,47 +75,45 @@ const PaymentConfirmationPage: FC<any> = ({
   return (
     <Layout i18n={i18n} lng={lng} lngDict={lngDict} brand={brand}>
       <Breadcrumb links={linksBreadcrumb} lng={lng} />
-      <section>
-        <div className={styles.paymentConfirmation_container}>
-          
-          {orderID ? (
-            <>
-              <h3 className={styles.paymentConfirmation_title}>
-                {i18n.t('paymentConfirm.heading')}
-              </h3>
-              <PaymentConfirmation
-                orderIDProps={orderID}
-                classes={classesPaymentConfirmation}
-                orderDetailIcon={{
-                  chevronUp: <ChevronUp/>,
-                  chevronDown: <ChevronDown />
-                }}
-                onErrorMsg={(msg) => toast.error(msg)}
-                onSuccessMsg={(msg) => toast.success(msg)}
-                loadingComponent={<Loader color='text-light' />}
-                errorComponent={<div>{i18n.t('global.error')}</div>}
-                withOrderDetails
-                thumborSetting={{
-                  width: 40,
-                  format: 'webp',
-                  quality: 85,
-                }}
-              />
-            </>
-          ) : (
-            <CheckPaymentOrder
-              classes={classesCheckPaymentOrder}
-              icon={{
-                loading: (
-                  <span className='spinner-border text-light mr-3' />
-                ),
+      <div className={styles.paymentConfirmation_container}>
+        
+        {orderID ? (
+          <>
+            <h3 className={styles.paymentConfirmation_title}>
+              {i18n.t('paymentConfirm.heading')}
+            </h3>
+            <PaymentConfirmation
+              orderIDProps={orderID}
+              classes={classesPaymentConfirmation}
+              orderDetailIcon={{
+                chevronUp: <ChevronUp/>,
+                chevronDown: <ChevronDown />
               }}
               onErrorMsg={(msg) => toast.error(msg)}
-              // onSuccessMsg={(msg) => toast.success(msg)}
+              onSuccessMsg={(msg) => toast.success(msg)}
+              loadingComponent={<Loader color='text-light' />}
+              errorComponent={<div>{i18n.t('global.error')}</div>}
+              withOrderDetails
+              thumborSetting={{
+                width: 40,
+                format: 'webp',
+                quality: 85,
+              }}
             />
-          )}
-        </div>
-      </section>
+          </>
+        ) : (
+          <CheckPaymentOrder
+            classes={classesCheckPaymentOrder}
+            icon={{
+              loading: (
+                <span className='spinner-border text-light mr-3' />
+              ),
+            }}
+            onErrorMsg={(msg) => toast.error(msg)}
+            // onSuccessMsg={(msg) => toast.success(msg)}
+          />
+        )}
+      </div>
     </Layout>
   )
 }
