@@ -51,6 +51,20 @@ const classesOrderSummary = {
   voucherDetailEstimateDescClassName: styles.ordersummary_voucherDetailEstimateDesc,
   voucherListClassName: styles.ordersummary_voucherList,
   deductionPriceClassName: styles.ordersummary_deductionPrice,
+
+  pointsButtonClassName: styles.ordersummary_pointsButton,
+  pointsTextClassName: styles.ordersummary_pointsText,
+  pointsContainerClassName: styles.ordersummary_pointsContainer,
+  numberOfPointsClassName: styles.ordersummary_numberOfPoints,
+  pointLabelClassName: styles.ordersummary_pointLabel,
+  totalPointsClassName: styles.ordersummary_totalPoints,
+  pointValueClassName: styles.ordersummary_pointValue,
+  pointsFormClassName: styles.ordersummary_pointsForm,
+  changePointsClassName: styles.ordersummary_changePoints,
+  pointsWarningClassName: styles.ordersummary_pointsWarning,
+  pointsSubmitButtonClassName: stylesButton.btn_primaryLong,
+  
+  
   // continueShoppingClassName: "d-none",
   // labelClassName: "order-summary__popup--points-label",
   // valueClassName: "order-summary__popup--points-value",
@@ -62,23 +76,12 @@ const classesOrderSummary = {
   // voucherApplyButtonClassName: "order-summary__popup--voucher-button btn btn-blackOuter d-flex flex-row align-items-center justify-content-center flex-nowrap text-center",
 
   // /* point */
-  // pointValueClassName: "orderSummary_pointValue",
   // pointButtonRemoveClassName: "orderSummary_voucherButtonRemove",
-  // pointsButtonClassName: "col-6 order-summary__header--features b-left",
   // pointsIconClassName: "order-1 mr-2 order-summary__header--features-icon",
-  // pointsTextClassName: "order-2 order-summary__header--features-label",
   // pointsButtonAppliedClassName: "col-12 order-summary_voucherButtonApplied b-left",
   // pointsAppliedTextClassName: "order-summary_voucherAppliedText text-uppercase order-1",
-  // pointsContainerClassName: "order-summary__popup",
   // pointsFormContainerClassName: "order-summary__popup-form-container w-100 mb-3",
-  // pointsFormClassName: "form-inline sirclo-form-row order-summary__popup-form order-summary__popup--points-form d-flex flex-row align-items-center justify-content-between flex-nowrap m-0 p-0",
-  // pointsSubmitButtonClassName: "btn btn-black-outer order-summary__popup-form-button d-flex flex-row align-items-center justify-content-center text-center mx-0 mt-3 w-100",
-  // changePointsClassName: "btn btn-blackOuter order-summary__popup-form-button order-summary__popup--points-button d-flex flex-row align-items-center justify-content-center text-center",
-  // numberOfPointsClassName: "order-summary__popup--points d-flex flex-column align-items-start justify-content-center flex-wrap w-100",
-  // pointLabelClassName: "order-summary__popup--points-label d-flex flex-row align-items-center justify-content-start",
-  // totalPointsClassName: "order-summary__popup--points-total d-flex flex-row align-items-center justify-content-start",
   // pointsInsufficientClassName: "order-summary__popup--points-insufficient w-100 d-flex flex-row align-items-center justify-content-cente",
-  // pointsWarningClassName: "order-summary__popup--points-warning w-100 d-flex flex-row align-items-center justify-content-center text-left",
   // pointEarnedBannerClassName: "order-summary__pointEarned w-100"
 }
 
@@ -102,7 +105,7 @@ const OrderSummaryBox: FC<OrderSummaryBoxPropsType> = ({
       onAddressInvalid={(e) => toast.error(e)}
       icons={{
         voucher: <span className={styles.ordersummary_voucherIcon} />,
-        points: <i className="fa fa-crown"></i>,
+        points:  <span className={styles.ordersummary_pointsIcon} />,
         pointsApplied: <i className="fa fa-crown"></i>,
         close: <span className={styles.ordersummary_closeIcon} />,
         voucherApplied: <span className={styles.ordersummary_voucherIconApplied} />,
