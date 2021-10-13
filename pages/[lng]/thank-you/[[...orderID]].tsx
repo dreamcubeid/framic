@@ -1,22 +1,23 @@
 import { FC } from "react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { 
-  // ThankYou, 
+  ThankYou, 
   useI18n 
 } from "@sirclo/nexus";
 import SEO from "components/SEO";
 import Layout from "components/Layout/Layout";
 import { useBrand } from "lib/useBrand";
-// import { Check } from "react-feather";
+import { Check } from "react-feather";
 import styles from "public/scss/pages/ThankYou.module.scss";
+import { toast } from "react-toastify";
 
-// const classesThankYouPage = {
-//   thankYouClassName: styles.thankyou_inner,
-//   hankYouOrderID: styles.thankyou_label,
-//   thankYouMessageClassName: styles.thankyou_message,
-//   thankYouOrderID: styles.thankyou_orderID,
-//   buttonClassName: `btn w-100 ${styles.btn_primary} ${styles.btn_long}`
-// }
+const classesThankYouPage = {
+  thankYouClassName: styles.thankyou_inner,
+  hankYouOrderID: styles.thankyou_label,
+  thankYouMessageClassName: styles.thankyou_message,
+  thankYouOrderID: styles.thankyou_orderID,
+  buttonClassName: `btn w-100 ${styles.btn_primary} ${styles.btn_long}`
+}
 
 const ThankYouPage: FC<any> = ({
   lng,
@@ -36,11 +37,12 @@ const ThankYouPage: FC<any> = ({
       <section>
         <div className="container">
           <div className={styles.thankyou_container}>
-            {/* <ThankYou
+            <ThankYou
               thankYouImageURL={<Check className={styles.thankyou_inner__icon} />}
               classes={classesThankYouPage}
               withDelay
-            /> */}
+              onSuccessMsg={(msg: string) => toast.success(msg)}
+            />
           </div>
         </div>
       </section>
