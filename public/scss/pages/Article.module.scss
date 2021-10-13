@@ -1,54 +1,82 @@
-// @import "../components/Placeholder.module.scss";
+@import '../utils/variables';
 
-// .article 
-// {
-//   min-height: 58vh;
+.article
+{
+  &_container
+  {
+    @include useContainer();
+    @include flex(row, flex-start, space-between,true);
+  }
 
-//   @media screen and (max-width: 575px) {
-//     min-height: 40vh;
-//   }
+  &_content
+  {
+    width: calc((100% / 12) * 9);
+    min-height: 100px;
 
-// 	h1,h2,h3,h4,h5,h6
-// 	{
-// 		font-family: "roboto-medium";
-// 		font-size: 16px;
-// 	}
+    @media screen and (max-width: $breakpoint_max_md) 
+    {
+      width: 100%;
+    }
+  }
 
-// 	p
-// 	{
-// 		font-size: 13px;
-// 	}
+  &_categories
+  {
+    width: calc((100%/ 12) * 3);
+    padding-left: 24px;
 
-// 	img
-// 	{
-// 		width: 100%;
-//   }
-  
-//   &_title
-//   {
-//     font-family: "roboto-medium";
-//     margin-bottom: 1rem;
-//   }
+    @media screen and (max-width: $breakpoint_max_md) 
+    {
+      width: 100%;
+      padding: 0;
+      margin-top: 48px;
+    }
+  }
 
-// 	&_categories
-// 	{
-// 		&_title
-// 		{
-// 			font-family: "roboto-medium";
-// 			font-size: 16px;
-// 		}
-//   }
-  
-//   &_categoriesOrder
-//   {
-//     margin: 0;
-//     margin-top: 1rem;
-//     padding: 0;
+  &_title
+  {
+    @include typographyBuilder(600, 20, 24);
+    color: $color_black_text;
+  }
 
-//     &_list
-//     {
-//       list-style: none;
-//       margin-bottom: .5rem;
-//     }
-//   }
-// }
+  &_contentBody
+  {
+    & > h1, h2, h3, h4, h5, h6, strong
+    {
+      @include typographyBuilder(600, 16, 24);
+      color: $color_black_text;
+    }
+
+    & > p
+    {
+      @include typographyBuilder(400, 16, 24);
+      color: $color_black_text;
+      margin: 0;
+    }
+  }
+
+  &_categoriesTitle
+  {
+    @include typographyBuilder(600, 20, 24);
+    color: $color_black_text;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  &_categoriesOrder
+  {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  &_categoriesOrderList
+  {
+    @include typographyBuilder(400, 16, 24);
+    margin: 8px 0;
+
+    & > a 
+    {
+      color: $color_black_text;
+      text-decoration: 0;
+    }
+  }
+}

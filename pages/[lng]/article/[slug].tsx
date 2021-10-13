@@ -1,86 +1,75 @@
-import { FC, useState } from "react";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import {
-	Article,
-	ArticleCategories,
-	useI18n
-} from "@sirclo/nexus";
-import Layout from "components/Layout/Layout";
-import SEO from "components/SEO";
-import Placeholder from "components/Placeholder";
-import { useBrand } from "lib/useBrand";
-import styles from "public/scss/pages/Article.module.scss";
+/* library package */
+import { FC, useState } from 'react'
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import { Article, ArticleCategories, useI18n } from '@sirclo/nexus'
+/* library template */
+import { useBrand } from 'lib/useBrand'
+/* component */
+import Layout from 'components/Layout/Layout'
+import Placeholder from 'components/Placeholder'
+import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
+/* styles */
+import styles from 'public/scss/pages/Article.module.scss'
 
 const classesPlaceholderArticle = {
-	placeholderImage: `${styles.placeholderItem} ${styles.placeholderItem_article}`,
+  placeholderImage: styles.article_content,
 }
 
 const classesArticleCategories = {
-	articleCategoriesContainerClass: styles.article_categories,
-	categoryTitleClass: styles.article_categories_title,
-	articleCategoriesUlClass: styles.article_categoriesOrder,
-	articleCategoriesLiClass: styles.article_categoriesOrder_list,
+  articleCategoriesContainerClass: styles.article_categories,
+  categoryTitleClass: styles.article_categoriesTitle,
+  articleCategoriesUlClass: styles.article_categoriesOrder,
+  articleCategoriesLiClass: styles.article_categoriesOrderList,
 }
 
 const ArticleDetail: FC<any> = ({
-	lng,
-	lngDict,
-	slug,
-	brand
+  lng,
+  lngDict,
+  slug,
+  brand,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-	const i18n: any = useI18n();
+  const i18n: any = useI18n()
 
-	const [title, setTitle] = useState<string>("");
+	const [title, setTitle] = useState<string>('')
+	const linksBreadcrumb = [i18n.t('header.home'), title]
 
-	return (
-		<Layout
-			i18n={i18n}
-			lng={lng}
-			lngDict={lngDict}
-			brand={brand}
-		>
-			<SEO title={title} />
-			<section>
-				<div className="container">
-					<div className="row">
-						<div className="col-12 col-md-9">
-							<h3 className={styles.article_title}>{title}</h3>
-							<Article
-								containerClassName={styles.article}
-								slug={slug as string}
-								getTitle={setTitle}
-								loadingComponent={
-									<Placeholder classes={classesPlaceholderArticle} withImage />
-								}
-							/>
-						</div>
-						<div className="col-12 col-md-3">
-							<ArticleCategories
-								classes={classesArticleCategories}
-							/>
-						</div>
-					</div>
-				</div>
-			</section>
-		</Layout>
-	);
-};
-
-export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
-	const { default: lngDict = {} } = await import(
-		`locales/${params.lng}.json`
-	);
-
-	const brand = await useBrand(req);
-
-	return {
-		props: {
-			lng: params.lng,
-			lngDict,
-			slug: params.slug,
-			brand: brand || ""
-		}
-	};
+  return (
+    <Layout i18n={i18n} lng={lng} lngDict={lngDict} brand={brand}>
+			<Breadcrumb links={linksBreadcrumb} lng={lng} />
+      <div className={styles.article_container}>
+        <div className={styles.article_content}>
+          <h3 className={styles.article_title}>{title}</h3>
+          <Article
+            containerClassName={styles.article_contentBody}
+            slug={slug as string}
+            getTitle={setTitle}
+            loadingComponent={
+              <Placeholder classes={classesPlaceholderArticle} withImage />
+            }
+          />
+        </div>
+        <ArticleCategories classes={classesArticleCategories} />
+      </div>
+    </Layout>
+  )
 }
 
-export default ArticleDetail;
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  params,
+}) => {
+  const { default: lngDict = {} } = await import(`locales/${params.lng}.json`)
+
+  const brand = await useBrand(req)
+
+  return {
+    props: {
+      lng: params.lng,
+      lngDict,
+      slug: params.slug,
+      brand: brand || ''
+    }
+  }
+}
+
+export default ArticleDetail
