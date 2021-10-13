@@ -595,7 +595,9 @@
     "weHave2": " testimonial dari pelanggan setia kami",
     "add": "Tambahkan Testimonial",
     "writeReview": "Buat Ulasan",
-    "yes": "Ya"
+    "yes": "Ya",
+    "sendTestimonial": "Kirim Testimonial",
+    "popupTitle": "Tulis Testimonial"
   },
   "testimonials": {
     "contentLabel": "Tuliskan ulasan",
@@ -606,6 +608,7 @@
     "reviewLabel": "Judul",
     "reviewTitlePlaceholder": "Judul",
     "submit": "Kirim Ulasan"
+    
   },
   "thankYou": {
     "message": "Kami mengirimkan Anda email ke {EMAIL} tanda terima pesanan. Jika email tidak ada di kotak masuk Anda, coba periksa bagian folder spam.",
