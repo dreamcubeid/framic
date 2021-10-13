@@ -4,21 +4,28 @@
 {
   &_container
   {
-    @include useContainer();
+    width: 100%;
+    height: calc(100vh - 47px);
 
-    @media screen and (min-width: #{$breakpoint_max_md})
+    & > div 
     {
-      @include flex(row, center, center);
-    }
-  
-    div 
-    {
-      padding: 0 auto;
+      height: 100%;
+      padding-top: 80px;
+
+      & > * 
+      {
+        max-width: 340px;
+        margin: 0 auto;
+
+        @media screen and (max-width: #{$breakpoint_max_md})
+        {
+          width: 100%;
+        }
+      }
     }
 
     & > div > img
     {
-      margin: 80px auto; 
       display: block;
     }
 
@@ -32,7 +39,8 @@
     {
       @include flex(row, center, flex-end);
       flex-direction: row-reverse;
-      border: 1px solid $color_light;
+      box-shadow: 0px 4px 10px rgba($color_black, 0.1);
+      cursor: pointer;
       margin-top: 12px;
       padding: 12px;
 
@@ -53,8 +61,9 @@
       border: none;
       text-align: center;
       display: block;
-      margin: 12px 0 12px 0;
+      margin: 0 auto 32px auto;
       padding: 0;
+      box-shadow: none;
     }
 
     & > div > div:nth-child(2)
