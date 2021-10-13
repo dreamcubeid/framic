@@ -1,12 +1,16 @@
-import { FC } from "react";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { Links, useI18n } from "@sirclo/nexus";
-import Layout from "components/Layout/Layout";
-import { useBrand } from "lib/useBrand";
-import styles from "public/scss/pages/Tautan.module.scss";
+/* library package */
+import { FC } from 'react'
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import { Links, useI18n } from '@sirclo/nexus'
+/* library template */
+import { useBrand } from 'lib/useBrand'
+/* component */
+import Layout from 'components/Layout/Layout'
+import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
+/* styles */
+import styles from 'public/scss/pages/Tautan.module.scss'
 
 const classesLinks = {
-  containerClassName: styles.tautan,
   logoImage: styles.tautan_logo,
   titleClassName: styles.tautan_title,
   description: styles.tautan_description,
@@ -18,9 +22,9 @@ const classesLinks = {
 const TautanPage: FC<any> = ({
   lng,
   lngDict,
-  brand
+  brand,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const i18n: any = useI18n();
+  const i18n: any = useI18n()
 
   return (
     <Layout
@@ -31,27 +35,28 @@ const TautanPage: FC<any> = ({
       withHeader={false}
       withFooter={false}
     >
-      <div className="container">
+      <div className={styles.tautan_container}>
         <Links classes={classesLinks} />
       </div>
     </Layout>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
-  const { default: lngDict = {} } = await import(
-    `locales/${params.lng}.json`
-  );
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  params,
+}) => {
+  const { default: lngDict = {} } = await import(`locales/${params.lng}.json`)
 
-  const brand = await useBrand(req);
+  const brand = await useBrand(req)
 
   return {
     props: {
       lng: params.lng,
       lngDict,
-      brand: brand || ""
+      brand: brand || ''
     }
-  };
+  }
 }
 
-export default TautanPage;
+export default TautanPage

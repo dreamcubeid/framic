@@ -1,81 +1,68 @@
-// @import "../base/colors.scss";
-// @import "../components/Button.module.scss";
+@import '../utils/variables';
 
-// .tautan
-// {
-//   text-align: center;
-//   margin: 50px 0;
+.tautan
+{
+  &_container
+  {
+    @include useContainer();
 
-//   &_logo
-//   {
-//     height: 80px;
-//   }
+    @media screen and (min-width: #{$breakpoint_max_md})
+    {
+      @include flex(row, center, center);
+    }
+  
+    div 
+    {
+      background-color: $color_white !important;
+      padding: 0 auto;
+    }
 
-//   &_title
-//   {
-//     font-size: 22px;
-//     font-family: "roboto-medium";
-//   }
+    & > div > img
+    {
+      margin: 80px auto; 
+      display: block;
+    }
 
-//   &_description
-//   {
-//     font-size: 14px;
-//     margin-bottom: 100px;
-//   }
+    & > div > div
+    {
+      @include typographyBuilder(400, 16, 24);
+      color: $color_black_text !important;
+      text-align: center;
+    }
 
-//   &_linkSection
-//   {
-//     display: flex;
-//     align-items: center;
-//     flex-direction: row-reverse;
-//     width: 100%;
-//     margin: 16px 0;
-//     padding: 13.5px;
-//     background: $color_white;
-//     border: 1px solid $color_blue;
-//     box-sizing: border-box;
-//     box-shadow: 0px 4px 10px rgba($color_black, 0.1);
-//     border-radius: 3px;
-//     cursor: pointer;
+    & > div > div:not(:nth-child(2))
+    {
+      @include flex(row, center, flex-end);
+      flex-direction: row-reverse;
+      border: 1px solid $color_light;
+      margin-top: 12px;
+      padding: 12px;
 
-//     &:hover,
-//     &:active
-//     {
-//       transition: 0.5s all ease;
-//       background: $color_blue;
+      p
+      {
+        margin: 0;
+      }
 
-//       .tautan_labelText
-//       {
-//         & > p
-//         {
-//           color: $color_white !important;
-//         }
-//       }
-//     }
-//   }
+      img
+      {
+        @include fixedSize(20px);
+        margin-right: 16px;
+      }
+    }
 
-//   &_labelText
-//   {
-//     flex: 1 0 auto;
+    & > div > div:nth-child(3)
+    {
+      border: none;
+      text-align: center;
+      display: block;
+      margin: 12px 0 12px 0;
+      padding: 0;
+    }
+
+    & > div > div:nth-child(2)
+    {
+      @include typographyBuilder(600, 20, 24);
+    }
     
-//     & > p
-//     {
-//       font-size: 14px;
-//       text-align: left;
-//       margin: 0;
-//     }
-//   }
-
-//   &_labelImage
-//   {
-//     flex: 0 1 auto;
-//     margin-right: 10px;
-
-//     img
-//     {
-//       width: 21px;
-//       height: 21px;
-//       object-fit: cover;
-//     }
-//   }
-// }
+  }
+}
