@@ -77,6 +77,7 @@ const SideMenu: FC<SideMenuPropsType> = ({
   const allowedCopyright = isCopyrightAllowed();
   const { data: dataCart } = useCart();
   const router = useRouter();
+  const logout = useLogout('login')
 
   const handleCart = () => {
     if (router.pathname !== "/[lng]/payment_notif/[[...orderID]]") Router.push("/[lng]/cart", `/${lng}/cart`);
@@ -151,7 +152,7 @@ const SideMenu: FC<SideMenuPropsType> = ({
                   <Link href="/[lng]/account" as={`/${lng}/account`}>
                     <a className={styles.sidemenu_accountLinkAccount}>{i18n.t("account.myAccount")}</a>
                   </Link>
-                  <span onClick={() => useLogout('account')}>
+                  <span onClick={logout}>
                     <a className={styles.sidemenu_accountLinkLogout}>{i18n.t("account.logout")}</a>
                   </span>
                 </>

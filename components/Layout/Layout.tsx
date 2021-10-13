@@ -122,9 +122,7 @@ const Layout: React.FC<LayoutPropType> = ({
           onError={() => toast.error(i18n.t("newsletter.submitError"))}
         />
       </div>
-      {withFooter &&
-        <Footer brand={brand} />
-      }
+      <Footer brand={brand} withFooter={withFooter} />
     </>
   );
 };
