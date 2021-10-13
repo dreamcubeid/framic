@@ -6,7 +6,6 @@ import { Links, useI18n } from '@sirclo/nexus'
 import { useBrand } from 'lib/useBrand'
 /* component */
 import Layout from 'components/Layout/Layout'
-import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
 /* styles */
 import styles from 'public/scss/pages/Tautan.module.scss'
 
