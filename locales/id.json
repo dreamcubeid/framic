@@ -162,9 +162,10 @@
   },
   "global": {
     "back": "Kembali",
+    "backHome": "Kembali ke Halaman Utama",
+    "changes": "Ubah",
     "day": "hari lagi",
     "days": "hari lagi",
-    "backHome": "Kembali ke Halaman Utama",
     "continueShopping": "Lanjutkan Berbelanja",
     "error": "Terjadi kesalahan",
     "hours": "jam lagi",

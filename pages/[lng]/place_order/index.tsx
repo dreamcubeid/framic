@@ -34,6 +34,9 @@ const classesPlaceOrderForm = {
   formGroupClassName: stylesForm.form_control,
   inputClassName: stylesForm.form_inputLong,
   shippingCheckboxLabelClassName: styles.placeorder_shippingCheckboxLabel,
+  signupLabelClassName: styles.placeorder_signupLabel,
+  checkoutAsMemberClassName: styles.placeorder_checkoutAsMember,
+  loginLabelClassName: styles.placeorder_loginLabel,
   mapSelectAreaClassName: stylesButton.btn_secondaryLongSmall,
   mapPopupClassName: styleMapLocation.mapPopup,
   mapNoteClassName: styleMapLocation.mapNote,
@@ -76,9 +79,13 @@ const PlaceOrderPage: FC<any> = ({
         withHeader={false}
         withFooter={false}
       >
-        <ChekoutComponent page="place_order">
+        <ChekoutComponent
+          lng={lng}
+          page="place_order"
+        >
           <PlaceOrderForm
             classes={classesPlaceOrderForm}
+            signupLabelPosition="bottom"
             passwordFulfilledCriteriaIcon={<CheckCircle color="green" size={16} />}
             passwordUnfulfilledCriteriaIcon={<CheckCircle color="gray" size={16} />}
             onErrorMsg={(msg) => toast.error(msg)}
