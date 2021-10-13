@@ -1,81 +1,75 @@
-// @import "../base/colors.scss";
-// @import "../components/Button.module.scss";
+@import '../utils/variables';
 
-// .tautan
-// {
-//   text-align: center;
-//   margin: 50px 0;
+.tautan
+{
+  &_container
+  {
+    width: 100%;
+    height: calc(100vh - 47px);
 
-//   &_logo
-//   {
-//     height: 80px;
-//   }
+    & > div 
+    {
+      height: 100%;
+      padding-top: 80px;
 
-//   &_title
-//   {
-//     font-size: 22px;
-//     font-family: "roboto-medium";
-//   }
+      & > * 
+      {
+        max-width: 340px;
+        margin: 0 auto;
 
-//   &_description
-//   {
-//     font-size: 14px;
-//     margin-bottom: 100px;
-//   }
+        @media screen and (max-width: #{$breakpoint_max_md})
+        {
+          width: 100%;
+        }
+      }
+    }
 
-//   &_linkSection
-//   {
-//     display: flex;
-//     align-items: center;
-//     flex-direction: row-reverse;
-//     width: 100%;
-//     margin: 16px 0;
-//     padding: 13.5px;
-//     background: $color_white;
-//     border: 1px solid $color_blue;
-//     box-sizing: border-box;
-//     box-shadow: 0px 4px 10px rgba($color_black, 0.1);
-//     border-radius: 3px;
-//     cursor: pointer;
+    & > div > img
+    {
+      display: block;
+    }
 
-//     &:hover,
-//     &:active
-//     {
-//       transition: 0.5s all ease;
-//       background: $color_blue;
+    & > div > div
+    {
+      @include typographyBuilder(400, 16, 24);
+      text-align: center;
+    }
 
-//       .tautan_labelText
-//       {
-//         & > p
-//         {
-//           color: $color_white !important;
-//         }
-//       }
-//     }
-//   }
+    & > div > div:not(:nth-child(2))
+    {
+      @include flex(row, center, flex-end);
+      flex-direction: row-reverse;
+      box-shadow: 0px 4px 10px rgba($color_black, 0.1);
+      cursor: pointer;
+      margin-top: 12px;
+      padding: 12px;
 
-//   &_labelText
-//   {
-//     flex: 1 0 auto;
+      p
+      {
+        margin: 0;
+      }
+
+      img
+      {
+        @include fixedSize(20px);
+        margin-right: 16px;
+      }
+    }
+
+    & > div > div:nth-child(3)
+    {
+      border: none;
+      text-align: center;
+      display: block;
+      margin: 0 auto 32px auto;
+      padding: 0;
+      box-shadow: none;
+    }
+
+    & > div > div:nth-child(2)
+    {
+      @include typographyBuilder(600, 20, 24);
+    }
     
-//     & > p
-//     {
-//       font-size: 14px;
-//       text-align: left;
-//       margin: 0;
-//     }
-//   }
-
-//   &_labelImage
-//   {
-//     flex: 0 1 auto;
-//     margin-right: 10px;
-
-//     img
-//     {
-//       width: 21px;
-//       height: 21px;
-//       object-fit: cover;
-//     }
-//   }
-// }
+  }
+}
