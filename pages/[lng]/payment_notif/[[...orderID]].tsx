@@ -1,5 +1,5 @@
 /* library package */
-import { FC, Fragment } from 'react'
+import { FC } from 'react'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'
