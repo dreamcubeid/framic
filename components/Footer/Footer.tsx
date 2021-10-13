@@ -33,52 +33,55 @@ const classesPlaceholderWidgetLogoDescription = {
   placeholderList: styles.footer_placeholderWidgetLogoDescription,
 }
 
-const Footer: FC<any> = ({ brand }) => {
+const Footer: FC<any> = ({ brand, withFooter }) => {
   const size: any = useWindowSize();
   const allowedCopyright = isCopyrightAllowed();
 
   return (
     <div className={styles.footer_wrapper}>
       <div className={styles.footer_container}>
-
-        <Widget
-          pos="footer-2"
-          widgetClassName={styles.footer_logoDescription}
-          loadingComponent={
-            <Placeholder
-              classes={classesPlaceholderWidgetLogoDescription}
-              withList={true}
-              listMany={2}
+        {withFooter &&
+          <>
+            <Widget
+              pos="footer-2"
+              widgetClassName={styles.footer_logoDescription}
+              loadingComponent={
+                <Placeholder
+                  classes={classesPlaceholderWidgetLogoDescription}
+                  withList={true}
+                  listMany={2}
+                />
+              }
+              thumborSetting={{
+                width: size.width < 768 ? 576 : 1200,
+                format: "webp",
+                quality: 85
+              }}
             />
-          }
-          thumborSetting={{
-            width: size.width < 768 ? 576 : 1200,
-            format: "webp",
-            quality: 85
-          }}
-        />
-        <SocialMediaIcons
-          socialMediaIcons={socialMediaIcons}
-          classes={classesMediaSocial}
-        />
-        <Widget
-          pos="footer-1"
-          widgetClassName={styles.footer_link}
-          loadingComponent={
-            <div className={styles.footer_link}>
-              <Placeholder
-                classes={classesPlaceholderWidgetLink}
-                withList={true}
-                listMany={4}
-              />
-            </div>
-          }
-          thumborSetting={{
-            width: size.width < 768 ? 576 : 1200,
-            format: "webp",
-            quality: 85
-          }}
-        />
+            <SocialMediaIcons
+              socialMediaIcons={socialMediaIcons}
+              classes={classesMediaSocial}
+            />
+            <Widget
+              pos="footer-1"
+              widgetClassName={styles.footer_link}
+              loadingComponent={
+                <div className={styles.footer_link}>
+                  <Placeholder
+                    classes={classesPlaceholderWidgetLink}
+                    withList={true}
+                    listMany={4}
+                  />
+                </div>
+              }
+              thumborSetting={{
+                width: size.width < 768 ? 576 : 1200,
+                format: "webp",
+                quality: 85
+              }}
+            />
+          </>}
+
         <footer className={styles.footer_copyright}>
           {allowedCopyright ?
             <>

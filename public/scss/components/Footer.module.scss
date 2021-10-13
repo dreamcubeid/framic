@@ -1,11 +1,9 @@
 @import '../utils/variables';
-// @import "../components/Placeholder.module.scss";
 
 .footer
 {
   &_wrapper
   {
-    padding-top: 29px;
     background-color: $color_black;   
   }
   
@@ -72,6 +70,7 @@
   &_logoDescription
   {
     @include flex(column, center, center);
+    padding-top: 29px;
 
     h1, h2, h3, h4, h5, h6, p
     {

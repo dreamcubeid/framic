@@ -55,6 +55,7 @@
     @include flex(row, center, flex-start);
     border-bottom: 1px solid $color_light;
     padding: 14px 0;
+    cursor: pointer;
 
     &::before
     {
