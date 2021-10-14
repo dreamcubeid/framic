@@ -50,6 +50,7 @@
     "settingNotification": "Notification",
     "shipped": "Shipped",
     "shippingDetail": "Shipping Detail",
+    "shippingDetails": "Shipping Detail",
     "shippingMethod": "Shipping Method",
     "total": "Total",
     "unpaid": "Unpaid",
@@ -258,7 +259,9 @@
   "orderHistory": {
     "lineItemDelivered": "Delivered",
     "lineItemNeedReview": "Needs Review",
-    "lineItemReviewed": "Reviewed"
+    "lineItemReviewed": "Reviewed",
+    "uploading": "Uploading ...",
+    "uploadReceipt": "Payment Confirmation"
   },
   "orderReview": {
     "agree": "Agree",

@@ -20,7 +20,7 @@
     "editAccount": "Sunting Akun",
     "fetchComplete": "Berhasil mengambil",
     "hallo": "Halo",
-    "invoice": "Tagihan",
+    "invoice": "Cetak Invoice",
     "items": "Barang",
     "logout": "Keluar",
     "loyaltyPointLabel": "Anda memiliki",
@@ -48,6 +48,7 @@
     "settingNotification": "Notifikasi",
     "sessionExpired": "Sesi anda telah usai",
     "shippingDetail": "Detil pengiriman",
+    "shippingDetails": "Detil pengiriman",
     "shippingMethod": "Metode Pengiriman",
     "total": "Jumlah",
     "unpaid": "Belum Dibayar",
@@ -258,7 +259,9 @@
   "orderHistory": {
     "lineItemNeedReview": "Needs Review",
     "lineItemReviewed": "Reviewed",
-    "lineItemDelivered": "Selesaikan Pesanan"
+    "lineItemDelivered": "Selesaikan Pesanan",
+    "uploading": "Mengunggah ...",
+    "uploadReceipt": "Konfirmasi Pembayaran"
   },
   "orderReview": {
     "agree": "Setuju",

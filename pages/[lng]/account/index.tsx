@@ -8,7 +8,6 @@ import {
 import { toast } from 'react-toastify'
 import {
   X as XIcon,
-  AlertCircle,
   Eye,
   EyeOff,
   CheckCircle,
@@ -30,8 +29,7 @@ import stylesForm from 'public/scss/components/Form.module.scss'
 import styleMapLocation from 'public/scss/components/MapLocation.module.scss'
 import stylesPassword from 'public/scss/components/PasswordStrength.module.scss'
 import stylesPaggination from 'public/scss/components/Paggination.module.scss'
-// import stylesPopupConfirmationOrder from "public/scss/components/popupConfirmationOrder.module.scss"
-// import stylesPopupCheckPaymentOrder from "public/scss/components/CheckPaymentOrder.module.scss"
+import stylesShipmentTracker from 'public/scss/components/ShipmentTracker.module.scss'
 
 const ACTIVE_CURRENCY = "IDR"
 
@@ -40,7 +38,6 @@ const classesAccount = {
   tabItemClassName: styles.account_tabItem,
   linkTabItemClassName: styles.account_linkTabItem,
   linkTabItemActiveClassName: styles.account_linkTabItemActive,
-
   /* my account classes */
   myAccountBodyClassName: styles.account_myAccountBody,
   myAccountLabelClassName: styles.account_myAccountLabel,
@@ -50,7 +47,6 @@ const classesAccount = {
   datePickerInputClassName: stylesForm.form_datePickerInput,
   datePickerCalendarClassName: stylesForm.form_datePickerCalendar,
   buttonClassName: `${stylesButton.btn_primaryLong} ${styles.account_button}`,
-
   // map
   mapSelectAreaClassName: stylesButton.btn_secondary,
   mapPopupClassName: styleMapLocation.mapPopup,
@@ -65,13 +61,6 @@ const classesAccount = {
   mapLabelAddressClassName: styleMapLocation.mapPopupLabelAddress,
   mapCenterButtonClassName: styleMapLocation.mapPopupCenterButton,
   mapButtonFooterClassName: `${stylesButton.btn_primaryLong} ${styleMapLocation.mapButtonFooter}`,
-
-  // /* order history classes */
-  // orderHistoryContainerClassName: styles.table_orderhistory,
-  // tableClassName: styles.table_history,
-  // orderedItemDetailNeedReviewClassName: styles.table_itemDetailNeedReview,
-  // orderedItemDetailDeliveredClassName: styles.table_orderedItemDetailDelivered,
-
   /* change password clases */
   inputLabelClassName: styles.account_edit__label,
   inputClassName: stylesForm.form_inputLong,
@@ -83,21 +72,6 @@ const classesAccount = {
   passwordStrengthLabelClassName: stylesPassword.passwordStrength_label,
   passwordCriteriaClassName: stylesPassword.passwordStrength_criteriaItem,
   passwordCriteriaListClassName: stylesPassword.passwordStrength_criteria,
-  
-  // /* tracking */
-  // shippingTrackerButton: `btn ${styles.btn_primary}`,
-  // shipmentTrackingClassName: `${styles.track_shipmentTracking} ${styles.account_shipmentTracking}`,
-  // shipmentHeaderClassName: `${styles.track_shipmentHeader} ${styles.account_shipmentContainer}`,
-  // shipmentBodyClassName: `${styles.track_shipmentBody} ${styles.account_shipmentContainer} d-flex justify-content-center`,
-  // shipmentFooterClassName: `${styles.track_shipmentFooter} ${styles.account_shipmentContainer} d-flex justify-content-center text-center`,
-  // shipmentHeaderTextClassName: styles.track_shipmentHeaderText,
-  // shipmentTextClassName: styles.track_shipmentText,
-  // shipmentNoteClassName: styles.track_shipmentNote,
-  // shipmentListClassName: styles.track_shipmentList,
-  // shipmentListWrapperClassName: styles.track_shipmentListWrapper,
-  // shipmentCloseIconClassName: styles.track_shipmentCloseIcon,
-  // shipmentTrackButtonClassName: styles.track_shipmentTrackButton,
-
    /* Membership History */
   loyaltyPointContainerClassName: styles.account_loyalty,
   membershipStatusClassName: styles.membership_status,
@@ -119,56 +93,79 @@ const classesAccount = {
   itemPerPageLabelClassName: styles.membership_itemPerPageLabel,
   itemPerPageOptionsClassName: styles.membership_itemPerPageOptions,
   buttonContinueClassName: `btn ${styles.btn_primary} ${styles.btn_long}`,
-  
   //order history info
-  // orderInfoContainerClassName: styles.membership_info_container,
-  // OrderInfoIconClassName: styles.membership_info_icon,
-  // orderInfoLabelClassName: styles.membership_info_label,
-  // OrderInfoSearchHereClassName: styles.membership_info_button,
-  
-  // popupConfirmationOrder
-  // popupConfirmationOrderContainerClassName: stylesPopupConfirmationOrder.container,
-  // popupConfirmationOrderContentClassName: stylesPopupConfirmationOrder.content,
-  // popupConfirmationOrderTitleClassName: stylesPopupConfirmationOrder.title,
-  // popupConfirmationOrderNoteClassName: stylesPopupConfirmationOrder.note,
-  // popupConfirmationOrderDescriptionClassName: stylesPopupConfirmationOrder.description,
-  // popupConfirmationOrderWrapButtonClassName: stylesPopupConfirmationOrder.wrapButton,
-  // popupConfirmationOrderButtonConfirmClassName: stylesPopupConfirmationOrder.buttonNo,
-  // popupConfirmationOrderButtonNoClassName: stylesPopupConfirmationOrder.buttonConfirm,
-  
-  
-  //popupCheckPaymentOrder
-  // checkPaymentOrderContainerClassName: stylesPopupCheckPaymentOrder.checkOrder_overlay,
-  // checkPaymentOrderContainerBodyClassName: stylesPopupCheckPaymentOrder.checkOrder_container,
-  // checkPaymentOrderHeaderClassName: stylesPopupCheckPaymentOrder.checkOrder_header,
-  // checkPaymentOrderTitleClassName: stylesPopupCheckPaymentOrder.checkOrder_title,
-  // checkPaymentOrderDescriptionClassName: stylesPopupCheckPaymentOrder.checkOrder_description,
-  // checkPaymentOrderContentClassName: stylesPopupCheckPaymentOrder.checkOrder_content,
-  // checkPaymentOrderInputContentClassName: stylesPopupCheckPaymentOrder.checkOrder_inputContent,
-  // checkPaymentOrderInputTitleClassName: stylesPopupCheckPaymentOrder.checkOrder_inputTitle,
-  // checkPaymentOrderInputClassName: stylesPopupCheckPaymentOrder.checkOrder_input,
-  // checkPaymentOrderCloseButtonClassName: stylesPopupCheckPaymentOrder.checkOrder_closeButton,
-  // checkPaymentOrderSubmitButtonClassName: stylesPopupCheckPaymentOrder.checkOrder_submitButton,
+  orderInfoContainerClassName: styles.orderhistory_orderInfoContainer,
+  orderInfoLabelClassName: styles.orderhistory_orderInfoLabel,
+  OrderInfoSearchHereClassName: styles.orderhistory_orderInfoSearchHere,
+  orderItemClassName: styles.orderhistory_orderItem,
+  orderedItemsClassName: styles.orderhistory_orderedItems,
+  orderedItemImageClassName: styles.orderhistory_orderedItemImage,
+  orderedItemClassName: styles.orderhistory_orderedItem,
+  orderedItemDetailTitleClassName: styles.orderhistory_orderedItemDetailTitle,
+  orderedItemDetailPriceClassName: styles.orderhistory_orderedItemDetailPrice,
+  orderTitleClassName: styles.orderhistory_orderTitle,
+  orderHeaderClassName:styles.orderhistory_orderHeader,
+  orderDateClassName: styles.orderhistory_orderDate,
+  orderInnerHeaderClassName: styles.orderhistory_orderInnerHeader,
+  orderBodyClassName: styles.orderhistory_orderBody,
+  orderFooterClassName: styles.orderhistory_orderFooter,
+  totalCostClassName: styles.orderhistory_totalCost,
+  orderedItemsContainer: styles.orderhistory_orderedItemsContainer,
+  buyerNoteContainerClassName: styles.orderhistory_buyerNoteContainer,
+  shippingContainerClassName: styles.orderhistory_shippingContainer,
+  shippingDetailsClassName: styles.orderhistory_shippingDetails,
+  shippingMethodContainerClassName: styles.orderhistory_shippingMethodContainer,
+  paymentMethodContainerClassName: styles.orderhistory_paymentMethodContainer,
+  buyerNoteLabelClassName: styles.orderhistory_buyerNoteLabel,
+  shippingDetailsLabelClassName: styles.orderhistory_shippingDetailsLabel,
+  shippingMethodLabelClassName: styles.orderhistory_shippingMethodLabel,
+  paymentMethodLabelClassName: styles.orderhistory_paymentMethodLabel,
+  shippingDetailsValueClassName: styles.orderhistory_shippingDetailsValue,
+  shippingMethodValueClassName: styles.orderhistory_shippingMethodValue,
+  orderControlClassName: styles.orderhistory_orderControl,
+  popupConfirmationOrderContainerClassName: styles.orderhistory_popupConfirmationOrderContainer,
+  popupConfirmationOrderContentClassName: styles.orderhistory_popupConfirmationOrderContent,
+  popupConfirmationOrderTitleClassName: styles.orderhistory_popupConfirmationOrderTitle,
+  popupConfirmationOrderNoteClassName: styles.orderhistory_popupConfirmationOrderNote,
+  popupConfirmationOrderDescriptionClassName: styles.orderhistory_popupConfirmationOrderDescription,
+  popupConfirmationOrderWrapButtonClassName: styles.orderhistory_popupConfirmationOrderWrapButton,
+  popupConfirmationOrderButtonConfirmClassName: stylesButton.btn_secondaryLong,
+  popupConfirmationOrderButtonNoClassName: stylesButton.btn_primaryLong,
+  orderedItemsLabelClassName: styles.orderhistory_orderedItemsLabel,
+  orderedItemDetailUploadReceiptClassName: styles.orderhistory_orderedItemDetailUploadReceipt,
+  orderedItemDetailNeedReviewClassName: styles.orderhistory_orderedItemDetailNeedReview,
+  orderedItemDetailReviewedClassName: styles.orderhistory_orderedItemDetailReviewed,
+  /* tracking */
+  shipmentTrackingClassName: styles.orderhistory_shipmentTracking,
+  shipmentHeaderTextClassName: styles.orderhistory_shipmentHeaderText,
+  shipmentHeaderClassName: stylesShipmentTracker.shipmenttracker_shipmentHeader,
+  shipmentBodyClassName: stylesShipmentTracker.shipmenttracker_shipmentBody,
+  shipmentFooterClassName: stylesShipmentTracker.shipmenttracker_shipmentFooter,
+  shipmentTextClassName: stylesShipmentTracker.shipmenttracker_shipmentText,
+  shipmentNoteClassName: stylesShipmentTracker.shipmenttracker_shipmentNote,
+  shipmentListClassName: stylesShipmentTracker.shipmenttracker_shipmentList,
+  shipmentListWrapperClassName: stylesShipmentTracker.shipmenttracker_shipmentListWrapper,
+  shipmentCloseIconClassName: stylesShipmentTracker.shipmenttracker_shipmentCloseIcon,
+  shipmentTrackButtonClassName: stylesShipmentTracker.shipmenttracker_shipmentTrackButton,
+  /* setting notification */
+  settingNotifContainer: "notification",
+  settingNotifHeader: "d-none",
+  settingNotifDescription: styles.notification_desc,
+  settingNotifMediaDisabled: styles.notification_mediaDisable,
+  mediaParent: styles.notification_mediaParent,
+  mediaLabelContainer: styles.notification_mediaLabelContainer,
+  mediaLabel: styles.notification_mediaLabel,
+  mediaInnerLabelContainer: styles.notification_mediaInnerLabel,
+  mediaDescription: styles.notification_mediaDesc,
+  mediaCheckboxContainer: styles.notification_mediaCheckboxContainer,
+  mediaCheckbox: styles.notification_mediaCheckbox,
+  mediaCheckboxSlider: styles.notification_mediaCheckboxSlider,
+  mediaDetailContainer: styles.notification_mediaDetailContainer,
+  mediaDetailLabel: styles.notification_mediaDetailLabel,
+  mediaDetailCheckboxContainer: styles.notification_mediaDetailCheckboxContainer,
+  mediaDetailCheckbox: styles.notification_mediaDetailCheckbox,
+  mediaDetailCheckboxLabel: styles.notification_mediaDetailCheckboxLabel
 
-   /* setting notification */
-   settingNotifContainer: "notification",
-   settingNotifHeader: "d-none",
-   settingNotifDescription: styles.notification_desc,
-   settingNotifMediaDisabled: styles.notification_mediaDisable,
-   mediaParent: styles.notification_mediaParent,
-   mediaLabelContainer: styles.notification_mediaLabelContainer,
-   mediaLabel: styles.notification_mediaLabel,
-   mediaInnerLabelContainer: styles.notification_mediaInnerLabel,
-   mediaDescription: styles.notification_mediaDesc,
-   mediaCheckboxContainer: styles.notification_mediaCheckboxContainer,
-   mediaCheckbox: styles.notification_mediaCheckbox,
-   mediaCheckboxSlider: styles.notification_mediaCheckboxSlider,
-   mediaDetailContainer: styles.notification_mediaDetailContainer,
-   mediaDetailLabel: styles.notification_mediaDetailLabel,
-   mediaDetailCheckboxContainer: styles.notification_mediaDetailCheckboxContainer,
-   mediaDetailCheckbox: styles.notification_mediaDetailCheckbox,
-   mediaDetailCheckboxLabel: styles.notification_mediaDetailCheckboxLabel
- 
 }
 
 const orderHistoryPaginationClasses = {
@@ -214,6 +211,7 @@ const AccountsPage: FC<any> = ({
           <h3 className={styles.account_name}>{name}</h3>
           <Account
             classes={classesAccount}
+            orderHistoryType="list"
             orderHistoryPaginationClasses={orderHistoryPaginationClasses}
             currency={ACTIVE_CURRENCY}
             onFetchCompleted={onFetchCompleted}
@@ -236,7 +234,7 @@ const AccountsPage: FC<any> = ({
             icons={{
               accordionIcon: <ChevronDown size={20} color="#2296CB" />,
               closeIcon: <XIcon />,
-              infoIcon: <AlertCircle />,
+              infoIcon: <span className={styles.orderhistory_infoIcon} />,
               iconTracker: <img src="/images/motorcycle.svg" alt="motorcycle" />,
               whatsApp: <img src="/images/whatsapp.png"/>,
               email: <img src="/images/email.png"/>
