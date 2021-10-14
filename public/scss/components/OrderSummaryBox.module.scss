@@ -162,7 +162,7 @@
 
     @media screen and (max-width: $breakpoint_max_md) 
     {
-      @include fixed(auto, 0, 25px, 0);
+      @include fixed(auto, auto, 25px, 45%);
       @include transition();
       @include flex();
       @include typographyBuilder(700, 14, 18);
