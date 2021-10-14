@@ -5,7 +5,7 @@ import {
   useI18n,
   Logo,
   CustomerDetail,
-  useShippingMethod
+  useShippingMethod,
 } from '@sirclo/nexus'
 /* library template */
 import useWindowSize from 'lib/useWindowSize'
@@ -24,20 +24,7 @@ type ChekoutComponentType = {
 
 const classesCustomerDetail = {
   customerDetailBoxClass: styles.checkout_customerDetailBox,
-  addressValueClassName: styles.checkout_addressValue,
-  // addressContainerClassName: styles.customer_info,
-  // addressDetailClassName: styles.customer_infoPerson,
-  // changePinClassName: styles.customer_changePin,
-  // mapPopupClassName: styles.customer_mapPopup,
-  // mapPopupBackgroundClassName: styles.customer_mapPopupContainer,
-  // mapClassName: styles.customer_mapPopupMaps,
-  // mapHeaderWrapperClassName: styles.customer_mapPopupHeader,
-  // mapHeaderTitleClassName: styles.customer_mapPopupHeaderTitle,
-  // mapHeaderCloseButtonClassName: styles.customer_mapPopupClose,
-  // mapHeaderNoteClassName: styles.customer_mapPopupNote,
-  // mapLabelAddressClassName: styles.customer_mapPopupLabelAddress,
-  // mapButtonFooterClassName: `btn ${styles.btn_primary} ${styles.btn_long} d-block mx-auto my-3`,
-  // mapCenterButtonClassName: styles.customer_mapPopupCenterButton
+  addressValueClassName: styles.checkout_addressValue
 };
 
 const ChekoutComponent: FC<ChekoutComponentType> = ({
@@ -83,7 +70,7 @@ const ChekoutComponent: FC<ChekoutComponentType> = ({
         {stepsItem.map((value, index) => value.page === page && (
           <>
             <h3 key={index} className={styles.checkout_stepsTitle}>{value.title}</h3>
-            {stepsItem.length > index &&
+            {(stepsItem.length - 1) !== index &&
               <p key={index} className={styles.checkout_stepsTitleNext}>{i18n.t("product.next")}:&nbsp;{stepsItem[index + 1].title}</p>
             }
           </>
@@ -99,7 +86,7 @@ const ChekoutComponent: FC<ChekoutComponentType> = ({
                   <label className={styles.checkout_customerDetailBoxHeaderLabel}>
                     {i18n.t("placeOrder.userInformation")}
                   </label>
-                  <Link href="/id/place_order" as={`/${lng}/place_order`}>
+                  <Link href={`/id/${stepsItem[0].page}`} as={`/${lng}/${stepsItem[0].page}`}>
                     <a className={styles.checkout_customerDetailBoxHeaderLink}>
                       {i18n.t("global.changes")}
                     </a>
@@ -127,13 +114,25 @@ const ChekoutComponent: FC<ChekoutComponentType> = ({
                 </div>
               </div>
               {page === "payment_method" &&
-                <div>
-                  <h3 className={styles.shippingDetails_provider}>
-                    {data?.shippingMethod?.shippingProvider}{" "}{data?.shippingMethod?.shippingService}
-                  </h3>
-                  <h3 className={styles.shippingDetails_cost}>
-                    {" - "}{formatPrice(data?.shippingMethod?.shippingCost, "IDR")}
-                  </h3>
+                <div className={styles.checkout_customerDetailBoxContainer}>
+                  <div className={styles.checkout_customerDetailBoxHeader}>
+                    <label className={styles.checkout_customerDetailBoxHeaderLabel}>
+                      {i18n.t("shipping.shippingMethod")}
+                    </label>
+                    <Link href={`/id/${stepsItem[1].page}`} as={`/${lng}/${stepsItem[1].page}`}>
+                      <a className={styles.checkout_customerDetailBoxHeaderLink}>
+                        {i18n.t("global.changes")}
+                      </a>
+                    </Link>
+                  </div>
+                  <div className={styles.checkout_customerDetailBoxShippingContainer}>
+                    <h3 className={styles.checkout_customerDetailBoxShippingText}>
+                      {data?.shippingMethod?.shippingProvider}{" "}{data?.shippingMethod?.shippingService}
+                      <span>
+                        {formatPrice(data?.shippingMethod?.shippingCost, "IDR")}
+                      </span>
+                    </h3>
+                  </div>
                 </div>
               }
             </div>
@@ -141,7 +140,10 @@ const ChekoutComponent: FC<ChekoutComponentType> = ({
           {children}
         </div>
         <div className={styles.checkout_bodyOrderSummaryBox}>
+
           <OrderSummaryBox page={page} />
+
+        
         </div>
       </div>
     </div>

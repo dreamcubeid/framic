@@ -1,531 +1,229 @@
-// @import '../utils/variables';
-// @import "../components/CustomerDetail.module.scss";
-// @import "../components/Button.module.scss";
-// @import "../components/Form.module.scss";
-// @import "../components/OrderSummary.module.scss";
-// @import "../components/Popup.module.scss";
+@import '../utils/variables';
 
-// .payment
-// {
-//   background: $color_white;
+.paymentmethod 
+{
+  &_paymentItemEnabled
+  {
+    @include flex(row, center, flex-start, true);
+    border: 1px solid $color_light;
+    box-sizing: border-box;
+    border-radius: 2px;
 
-//   &_container
-//   {
-//     padding: 2rem 0;
+    & > div
+    {
+      padding: 12px;
+    }
 
-//     @media screen and (max-width: 991px){
-//       min-height: 95vh;
-//     }
-//   }
+    &:not(:last-child)
+    {
+      margin-bottom: 12px;
+    }
+  }
 
-//   &_heading
-//   {
-//     display: flex;
-//     align-items: center;
-//     padding: 0 1rem;
+  &_paymentItemDisabled
+  {
+    pointer-events: none;
+    opacity: .5;
+  }
 
-//     h6
-//     {
-//       margin: 0;
-//       margin-left: 1rem;
-//       color: $color_black;
-//     }
-//   }
-
-//   &_headingIcon
-//   {
-//     cursor: pointer;
-//   }
-
-//   &_line
-//   {
-//     border-color: $color_gray_low;
-//   }
-
-//   &_lineSecond
-//   {
-//     border-color: $color_gray_low;
-//     margin: 0;
-//   }
-
-//   &_steps
-//   {
-//     padding: 0 1rem;
-//     display: flex;
-//     justify-content: center;
-//   }
-
-//   &_shipping
-//   {
-//     padding: 1rem;
-//     margin-bottom: 2rem;
-//     border: 1px solid $color_gray_primary;
-//     border-radius: 5px;
-//   }
-
-//   &_shippingTitle
-//   {
-//     font-size: 14px;
-//     font-weight: 900;
-//   }
-
-//   &_shippingCost
-//   {
-//     font-size: 13px;
-//     font-weight: 900;
-//   }
-
-//   &_listTitle
-//   {
-//     font-size: 14px;
-//     font-weight: 900;
-//     color: $color_gray_dark;
-//   }
-
-//   &_listItemDisabled
-//   {
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//     background: $color_gray_primary;
-//     border: 1px solid $color_gray_primary;
-//     border-radius: 5px;
-//     margin-bottom: 1rem;
-//     font-size: 1rem;
-//     cursor: pointer;
-//   }
-
-//   &_listItemEnabled
-//   {
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//     border: 1px solid $color_blue;
-//     border-radius: 5px;
-//     margin-bottom: 1rem;
-//     font-size: 1rem;
-//     cursor: pointer;
-//   }
-
-//   &_listItemOverlay
-//   {
-//     position: fixed;
-//     z-index: 10;
-//     top: 0;
-//     left: 0;
-//     height: 100%;
-//     width: 100%;
-//     padding: 0 1rem;
-//     background-color: rgba(0, 0, 0, 0.25);
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//   }
-
-//   &_listItemPopup
-//   {
-//     position: relative;
-//     z-index: 10;
-//     padding: 15px 10px;
-//     background: $color_white;
-//     border-radius: 5px;
-
-//     &__close
-//     {
-//       position: absolute;
-//       right: 0;
-//       top: 0;
-//       background: transparent;
-//       border: none;
-//       padding: .25rem .5rem;
-//       cursor: pointer;
-
-//       &:focus,
-//       &:active
-//       {
-//         outline: 0;
-//         border: none; 
-//       }
-//     }
-
-//     &__payment
-//     {
-//       margin: calc(45px + 27px) 0 0;
-//       padding: 0 16px;
-//     }
-//   }
-
-//   &_listItemPopupForm
-//   {
-//     &__body
-//     {
-//       margin-top: 1rem;
-//     }
-
-//     &__input
-//     {
-//       width: 300px !important;
-//       border-radius: 0 !important;
-
-//       @media screen and (max-width: 575px) {
-//         width: max-content !important;
-//       }
-//     }
-
-//     &__button
-//     {
-//       background: $color_blue;
-//       color: $color_white;
-//       height: calc(2em + 1rem + 4px);
-//       border-color: #ced4da !important;
-//       border-left: 0 !important;
-//       border-top-left-radius: 0 !important;
-//       border-bottom-left-radius: 0 !important;
-//       border-radius: 0 !important;
-//     }
-//   }
-
-//   &_listItemPayment
-//   {
-//     display: flex;
-//     flex: 1;
-//     padding: 1rem;
-
-//     @media screen and (max-width: 575px) {
-//       padding: 1rem;
-//     }
-
-//     &__radio
-//     {
-//       margin-top: 2px;
-//       margin-right: 1rem;
-//       padding-right: 0;
-//     }
-
-//     & > p
-//     {
-//       margin-bottom: 0;
-//     }
-
-//     &__image
-//     {
-//       text-align: right;
-//       padding: 1rem;
-
-//       @media screen and (max-width: 575px) {
-//         text-align: left;
-//         padding: 0 1rem;
-//       }
-
-//       img
-//       {
-//         height: 25px;
-//       }
-//     }
-
-//     &__warning
-//     {
-//       display: block;
-//       width: 100%;
-//       padding: 0 1rem;
-//       color: $color_red;
-//       font-size: 14px;
-//     }
-//   }
-  
-//   &_listItemBody
-//   {
-//     flex-grow: 1;
-//     padding: 1rem;
-//     border-radius: 5px;
-//     background: $color_blue_light;
+  &_paymentImg
+  {
+    &:empty
+    {
+      display: none
+    }
     
-//     @media screen and (max-width: 575px) {
-//       padding: 1rem;
-//     }
-//   }
-  
-//   &_listItemDetail
-//   {
-//     margin-bottom: 2rem;
-//   }
+    & > img
+    {
+      @include fixedHeight(24px);
+    }
+  }
 
-//   &_listItemTable
-//   {
-//     position: relative;
-//     width: 100%;
-//     border-collapse: collapse;
-//   }
+  &_paymentType
+  {
+    @include flex(row, center, flex-start);
+    @include typographyBuilder(400, 16, 24);
+    color: $color_black_text;
+    margin-right: auto;
+    cursor: pointer;
 
-//   &_listItemTableRow
-//   {
-//     display: flex;
-//     justify-content: space-between;
-//     width: 100%;
-//     padding: .25rem 0;
+    & > p
+    {
+      margin: 0 0 0 12px;
+    }
+  }
 
-//     &:last-child
-//     {
-//       margin-top: 1rem;
-//       padding-top: 1rem;
-//       border-top: 1px solid $color_black;
-//       font-family: "roboto-black";
-//       font-size: 1.2rem;
-//       text-transform: uppercase;
-//     }
+  &_paymentMethodDetails
+  {
+    width: 100%;
+    background: $color_light_low;
+  }
 
-//     &__label
-//     {
-//       text-align: left;
-//       display: flex;
-//       align-items: center;
-//     }
+  &_selectedPaymentMethod
+  {
+    display: block;
+    position: relative;
+  }
 
-//     &__value
-//     {
-//       text-align: right;
-//     }
+  &_paymentSummary
+  {
+    @include fixedWidth(100%);
+    display: block;
+    margin-bottom: 16px
+  }
 
-//     &__priceSale
-//     {
-//       &:first-of-type:not(:only-of-type)
-//       {
-//         text-decoration: line-through;
-//         color: $color_gray_dark;
+  &_paymentDetailsRow
+  {
+    @include flex(row, flex-start, space-between);
 
-//         @media screen and (max-width: 575px) {
-//           display: inherit;
-//         }
-//       }
-//     }
+    &:last-child
+    {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px dashed $color_grey_dark;
 
-//     &__price
-//     {
-//       margin-left: .5rem;
-//     }
-//   }
+      & > td
+      {
+        @include typographyBuilder(600, 16, 24);
+      }
+    }
+  }
 
-//   &_footer
-//   {
-//     margin-top: 1.5rem;
+  &_paymentDetailsLabel
+  {
+    @include typographyBuilder(400, 16, 24);
+    color: $color_black_text;
+  }
 
-//     &__promotion
-//     {
-//       margin: .5rem 0;
-//     }
+  &_paymentDetailsValue
+  {
+    @include flex(row, flex-start, flex-end);
+    text-align: right;
 
-//     &__agreement
-//     {
-//       text-align: right;
+    @media (max-width: #{$breakpoint_max_md})
+    {
+      display: block;
 
-//       @media screen and (max-width: 575px) {
-//         text-align: left;
-//       }
-//     }
+      & > span
+      {
+       display: block;
+      }
+    }
+  }
 
-//     &__check
-//     {
-//       position: relative;
-//       top: 1px;
-//       margin-right: .5rem;
-//     }
+  &_basePrice
+  {
+    @include typographyBuilder(400, 16, 24);
+    color: $color_red;
+    text-decoration-line: line-through;
+    margin-right: 6px;
 
-//     &__button
-//     {
-//       text-align: right;
-//       margin: 1rem 0;
-//     }
-//   }
+    @media (max-width: #{$breakpoint_max_md})
+    {
+      margin: 0;
+    }
+  }
 
-//   &_empty
-//   {
-//     padding: 2rem 0;
-//     text-align: center;
+  &_salePrice
+  {
+    @include typographyBuilder(400, 16, 24);
+    color: $color_black_text;
+  }
 
-//     &__icon
-//     {
-//       width: 3rem !important;
-//       height: 3rem !important;
-//     }
+  &_agreementContainer
+  {
+    @include flex(row, center, flex-start);
+    margin: 8px 0;
 
-//     &__title
-//     {
-//       font-family: "roboto-medium";
-//       font-size: 1rem;
-//       text-transform: uppercase;
-//       margin: 1rem 0 .5rem 0;
-//     }
-//   }
+    & > span
+    {
+      @include typographyBuilder(400, 12, 16);
+      color: $color_grey;
+      margin-left: 8px;
+    }
+  }
 
-//   &_popupProcessOverlay
-//   {
-//     position: fixed;
-//     z-index: 10;
-//     top: 0;
-//     left: 0;
-//     height: 100%;
-//     width: 100%;
-//     background-color: rgba(0, 0, 0, 0.25);
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//   }
+  &_promotionButtonGroup
+  {
+    margin-bottom: 24px;
 
+    & > button
+    {
+      background-color: $color_white;
+      width: 100%;
 
-//   &_popupProcessContainer
-//   {
-//     position: relative;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
+      &:last-child
+      {
+        margin-top: 12px;
+      }
 
-//     @media screen and (max-width: 991px) {
-//       padding: 0 1rem;
-//     }
-//   }
+      &::after
+      {
+        margin-left: auto !important;
+      }
+    }
 
-//   &_popupProcessInner
-//   {
-//     display: flex;
-//     align-items: center;
-//     width: max-content;
-//     height: auto;
-//     padding: 1.5rem;
-//     text-align: center;
-//     border-radius: 5px;
-//     background-color: $color_white;
-//     box-shadow: 0 0 15px rgba(0,0,0,.15);
+    & > div
+    {
+      &:last-child
+      {
+        margin-top: 12px;
+      }
 
-//     @media screen and (max-width: 991px) {
-//       width: 100%;
-//     }
-//   }
+      &::after
+      {
+        display: none;
+      }
+    }
+  }
 
-//   &_pointButton
-//   {
-//     display: flex;
-//     width: max-content;
-//     min-width: 300px;
+  &_loaderElement
+  {
 
-//     @media screen and (max-width: 575px) {
-//       width: 100%;
-//     }
-//   }
+    width: 100%;
+    text-align: center;
+  }
 
-//   &_pointAppliedText,
-//   &_voucherAppliedText
-//   {
-//     flex-grow: 1;
-//     text-align: left;
-//   }
+  &_pointButtonRemove,
+  &_voucherButtonRemove
+  {
+    display: block;
+    margin-left: auto;
+  }
 
-//   &_pointAppliedRemove,
-//   &_voucherAppliedRemove
-//   {
-//     cursor: pointer;
-//   }
+  &_paymentWarningText
+  {
+    @include typographyBuilder(400, 12, 16);
+    width: 100%;
+    padding: 0 12px;
+    color: $color_red;
+  }
 
-//   &_containerPointPopup
-//   {
-//     position: relative;
-//     z-index: 10;
-//     padding: 15px 16px;
-//     background: $color_white;
-//     border-radius: 5px;
+  &_pointsButton,
+  &_voucherButton
+  {
+    @include typographyBuilder(400, 14, 16);
+    color: $color_black_text;
+  }
 
-//     &__close
-//     {
-//       position: absolute;
-//       right: 0;
-//       top: 0;
-//       background: transparent;
-//       border: none;
-//       padding: .25rem .5rem;
-//       cursor: pointer;
+  &_loaderPages
+  {
+    @include flex(row, center, center);
+    @include fixedSize(100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: rgba($color_black, 0.8);
 
-//       &:focus,
-//       &:active
-//       {
-//         outline: 0;
-//         border: none; 
-//       }
-//     }
-//   }
+    span[class*="loaderpages_dotItem"]
+    {
+      background-color: $color_white;
+    }
 
-//   &_pointsPopupLabel
-//   {
-//     font-size: 14px;
-//   }
-
-//   &_pointsPopupValue
-//   {
-//     font-size: 12px;
-//   }
-
-//   &_buttonChangePoint
-//   {
-//     width: 45px;
-//     background: transparent;
-//     border: 1px solid $color_blue;
-//     border-radius: 3px;
-//     margin-left: 5px;
-//     transition: 0.3s all ease;
-//     font-size: 20px;
-
-//     &:hover,
-//     &:active
-//     {
-//       background: $color_blue;
-//       color: $color_white;
-//     }
-//   }
-
-//   &_pointsFormContainer
-//   {
-//     margin: 16px 0;
-//   }
-
-//   &_pointsForm
-//   {
-//     display: flex;
-
-//     & > input
-//     {
-//       border-radius: 3px !important;
-
-//       &:focus
-//       {
-//         background: $color_blue_light;
-//         border: 1px solid $color_blue;
-//       }
-//     }
-//   }
-
-//   &_pointsInsufficient
-//   {
-//     color: $color_red;
-
-//     & > p
-//     {
-//       font-size: 12px;
-//       margin: 0;
-//     }
-//   }
-
-//   &_pointsWarning
-//   {
-//     width: 400px;
-//     text-align: center;
-//     color: $color_red;
-
-//     @media screen and (max-width: 575px) {
-//       width: 100%;
-//     }
-
-//     & > p
-//     {
-//       font-size: 12px;
-//       margin: 0;
-//     }
-//   }
-// }
+    p
+    {
+      color: $color_white;
+    }
+  }
+}

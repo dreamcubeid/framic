@@ -177,7 +177,7 @@
     @include typographyBuilder(400, 16, 24);
     @include flex(row, center, center);
     color: $color_light_border;
-    margin: 0;
+    margin: 0 auto 0 0;
   }
 
   &_voucherButton,
@@ -200,7 +200,6 @@
       display: block;
       width: 15px;
       height: 14px;
-      margin-left: auto;
       background-position: center;
       background-repeat: no-repeat;
       background-image: url("data:image/svg+xml,%0A%3Csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.00305 3.0605L1.5478 9.51575L0.487305 8.45525L6.9418 2H1.25305V0.5H9.50305V8.75H8.00305V3.0605Z' fill='%23333333'/%3E%3C/svg%3E");
@@ -499,5 +498,57 @@
         margin-right: 5px;
       }
     }
+  }
+
+  &_className
+  {
+    border-radius: 2px;
+    background: $color_light_low;
+    border: 1px solid $color_light;
+    box-sizing: border-box;
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+
+  &_cartBody
+  {
+    @include useScrollbar();
+    overflow-x: auto;
+    max-height: 250px;
+    background-color: $color_white;
+    padding: 8px;
+  }
+
+  &_itemRemove,
+  &_itemQty,
+  &_continueShopping,
+  &_itemPrice
+  {
+    display: none !important;
+  }
+
+  &_itemRegularAmount
+  {
+    @include typographyBuilder(400, 12, 16);
+    color: $color_grey;
+
+    &::before
+    {
+      display: none !important;
+    }
+  }
+  
+  &_itemAmount
+  {
+    justify-content: flex-end !important;
+  }
+
+  &_cartItem
+  {
+    grid-row-gap: 0 !important;
+    grid-template-areas:
+    "image title title"
+    "image total total"
+    "image total total" !important;
   }
 }

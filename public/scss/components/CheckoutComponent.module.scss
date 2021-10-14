@@ -188,6 +188,21 @@
     padding: 24px;
   }
 
+  &_customerDetailBoxShippingContainer
+  {
+    @include flex(row, center, flex-start);
+  }
+
+  &_customerDetailBoxContainer
+  {
+    &:not(:first-child)
+    {
+      margin-top: 16px;
+      border-top: 1px dashed $color_grey_dark;
+      padding-top: 16px;
+    }
+  }
+
   &_customerDetailBoxHeader
   {
     @include flex(row, center, space-between);
@@ -254,6 +269,19 @@
       color: $color_black_text;
       margin-bottom: 4px;
     }
+  }
 
+  &_customerDetailBoxShippingText
+  {
+    @include typographyBuilder(400, 16, 24);
+    color: $color_black_text;
+    margin: 0;
+
+    & > span
+    {
+      display: inline-block;
+      margin-left: 6px;
+      color: $color_grey;
+    }
   }
 }

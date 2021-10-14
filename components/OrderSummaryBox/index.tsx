@@ -1,14 +1,18 @@
+/* library package */
 import { FC, useState } from 'react'
 import { toast } from 'react-toastify'
 import {
   useI18n,
-  // CartDetails,
-  OrderSummary
+  OrderSummary,
+  CartSummary
 } from '@sirclo/nexus'
+/* component */
+import Placeholder from 'components/Placeholder'
 /* styles */
 import styles from 'public/scss/components/OrderSummaryBox.module.scss'
 import stylesButton from 'public/scss/components/Button.module.scss'
 import stylesForm from 'public/scss/components/Form.module.scss'
+import stylesCart from 'public/scss/components/CartDetails.module.scss'
 
 export type OrderSummaryBoxPropsType = {
   page: "cart"
@@ -62,27 +66,34 @@ const classesOrderSummary = {
   pointsFormClassName: styles.ordersummary_pointsForm,
   changePointsClassName: styles.ordersummary_changePoints,
   pointsWarningClassName: styles.ordersummary_pointsWarning,
+  continueShoppingClassName: styles.ordersummary_continueShopping,
   pointsSubmitButtonClassName: stylesButton.btn_primaryLong,
-  
-  
-  // continueShoppingClassName: "d-none",
-  // labelClassName: "order-summary__popup--points-label",
-  // valueClassName: "order-summary__popup--points-value",
-  // /* pop up */
-  // voucherFormContainerClassName: "order-summary__popup-form-container w-100",
-  // /* voucher */
-  // voucherButtonRemoveClassName: "orderSummary_voucherButtonRemove",
-  // voucherFooterClassName: "order-summary__popup--voucher-footer",
-  // voucherApplyButtonClassName: "order-summary__popup--voucher-button btn btn-blackOuter d-flex flex-row align-items-center justify-content-center flex-nowrap text-center",
 
-  // /* point */
-  // pointButtonRemoveClassName: "orderSummary_voucherButtonRemove",
-  // pointsIconClassName: "order-1 mr-2 order-summary__header--features-icon",
-  // pointsButtonAppliedClassName: "col-12 order-summary_voucherButtonApplied b-left",
-  // pointsAppliedTextClassName: "order-summary_voucherAppliedText text-uppercase order-1",
-  // pointsFormContainerClassName: "order-summary__popup-form-container w-100 mb-3",
-  // pointsInsufficientClassName: "order-summary__popup--points-insufficient w-100 d-flex flex-row align-items-center justify-content-cente",
-  // pointEarnedBannerClassName: "order-summary__pointEarned w-100"
+
+}
+
+const classesCartDetails = {
+  className: styles.ordersummary_className,
+  cartBodyClassName: styles.ordersummary_cartBody,
+  itemRemoveClassName: `${stylesCart.cartdetails_itemRemove} ${styles.ordersummary_itemRemove}`,
+  itemQtyClassName: `${stylesCart.cartdetails_itemQty} ${styles.ordersummary_itemQty}`,
+  itemPriceClassName: `${stylesCart.cartdetails_itemPrice} ${styles.ordersummary_itemPrice}`,
+  itemRegularAmountClassName: `${stylesCart.cartdetails_itemRegularAmount} ${styles.ordersummary_itemRegularAmount}`,
+  itemAmountClassName: `${stylesCart.cartdetails_itemAmount} ${styles.ordersummary_itemAmount}`,
+  itemClassName: `${stylesCart.cartdetails_cartItem} ${styles.ordersummary_cartItem}`,
+  cartHeaderClassName: stylesCart.cartdetails_cartHeader,
+  itemImageClassName: stylesCart.cartdetails_itemImage,
+  itemTitleClassName: stylesCart.cartdetails_itemTitle,
+  itemRegularPriceClassName: stylesCart.cartdetails_itemRegularPrice,
+  itemSalePriceClassName: stylesCart.cartdetails_itemSalePrice,
+  qtyBoxClassName: stylesCart.cartdetails_qtyBox,
+  cartFooterTitleClassName: stylesCart.cartdetails_cartFooterTitle,
+  itemDiscountNoteClassName: stylesCart.cartdetails_discNote,
+  cartFooterTextareaClassName: stylesForm.form_input,
+}
+
+const classesPlaceholder = {
+  placeholderList: stylesCart.cartdetails_placeholder
 }
 
 const OrderSummaryBox: FC<OrderSummaryBoxPropsType> = ({
@@ -91,7 +102,7 @@ const OrderSummaryBox: FC<OrderSummaryBoxPropsType> = ({
   const i18n: any = useI18n()
   const [showModalErrorAddToCart, setShowModalErrorAddToCart] = useState<boolean>(false)
 
-  return (
+  return page === "cart" ? (
     <OrderSummary
       classes={classesOrderSummary}
       currency="IDR"
@@ -100,20 +111,56 @@ const OrderSummaryBox: FC<OrderSummaryBoxPropsType> = ({
       page={page}
       onSaveCartError={() => toast.error(i18n.t("global.error"))}
       onErrorMsg={() => setShowModalErrorAddToCart(!showModalErrorAddToCart)}
-      onErrorMsgCoupon={(msg) => toast.error(msg)}
+      onErrorMsgCoupon={(msg: string) => toast.error(msg)}
       isAccordion
       onAddressInvalid={(e) => toast.error(e)}
       icons={{
         voucher: <span className={styles.ordersummary_voucherIcon} />,
-        points:  <span className={styles.ordersummary_pointsIcon} />,
+        points: <span className={styles.ordersummary_pointsIcon} />,
         pointsApplied: <i className="fa fa-crown"></i>,
         close: <span className={styles.ordersummary_closeIcon} />,
         voucherApplied: <span className={styles.ordersummary_voucherIconApplied} />,
         voucherRemoved: <span className={styles.ordersummary_voucherIconRemove} />,
-        expand:  <span className={styles.ordersummary_detailExpandIcon} />,
+        expand: <span className={styles.ordersummary_detailExpandIcon} />,
         collapse: <span className={styles.ordersummary_detailCollapseIcon} />,
       }}
       loadingComponent={<div className="spinner-border" />}
+    />
+  ) : (
+    <CartSummary
+      cartProps={{
+        classes: classesCartDetails,
+        withoutQtyInput: false,
+        onErrorMsg: (msg) => toast.error(msg),
+        loadingComponent: <Placeholder classes={classesPlaceholder} withList listMany={3} />
+        // emptyCartPlaceHolder: (
+        //   <EmptyComponent
+        //     classes={classesEmptyComponent}
+        //     title={i18n.t("cart.isEmpty")}
+        //   />
+        // ),
+      }}
+      orderSummaryProps={{
+        classes: classesOrderSummary,
+        withoutButton: page === "payment_method",
+        isAccordion: true,
+        page: page,
+        currency: "IDR",
+        submitButtonLabel: i18n.t("orderSummary.placeOrder"),
+        onErrorMsg: () => setShowModalErrorAddToCart(!showModalErrorAddToCart),
+        onErrorMsgCoupon: (msg: string) => toast.error(msg),
+        loadingComponent: <div className="spinner-border" />,
+        icons: {
+          pointsApplied: <i className="fa fa-crown"></i>,
+          voucher: <span className={styles.ordersummary_voucherIcon} />,
+          points: <span className={styles.ordersummary_pointsIcon} />,
+          close: <span className={styles.ordersummary_closeIcon} />,
+          voucherApplied: <span className={styles.ordersummary_voucherIconApplied} />,
+          voucherRemoved: <span className={styles.ordersummary_voucherIconRemove} />,
+          expand: <span className={styles.ordersummary_detailExpandIcon} />,
+          collapse: <span className={styles.ordersummary_detailCollapseIcon} />,
+        }
+      }}
     />
   )
 }
