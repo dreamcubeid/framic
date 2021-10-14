@@ -22,20 +22,16 @@ import styles from 'public/scss/pages/ShippingMethod.module.scss'
 import stylesButton from 'public/scss/components/Button.module.scss'
 import styleMapLocation from 'public/scss/components/MapLocation.module.scss'
 
-const LoaderPages = dynamic(() => import("components/Loader/LoaderPages"));
+const LoaderPages = dynamic(() => import("components/Loader/LoaderPages"))
 
 const classesShippingMethod = {
-  // containerClass: styles.shippingmethod_container,
   shippingRadioDiv: styles.shippingmethod_shippingRadioDiv,
   shippingNameClass: styles.shippingmethod_shippingName,
   shippingNameDivClass: styles.shippingmethod_shippingNameDiv,
   shippingPriceClass: styles.shippingmethod_shippingPrice,
   divInputClass: styles.shippingmethod_divInput,
-  // shippingPriceDivClass: styles.shippingMethodItem_price,
   shippingErrorMsgClass: styles.shippingmethod_shippingErrorMsg,
   pinPointLocationClassName: `${stylesButton.btn_secondaryLongSmall} ${styles.shippingmethod_pinPointLocation}`,
-  // warningPinPointClassName: styles.shippingmethod__itemWarning,
-
 
   mapSelectAreaClassName: stylesButton.btn_secondaryLongSmall,
   mapPopupClassName: styleMapLocation.mapPopup,
@@ -53,8 +49,8 @@ const classesShippingMethod = {
 }
 
 type PrivateComponentPropsType = {
-  children: any;
-};
+  children: any
+}
 
 const PrivateRouteWrapper = ({ children }: PrivateComponentPropsType) => (
   <PrivateRoute
@@ -71,7 +67,7 @@ const ShippingMethodPage: FC<any> = ({
   lngDict,
   brand
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const i18n: any = useI18n();
+  const i18n: any = useI18n()
 
   return (
     <PrivateRouteWrapper>
@@ -96,15 +92,15 @@ const ShippingMethodPage: FC<any> = ({
         </ChekoutComponent>
       </Layout>
     </PrivateRouteWrapper>
-  );
-};
+  )
+}
 
 export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
   const { default: lngDict = {} } = await import(
     `locales/${params.lng}.json`
-  );
+  )
 
-  const brand = await useBrand(req);
+  const brand = await useBrand(req)
 
   return {
     props: {
@@ -112,7 +108,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
       lngDict,
       brand: brand || ""
     }
-  };
+  }
 }
 
-export default ShippingMethodPage;
+export default ShippingMethodPage

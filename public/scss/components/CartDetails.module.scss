@@ -101,9 +101,18 @@
 
   &_itemTitle
   {
+    @include flex(row, flex-end, flex-start);
     @include typographyBuilder(400, 16, 24);
     grid-area: title;
     color: $color_black_text;
+    
+    & > a
+    {
+      @include truncate();
+      @include typographyBuilder(400, 12, 16);
+      color: $color_black_text;
+      cursor: pointer;
+    }
   }
 
   &_itemPrice
