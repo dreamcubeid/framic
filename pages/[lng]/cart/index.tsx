@@ -59,21 +59,12 @@ const Cart: FC<any> = ({
 
 export const getServerSideProps: GetServerSideProps = async ({
   req,
-  res,
   params
 }) => {
   const { default: lngDict = {} } = await import(
     `locales/${params.lng}.json`
   )
-
-  if (process.env.IS_PROD !== "false") {
-    const cookies = parseCookies(req)
-    res.writeHead(307, {
-      Location: `/${cookies.ACTIVE_LNG || "id"}`,
-    });
-    res.end()
-  }
-
+  
   const brand = await useBrand(req)
 
   return {
