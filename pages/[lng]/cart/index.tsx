@@ -1,7 +1,6 @@
 /* library package */
 import { FC, useState } from 'react'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { parseCookies } from 'lib/parseCookies'
 import { useI18n } from '@sirclo/nexus'
 /* library template */
 import { useBrand } from 'lib/useBrand'
@@ -64,7 +63,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   const { default: lngDict = {} } = await import(
     `locales/${params.lng}.json`
   )
-  
+
   const brand = await useBrand(req)
 
   return {
