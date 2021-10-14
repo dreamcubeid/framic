@@ -1,4 +1,6 @@
 @import '../utils/variables';
+@import '../components/Button.module.scss';
+@import '../components/ShipmentTracker.module.scss';
 
 .account
 {
@@ -388,7 +390,7 @@
       width: 20px;
     }
   
-    @media screen and (max-width: 575px)
+    @media (max-width: #{$breakpoint_max_md})
     {
       max-width: calc(100% - 45px);
     }
@@ -544,5 +546,464 @@
   {
     text-align: left;
     margin-left: 12px;
+  }
+}
+
+.orderhistory
+{
+  &_orderInfoContainer
+  {
+    @include flex(row, center, flex-start);
+    background: $color_light_dark;
+    border-radius: 3px;
+    padding: 12px 10px;
+    margin-bottom: 16px
+  }
+
+  &_infoIcon
+  {
+    @include fixedSize(12px);
+    display: block;
+    background-repeat: no-repeat;
+    margin-right: 8px;
+    background-image: url("data:image/svg+xml,%0A%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M6 10.7509C3.38057 10.7509 1.24914 8.61943 1.24914 6C1.24914 3.38057 3.38057 1.24914 6 1.24914C8.61943 1.24914 10.7509 3.38057 10.7509 6C10.7509 8.61943 8.61943 10.7509 6 10.7509ZM6 0C9.30857 0 12 2.69143 12 6C12 9.30857 9.30857 12 6 12C2.69143 12 0 9.30857 0 6C0 2.69143 2.69143 0 6 0ZM6.20629 8.11029H5.79429C5.51029 8.11029 5.27886 8.32 5.27886 8.57829V9.18057C5.27886 9.43829 5.51029 9.648 5.79429 9.648H6.20629C6.49029 9.648 6.72057 9.43829 6.72057 9.18057V8.57829C6.72057 8.32 6.49029 8.10971 6.20629 8.10971V8.11029ZM6.20743 2.27771H5.79314C5.50457 2.27771 5.27886 2.46743 5.27886 2.70857V7.18629C5.27886 7.428 5.50457 7.61714 5.79314 7.61714H6.20743C6.49543 7.61714 6.72057 7.42857 6.72057 7.18629V2.70857C6.72057 2.46743 6.49543 2.27771 6.20743 2.27771Z' fill='%23333333'/%3E%3C/svg%3E%0A");
+  }
+
+  &_orderInfoLabel
+  {
+    @include typographyBuilder(400, 12, 16);
+    color: $color_black_text;
+    margin: 0;
+  }
+
+  &_orderInfoSearchHere
+  {
+    @include typographyBuilder(400, 12, 16);
+    color: $color_blue;
+    margin-left: 4px;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+
+    &:hover
+    {
+      text-decoration: underline;
+    }
+  }
+
+  &_orderedItems
+  {
+    padding: 0;
+    list-style: none;
+  }
+
+  &_orderedItemImage
+  {
+    @include fixedSize(64px);
+    object-fit: cover;
+    margin-right: 6px;
+    border-radius: 3px;
+  }
+
+  &_orderedItem
+  {
+    @include flex(row, flex-start, flex-start);
+    
+    &:not(:last-child)
+    {
+      margin-bottom: 16px
+    }
+  }
+
+  &_orderedItemDetailTitle
+  {
+    @include typographyBuilder(400, 16, 24);
+    color: $color_black_text;
+    margin: 0 0 8px;
+  }
+
+  &_orderedItemDetailPrice
+  {
+    @include typographyBuilder(400, 12, 16);
+    color: $color_black_text;
+    margin: 0;
+  }
+
+  &_orderItem
+  {
+    @include flex(column, flex-start, flex-start);
+    position: relative;
+    border: solid 1px $color_light;
+    border-radius: 3px;
+    background-color: $color_white;
+    overflow: hidden;
+    outline: none;
+
+    &:hover,
+    &:focus
+    {
+      outline: none;
+    }
+
+    & + &
+    {
+      margin-top: 32px;
+    }
+  }
+
+  &_orderTitle
+  {
+    @include typographyBuilder(600, 12, 16);
+    color: $color_black_text;
+    margin: 0;
+  }
+
+  &_orderHeader
+  {
+    width: 100%;
+    order: 1;
+    cursor: pointer;
+    padding: 16px;
+    position: relative;
+  }
+
+  &_orderBody
+  {
+    width: 100%;
+    order: 3;
+  }
+
+  &_orderFooter
+  {
+    @include flex(row, center, space-between);
+    order: 2;
+    width: calc(100% - 32px);
+    margin:  0 16px;
+    background: $color_light_dark;
+    border-radius: 3px;
+    padding: 8px 12px;
+
+    & > span
+    {
+      @include typographyBuilder(500, 12, 16);
+      color: $color_black_text;
+      margin: 0;
+    }
+  }
+
+  &_totalCost
+  {
+    @include typographyBuilder(600, 12, 16);
+    color: $color_black_text;
+    margin: 0;
+  }
+
+  &_orderInnerHeader
+  {
+    width: calc(100% - 56px);
+
+    & > div //styling paymentStatus
+    {
+      @include typography_builder(400, 12, 16);
+      position: absolute;
+      right: 56px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $color_white;
+      padding: 4px 12px;
+      border-radius: 23px;
+      width: fit-content;
+      
+      @media (max-width: #{$breakpoint_max_md})
+      {
+        text-align: center;
+        width: calc(100% - 32px);
+        transform: none;
+        right: auto;
+        top: auto;
+        bottom: 16px;
+      }
+    }
+
+    &::after
+    {
+      @include fixedSize(32px);
+      content: "";
+      display: block;
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: $color_light_dark;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("data:image/svg+xml,%3Csvg width='8' height='5' viewBox='0 0 8 5' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 4.66663L0 0.666626H8L4 4.66663Z' fill='%23333333'/%3E%3C/svg%3E");
+    
+      @media (max-width: #{$breakpoint_max_md})
+      {
+        top: 35%;
+      }
+    }
+  }
+
+  &_orderDate
+  {
+    @include typographyBuilder(400, 12, 16);
+    color: $color_black_text;
+    width: calc(100% - 56px);
+    margin: 0;
+    
+    @media (max-width: #{$breakpoint_max_md})
+    {
+      margin-bottom: 30px;
+    }
+  }
+
+  &_orderedItemsContainer
+  {
+    border-top: 1px solid $color_light;
+    padding: 16px;
+  }
+
+  &_buyerNoteContainer
+  {
+    background: $color_light_low;
+    padding: 16px;
+  }
+
+  &_shippingContainer
+  {
+    background: $color_light_low;
+    padding: 0 16px;
+  }
+  
+  &_shippingDetails,
+  &_shippingMethodContainer,
+  &_paymentMethodContainer
+  {
+    border-top: 1px solid $color_light;
+    padding: 16px 0;
+  }
+
+  &_buyerNoteLabel,
+  &_shippingDetailsLabel,
+  &_shippingMethodLabel,
+  &_paymentMethodLabel
+  {
+    @include typographyBuilder(600, 12, 16);
+    color: $color_grey;
+    margin-bottom: 6px;
+  }
+
+  &_shippingDetailsValue,
+  &_shippingMethodValue
+  {
+    @include typographyBuilder(400, 12, 16);
+    color: $color_black_text;
+    margin-bottom: 6px;
+  }
+
+  &_orderControl
+  {
+    @include flex(row-reverse, center, flex-start);
+    padding: 16px;
+
+    & > *
+    {
+      @include fixedWidth(50%);
+      font-size: 12px !important;
+      line-height: 16px !important;
+
+      &[data-identity="btn-invoice"]
+      {
+        @extend .btn_textLongSmall;
+        padding: 12px 7px !important;
+
+        &:not(:only-child)
+        {
+          @include fixedWidth(50%);
+        }
+
+        &::before
+        {
+          @include fixedSize(12px);
+          content: "";
+          display: inline-block;
+          margin-right: 6px;
+          background-repeat: no-repeat;
+          background-image: url("data:image/svg+xml,%3Csvg width='13' height='12' viewBox='0 0 13 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.5 9.5H2C1.86739 9.5 1.74021 9.44732 1.64645 9.35356C1.55268 9.25979 1.5 9.13261 1.5 9V4C1.5 3.86739 1.55268 3.74022 1.64645 3.64645C1.74021 3.55268 1.86739 3.5 2 3.5H3.5V1.5C3.5 1.36739 3.55268 1.24021 3.64645 1.14645C3.74022 1.05268 3.86739 1 4 1H9C9.13261 1 9.25979 1.05268 9.35355 1.14645C9.44732 1.24021 9.5 1.36739 9.5 1.5V3.5H11C11.1326 3.5 11.2598 3.55268 11.3536 3.64645C11.4473 3.74022 11.5 3.86739 11.5 4V9C11.5 9.13261 11.4473 9.25979 11.3536 9.35356C11.2598 9.44732 11.1326 9.5 11 9.5H9.5V10.5C9.5 10.6326 9.44732 10.7598 9.35355 10.8536C9.25979 10.9473 9.13261 11 9 11H4C3.86739 11 3.74022 10.9473 3.64645 10.8536C3.55268 10.7598 3.5 10.6326 3.5 10.5V9.5ZM3.5 8.5V8C3.5 7.86739 3.55268 7.74022 3.64645 7.64645C3.74022 7.55268 3.86739 7.5 4 7.5H9C9.13261 7.5 9.25979 7.55268 9.35355 7.64645C9.44732 7.74022 9.5 7.86739 9.5 8V8.5H10.5V4.5H2.5V8.5H3.5ZM4.5 2V3.5H8.5V2H4.5ZM4.5 8.5V10H8.5V8.5H4.5ZM3 5H4.5V6H3V5Z' fill='%23333333'/%3E%3C/svg%3E");
+        }
+      }
+
+      &[data-identity="btn-track-shipment"],
+      &[data-identity="btn-delivered"]
+      {
+        @extend .btn_secondaryLongSmall;
+        padding: 12px 7px !important;
+        
+        &:not(:only-child)
+        {
+          @include fixedWidth(50%);
+        }
+      }
+    }
+  }
+
+  &_popupConfirmationOrderContainer
+  {
+    @include flex(row, center, center);
+    @include fixedSize(100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: rgba($color_black, 0.8);
+  }
+
+  &_popupConfirmationOrderContent
+  {
+    min-width: 340px;
+    background-color: $color_white;
+    padding: 24px 16px;
+    border-radius: 3px;
+
+    @media screen and (max-width: $breakpoint_max_md) 
+    {
+      @include fixedWidth(calc(100% - 17px));
+      -webkit-overflow-scrolling: auto;
+    }
+  }
+
+  &_popupConfirmationOrderTitle
+  {
+    @include typographyBuilder(600, 20, 24);
+    color: $color_black_text;
+    margin-bottom: 22px;
+    text-align: center;
+  }
+
+  &_popupConfirmationOrderNote,
+  &_popupConfirmationOrderDescription
+  {
+    @include typographyBuilder(400, 12, 16);
+    color: $color_black_text;
+    margin-bottom: 6px;
+    text-align: center;
+    max-width: 308px;
+    padding: 10px;
+    background-color: $color_light_low;
+    max-width: 308px;
+    border-radius: 2px;
+  }
+
+  &_popupConfirmationOrderWrapButton
+  {
+    @include flex(column-reverse, flex-start, flex-start);
+    margin-top: 24px;
+
+    & > button
+    {
+      &:not(:last-child)
+      {
+        margin-top: 12px;
+      }
+    }
+  }
+
+  &_orderedItemsLabel
+  {
+    display: none;
+  }
+
+  &_shipmentTracking
+  {
+    @include flex(column, center, center);
+    @include fixedSize(100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: rgba($color_black, 0.8);
+
+    & > div
+    {
+      min-width: 340px;
+      background-color: $color_white;
+      padding: 24px 16px;
+  
+      @media screen and (max-width: $breakpoint_max_md) 
+      {
+        @include fixedWidth(calc(100% - 17px));
+        -webkit-overflow-scrolling: auto;
+      }
+
+      &[class*="shipmenttracker_shipmentHeader"]
+      {
+        & > p
+        {
+          @include typographyBuilder(400, 12, 16);
+          color: $color_grey;
+          margin-bottom: 4px;
+        }
+      }
+
+      &[class*="shipmenttracker_shipmentFooter"]
+      {
+        padding: 0;
+        
+        & > button
+        {
+          @extend .shipmenttracker_shipmentTrackButton;
+        }
+      }
+    }
+  }
+
+  &_shipmentHeaderText
+  {
+    @include typographyBuilder(600, 16, 24);
+    color: $color_black_text;
+    margin-bottom: 4px;
+  }
+
+  &_orderedItemDetailUploadReceipt
+  {
+    & > input
+    {
+      display: none;
+    }
+
+    & > label
+    {
+      @extend .btn_primarySmall;
+      padding: 12px 7px !important;
+      font-size: 12px !important;
+      line-height: 16px !important;
+      margin: 0;
+      text-align: center;
+    }
+  }
+
+  &_orderedItemDetailNeedReview,
+  &_orderedItemDetailReviewed
+  {
+    @include typographyBuilder(400, 12, 16);
+    margin-bottom: 0;
+
+    &:hover
+    {
+      color: $color_red;
+    }
+  }
+
+  &_orderedItemDetailReviewed
+  {
+    pointer-events: none;
+    color: $color_green;
+  }
+
+  &_orderedItemDetailNeedReview
+  {
+    color: $color_red;
   }
 }

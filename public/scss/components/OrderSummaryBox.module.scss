@@ -147,7 +147,7 @@
       height: 80px;
       margin: 0;
       padding: 16px 20px;
-      z-index: 8;
+      z-index: 7;
 
       & > button
       {
@@ -166,8 +166,7 @@
       @include transition();
       @include flex();
       @include typographyBuilder(700, 14, 18);
-      z-index: 7;
-
+      z-index: 8;
     }
   }
 
