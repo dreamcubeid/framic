@@ -22,11 +22,11 @@ import stylesButton from 'public/scss/components/Button.module.scss'
 const classesPaymentConfirmation = {
   paymentConfirmationDivClassName: styles.paymentNotif_form,
   paymentInfoUploadClassName: styles.paymentNotif_info,
-  inputContainerClassName: `${styles.sirclo_form_row} ${styles.paymentConfirmation}`,
-  inputClassName: `form-control ${styles.sirclo_form_input}`,
-  selectClassName: `form-control ${styles.sirclo_form_input}`,
+  inputContainerClassName: styles.paymentConfirmation_inputContainer,
+  inputClassName: styles.paymentConfirmation_inputUpload,
+  selectClassName: `form-control`,
 
-  buttonConfirmClassName: styles.paymentConfirmation_buttonConfirm,
+  buttonConfirmClassName: `${styles.paymentConfirmation_containerButton} ${stylesButton.btn_primaryLong}`,
   detailContainerClassName: styles.paymentConfirmation_detailContainer,
   detailContentClassName: styles.paymentConfirmation_detailContent,
   detailHeaderClassName: styles.paymentConfirmation_detailHeader,
@@ -43,7 +43,6 @@ const classesPaymentConfirmation = {
   detailTotalFieldClassName: styles.paymentConfirmation_detailTotalField,
   detailHeaderDropdownClassName: styles.paymentConfirmation_detailHeaderDropdown,
   detailBodyDropdownClassName: styles.paymentConfirmation_detailBodyDropdown,
-  labelClassName: styles.paymentConfirmation_label,
 }
 
 const classesCheckPaymentOrder = {
