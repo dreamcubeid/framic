@@ -30,6 +30,12 @@ const Product: FC<any> = ({
       lng={lng}
       lngDict={lngDict}
       brand={brand}
+      setSEO={{
+        title:data?.details[0]?.name || "",
+        description:data?.SEOs[0]?.description || "",
+        keywords:data?.SEOs[0]?.keywords?.join(", ") || "",
+        image:data?.imageURLs || "",
+      }}
     >
       <Breadcrumb
         links={linksBreadcrumb}

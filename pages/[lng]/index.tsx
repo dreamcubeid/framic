@@ -35,7 +35,12 @@ const Home: FC<any> = ({
   }, [isReady]);
 
   return (
-    <Layout i18n={i18n} lng={lng} lngDict={lngDict} brand={brand}>
+    <Layout 
+      i18n={i18n} 
+      lng={lng} 
+      lngDict={lngDict} 
+      brand={brand}
+    >
       <section className={styles.homepage_container}>
         <BannerComponent
           dataBanners={dataBanners?.data}

@@ -48,6 +48,7 @@ const LookbookSinglePage: FC<any> = ({
       lngDict={lngDict}
       brand={brand}
       withAllowed={LookbookAllowed}
+      setSEO={{ title: title }}
     >
       <div>
         <Breadcrumb links={linksBreadcrumb} lng={lng} />

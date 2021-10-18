@@ -9,20 +9,27 @@ import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import SEO from '../SEO'
 import PageNotFound from 'components/PageNotFound'
-
+// styles
 import stylesNewsLetter from 'public/scss/components/Newsletter.module.scss'
 import stylesForm from 'public/scss/components/Form.module.scss'
 import stylesButtons from 'public/scss/components/Button.module.scss'
 
 type LayoutPropType = {
-  lngDict: any;
-  i18n: any;
-  lng: string;
-  layoutClassName?: string;
-  withHeader?: boolean;
-  withFooter?: boolean;
-  withAllowed?: boolean | undefined;
-  [otherProp: string]: any;
+  lngDict: any
+  i18n: any
+  lng: string
+  layoutClassName?: string
+  withHeader?: boolean
+  withFooter?: boolean
+  withAllowed?: boolean | undefined
+  setSEO?: {
+    title?: string
+    description?: string
+    keywords?: string
+    image?: string
+    url?: string
+  }
+  [otherProp: string]: any
 };
 
 const classesNewsletterPopup = {
@@ -43,6 +50,7 @@ const Layout: React.FC<LayoutPropType> = ({
   withFooter = true,
   withAllowed = true,
   brand,
+  setSEO,
   ...props
 }) => {
 
@@ -63,12 +71,22 @@ const Layout: React.FC<LayoutPropType> = ({
   return (
     <>
       <Head>
+        <title>{brand?.settings?.websiteTitle}</title>
         {brand?.settings?.hideFromSearchEngine && (
           <meta name="robots" content="noindex, nofollow"></meta>
         )}
-        <title>{brand?.settings?.websiteTitle}</title>
         {brand?.googleAdsWebsiteMetaToken &&
           <meta name="google-site-verification" content={getToken()} />
+        }
+        
+        {setSEO &&
+          <SEO 
+            title={setSEO.title}
+            description={setSEO.description}
+            keywords={setSEO.keywords}
+            image={setSEO.image}
+            url={setSEO.url}
+          />
         }
         <link
           rel="shortcut icon"

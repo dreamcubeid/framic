@@ -44,7 +44,13 @@ const ProductsPage: FC<any> = ({
 
 
   return (
-    <Layout i18n={i18n} lng={lng} lngDict={lngDict} brand={brand}>
+    <Layout
+      i18n={i18n}
+      lng={lng}
+      lngDict={lngDict}
+      brand={brand}
+      setSEO={{ title: i18n.t("product.products") }}
+    >
       <Breadcrumb links={linksBreadcrumb} lng={lng} />
       <div className={styles.products_container}>
         {(size.width > 767 || openFilterSort) &&
