@@ -9,6 +9,7 @@
     border-bottom: 1px solid $color_light;
     margin-bottom: 12px;
   }
+  
 
   &_headerTitle
   {
@@ -40,6 +41,50 @@
       margin-right: 8px;
       background-repeat: no-repeat;
       background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.33337 7.33331V3.33331H8.66671V7.33331H12.6667V8.66665H8.66671V12.6666H7.33337V8.66665H3.33337V7.33331H7.33337Z' fill='%23276EF1'/%3E%3C/svg%3E%0A");
+    }
+  }
+
+  &_headerChange
+  {
+    @include flex(row, center, space-between);
+    border-radius: 2px 2px 0 0;
+    background: $color_light_low;
+    border: 1px solid $color_light;
+    border-bottom: 0;
+    padding: 16px 16px 0;
+  }
+
+  &_headerChangeTitle
+  {   
+    @include typographyBuilder(400, 12, 16);
+    color: $color_black_text;
+    margin: 0
+  }
+
+  &_headerChangeLink
+  {
+    @include typographyBuilder(400, 12, 16);
+    @include flex(row, center, flex-start);
+
+    color: $color_blue;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+
+    &:hover
+    {
+      text-decoration: underline
+    }
+
+    &::before
+    {
+      @include fixedSize(16px);
+      content: "";
+      margin-right: 4px;
+      display: inline-block;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("data:image/svg+xml,%0A%3Csvg width='6' height='10' viewBox='0 0 6 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.21871 5.00001L5.51871 8.30001L4.57604 9.24267L0.333374 5.00001L4.57604 0.757339L5.51871 1.70001L2.21871 5.00001Z' fill='%23276EF1'/%3E%3C/svg%3E%0A");
     }
   }
 
@@ -82,9 +127,13 @@
       "image total total";
     position: relative;
     flex-flow: column wrap;
-    border-bottom: 1px solid $color_light;
-    padding-bottom: 24px;
-    margin-bottom: 24px;
+    
+    &:not(:last-child)
+    {
+      margin-bottom: 24px;
+      border-bottom: 1px solid $color_light;
+      padding-bottom: 24px;
+    }
   }
 
   &_itemImage

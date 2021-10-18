@@ -140,10 +140,7 @@ const ChekoutComponent: FC<ChekoutComponentType> = ({
           {children}
         </div>
         <div className={styles.checkout_bodyOrderSummaryBox}>
-
-          <OrderSummaryBox page={page} />
-
-        
+          <OrderSummaryBox page={page} lng={lng} />
         </div>
       </div>
     </div>

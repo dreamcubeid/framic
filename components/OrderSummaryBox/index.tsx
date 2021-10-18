@@ -1,6 +1,7 @@
 /* library package */
 import { FC, useState } from 'react'
 import { toast } from 'react-toastify'
+import Router from 'next/router'
 import {
   useI18n,
   OrderSummary,
@@ -15,10 +16,11 @@ import stylesForm from 'public/scss/components/Form.module.scss'
 import stylesCart from 'public/scss/components/CartDetails.module.scss'
 
 export type OrderSummaryBoxPropsType = {
+  lng: string
   page: "cart"
   | "place_order"
   | "shipping_method"
-  | "payment_method"
+  | "payment_method",
 }
 
 const classesOrderSummary = {
@@ -68,8 +70,6 @@ const classesOrderSummary = {
   pointsWarningClassName: styles.ordersummary_pointsWarning,
   continueShoppingClassName: styles.ordersummary_continueShopping,
   pointsSubmitButtonClassName: stylesButton.btn_primaryLong,
-
-
 }
 
 const classesCartDetails = {
@@ -98,6 +98,7 @@ const classesPlaceholder = {
 
 const OrderSummaryBox: FC<OrderSummaryBoxPropsType> = ({
   page,
+  lng
 }) => {
   const i18n: any = useI18n()
   const [showModalErrorAddToCart, setShowModalErrorAddToCart] = useState<boolean>(false)
@@ -127,41 +128,45 @@ const OrderSummaryBox: FC<OrderSummaryBoxPropsType> = ({
       loadingComponent={<div className="spinner-border" />}
     />
   ) : (
-    <CartSummary
-      cartProps={{
-        classes: classesCartDetails,
-        withoutQtyInput: false,
-        onErrorMsg: (msg) => toast.error(msg),
-        loadingComponent: <Placeholder classes={classesPlaceholder} withList listMany={3} />
-        // emptyCartPlaceHolder: (
-        //   <EmptyComponent
-        //     classes={classesEmptyComponent}
-        //     title={i18n.t("cart.isEmpty")}
-        //   />
-        // ),
-      }}
-      orderSummaryProps={{
-        classes: classesOrderSummary,
-        withoutButton: page === "payment_method",
-        isAccordion: true,
-        page: page,
-        currency: "IDR",
-        submitButtonLabel: i18n.t("orderSummary.placeOrder"),
-        onErrorMsg: () => setShowModalErrorAddToCart(!showModalErrorAddToCart),
-        onErrorMsgCoupon: (msg: string) => toast.error(msg),
-        loadingComponent: <div className="spinner-border" />,
-        icons: {
-          pointsApplied: <i className="fa fa-crown"></i>,
-          voucher: <span className={styles.ordersummary_voucherIcon} />,
-          points: <span className={styles.ordersummary_pointsIcon} />,
-          close: <span className={styles.ordersummary_closeIcon} />,
-          voucherApplied: <span className={styles.ordersummary_voucherIconApplied} />,
-          voucherRemoved: <span className={styles.ordersummary_voucherIconRemove} />,
-          expand: <span className={styles.ordersummary_detailExpandIcon} />,
-          collapse: <span className={styles.ordersummary_detailCollapseIcon} />,
-        }
-      }}
-    />
+    <>
+      <div className={stylesCart.cartdetails_headerChange}>
+        <h3 className={stylesCart.cartdetails_headerChangeTitle}>{i18n.t("cart.title")}</h3>
+        <button
+          className={stylesCart.cartdetails_headerChangeLink}
+          onClick={() => Router.push("/[lng]/cart", `/${lng}/cart`)}>
+          {i18n.t("global.changes")}&nbsp;{i18n.t("cart.title")}
+        </button>
+      </div>
+      <CartSummary
+        cartProps={{
+          classes: classesCartDetails,
+          withoutQtyInput: false,
+          onErrorMsg: (msg) => toast.error(msg),
+          loadingComponent: <Placeholder classes={classesPlaceholder} withList listMany={3} />
+        }}
+        orderSummaryProps={{
+          classes: classesOrderSummary,
+          withoutButton: page === "payment_method",
+          isAccordion: true,
+          page: page,
+          currency: "IDR",
+          submitButtonLabel: i18n.t("orderSummary.placeOrder"),
+          onErrorMsg: () => setShowModalErrorAddToCart(!showModalErrorAddToCart),
+          onErrorMsgCoupon: (msg: string) => toast.error(msg),
+          loadingComponent: <div className="spinner-border" />,
+          icons: {
+            pointsApplied: <i className="fa fa-crown"></i>,
+            voucher: <span className={styles.ordersummary_voucherIcon} />,
+            points: <span className={styles.ordersummary_pointsIcon} />,
+            close: <span className={styles.ordersummary_closeIcon} />,
+            voucherApplied: <span className={styles.ordersummary_voucherIconApplied} />,
+            voucherRemoved: <span className={styles.ordersummary_voucherIconRemove} />,
+            expand: <span className={styles.ordersummary_detailExpandIcon} />,
+            collapse: <span className={styles.ordersummary_detailCollapseIcon} />,
+          }
+        }}
+      />
+    </>
   )
 }
 

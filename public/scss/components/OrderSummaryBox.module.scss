@@ -501,9 +501,10 @@
 
   &_className
   {
-    border-radius: 2px;
+    border-radius: 0 0 2px 2px;
     background: $color_light_low;
     border: 1px solid $color_light;
+    border-top: 0;
     box-sizing: border-box;
     padding: 16px;
     margin-bottom: 24px;

@@ -42,7 +42,7 @@ const Cart: FC<any> = ({
         </div>
 
         <div className={styles.cart_orderSummaryContainer}>
-          <OrderSummaryBox page="cart" />
+          <OrderSummaryBox page="cart" lng={lng} />
         </div>
       </div>
 
