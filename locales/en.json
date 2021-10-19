@@ -359,7 +359,8 @@
     "titleFailed": "Payment Failed",
     "titleUnfinish": "Incomplete Payment",
     "tryAgain": "Try Again",
-    "unfinishDesc": "Your payment is incomplete. Please make a repayment process"
+    "unfinishDesc": "Your payment is incomplete. Please make a repayment process",
+    "orderNotFoundDesc" : "Your payment number not found"
   },
   "placeOrder": {
     "checkOrder": "Check Orders",

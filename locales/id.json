@@ -361,12 +361,13 @@
   },
   "paymentStatus": {
     "continueShopping": "Lanjutkan Berbelanja",
-    "failedDesc": "Pembayaran anda gagal diproses. Silakan lakukan proses pembayaran kembali",
+    "failedDesc": "Pembayaran Anda gagal diproses",
     "orderNotFound": "Pesanan Tidak Ditemukan",
     "titleFailed": "Pembayaran Gagal",
     "titleUnfinish": "Pembayaran tidak lengkap",
     "tryAgain": "Coba lagi",
-    "unfinishDesc": "Pembayaran tidak lengkap. Silakan lakukan proses pembayaran kembali"
+    "unfinishDesc": "Pembayaran anda belum selesai, silakan lakukan proses pelunasan.",
+    "orderNotFoundDesc" : "Mohon maaf, nomor pesanan Anda tidak dapat kami temukan."
   },
   "placeOrder": {
     "checkOrder": "Periksa Pesanan",
