@@ -28,6 +28,12 @@
     @include position();
     margin-top: 41px;
     margin-bottom: 42px;
+   
+
+    &:hover{
+      cursor: pointer;
+      opacity: 0.7;
+    }
     
     &:first-child
     {
@@ -117,7 +123,7 @@
   &_productsLabel
   {
     @include typographyBuilder(600, 20, 24);
-    color: $color_black;
+    color: $color_black_text;
     margin-bottom: 0;
   }
 
@@ -138,6 +144,11 @@
   &_itemBottom
   {
     @include position();
+
+    &:hover{
+      cursor: pointer;
+      opacity: 0.7;
+    }
     
     &:last-child
     {

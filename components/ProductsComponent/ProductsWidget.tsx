@@ -11,7 +11,7 @@ import styles from 'public/scss/components/WidgetHomePage.module.scss'
 
 export type ProductsWidgetType = {
   i18n: any
-  lng: any
+  lng: string
   classProducts: any
   classPlaceholder: any
   tagName?: string
