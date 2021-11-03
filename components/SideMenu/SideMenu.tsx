@@ -35,7 +35,7 @@ type SideMenuPropsType = {
   brand: any,
   size: any,
   i18n: any,
-  lng: any,
+  lng: string,
   positionSide: string
 }
 

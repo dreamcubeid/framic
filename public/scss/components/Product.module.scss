@@ -51,7 +51,7 @@
   {
     @include typographyBuilder(400, 16, 24);
     margin-bottom: 8px;
-    color: $color_black;
+    color: $color_black_text;
   }
 
   &_price

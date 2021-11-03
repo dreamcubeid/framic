@@ -128,7 +128,7 @@ const paginationClasses = {
 export type PopupPropsType = {
   setPopup: any,
   popupTitle: string,
-  lng: any,
+  lng: string,
 }
 
 const PopupCart: FC<PopupPropsType> = ({

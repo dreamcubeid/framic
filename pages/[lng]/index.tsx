@@ -61,9 +61,9 @@ const Home: FC<any> = ({
         >
           <div className={styles.homepage_linkAllProduct}>
             <img src='/images/product.svg'/>
-            <div>
+            <p className={styles.homepage_textSeeProduct}>
               {i18n.t('product.seeAllProduct')}
-            </div>
+            </p>
             <ChevronRight className={styles.homepage_rightArrow}/>
           </div>
         </Link>

@@ -141,7 +141,7 @@ const LoginRegisterOTP: FC<LoginRegisterOTPPropsType> = ({
 
       {(step === steps.email || step === steps.wa) &&
         <>
-          {(hasGoogleAuth || hasFacebookAuth) &&
+          {(hasGoogleAuth || hasFacebookAuth || hasOtp) &&
             <div className={styles.loginregister_ssoContainer}>
               {(hasGoogleAuth || hasFacebookAuth || hasOtp) &&
                 <label className={styles.loginregister_ssoOr}>

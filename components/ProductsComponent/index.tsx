@@ -10,7 +10,7 @@ import styles from 'public/scss/components/Product.module.scss'
 export type ProductsComponentType = {
   type: "list" | "widget" | "recomendation"
   i18n: any
-  lng: any
+  lng: string
   slug?: string | string[]
   SKUs?: Array<string>
   collectionSlug?: string
@@ -54,7 +54,7 @@ const ProductsComponent: FC<ProductsComponentType> = ({
   getTotalProduct,
   lng
 }) => {
-  const [totalProducts, settotalProducts] = useState(null)
+  const [totalProducts, setTotalProducts] = useState(null)
 
   if (totalProducts === 0 && type !== "list") return <></>
   
@@ -75,7 +75,7 @@ const ProductsComponent: FC<ProductsComponentType> = ({
       itemPerPage={itemPerPage}
       classPlaceholder={classesPlaceholderProducts}
       classProducts={classesProducts}
-      setTotalProducts={settotalProducts}
+      setTotalProducts={setTotalProducts}
     />
   ) : type === "recomendation" ? (
     <ProductRecomendation
@@ -84,7 +84,7 @@ const ProductsComponent: FC<ProductsComponentType> = ({
       SKUs={SKUs}
       classProducts={classesProducts}
       classPlaceholder={classesPlaceholderProducts}
-      setTotalProducts={settotalProducts}
+      setTotalProducts={setTotalProducts}
     />
   ) : (<></>)
 }
