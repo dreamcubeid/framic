@@ -34,6 +34,7 @@
 
   &_cta
   {
+    @include absolute(50px, 0, 0, calc(50% - 102px));
     background: rgba($color_white, 0.75);;
     cursor: pointer;
     border: 2px solid $color_white;
@@ -43,11 +44,10 @@
     width: 202px;
     height: 108px;
     text-align: center;
-    @include absolute(50px,0,0,calc(50% - 102px));
 
     & > p {
-      color: $color_black;
-      @include typographyBuilder(700, 16, 24);
+      @include typographyBuilder(400, 16, 24);
+      color: $color_black_text;
     }
 
     @media screen and (max-width: $breakpoint_max_md) 

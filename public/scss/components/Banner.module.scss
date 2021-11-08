@@ -74,4 +74,20 @@
       height: 30vh;
     }
   }
+
+  li[class*="BrainhubCarouselItem"]
+  {
+    img 
+    {
+      display: none;
+    }
+
+    &[class*="--active"]
+    {
+      img 
+      {
+        display: block !important;
+      }
+    }
+  } 
 }

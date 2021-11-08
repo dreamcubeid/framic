@@ -47,6 +47,11 @@
       opacity: .5;
     }
 
+    &::placeholder
+    {
+      color: $color_grey_light;
+    }
+
     &Long
     {
       @extend .form_input;

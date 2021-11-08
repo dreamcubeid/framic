@@ -68,7 +68,12 @@ const Home: FC<any> = ({
           </div>
         </Link>
       </section>
-      <Instagram size={size} i18n={i18n}/>
+      
+      <Instagram 
+        size={size} 
+        i18n={i18n}
+        brand={brand}
+      />
     </Layout>
   );
 };

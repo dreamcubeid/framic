@@ -38,7 +38,7 @@
         {
           @include typographyBuilder(600, 20, 24);
           color: $color_black_text;
-          padding: 0 11px;
+          padding: 0 16px;
           margin-bottom: 12px;
         }
 
@@ -46,7 +46,7 @@
         {
           @include typographyBuilder(400, 12, 16);
           color: $color_grey;
-          padding: 0 11px;
+          padding: 0 16px;
         }
   
         img 
@@ -74,7 +74,7 @@
 
   &_form
   {
-    padding: 0 11px 24px;
+    padding: 0 16px 24px;
 
     input
     {

@@ -13,6 +13,7 @@ type TSize = {
 type iProps = {
   size: TSize
   i18n: any
+  brand: any
 }
 
 const classesInstagramFeed = {
@@ -28,8 +29,17 @@ const classesPlaceholderCollapsibleNav = {
   placeholderImage: `${classesInstagramFeed.mediaClassName} ${classesInstagramFeed.imageClassName}`,
 }
 
-const Instagram: FC<iProps> = ({ size,i18n }) => {
+const Instagram: FC<iProps> = ({
+  size,
+  i18n,
+  brand
+}) => {
   const postLimit = size.width < 768 ? 4 : 7
+
+  const handleFollowButton = () => {
+    window.open(brand?.socmedSetting?.socmedLink?.instagram);
+  }
+
   return (
     <div className={classesInstagramFeed.layoutClassName}>
       <InstagramFeed
@@ -71,8 +81,11 @@ const Instagram: FC<iProps> = ({ size,i18n }) => {
         }
       />
       <div className={classesInstagramFeed.containerClassName}>
-        <div className={classesInstagramFeed.ctaClassName}>
-          <img src="/images/instagram_black.svg" alt="instagram" className={classesInstagramFeed.iconClassname}/>
+        <div
+          className={classesInstagramFeed.ctaClassName}
+          onClick={handleFollowButton}
+        >
+          <img src="/images/instagram_black.svg" alt="instagram" className={classesInstagramFeed.iconClassname} />
           <p>{i18n.t("instagram.cta")}</p>
         </div>
       </div>
