@@ -101,7 +101,7 @@ const ProductsList: FC<ProductsListType> = ({
           itemPerPage={6}
           getPageInfo={(data: any) => handlePageInfo(data)}
           collectionSlug={categories}
-          tagName={tagname}
+          tagName={tagname || ""}
           filter={filterProduct}
           withSeparatedVariant={true}
           fullPath={`product/{id}`}

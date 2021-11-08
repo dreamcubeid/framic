@@ -20,6 +20,10 @@
     font-family: 'Inter', sans-serif;
     font-weight: $font-weight;
     font-style: normal;
+
+    @if ($font-weight > 400) {
+        -webkit-font-smoothing: antialiased;
+    }
 }
 
 

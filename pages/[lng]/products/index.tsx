@@ -53,15 +53,13 @@ const ProductsPage: FC<any> = ({
     >
       <Breadcrumb links={linksBreadcrumb} lng={lng} />
       <div className={styles.products_container}>
+        {/* Container Products Filter */}
         {(size.width > 767 || openFilterSort) &&
-          <div className={styles.products_filterSort}>
-            {/* Container Products Filter */}
-            <ProductFilterSort
-              i18n={i18n}
-              handleOpenSortFilter={handleOpenSortFilter}
-              handleFilter={handleFilter}
-            />
-          </div>
+          <ProductFilterSort
+            i18n={i18n}
+            handleOpenSortFilter={handleOpenSortFilter}
+            handleFilter={handleFilter}
+          />
         }
 
         <div className={styles.products_listWrapper}>

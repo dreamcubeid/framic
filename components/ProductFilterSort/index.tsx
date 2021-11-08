@@ -13,7 +13,7 @@ import stylesProductsSortFilter from 'public/scss/components/ProductSortFilter.m
 
 type ProductFilterSortType = {
   i18n: any
-  handleFilter: (data:any) => void
+  handleFilter: (data: any) => void
   handleOpenSortFilter: () => void
 }
 
@@ -33,8 +33,8 @@ const classesProductFilter = {
   filterSliderHandleClassName: stylesProductsSortFilter.filter_filterSliderHandle,
   filterSliderTrackClassName: stylesProductsSortFilter.filter_filterSliderTrack,
   filterPriceLabelClassName: stylesProductsSortFilter.filter_filterPriceLabel,
-  minPriceLabelClassName:stylesProductsSortFilter.filter_minPriceLabel,
-  maxPriceLabelClassName:stylesProductsSortFilter.filter_maxPriceLabel,
+  minPriceLabelClassName: stylesProductsSortFilter.filter_minPriceLabel,
+  maxPriceLabelClassName: stylesProductsSortFilter.filter_maxPriceLabel,
   filterPriceInputClassName: stylesProductsSortFilter.filter_filterPriceInput,
   filterPriceClassName: stylesProductsSortFilter.filter_filterPrice,
   filterSliderTooltipContainerClassName: stylesProductsSortFilter.filter_filterSliderTooltipContainer,
@@ -69,8 +69,8 @@ const ProductFilterSort: FC<ProductFilterSortType> = ({
   handleFilter,
   handleOpenSortFilter
 }) => {
-  const [limitCategory,setLimitCategory] = useState<number>(2)
-  const [lengthCategory,setLengthCategory] = useState<number>(0)
+  const [limitCategory, setLimitCategory] = useState<number>(2)
+  const [lengthCategory, setLengthCategory] = useState<number>(0)
   const [showSeeMore, setShowSeeMore] = useState<boolean>(false)
 
   const handleSeeMoreCategory = () => {
@@ -78,71 +78,75 @@ const ProductFilterSort: FC<ProductFilterSortType> = ({
     setLimitCategory(lengthCategory)
   }
 
-  const handleSetLengthCategory = (data:any) => {
+  const handleSetLengthCategory = (data: any) => {
     setLengthCategory(data?.length)
-    if(data?.length <= limitCategory) setShowSeeMore(false)
+    if (data?.length <= limitCategory) setShowSeeMore(false)
     else setShowSeeMore(true)
   }
+
   return (
-    <div>
-      <div className={stylesProductsSortFilter.filterSort_header}>
-        <p className={stylesProductsSortFilter.filter_filterName}>
-          {i18n.t('product.sort')}
+    <div className={stylesProductsSortFilter.filterSort_wrapper}>
+      <div className={stylesProductsSortFilter.filterSort_background}  onClick={handleOpenSortFilter}/>
+      <div className={stylesProductsSortFilter.filterSort_container}>
+        <div className={stylesProductsSortFilter.filterSort_header}>
+          <p className={stylesProductsSortFilter.filter_filterName}>
+            {i18n.t('product.sort')}
+          </p>
+          <button
+            className={stylesProductsSortFilter.filterSort_close}
+            onClick={handleOpenSortFilter}
+          />
+        </div>
+        <ProductSort
+          classes={classesProductSort}
+          loadingComponent={
+            <Placeholder
+              classes={classesPlaceholderSort}
+              listMany={4}
+              withList
+            />
+          }
+        />
+        <p className={stylesProductsSortFilter.filter_filterName} style={{ marginTop: "50px" }}>
+          {i18n.t('blog.categories')}
         </p>
-        <button 
-          className={stylesProductsSortFilter.filterSort_close} 
-          onClick={handleOpenSortFilter} 
+        <ProductCategory
+          classes={classesProductCategory}
+          categoryClassName="products-menuCenterFilterSortToggle"
+          dropdownIcon={<ChevronDown />}
+          getData={handleSetLengthCategory}
+          itemPerPage={limitCategory}
+          loadingComponent={
+            <Placeholder
+              classes={classesPlaceholderSort}
+              listMany={4}
+              withList
+            />
+          }
+        />
+        {
+          showSeeMore &&
+          <div className={stylesProductsSortFilter.category_categorySeeMore} onClick={handleSeeMoreCategory}>
+            {i18n.t('product.seeAllCategory')}
+          </div>
+        }
+        <ProductFilter
+          sortType={"list"}
+          withPriceMinimumSlider
+          withPriceValueLabel
+          withPriceInput
+          withTooltip
+          handleFilter={handleFilter}
+          classes={classesProductFilter}
+          loadingComponent={
+            <Placeholder
+              classes={classesPlaceholderSort}
+              listMany={4}
+              withList
+            />
+          }
         />
       </div>
-      <ProductSort
-        classes={classesProductSort}
-        loadingComponent={
-          <Placeholder
-            classes={classesPlaceholderSort}
-            listMany={4}
-            withList
-          />
-        }
-      />
-      <p className={stylesProductsSortFilter.filter_filterName} style={{ marginTop: "50px" }}>
-        {i18n.t('blog.categories')}
-      </p>
-      <ProductCategory
-        classes={classesProductCategory}
-        categoryClassName="products-menuCenterFilterSortToggle"
-        dropdownIcon={<ChevronDown />}
-        getData={handleSetLengthCategory}
-        itemPerPage={limitCategory}
-        loadingComponent={
-          <Placeholder
-            classes={classesPlaceholderSort}
-            listMany={4}
-            withList
-          />
-        }
-      />
-      {
-        showSeeMore &&
-        <div className={stylesProductsSortFilter.category_categorySeeMore} onClick={handleSeeMoreCategory}>
-          {i18n.t('product.seeAllCategory')}
-        </div>
-      }
-      <ProductFilter
-        sortType={"list"}
-        withPriceMinimumSlider
-        withPriceValueLabel
-        withPriceInput
-        withTooltip
-        handleFilter={handleFilter}
-        classes={classesProductFilter}
-        loadingComponent={
-          <Placeholder
-            classes={classesPlaceholderSort}
-            listMany={4}
-            withList
-          />
-        }
-      />
     </div>
   )
 }
