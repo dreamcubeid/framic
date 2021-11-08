@@ -21,6 +21,7 @@
     position: relative;
     z-index: 10;
     padding-bottom: 224px;
+    margin-bottom: 64px;
 
     @media screen and (max-width: $breakpoint_max_md) 
     {
@@ -59,7 +60,7 @@
 
   &_title
   {
-    @include typographyBuilder(400, 20, 24);
+    @include typographyBuilder(600, 20, 24);
     color: $color_black_text;
   }
 
