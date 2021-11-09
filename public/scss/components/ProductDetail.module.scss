@@ -1,5 +1,6 @@
 @import '../utils/variables';
 @import './Form.module.scss';
+@import './Button.module.scss';
 
 .productdetail
 {
@@ -49,7 +50,7 @@
       padding: 0 3px 0 0;
       list-style: none;
       overflow: auto;
-      height: 100%;
+      height: 538px;
       
       li
       {
@@ -58,12 +59,13 @@
           margin-right: 4px;
         }
       }
-
+      
       @media screen and (max-width: $breakpoint_max_md) 
       {
         @include absolute(auto, auto, 0, auto);
         @include flex(row, center, center);
         width: 100%;
+        height: fit-content;
       }
     }
   }
@@ -183,8 +185,8 @@
 
     @media screen and (min-width: $breakpoint_min_lg) 
     {
-      @include fixedSize(calc((50%) - 12px));
-      display: inline-block;
+      @include fixedSize(calc((50%) - 12px), true);
+      display: inline-block !important;
       margin-left: 6px;
   
       &:not(:last-child)
@@ -194,6 +196,28 @@
       }
     }
   }
+  
+  &_addToCartBtn
+  {
+    @extend .btn_primaryLong;
+    
+    &:not(:last-child)
+    {
+      @extend .btn_secondaryLong;
+    }
+  }
+
+  &_buyNowBtn
+  {
+    @extend .btn_primaryLong;
+  }
+
+  &_addToCartBtn,
+  &_buyNowBtn
+  {
+    @extend .productdetail_propertyFooterButton;
+  }
+
 
   &_thumbnailImage
   {

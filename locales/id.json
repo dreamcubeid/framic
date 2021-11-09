@@ -304,7 +304,7 @@
     "total": "Total",
     "useVoucher": "Gunakan voucher",
     "usePoints": "Gunakan poin",
-    "viewCart": "Liat Keranjang",
+    "viewCart": "Lihat Keranjang",
     "voucherApplied": "Voucher digunakan"
   },
   "pageHeader": {
@@ -380,7 +380,7 @@
   },
   "product": {
     "additionalInfo": "Informasi tambahan",
-    "addToCart": "Masukan Keranjang",
+    "addToCart": "Masukkan Keranjang",
     "adjust": "Sesuaikan",
     "all": "Semua Produk",
     "back": "Kembali",

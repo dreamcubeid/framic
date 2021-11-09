@@ -129,8 +129,8 @@
 
   &_reviewListDescription
   {
-    @include typographyBuilder(400, 16, 24);
-    color: $color_grey;
+    @include typographyBuilder(400, 10, 16);
+    color: $color_black_text;
     margin-bottom: 12px;
   }
 

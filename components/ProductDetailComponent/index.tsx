@@ -56,8 +56,8 @@ const classesProductDetail = {
   descriptionClassName: styles.productdetail_description,
   additionalInfoClassName: "d-none",
   qtyBoxClassName: styles.productdetail_qtyBox,
-  addToCartBtnClassName: `${stylesButton.btn_secondaryLong} ${styles.productdetail_propertyFooterButton}`,
-  buyNowBtnClassName: `${stylesButton.btn_primaryLong} ${styles.productdetail_propertyFooterButton}`,
+  addToCartBtnClassName: styles.productdetail_addToCartBtn,
+  buyNowBtnClassName: styles.productdetail_buyNowBtn,
   dotClassName: styles.productdetail_dot,
 
   // OpenOrder
