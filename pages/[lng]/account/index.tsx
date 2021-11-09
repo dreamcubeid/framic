@@ -8,8 +8,6 @@ import {
 import { toast } from 'react-toastify'
 import {
   X as XIcon,
-  Eye,
-  EyeOff,
   CheckCircle,
   Crosshair,
   ChevronDown,
@@ -94,6 +92,15 @@ const classesAccount = {
   itemPerPageOptionsClassName: styles.membership_itemPerPageOptions,
   buttonContinueClassName: `btn ${styles.btn_primary} ${styles.btn_long}`,
   //order history info
+  checkPaymentOrderContainerClassName:  styles.orderhistory_checkPaymentOrderContainer,
+  checkPaymentOrderContainerBodyClassName: styles.orderhistory_checkPaymentOrderContainerBody,
+  checkPaymentOrderHeaderClassName: styles.orderhistory_checkPaymentOrderHeader,
+  checkPaymentOrderTitleClassName: styles.orderhistory_checkPaymentOrderTitle,
+  checkPaymentOrderCloseButtonClassName: styles.orderhistory_checkPaymentOrderCloseButton,
+  checkPaymentOrderDescriptionClassName: styles.orderhistory_checkPaymentOrderDescription,
+  checkPaymentOrderInputTitleClassName: stylesForm.form_label,
+  checkPaymentOrderInputClassName: styles.orderhistory_checkPaymentOrderInput,
+  checkPaymentOrderSubmitButtonClassName: stylesButton.btn_primaryLong,
   orderInfoContainerClassName: styles.orderhistory_orderInfoContainer,
   orderInfoLabelClassName: styles.orderhistory_orderInfoLabel,
   OrderInfoSearchHereClassName: styles.orderhistory_orderInfoSearchHere,
@@ -165,7 +172,6 @@ const classesAccount = {
   mediaDetailCheckboxContainer: styles.notification_mediaDetailCheckboxContainer,
   mediaDetailCheckbox: styles.notification_mediaDetailCheckbox,
   mediaDetailCheckboxLabel: styles.notification_mediaDetailCheckboxLabel
-
 }
 
 const orderHistoryPaginationClasses = {

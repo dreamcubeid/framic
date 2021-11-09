@@ -59,6 +59,7 @@ const classesWhatsAppOTP = {
   chooseAccountTitleClassName: styles.loginregister_chooseAccountTitle,
   chooseAccountDescriptionClassName: styles.loginregister_chooseAccountDescription,
   btnChooseAccountClassName: stylesButton.btn_primaryLong,
+
 }
 
 const LoginRegisterOTP: FC<LoginRegisterOTPPropsType> = ({

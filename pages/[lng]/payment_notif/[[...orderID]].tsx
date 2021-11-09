@@ -3,11 +3,12 @@ import { FC } from 'react'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'
-import { ChevronUp, ChevronDown } from 'react-feather'
-import { 
-  PaymentConfirmation, 
-  useI18n, 
-  CheckPaymentOrder 
+import { ChevronUp, ChevronDown, Copy } from 'react-feather'
+import {
+  PaymentConfirmation,
+  BanksAccount as BanksAccountList,
+  useI18n,
+  CheckPaymentOrder
 } from '@sirclo/nexus'
 /* library template */
 import { useBrand } from 'lib/useBrand'
@@ -17,6 +18,7 @@ import Loader from 'components/Loader/Loader'
 import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
 /* styles */
 import styles from 'public/scss/pages/PaymentNotif.module.scss'
+import stylesThankyou from 'public/scss/pages/ThankYou.module.scss'
 import stylesButton from 'public/scss/components/Button.module.scss'
 
 const classesPaymentConfirmation = {
@@ -56,6 +58,38 @@ const classesCheckPaymentOrder = {
   checkPaymentOrderSubmitButtonClassName: stylesButton.btn_primaryLong,
 }
 
+const classesBankAccount = {
+  // bankAccountInformationClassName: stylesBank.thankYou_bankInformation,
+  // bankAccountContainerClassName: stylesBank.thankYou_bankContainer,
+  // bankAccountSectionClassName: stylesBank.thankYou_bankSection,
+  // bankAccountHeaderClassName: stylesBank.thankYou_bankHeader,
+  // bankAccountTitleSectionClassName: stylesBank.thankYou_bankTitleSection,
+  // bankAccountLogoClassName: stylesBank.thankYou_bankLogo,
+  // bankAccountTitleClassName: stylesBank.thankYou_bankTitle,
+  // bankAccountIconCollapseClassName: stylesBank.thankYou_bankAccountIconCollapse,
+  // bankAccountBodyClassName: stylesBank.thankYou_bankBody,
+  // bankAccountInfoAccountClassName: stylesBank.thankYou_bankInfoAccount,
+  // bankAccountNumberSectionClassname: stylesBank.thankYou_bankAccountNumberSection,
+  // bankAccountNumberClassName: stylesBank.thankYou_bankAccountNumber,
+  // bankAccountLabelAccountNumberClassName: stylesBank.thankYou_bankLabelAccount,
+  // bankAccountLabelAccountNameClassName: stylesBank.thankYou_bankLabelAccountName,
+  // bankAccountCopyButtonClassName: stylesBank.thankYou_bankCopyButton
+
+  bankAccountLogoClassName: stylesThankyou.thankYou_bankAccountLogo,
+  bankAccountTitleClassName: stylesThankyou.thankYou_bankAccountTitle,
+  bankAccountTitleSectionClassName: stylesThankyou.thankYou_bankAccountTitleSection,
+  bankAccountHeaderClassName: stylesThankyou.thankYou_bankAccountHeader,
+  bankAccountIconCollapseClassName: stylesThankyou.thankYou_bankAccountIconCollapse,
+  bankAccountBodyClassName: stylesThankyou.thankYou_bankAccountBody,
+  bankAccountNumberSectionClassname: stylesThankyou.thankYou_bankAccountNumberSection,
+  bankAccountCopyButtonClassName: stylesThankyou.thankYou_bankAccountCopyButton,
+  bankAccountNumberClassName: stylesThankyou.thankYou_bankAccountNumber,
+  bankAccountLabelAccountNameClassName: stylesThankyou.thankYou_bankAccountLabelAccountName,
+  thankYouMessageClassName: stylesThankyou.thankYou_message,
+  bankAccountContainerClassName: stylesThankyou.thankYou_bankAccountContainer
+}
+
+
 const PaymentConfirmationPage: FC<any> = ({
   lng,
   lngDict,
@@ -75,7 +109,6 @@ const PaymentConfirmationPage: FC<any> = ({
     <Layout i18n={i18n} lng={lng} lngDict={lngDict} brand={brand}>
       <Breadcrumb links={linksBreadcrumb} lng={lng} />
       <div className={styles.paymentConfirmation_container}>
-        
         {orderID ? (
           <>
             <h3 className={styles.paymentConfirmation_title}>
@@ -85,7 +118,7 @@ const PaymentConfirmationPage: FC<any> = ({
               orderIDProps={orderID}
               classes={classesPaymentConfirmation}
               orderDetailIcon={{
-                chevronUp: <ChevronUp/>,
+                chevronUp: <ChevronUp />,
                 chevronDown: <ChevronDown />
               }}
               onErrorMsg={(msg) => toast.error(msg)}
@@ -98,19 +131,43 @@ const PaymentConfirmationPage: FC<any> = ({
                 format: 'webp',
                 quality: 85,
               }}
+              children={
+                <BanksAccountList
+                  classes={classesBankAccount}
+                  loadingComponent={<div className="spinner-border" />}
+                  onSuccessMsg={(msg) => toast.success(msg)}
+                  icon={{
+                    chevronUp: <ChevronUp />,
+                    chevronDown: <ChevronDown />,
+                    copy: <Copy />,
+                  }}
+                />
+              }
             />
           </>
         ) : (
-          <CheckPaymentOrder
-            classes={classesCheckPaymentOrder}
-            icon={{
-              loading: (
-                <span className='spinner-border text-light mr-3' />
-              ),
-            }}
-            onErrorMsg={(msg) => toast.error(msg)}
+          <>
+            <CheckPaymentOrder
+              classes={classesCheckPaymentOrder}
+              icon={{
+                loading: (
+                  <span className='spinner-border text-light mr-3' />
+                ),
+              }}
+              onErrorMsg={(msg) => toast.error(msg)}
             // onSuccessMsg={(msg) => toast.success(msg)}
-          />
+            />
+            <BanksAccountList
+              classes={classesBankAccount}
+              loadingComponent={<div className="spinner-border" />}
+              onSuccessMsg={(msg) => toast.success(msg)}
+              icon={{
+                chevronUp: <ChevronUp />,
+                chevronDown: <ChevronDown />,
+                copy: <Copy />,
+              }}
+            />
+          </>
         )}
       </div>
     </Layout>

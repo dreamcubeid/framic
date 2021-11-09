@@ -1,11 +1,13 @@
 @import '../utils/variables';
-@import '../components//Form.module.scss';
+@import '../components/Form.module.scss';
+@import '../pages/ThankYou.module.scss';
 
 .paymentConfirmation
 {
   &_container
   {
-    @include useContainer();
+    max-width: 519px;
+    margin: auto;
 
     & > div
     {
@@ -39,6 +41,7 @@
   &_detailTotalAmount
   {
     @include typographyBuilder(400, 12, 16);
+    text-align: left;
     color: $color_grey;
 
     & > span
