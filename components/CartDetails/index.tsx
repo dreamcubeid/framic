@@ -40,6 +40,7 @@ const classesCartDetails = {
   cartFooterTitleClassName: styles.cartdetails_cartFooterTitle,
   itemDiscountNoteClassName: styles.cartdetails_discNote,
   cartFooterTextareaClassName: stylesForm.form_input,
+  errorClassName: styles.cartdetails_error
 }
 
 const classesPlaceholder = {

@@ -34,6 +34,11 @@
   &_detailsContainer
   {
     width: calc(((100% - 24px) / 12) * 8);    
+    
+    &:last-child
+    {
+      width: 100%;
+    }
 
     @media screen and (max-width: $breakpoint_max_md) 
     {
