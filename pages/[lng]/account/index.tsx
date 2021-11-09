@@ -221,8 +221,8 @@ const AccountsPage: FC<any> = ({
             orderHistoryIsCallPagination={true}
             orderHistoryItemPerPage={10}
             paymentHrefPrefix="payment_notif"
-            passwordViewIcon={<Eye />}
-            passwordHideIcon={<EyeOff />}
+            passwordViewIcon={<span className={styles.account_viewIcon} />}
+            passwordHideIcon={<span className={styles.account_hideIcon} />}
             passwordFulfilledCriteriaIcon={<CheckCircle color="green" size={16} />}
             passwordUnfulfilledCriteriaIcon={<CheckCircle color="gray" size={16} />}
             mapButtonCloseIcon={<XIcon />}

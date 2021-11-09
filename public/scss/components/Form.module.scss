@@ -259,6 +259,11 @@
     {
       @extend .form_inputLong;
 
+      &[type="password"]
+      {
+        color: $color_grey_light;
+      }
+
       &[type="password"] ~ button,
       &[type="text"] ~ button
       {

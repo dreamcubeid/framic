@@ -93,7 +93,7 @@ const LoginRegisterOTP: FC<LoginRegisterOTPPropsType> = ({
   return (
     <>
       {((step === steps.email || step === steps.wa) && title) &&
-        <h3 className={`${styles.loginregister_title} ${ step === steps.wa ? "sso" : ""}`}>{title}</h3>
+        <h3 className={`${styles.loginregister_title} ${ step === steps.email || !hasOtp  ? "" : "sso"}`}>{title}</h3>
       }
 
       {step === steps.email || !hasOtp ?
