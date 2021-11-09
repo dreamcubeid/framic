@@ -518,7 +518,7 @@
     "enterEmailBody": "Silahkan masukan e-mail yang sudah didaftarkan. Kami akan kirimkan link undangan untuk atur ulang kata sandi anda.",
     "inputEmail": "user@mail.com",
     "inputPass": "Masukan kata sandi baru",
-    "reset": "Setel Ulang",
+    "reset": "Atur Ulang Kata Sandi",
     "setNew": "Ubah Kata Sandi",
     "title": "Lupa Kata Sandi"
   },

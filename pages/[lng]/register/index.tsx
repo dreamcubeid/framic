@@ -68,11 +68,11 @@ const RegisterPage: FC<any> = ({
       <Breadcrumb links={linksBreadcrumb} lng={lng} />
       <div className={styles.register_wrapper}>
         <div className={styles.register_container}>
-          <h3 className={styles.register_title}>{i18n.t("register.title")}</h3>
           <LoginRegisterOTP
             type="register"
             hasOtp={hasOtp}
             brand={brand}
+            title={i18n.t("register.title")}
             hasGoogleAuth={hasGoogleAuth}
             hasFacebookAuth={hasFacebookAuth}
           >
