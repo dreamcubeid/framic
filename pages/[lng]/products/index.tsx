@@ -57,6 +57,7 @@ const ProductsPage: FC<any> = ({
         {(size.width > 767 || openFilterSort) &&
           <ProductFilterSort
             i18n={i18n}
+            size={size}
             handleOpenSortFilter={handleOpenSortFilter}
             handleFilter={handleFilter}
           />

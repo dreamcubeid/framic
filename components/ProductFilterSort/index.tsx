@@ -13,6 +13,7 @@ import stylesProductsSortFilter from 'public/scss/components/ProductSortFilter.m
 
 type ProductFilterSortType = {
   i18n: any
+  size: any
   handleFilter: (data: any) => void
   handleOpenSortFilter: () => void
 }
@@ -67,7 +68,8 @@ const classesPlaceholderSort = {
 const ProductFilterSort: FC<ProductFilterSortType> = ({
   i18n,
   handleFilter,
-  handleOpenSortFilter
+  handleOpenSortFilter,
+  size
 }) => {
   const [limitCategory, setLimitCategory] = useState<number>(2)
   const [lengthCategory, setLengthCategory] = useState<number>(0)
@@ -86,7 +88,9 @@ const ProductFilterSort: FC<ProductFilterSortType> = ({
 
   return (
     <div className={stylesProductsSortFilter.filterSort_wrapper}>
-      <div className={stylesProductsSortFilter.filterSort_background}  onClick={handleOpenSortFilter}/>
+      { size.width < 767 &&
+        <div className={stylesProductsSortFilter.filterSort_background}  onClick={handleOpenSortFilter}/>
+      }
       <div className={stylesProductsSortFilter.filterSort_container}>
         <div className={stylesProductsSortFilter.filterSort_header}>
           <p className={stylesProductsSortFilter.filter_filterName}>
