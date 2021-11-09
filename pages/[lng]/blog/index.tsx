@@ -18,6 +18,7 @@ import EmptyComponent from 'components/EmptyComponent/EmptyComponent'
 import Placeholder from 'components/Placeholder'
 /* styles */
 import styles from 'public/scss/pages/Blog.module.scss'
+import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
 
 const classesBlogs = {
   blogContainerClassName: styles.blog_item,
@@ -66,6 +67,8 @@ const Blog: FC<any> = ({
   const [totalCategories, setTotalCategories] = useState(null)
 
   const BlogAllowed = isBlogAllowed();
+  const linksBreadcrumb = [`${i18n.t("header.home")}`, `${i18n.t("blog.title")}`]
+
 
   return (
     <Layout
@@ -75,6 +78,7 @@ const Blog: FC<any> = ({
       brand={brand}
       withAllowed={BlogAllowed}
     >
+      <Breadcrumb links={linksBreadcrumb} lng={lng} />
       <div className={styles.blog_parent}>
         <div className="w-100">
           <h1 className={styles.blog_headerTitle}>
