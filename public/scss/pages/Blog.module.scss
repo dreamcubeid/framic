@@ -52,6 +52,11 @@
     }
   }
 
+  &_listContent
+  {
+    margin-bottom: 60px;
+  }
+
   &_listCategory,
   &_listCategoryDetail
   {
@@ -145,11 +150,8 @@
     color: $color_grey_light_text;
     margin-top: 12px;
     text-align: justify;
+    margin-left: -54px;
 
-    @media screen and (max-width: $breakpoint_max_md) 
-    {
-      margin-left: -54px;
-    }
   }
 
   &_category

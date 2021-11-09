@@ -13,7 +13,13 @@ import ProductsComponent from 'components/ProductsComponent'
 import styles from 'public/scss/pages/Cart.module.scss'
 import OrderSummaryBox from 'components/OrderSummaryBox'
 
-const Cart: FC<any> = ({
+interface CartPropType {
+  lngDict: any
+  brand: string
+  lng: string
+};
+
+const Cart: FC<CartPropType> = ({
   lng,
   lngDict,
   brand
