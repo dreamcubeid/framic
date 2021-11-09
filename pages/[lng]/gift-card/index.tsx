@@ -14,7 +14,7 @@ import stylesForm from 'public/scss/components/Form.module.scss'
 
 const classesGiftCard = {
   labelClassName: styles.giftCard_label,
-  inputClassName: stylesForm.form_inputLong,
+  inputClassName: stylesForm.form_input,
   buttonClassName: `${stylesButton.btn_primaryLong} ${styles.giftCard_buttonContainer}`,
 }
 
