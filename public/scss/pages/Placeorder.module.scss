@@ -27,6 +27,12 @@
     }
   }
 
+  &_paymentDetailsDeduction
+  {
+    text-decoration: line-through;
+    margin-right: 4px;
+  }
+
   &_shippingCheckboxLabel,
   &_signupLabel
   {

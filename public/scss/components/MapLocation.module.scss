@@ -74,7 +74,7 @@
 
 .mapPopupHeader
 {
-  @include flex(row, center, flex-start);
+  @include flex(row-reverse, center, flex-start);
   padding: 15px;
   position: relative;
 }
@@ -190,4 +190,6 @@
 .mapButtonFooter
 {
   border-radius: 0 0 2px 2px;
+  margin: 16px auto;
+  width: calc(100% - 32px);
 }

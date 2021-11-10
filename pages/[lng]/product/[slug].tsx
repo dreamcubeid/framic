@@ -14,12 +14,12 @@ import ProductDetailComponent from 'components/ProductDetailComponent'
 import ProductsComponent from 'components/ProductsComponent'
 
 interface ProductProps {
-  lng: string
-  lngDict: any
-  slug: string
-  data: any
-  brand: string
-  urlSite: string
+  lng?: string
+  lngDict?: any
+  slug?: string
+  data?: any
+  brand?: string
+  urlSite?: string
 }
 
 const Product: FC<ProductProps> = ({

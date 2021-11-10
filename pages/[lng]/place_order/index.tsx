@@ -23,6 +23,7 @@ import styles from 'public/scss/pages/Placeorder.module.scss'
 import styleMapLocation from 'public/scss/components/MapLocation.module.scss'
 import stylesForm from 'public/scss/components/Form.module.scss'
 import stylesButton from 'public/scss/components/Button.module.scss'
+import stylesPassword from 'public/scss/components/PasswordStrength.module.scss'
 
 const LoaderPages = dynamic(() => import("components/Loader/LoaderPages"))
 
@@ -49,7 +50,21 @@ const classesPlaceOrderForm = {
   mapHeaderNoteClassName: styleMapLocation.mapPopupNote,
   mapLabelAddressClassName: styleMapLocation.mapPopupLabelAddress,
   mapCenterButtonClassName: styleMapLocation.mapPopupCenterButton,
-  mapButtonFooterClassName: `${stylesButton.btn_primaryLong} ${styleMapLocation.mapButtonFooter}`,
+  mapButtonFooterClassName: `${stylesButton.btn_primary} ${styleMapLocation.mapButtonFooter}`,
+  paymentDetailsDeductionClassName: styles.placeorder_paymentDetailsDeduction,
+
+  headerLabelClassName: styles.register_headerLabel,
+  inputContainerClassName: stylesForm.form_control,
+  buttonClassName: stylesButton.btn_primaryLong,
+  verificationContainerClassName: styles.register_verificationContainer,
+  labelRequiredClassName: stylesForm.form_label,
+
+  // Password Field
+  passwordStrengthBarContainerClassName: stylesPassword.passwordStrength,
+  passwordStrengthBarClassName: stylesPassword.passwordStrength_bar,
+  passwordStrengthLabelClassName: stylesPassword.passwordStrength_label,
+  passwordCriteriaClassName: stylesPassword.passwordStrength_criteriaItem,
+  passwordCriteriaListClassName: stylesPassword.passwordStrength_criteria,
 }
 
 const PrivateRouteWrapper = ({ children }: PrivateComponentPropsType) => (
