@@ -39,7 +39,7 @@ const LookbookSinglePage: FC<any> = ({
   const LookbookAllowed = isLookbookAllowed()
   
   const [title, setTitle] = useState<string>('')
-  const linksBreadcrumb = [i18n.t("header.home"), i18n.t("blog.title"), title]
+  const linksBreadcrumb = [i18n.t("header.home"), i18n.t("lookbook.title"), title]
 
   return (
     <Layout
