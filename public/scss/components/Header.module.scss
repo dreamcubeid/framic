@@ -33,7 +33,10 @@
 
   &_logo
   {
-    height: 24px;
+    max-width: 200px;
+    max-height: 80px;
+    width: auto;
+    height: auto;
   }
 
   &_cartContainer
@@ -67,7 +70,7 @@
   &_announce
   {
     height: 32px;
-    background-color: $color_black;
+    background-color: $color_black_text;
     text-align: center;
     padding: 8px 0;
   }

@@ -13,13 +13,23 @@ import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
 import ProductDetailComponent from 'components/ProductDetailComponent'
 import ProductsComponent from 'components/ProductsComponent'
 
-const Product: FC<any> = ({
+interface ProductProps {
+  lng: string
+  lngDict: any
+  slug: string
+  data: any
+  brand: string
+  urlSite: string
+}
+
+const Product: FC<ProductProps> = ({
   lng,
   lngDict,
   slug,
   data,
   brand,
   urlSite
+
 }) => {
   const i18n: any = useI18n()
   const linksBreadcrumb = [`${i18n.t("header.home")}`, data?.published && data?.details[0]?.name || ""]

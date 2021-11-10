@@ -180,7 +180,13 @@ const orderHistoryPaginationClasses = {
   itemClassName: stylesPaggination.pagination_item,
 }
 
-const AccountsPage: FC<any> = ({
+interface AccountPageProps {
+  lng: string
+  lngDict: any
+  brand: string
+}
+
+const AccountsPage: FC<AccountPageProps> = ({
   lng,
   lngDict,
   brand
