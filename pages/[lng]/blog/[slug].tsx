@@ -12,6 +12,7 @@ import Placeholder from 'components/Placeholder'
 import SocialShare from 'components/SocialShare'
 /* styles */
 import styles from 'public/scss/pages/Blog.module.scss'
+import Breadcrumb from 'components/Breadcrumb/Breadcrumb';
 
 const classesBlogSingle = {
   blogContainerClassName: styles.blog_container,
@@ -58,16 +59,21 @@ const BlogSlug: FC<any> = ({
   headerImage
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const i18n: any = useI18n()
-  const [totalCategories, setTotalCategories] = useState(0)
+  const [totalCategories, setTotalCategories] = useState(1)
+
+  const [title, setTitle] = useState<string>('')
+  const linksBreadcrumb = [i18n.t("header.home"), i18n.t("blog.title"), title]
 
   return (
     <Layout i18n={i18n} lng={lng} lngDict={lngDict} brand={brand}>
+      <Breadcrumb links={linksBreadcrumb} lng={lng} />
       <div className={styles.blog_parentDetail}>
         <div className={styles.blog_contentDetail}>
           <img className={styles.blog_headerImage} src={headerImage} />
           <BlogSingle
             classes={classesBlogSingle}
             ID={slug.toString()}
+            getTitle={setTitle}
             loadingComponent={
               <div>
                 <Placeholder classes={classesPlaceholderBlogs} withImage />
@@ -80,20 +86,17 @@ const BlogSlug: FC<any> = ({
           <SocialShare urlSite={urlSite} />
         </div>
         <div className={styles.blog_listCategoryDetail}>
-          {(totalCategories > 0 || totalCategories === null) && (
-            <>
-              <h3 className={styles.blog_titleSide}>
-                {i18n.t('blog.categoriesBlog')}
-              </h3>
-              <BlogCategories
-                classes={classesBlogCategories}
-                getCategoriesCount={(categoriesCount) =>
-                  setTotalCategories(categoriesCount)
-                }
-              />
-            </>
-          )}
-
+        {(totalCategories > 0 || totalCategories === null) &&
+          <>
+            <h2 className={styles.blog_titleSide}>
+              {i18n.t("blog.categories")}
+            </h2>
+            <BlogCategories
+              classes={classesBlogCategories}
+              getCategoriesCount={(categoriesCount) => setTotalCategories(categoriesCount)}
+            />
+          </>
+        }
           <h3 className={styles.blog_titleSide}>{i18n.t('blog.otherArticle')}</h3>
 
           <BlogRecent
