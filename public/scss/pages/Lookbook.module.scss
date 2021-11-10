@@ -5,6 +5,7 @@
   &_container
   {
     @include useContainer();
+    margin-bottom: 60px;
   }
 
   &_title

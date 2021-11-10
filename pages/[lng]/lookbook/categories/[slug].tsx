@@ -82,12 +82,6 @@ const LookbookSinglePage: FC<any> = ({
           }}
         />
 
-        <ProductsComponent
-          type="recomendation"
-          slug={slug}
-          i18n={i18n}
-          lng={lng}
-        />
         <div className={styles.lookBook_container}>
           <div className={styles.lookBookDetail_shareParent}>
             <h5>
