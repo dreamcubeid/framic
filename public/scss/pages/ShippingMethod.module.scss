@@ -8,6 +8,7 @@
     border: 1px solid $color_light;
     padding: 14px 16px;
     cursor: pointer;
+    position: relative;
 
     &:not(:last-child)
     {
@@ -21,6 +22,29 @@
     }
   }
 
+  &_warningPinPointText
+  {
+    @include typographyBuilder(400, 12, 16);
+    color: $color_red;
+    margin: 0;
+  }
+
+  &_warningPinPoint
+  {
+    order: 3;
+
+    &~div[class*="shippingmethod_shippingPriceDiv"]
+    {
+      display: none;
+    }
+  }
+
+  &_shippingPriceDiv
+  {
+    order: 3;
+    display: block;
+  }
+
   &_shippingName
   {
     @include typographyBuilder(400, 16, 24);
@@ -32,6 +56,7 @@
   {
     width: 60%;
     margin: 0 auto 0 12px;
+    order: 2;
   }
 
   &_shippingPrice
@@ -44,6 +69,7 @@
   &_divInput
   {
     @include flex(row, center, flex-start);
+    order: 1;
   }
 
   &_pinPointLocation

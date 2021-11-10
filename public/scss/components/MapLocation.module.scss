@@ -139,6 +139,33 @@
     box-shadow: none;
     outline: 0;
   }
+
+  div[class*="autocomplete-dropdown-container"] 
+  {
+    z-index: 1;
+    width: 87%;
+    background: #fff;
+    position: absolute;
+    text-align: left;
+    top: 46px;
+    right: 12px;
+    left: 16px;
+
+    div 
+    {
+      padding: 10px;
+    }
+
+    div:nth-child(odd) 
+    {
+      background-color: #fff !important;
+    }
+
+    div:nth-child(even) 
+    {
+      background-color: #ededed !important;
+    }
+  }
 }
 
 .mapPopupCenterButton
@@ -154,9 +181,9 @@
 
 .mapPopupLabelAddress
 {
-  @include typographyBuilder(400, 12, 24);
-  background: $color_grey_light;
-  color: $color_white;
+  @include typographyBuilder(400, 12, 16);
+  background: $color_white;
+  color: $color_black_text;
   padding: 15px;
 }
 

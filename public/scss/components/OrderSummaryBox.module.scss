@@ -486,6 +486,7 @@
     & > span
     {
       @include flex(row, center, flex-start);
+      @include typographyBuilder(400, 12, 16);
       margin-left: 5px;
       color: $color_black_text;
 
@@ -493,7 +494,7 @@
       {
         width: 9px;
         height: 8px;
-        background-size: 100%;
+        background-repeat: no-repeat;
         margin-right: 5px;
       }
     }

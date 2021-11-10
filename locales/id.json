@@ -118,7 +118,7 @@
   "coupon": {
     "apply": "Terapkan",
     "code": "Kode kupon : ",
-    "couponPlaceholder": "Masukkan kode kupon",
+    "couponPlaceholder": "Kode kupon",
     "discount": "Diskon",
     "enough": "Anda mendapat potongan sebesar",
     "header": "Voucher tersedia",

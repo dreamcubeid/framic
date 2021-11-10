@@ -32,7 +32,9 @@ const classesShippingMethod = {
   divInputClass: styles.shippingmethod_divInput,
   shippingErrorMsgClass: styles.shippingmethod_shippingErrorMsg,
   pinPointLocationClassName: `${stylesButton.btn_secondaryLongSmall} ${styles.shippingmethod_pinPointLocation}`,
-
+  warningPinPointTextClassName: styles.shippingmethod_warningPinPointText,
+  warningPinPointClassName: styles.shippingmethod_warningPinPoint,
+  shippingPriceDivClass: styles.shippingmethod_shippingPriceDiv,
   mapSelectAreaClassName: stylesButton.btn_secondaryLongSmall,
   mapPopupClassName: styleMapLocation.mapPopup,
   mapNoteClassName: styleMapLocation.mapNote,

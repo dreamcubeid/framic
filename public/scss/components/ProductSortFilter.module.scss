@@ -323,18 +323,26 @@
     height: 100%;
     width: 75%;
     padding: 32px 24px;
-    z-index: 12;
+    
+    @media screen and (max-width: $breakpoint_max_md) 
+    {
+      z-index: 12;
+    }
   }
 
   &_background
   {
     position: fixed;
-    z-index: 12;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
     background: rgba($color_black, 0.7);
+
+    @media screen and (max-width: $breakpoint_max_md) 
+    {
+      z-index: 12;
+    }
   
     &.hide {
       display: none;
