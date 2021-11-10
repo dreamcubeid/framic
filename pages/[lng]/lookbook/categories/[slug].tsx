@@ -11,7 +11,6 @@ import Layout from 'components/Layout/Layout'
 import Placeholder from 'components/Placeholder'
 import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
 import EmptyComponent from 'components/EmptyComponent/EmptyComponent'
-import ProductsComponent from 'components/ProductsComponent'
 import SocialShare from 'components/SocialShare'
 /* styles */
 import styles from 'public/scss/pages/Lookbook.module.scss'
