@@ -16,6 +16,11 @@
       margin: 0;
       padding: 0;
     }
+
+    &[class$="none"]
+    {
+      display: none;
+    }
   }
 
   &_header

@@ -103,6 +103,13 @@ const OrderSummaryBox: FC<OrderSummaryBoxPropsType> = ({
   const i18n: any = useI18n()
   const [showModalErrorAddToCart, setShowModalErrorAddToCart] = useState<boolean>(false)
 
+  const classesOrderSum = () => {
+    return {
+      ...classesOrderSummary,
+      containerClassName: `${styles.ordersummary_container} ${page === "payment_method" ? "none" : ""}`
+    }
+  }
+
   return page === "cart" ? (
     <OrderSummary
       classes={classesOrderSummary}
@@ -145,7 +152,7 @@ const OrderSummaryBox: FC<OrderSummaryBoxPropsType> = ({
           loadingComponent: <Placeholder classes={classesPlaceholder} withList listMany={3} />
         }}
         orderSummaryProps={{
-          classes: classesOrderSummary,
+          classes: classesOrderSum(),
           withoutButton: page === "payment_method",
           isAccordion: true,
           page: page,
