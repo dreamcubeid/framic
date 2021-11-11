@@ -26,7 +26,20 @@ const classesThankYouPage = {
   bankAccountNumberClassName: styles.thankYou_bankAccountNumber,
   bankAccountLabelAccountNameClassName: styles.thankYou_bankAccountLabelAccountName,
   thankYouMessageClassName: styles.thankYou_message,
-  bankAccountContainerClassName: styles.thankYou_bankAccountContainer
+  bankAccountContainerClassName: styles.thankYou_bankAccountContainer,
+  detailHeaderClassName: styles.thankYou_detailHeader,
+  detailTitleClassName: styles.thankYou_detailTitle,
+  detailStatusClassName: styles.thankYou_detailStatus,
+  detailHeaderDropdownClassName: styles.thankYou_detailHeaderDropdown,
+  detailDropdownClassName: styles.thankYou_detailDropdown,
+  detailTotalAmountClassName: styles.thankYou_detailTotalAmount,
+  detailItemImgClassName: styles.thankYou_detailItemImg,
+  detailItemClassName: styles.thankYou_detailItem,
+  detailItemLabelClassName: styles.thankYou_detailItemLabel,
+  detailItemPriceClassName: styles.thankYou_detailItemPrice,
+  detailFieldClassName: styles.thankYou_detailField,
+  detailPriceBreakdownClassName: styles.thankYou_detailPriceBreakdown,
+  detailTotalFieldClassName: styles.thankYou_detailTotalField
 }
 
 const ThankYouPage: FC<any> = ({
@@ -43,7 +56,7 @@ const ThankYouPage: FC<any> = ({
         classes={classesThankYouPage}
         withDelay
         onSuccessMsg={(msg: string) => toast.success(msg)}
-        // withOrderDetails
+        withOrderDetails
         icon={{
           chevronUp: <ChevronUp />,
           chevronDown: <ChevronDown />,

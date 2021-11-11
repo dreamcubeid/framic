@@ -110,4 +110,123 @@
     margin-top: 24px;
   }
 
+  &_detailHeader
+  {
+    @include flex(row, center, flex-start);
+    background-color: $color_light;
+    padding: 12px 16px;
+    margin-top: 24px;
+  }
+
+  &_detailTitle
+  {
+    @include typographyBuilder(400, 12, 16);
+    color: $color_grey;
+    margin: 0;
+
+    & > span
+    {
+      @include typographyBuilder(600, 12, 16);
+      display: block;
+      color: $color_black_text;
+      margin-top: 2px;
+    }
+  }
+
+  &_detailStatus
+  {
+    @include typographyBuilder(400,10,16);
+    color: $color_white;
+    margin-left: auto;
+    padding: 6px 10px;
+    border-radius: 23px;
+  }
+
+  &_detailHeaderDropdown
+  {
+    @include flex(row, center, space-between);
+    padding: 12px 16px;
+    background-color: $color_light_low;
+  }
+
+  &_detailTotalAmount
+  {
+    @include typographyBuilder(400, 12, 16);
+    color: $color_grey;
+
+    & > span
+    {
+      @include typographyBuilder(400, 16, 24);
+      display: block;
+      color: $color_black_text;
+      margin-top: 2px;
+    }
+  }
+
+  &_detailDropdown
+  {
+    color: $color_blue;
+  }
+
+  &_detailItemImg
+  {
+    & > img 
+    {
+      @include fixedSize(60px);
+      object-fit: cover;
+      margin-right: 6px;
+      border-radius: 3px;
+    }
+  }
+
+  &_detailItem
+  {
+    @include flex(row, center, flex-start);
+    margin: 12px 0;
+  }
+
+  &_detailItemLabel
+  {
+    @include typographyBuilder(400, 12, 16);
+    color: $color_black_text;
+
+    & > span
+    {
+      @include typographyBuilder(400, 12, 16);
+      display: block;
+      color: $color_grey;
+      margin-top: 2px;
+    }
+  }
+
+  &_detailItemPrice
+  {
+    @include typographyBuilder(400, 12, 16);
+    margin-left: auto;
+    color: $color_black_text;
+  }
+
+  &_detailField
+  {
+    @include flex(row, center, space-between);
+    @include typographyBuilder(400, 12, 16);
+    color: $color_black_text;
+    margin-top: 8px;
+  }
+
+  &_detailPriceBreakdown
+  {
+    padding-top: 4px;
+    border-top: 1px dashed $color_grey_dark;
+  }
+
+  &_detailTotalField
+  {
+    @include typographyBuilder(600, 12, 16);
+    @include flex(row, center, space-between);
+    border-top: 1px dashed $color_grey_dark;
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+  
 }
