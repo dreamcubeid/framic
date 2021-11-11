@@ -71,7 +71,9 @@ const classesListPaymentMethod = {
   changePointsClassName: stylesOrderSummaryBox.ordersummary_changePoints,
   pointsWarningClassName: stylesOrderSummaryBox.ordersummary_pointsWarning,
   continueShoppingClassName: stylesOrderSummaryBox.ordersummary_continueShopping,
-  pointsSubmitButtonClassName: stylesButton.btn_primaryLong
+  pointsSubmitButtonClassName: stylesButton.btn_primaryLong,
+
+  radioButtonClassName: styles.paymentmethod_radioButton,
 }
 
 type PrivateComponentPropsType = {

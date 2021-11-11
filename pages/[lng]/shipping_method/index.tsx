@@ -30,6 +30,7 @@ const classesShippingMethod = {
   shippingNameDivClass: styles.shippingmethod_shippingNameDiv,
   shippingPriceClass: styles.shippingmethod_shippingPrice,
   divInputClass: styles.shippingmethod_divInput,
+  inputClass: styles.shippingmethod_inputClass,
   shippingErrorMsgClass: styles.shippingmethod_shippingErrorMsg,
   pinPointLocationClassName: `${stylesButton.btn_secondaryLongSmall} ${styles.shippingmethod_pinPointLocation}`,
   warningPinPointTextClassName: styles.shippingmethod_warningPinPointText,
