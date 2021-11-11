@@ -72,6 +72,23 @@
     order: 1;
   }
 
+  &_inputClass
+  {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    padding: 2px;
+    background-clip: content-box;
+    border: 1px solid $color_black_text;
+    background-color: $color_white;
+    border-radius: 50%;
+
+    &:checked
+    {
+      background-color: $color_black_text;
+    }
+  }
+
   &_pinPointLocation
   {
     margin-top: 10px;

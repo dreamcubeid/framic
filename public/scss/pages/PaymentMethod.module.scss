@@ -226,4 +226,21 @@
       color: $color_white;
     }
   }
+
+  &_radioButton
+  {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    padding: 2px;
+    background-clip: content-box;
+    border: 1px solid $color_black_text;
+    background-color: $color_white;
+    border-radius: 50%;
+
+    &:checked
+    {
+      background-color: $color_black_text;
+    }
+  }
 }
