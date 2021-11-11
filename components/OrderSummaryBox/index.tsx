@@ -125,7 +125,7 @@ const OrderSummaryBox: FC<OrderSummaryBoxPropsType> = ({
       icons={{
         voucher: <span className={styles.ordersummary_voucherIcon} />,
         points: <span className={styles.ordersummary_pointsIcon} />,
-        pointsApplied: <i className="fa fa-crown"></i>,
+        pointsApplied: <span className={styles.ordersummary_voucherIconApplied} />,
         close: <span className={styles.ordersummary_closeIcon} />,
         voucherApplied: <span className={styles.ordersummary_voucherIconApplied} />,
         voucherRemoved: <span className={styles.ordersummary_voucherIconRemove} />,
@@ -162,7 +162,7 @@ const OrderSummaryBox: FC<OrderSummaryBoxPropsType> = ({
           onErrorMsgCoupon: (msg: string) => toast.error(msg),
           loadingComponent: <div className="spinner-border" />,
           icons: {
-            pointsApplied: <i className="fa fa-crown"></i>,
+            pointsApplied: <span className={styles.ordersummary_voucherIconApplied} />,
             voucher: <span className={styles.ordersummary_voucherIcon} />,
             points: <span className={styles.ordersummary_pointsIcon} />,
             close: <span className={styles.ordersummary_closeIcon} />,
