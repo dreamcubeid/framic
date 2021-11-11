@@ -146,6 +146,9 @@
   &_productInfoContainer
   {
     @include flex(row, flex-start, flex-start);
+    border: 1px solid $color_light;
+    margin-bottom: 15px;
+    padding: 16px;
   }
 
   &_productImage
@@ -211,7 +214,11 @@
 
   &_formContainer
   {
-    margin: 20px 0 30px;
+    margin: -16px 0 22px;
+    border: 1px solid $color_light;
+    border-top: 0;
+    background-color: $color_white;
+    padding: 16px;
 
     & > button
     {
@@ -460,7 +467,11 @@
 
   &_reviewCardContainer
   {
-    margin: 22px 0;
+    margin: -16px 0 22px;
+    border: 1px solid $color_light;
+    border-top: 0;
+    background-color: $color_white;
+    padding: 16px;
   }
 
   &_tileRating,
