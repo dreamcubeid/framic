@@ -4,7 +4,8 @@
 {
   &_container
   {
-    @include useContainer();
+    max-width: 519px;
+    margin: auto;
 
     & > h3 
     {
