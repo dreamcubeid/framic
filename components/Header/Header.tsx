@@ -43,18 +43,18 @@ const Header: FC<any> = ({
   const [scrolled, setScrolled] = useState<boolean>(false)
 
   useEffect(() => {
-    setOpenMenu(false);
-  }, [router.query]);
+    setOpenMenu(false)
+  }, [router.query])
 
-  const toogleMenu = () => setOpenMenu(!openMenu);
+  const toogleMenu = () => setOpenMenu(!openMenu)
 
   const handleCart = () => {
     if (router.pathname !== "/[lng]/payment_notif/[[...orderID]]") Router.push("/[lng]/cart", `/${lng}/cart`);
   }
 
   const handleScroll = () => {
-    let offset = window.scrollY;
-    setScrolled(offset > 32);
+    let offset = window.scrollY
+    setScrolled(offset > 32)
   }
 
   useEffect(() => {
