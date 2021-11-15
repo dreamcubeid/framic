@@ -2,6 +2,12 @@
 
 .header
 {
+  &_layout
+  {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
   &_wrapper
   {
     @include useContainer();
