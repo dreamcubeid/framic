@@ -54,6 +54,12 @@ const Layout: React.FC<LayoutPropType> = ({
   ...props
 }) => {
 
+  const getToken = (): string => {
+    const googleAdsWebsiteMetaToken = brand?.googleAdsWebsiteMetaToken
+    const token: string = googleAdsWebsiteMetaToken.replace(/.*content="([^"]*)".*/, "$1")
+    return token
+  }
+
   useEffect(() => {
     i18n?.locale(lng, lngDict);
   }, [lng, lngDict]);
@@ -61,12 +67,6 @@ const Layout: React.FC<LayoutPropType> = ({
   useEffect(() => {
     if (brand?.googleAdsWebsiteMetaToken) getToken()
   }, [brand])
-
-  const getToken = (): string => {
-    const googleAdsWebsiteMetaToken = brand?.googleAdsWebsiteMetaToken
-    const token: string = googleAdsWebsiteMetaToken.replace(/.*content="([^"]*)".*/, "$1")
-    return token
-  }
 
   return (
     <>
@@ -121,7 +121,10 @@ const Layout: React.FC<LayoutPropType> = ({
         image={brand?.logoURL}
       />
       {withHeader &&
-        <Header lng={lng} brand={brand} />
+        <Header 
+          lng={lng} 
+          brand={brand}
+        />
       }
       <main className={layoutClassName}>
         {withAllowed ?
